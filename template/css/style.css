@@ -6723,6 +6723,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   .wishlist__column--image img {
     width: 80px;
   }
+  .wishlist__column--product {
+    text-align: center;
+  }
   .wishlist__column--stock {
     white-space: nowrap;
     text-align: center;
