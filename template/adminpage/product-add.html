@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Thêm người dùng | Nalika - Material Admin Template</title>
+    <title>Thêm sản phẩm | Nalika - Material Admin Template</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- favicon
@@ -85,6 +85,7 @@
         your experience.
       </p>
     <![endif]-->
+
     <div class="left-sidebar-pro">
       <nav id="sidebar" class="">
         <div class="sidebar-header">
@@ -1339,7 +1340,7 @@
                     <li class="active">
                       <a href="#description"
                         ><i class="fa-solid fa-plus"></i>
-                        Thêm người dùng</a
+                        Thêm sản phẩm</a
                       >
                     </li>
                   </ul>
@@ -1356,75 +1357,89 @@
                           <div class="review-content-section">
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
-                                ><i class="fa-solid fa-user"></i></span>
+                                ><i class="fa-solid fa-file-signature"></i></span>
                               <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Tên tài khoản"
+                                placeholder="Tên sản phẩm"
                               />
                             </div>
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
-                                ><i class="fa-solid fa-key"></i></span>
-                              <input
-                                type="password"
-                                class="form-control"
-                                placeholder="Mật khẩu"
-                              />
+                                ><i class="fa-solid fa-image"></i></span>
+                                <input class="form-control" type="file" id="formFileMultiple" multiple>
                             </div>
                             <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-file-signature"></i></i
-                              ></span>
-                              <input
+                              <!-- <span class="input-group-addon"
+                                ><i class="fa-solid fa-audio-description"></i></i
+                              ></span> -->
+                              <textarea
                                 type="text"
                                 class="form-control"
-                                placeholder="Tên người dùng"
-                              />
-                            </div>
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-envelope"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Email"
-                              />
+                                placeholder="Mô tả sản phẩm"
+                                rows="7"
+                                cols="70"
+                              ></textarea>
                             </div>
                             
                           </div>
-                          
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
-                                ><i class="fa-solid fa-location-dot"></i></span>
+                                ><i class="fa fa-usd" aria-hidden="true"></i
+                              ></span>
                               <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Địa chỉ"
+                                placeholder="Giá"
                               />
                             </div>
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
-                                ><i class="fa-solid fa-phone"></i></span>
+                                ><i class="fa fa-usd" aria-hidden="true"></i
+                              ></span>
                               <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Số điện thoại"
+                                placeholder="Giá khuyến mãi"
                               />
                             </div>
-
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
-                                ><i class="fa-solid fa-circle-info"></i></span>
+                                ><i class="fa-solid fa-list-ol"></i></span>
                               <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Role"
+                                placeholder="Số lượng"
                               />
                             </div>
+                            
+                            <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"
+                                > <i class="fa-solid fa-signal"></i></span>
+                              <select
+                              name="select"
+                              class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
+                              >
+                              <option value="opt1">Tình trạng</option>
+                              <option value="opt2">Còn hàng</option>
+                              <option value="opt3">Hết hàng</option>
+                              </select>
+                          </div>
+                          <div class="input-group mg-b-pro-edt">
+                            <span class="input-group-addon"
+                              ><i class="fa-solid fa-bars"></i></span>
+                              <select
+                              name="select"
+                              class="form-control pro-edt-select form-control-primary"
+                            >
+                              <option value="opt1">Danh mục sản phẩm</option>
+                              <option value="opt2">Vật liệu thô</option>
+                              <option value="opt3">Gạch men</option>
+                            </select>
+                          </div>   
                           </div>
                         </div>
                       </div>
@@ -1874,53 +1889,56 @@
 
     <!-- jquery
 		============================================ -->
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
     <!-- bootstrap JS
 		============================================ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- wow JS
 		============================================ -->
-    <script src="js/wow.min.js"></script>
+    <script src="../js/wow.min.js"></script>
     <!-- price-slider JS
 		============================================ -->
-    <script src="js/jquery-price-slider.js"></script>
+    <script src="../js/jquery-price-slider.js"></script>
     <!-- meanmenu JS
 		============================================ -->
-    <script src="js/jquery.meanmenu.js"></script>
+    <script src="../js/jquery.meanmenu.js"></script>
     <!-- owl.carousel JS
 		============================================ -->
-    <script src="js/owl.carousel.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
     <!-- sticky JS
 		============================================ -->
-    <script src="js/jquery.sticky.js"></script>
+    <script src="../js/jquery.sticky.js"></script>
     <!-- scrollUp JS
 		============================================ -->
-    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="../js/jquery.scrollUp.min.js"></script>
     <!-- mCustomScrollbar JS
 		============================================ -->
-    <script src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/scrollbar/mCustomScrollbar-active.js"></script>
+    <script src="../js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../js/scrollbar/mCustomScrollbar-active.js"></script>
     <!-- metisMenu JS
 		============================================ -->
-    <script src="js/metisMenu/metisMenu.min.js"></script>
-    <script src="js/metisMenu/metisMenu-active.js"></script>
-    <!-- morrisjs JS
+    <script src="../js/metisMenu/metisMenu.min.js"></script>
+    <script src="../js/metisMenu/metisMenu-active.js"></script>
+    <!-- sparkline JS
 		============================================ -->
-    <script src="js/sparkline/jquery.sparkline.min.js"></script>
-    <script src="js/sparkline/jquery.charts-sparkline.js"></script>
+    <script src="../js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="../js/sparkline/jquery.charts-sparkline.js"></script>
     <!-- calendar JS
 		============================================ -->
-    <script src="js/calendar/moment.min.js"></script>
-    <script src="js/calendar/fullcalendar.min.js"></script>
-    <script src="js/calendar/fullcalendar-active.js"></script>
-    <!-- tab JS
+    <script src="../js/calendar/moment.min.js"></script>
+    <script src="../js/calendar/fullcalendar.min.js"></script>
+    <script src="../js/calendar/fullcalendar-active.js"></script>
+    <!-- float JS
 		============================================ -->
-    <script src="js/tab.js"></script>
+    <script src="../js/flot/jquery.flot.js"></script>
+    <script src="../js/flot/jquery.flot.resize.js"></script>
+    <script src="../js/flot/curvedLines.js"></script>
+    <script src="../js/flot/flot-active.js"></script>
     <!-- plugins JS
 		============================================ -->
-    <script src="js/plugins.js"></script>
+    <script src="../js/plugins.js"></script>
     <!-- main JS
 		============================================ -->
-    <script src="js/main.js"></script>
+    <script src="../js/main1.js"></script>
   </body>
 </html>

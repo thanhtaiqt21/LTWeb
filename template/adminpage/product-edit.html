@@ -1339,14 +1339,8 @@
                   <ul id="myTab3" class="tab-review-design">
                     <li class="active">
                       <a href="#description"
-                        ><i class="icon nalika-edit" aria-hidden="true"></i>
-                        Thêm sản phẩm</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#reviews"
-                        ><i class="icon nalika-picture" aria-hidden="true"></i>
-                        Hình ảnh</a
+                        ><i class="fa-solid fa-plus"></i>
+                        Chỉnh sửa sản phẩm</a
                       >
                     </li>
                   </ul>
@@ -1363,17 +1357,32 @@
                           <div class="review-content-section">
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
-                                ><i
-                                  class="icon nalika-edit"
-                                  aria-hidden="true"
-                                ></i
-                              ></span>
+                                ><i class="fa-solid fa-file-signature"></i></span>
                               <input
                                 type="text"
                                 class="form-control"
                                 placeholder="Tên sản phẩm"
                               />
                             </div>
+                            <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"
+                                ><i class="fa-solid fa-image"></i></span>
+                                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                            </div>
+                            <div class="input-group mg-b-pro-edt">
+                              <textarea
+                                type="text"
+                                class="form-control"
+                                placeholder="Mô tả sản phẩm"
+                                rows="7"
+                                cols="70"
+                              ></textarea>
+                            </div>
+                            
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <div class="review-content-section">
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
                                 ><i class="fa fa-usd" aria-hidden="true"></i
@@ -1386,56 +1395,48 @@
                             </div>
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
-                                ><i
-                                  class="icon nalika-new-file"
-                                  aria-hidden="true"
-                                ></i
-                              ></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Mô tả sản phẩm"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                          <div class="review-content-section">
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
                                 ><i class="fa fa-usd" aria-hidden="true"></i
                               ></span>
                               <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Giảm giá"
+                                placeholder="Giá khuyến mãi"
                               />
                             </div>
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
-                                ><i
-                                  class="icon nalika-favorites"
-                                  aria-hidden="true"
-                                ></i
-                              ></span>
+                                ><i class="fa-solid fa-list-ol"></i></span>
                               <input
                                 type="text"
                                 class="form-control"
                                 placeholder="Số lượng"
                               />
                             </div>
-
-                            <select
+                            
+                            <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"
+                                > <i class="fa-solid fa-signal"></i></span>
+                              <select
+                              name="select"
+                              class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
+                              >
+                              <option value="opt1">Tình trạng</option>
+                              <option value="opt2">Còn hàng</option>
+                              <option value="opt3">Hết hàng</option>
+                              </select>
+                          </div>
+                          <div class="input-group mg-b-pro-edt">
+                            <span class="input-group-addon"
+                              ><i class="fa-solid fa-bars"></i></span>
+                              <select
                               name="select"
                               class="form-control pro-edt-select form-control-primary"
                             >
                               <option value="opt1">Danh mục sản phẩm</option>
-                              <option value="opt2">2</option>
-                              <option value="opt3">3</option>
-                              <option value="opt4">4</option>
-                              <option value="opt5">5</option>
-                              <option value="opt6">6</option>
+                              <option value="opt2">Vật liệu thô</option>
+                              <option value="opt3">Gạch men</option>
                             </select>
+                          </div>   
                           </div>
                         </div>
                       </div>
@@ -1446,13 +1447,13 @@
                               type="button"
                               class="btn btn-ctl-bt waves-effect waves-light m-r-10"
                             >
-                              Save
+                              Lưu
                             </button>
                             <button
                               type="button"
                               class="btn btn-ctl-bt waves-effect waves-light"
                             >
-                              Discard
+                              Hủy
                             </button>
                           </div>
                         </div>
