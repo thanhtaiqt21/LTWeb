@@ -32,6 +32,11 @@
     <script>
       svg4everybody();
     </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <!-- font - fontawesome -->
     <link rel="stylesheet" href="vendor/fontawesome-5.6.1/css/all.min.css" />
     <!-- font - stroyka -->
@@ -1286,41 +1291,69 @@
                     <h3 class="card-title">Chi tiết đơn hàng</h3>
 
                     <div class="form-group">
-                      <label for="checkout-first-name">Họ và tên</label>
+                      <label>Họ và Tên</label>
                       <input
                         type="text"
                         class="form-control"
-                        id="checkout-first-name"
-                        placeholder="Họ và tên"
+                        placeholder="Nhập họ tên"
                       />
                     </div>
-
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>Email</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          placeholder="Nhập email"
+                        />
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Số điện thoại</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Nhập số điện thoại"
+                        />
+                      </div>
+                    </div>
                     <div class="form-group">
-                      <label for="checkout-street-address">Địa chỉ</label>
+                      <label>Tỉnh/Thành phố</label>
+                      <select
+                        id="city"
+                        class="form-control"
+                        aria-label="Default select example"
+                      >
+                        <option selected>--Tỉnh/Thành phố--</option>
+                      </select>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>Quận/Huyện</label>
+                        <select
+                          id="district"
+                          class="form-control"
+                          aria-label="Default select example"
+                        >
+                          <option selected>--Quận/Huyện--</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Phường/Xã</label>
+                        <select
+                          id="ward"
+                          class="form-control"
+                          aria-label="Default select example"
+                        >
+                          <option selected>--Phường/Xã--</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Địa chỉ cụ thể</label>
                       <input
                         type="text"
                         class="form-control"
-                        id="checkout-street-address"
-                        placeholder="Địa chỉ"
-                      />
-                    </div>
-
-                    <div class="form-group">
-                      <label for="checkout-email">Địa chỉ email</label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="checkout-email"
-                        placeholder="Email"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="checkout-phone">Số điện thoại</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="checkout-phone"
-                        placeholder="Số điện thoại"
+                        placeholder="Số nhà,đường..."
                       />
                     </div>
                   </div>
@@ -1388,46 +1421,6 @@
                         </tr>
                       </tfoot>
                     </table>
-                    <div class="payment-methods">
-                      <ul class="payment-methods__list">
-                        <li class="payment-methods__item">
-                          <label class="payment-methods__item-header"
-                            ><span
-                              class="payment-methods__item-radio input-radio"
-                              ><span class="input-radio__body"
-                                ><input
-                                  class="input-radio__input"
-                                  name="checkout_payment_method"
-                                  type="radio"
-                                />
-                                <span
-                                  class="input-radio__circle"
-                                ></span> </span></span
-                            ><span class="payment-methods__item-title"
-                              >Thanh toán khi nhận hàng</span
-                            ></label
-                          >
-                        </li>
-                        <li class="payment-methods__item">
-                          <label class="payment-methods__item-header"
-                            ><span
-                              class="payment-methods__item-radio input-radio"
-                              ><span class="input-radio__body"
-                                ><input
-                                  class="input-radio__input"
-                                  name="checkout_payment_method"
-                                  type="radio"
-                                />
-                                <span
-                                  class="input-radio__circle"
-                                ></span> </span></span
-                            ><span class="payment-methods__item-title"
-                              >Thanh toán qua thẻ tín dụng</span
-                            ></label
-                          >
-                        </li>
-                      </ul>
-                    </div>
                     <div class="checkout__agree form-group">
                       <div class="form-check">
                         <span class="form-check-input input-check"
@@ -1646,4 +1639,63 @@
     </div>
     <!-- site / end -->
   </body>
+  <script>
+    const host = "https://provinces.open-api.vn/api/";
+    var callAPI = (api) => {
+      return axios.get(api).then((response) => {
+        renderData(response.data, "city");
+      });
+    };
+    callAPI("https://provinces.open-api.vn/api/?depth=1");
+    var callApiDistrict = (api) => {
+      return axios.get(api).then((response) => {
+        renderData(response.data.districts, "district");
+      });
+    };
+    var callApiWard = (api) => {
+      return axios.get(api).then((response) => {
+        renderData(response.data.wards, "ward");
+      });
+    };
+
+    var renderData = (array, select) => {
+      let row = ' <option disable value="">Chọn</option>';
+      array.forEach((element) => {
+        row += `<option data-id="${element.code}" value="${element.name}">${element.name}</option>`;
+      });
+      document.querySelector("#" + select).innerHTML = row;
+    };
+
+    $("#city").change(() => {
+      callApiDistrict(
+        host + "p/" + $("#city").find(":selected").data("id") + "?depth=2"
+      );
+      printResult();
+    });
+    $("#district").change(() => {
+      callApiWard(
+        host + "d/" + $("#district").find(":selected").data("id") + "?depth=2"
+      );
+      printResult();
+    });
+    $("#ward").change(() => {
+      printResult();
+    });
+
+    var printResult = () => {
+      if (
+        $("#district").find(":selected").data("id") != "" &&
+        $("#city").find(":selected").data("id") != "" &&
+        $("#ward").find(":selected").data("id") != ""
+      ) {
+        let result =
+          $("#city option:selected").text() +
+          " | " +
+          $("#district option:selected").text() +
+          " | " +
+          $("#ward option:selected").text();
+        $("#result").text(result);
+      }
+    };
+  </script>
 </html>
