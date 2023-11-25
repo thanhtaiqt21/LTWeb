@@ -1,3 +1,7 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+  String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -49,6 +53,15 @@
       gtag("js", new Date());
       gtag("config", "UA-97489509-6");
     </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+    <style type="text/css">
+      label.error {
+        display: inline-block;
+        color:red;
+        width: 200px;
+      }
+    </style>
   </head>
   <body>
   <!-- quickview-modal -->
@@ -206,7 +219,7 @@
                 </li>
                 <li class="mobile-links__item" data-collapse-item>
                   <div class="mobile-links__item-title">
-                    <a href="account.html" class="mobile-links__item-link"
+                    <a href="register.jsp" class="mobile-links__item-link"
                     >Đăng Kí</a
                     >
                   </div>
@@ -424,7 +437,7 @@
                     <!-- .menu -->
                     <ul class="menu menu--layout--topbar">
                       <li><a href="accountLogin.html">Đăng Nhập</a></li>
-                      <li><a href="account.html">Đăng Kí</a></li>
+                      <li><a href="register.jsp">Đăng Kí</a></li>
                       <li><a href="orders-history.html">Lịch sử đơn Hàng</a></li>
                     </ul>
                     <!-- .menu / end -->
@@ -822,13 +835,23 @@
                 <div class="card flex-grow-1 mb-md-0">
                   <div class="card-body">
                     <h3 class="card-title">Đăng Nhập</h3>
-                    <form>
+                    <form action="/ecommerce/doLogin" method="post" id="formLogin">
+                      <%
+                        if (error != null){
+                      %>
+                      <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                      </div>
+                      <%
+                        }
+                      %>
                       <div class="form-group">
                         <label>Tài Khoản</label>
                         <input
                           type="text"
                           class="form-control"
                           placeholder="Nhập tài khoản"
+                          name="username"
                         />
                       </div>
                       <div class="form-group">
@@ -837,6 +860,7 @@
                           type="password"
                           class="form-control"
                           placeholder="Nhập mật khẩu"
+                          name="password"
                         />
                         <small class="form-text text-muted"
                           ><a href="#">Quên Mật Khẩu</a></small
@@ -1060,5 +1084,32 @@
       <!-- site__footer / end -->
     </div>
     <!-- site / end -->
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#formLogin").validate({
+        rules:{
+          username: {
+            required:true,
+            minLength:6
+          },
+          password: {
+            required:true,
+            minLength:8
+          }
+        },
+        messages: {
+          username: {
+            required: "Vui lòng nhập tên đăng nhập",
+            minLength: "Tên đăng nhập tối thiểu 6 kí tự"
+          },
+          password: {
+            required: "Vui lòng nhập mật khẩu",
+            minLength: "Mật khẩu tối thiểu 8 kí tự"
+          }
+        }
+      });
+    });
+  </script>
   </body>
 </html>
