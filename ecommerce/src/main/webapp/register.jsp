@@ -1,3 +1,7 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+  String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -53,6 +57,15 @@
       gtag("js", new Date());
       gtag("config", "UA-97489509-6");
     </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+    <style type="text/css">
+      label.error {
+        display: inline-block;
+        color:red;
+        width: 200px;
+      }
+    </style>
   </head>
   <body>
   <!-- quickview-modal -->
@@ -202,7 +215,7 @@
                 <li class="mobile-links__item" data-collapse-item>
                   <div class="mobile-links__item-title">
                     <a
-                            href="accountLogin.html"
+                            href="login.jsp"
                             class="mobile-links__item-link"
                     >Đăng Nhập</a
                     >
@@ -427,7 +440,7 @@
                   <div class="topbar-dropdown__body">
                     <!-- .menu -->
                     <ul class="menu menu--layout--topbar">
-                      <li><a href="accountLogin.html">Đăng Nhập</a></li>
+                      <li><a href="login.jsp">Đăng Nhập</a></li>
                       <li><a href="account.html">Đăng Kí</a></li>
                       <li><a href="orders-history.html">Lịch sử đơn Hàng</a></li>
                     </ul>
@@ -827,13 +840,25 @@
                 <div class="card flex-grow-1 mb-0">
                   <div class="card-body">
                     <h3 class="card-title">Đăng Kí</h3>
-                    <form>
+                    <form action="/ecommerce/doRegister" method="post" id="formRegister">
+                      <fieldset>
+                        <%
+                          if (error != null){
+                        %>
+                        <div class="alert alert-danger" role="alert">
+                          <%= error %>
+                        </div>
+                        <%
+                          }
+                        %>
                       <div class="form-group">
                         <label>Họ và Tên</label>
                         <input
                           type="text"
                           class="form-control"
                           placeholder="Nhập họ tên"
+                          name="fullname"
+
                         />
                       </div>
                       <div class="form-group">
@@ -842,6 +867,8 @@
                           type="text"
                           class="form-control"
                           placeholder="Tên tài khoản"
+                          name="username"
+
                         />
                       </div>
 
@@ -851,6 +878,8 @@
                             type="password"
                             class="form-control"
                             placeholder="Nhập Mật Khẩu"
+                            name="password"
+
                           />
                         </div>
 
@@ -860,16 +889,18 @@
                             type="password"
                             class="form-control"
                             placeholder="Nhập Lại Mật Khẩu"
+                            name="confirmPassword"
+
                           />
                         </div>
-
-
                         <div class="form-group">
                           <label>Email</label>
                           <input
                             type="email"
                             class="form-control"
                             placeholder="Nhập email"
+                            name="email"
+
                           />
                         </div>
                         <div class="form-group">
@@ -878,12 +909,14 @@
                             type="text"
                             class="form-control"
                             placeholder="Nhập số điện thoại"
+                            name="phone"
+
                           />
                         </div>
-
                       <button type="submit" class="btn btn-primary mt-4">
                         Đăng kí Ngay
                       </button>
+                      </fieldset>
                     </form>
                   </div>
                 </div>
@@ -1070,64 +1103,121 @@
       <!-- site__footer / end -->
     </div>
     <!-- site / end -->
-  </body>
-  <script>
-    const host = "https://provinces.open-api.vn/api/";
-    var callAPI = (api) => {
-      return axios.get(api).then((response) => {
-        renderData(response.data, "city");
-      });
-    };
-    callAPI("https://provinces.open-api.vn/api/?depth=1");
-    var callApiDistrict = (api) => {
-      return axios.get(api).then((response) => {
-        renderData(response.data.districts, "district");
-      });
-    };
-    var callApiWard = (api) => {
-      return axios.get(api).then((response) => {
-        renderData(response.data.wards, "ward");
-      });
-    };
 
-    var renderData = (array, select) => {
-      let row = ' <option disable value="">Chọn</option>';
-      array.forEach((element) => {
-        row += `<option data-id="${element.code}" value="${element.name}">${element.name}</option>`;
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#formRegister").validate({
+        rules:{
+          username: {
+            required:true,
+            minLength:6
+          },
+          password: {
+            required:true,
+            minLength:8
+          },
+          confirmPassword: {
+            required:true,
+            equalTo: "#password",
+            minLength:8
+          },
+          fullname: "required",
+          email: {
+            required: true,
+            email: true
+          },
+          phone: {
+            required:true,
+            number:true
+          }
+        },
+        messages: {
+          fullname: "Vui lòng nhập họ tên",
+          username: {
+            required: "Vui lòng nhập tên đăng nhập",
+            minLength: "Tên đăng nhập tối thiểu 6 kí tự"
+          },
+          password: {
+            required: "Vui lòng nhập mật khẩu",
+            minLength: "Mật khẩu tối thiểu 8 kí tự"
+          },
+          confirmPassword: {
+            required: "Vui lòng nhập mật khẩu",
+            minLength: "Mật khẩu tối thiểu 8 kí tự",
+            equalTo: "Mật khẩu không trùng khớp"
+          },
+          email: {
+            required: "Vui lòng nhập email",
+            email: "Vui lòng nhập đúng định dạng email"
+          },
+          phone: {
+            required: "Vui lòng nhập số điện thoại",
+            number: "Vui lòng nhập đúng định dạng"
+          }
+        }
       });
-      document.querySelector("#" + select).innerHTML = row;
-    };
-
-    $("#city").change(() => {
-      callApiDistrict(
-        host + "p/" + $("#city").find(":selected").data("id") + "?depth=2"
-      );
-      printResult();
     });
-    $("#district").change(() => {
-      callApiWard(
-        host + "d/" + $("#district").find(":selected").data("id") + "?depth=2"
-      );
-      printResult();
-    });
-    $("#ward").change(() => {
-      printResult();
-    });
-
-    var printResult = () => {
-      if (
-        $("#district").find(":selected").data("id") != "" &&
-        $("#city").find(":selected").data("id") != "" &&
-        $("#ward").find(":selected").data("id") != ""
-      ) {
-        let result =
-          $("#city option:selected").text() +
-          " | " +
-          $("#district option:selected").text() +
-          " | " +
-          $("#ward option:selected").text();
-        $("#result").text(result);
-      }
-    };
   </script>
+  </body>
+<%--  <script>--%>
+<%--    const host = "https://provinces.open-api.vn/api/";--%>
+<%--    var callAPI = (api) => {--%>
+<%--      return axios.get(api).then((response) => {--%>
+<%--        renderData(response.data, "city");--%>
+<%--      });--%>
+<%--    };--%>
+<%--    callAPI("https://provinces.open-api.vn/api/?depth=1");--%>
+<%--    var callApiDistrict = (api) => {--%>
+<%--      return axios.get(api).then((response) => {--%>
+<%--        renderData(response.data.districts, "district");--%>
+<%--      });--%>
+<%--    };--%>
+<%--    var callApiWard = (api) => {--%>
+<%--      return axios.get(api).then((response) => {--%>
+<%--        renderData(response.data.wards, "ward");--%>
+<%--      });--%>
+<%--    };--%>
+
+<%--    var renderData = (array, select) => {--%>
+<%--      let row = ' <option disable value="">Chọn</option>';--%>
+<%--      array.forEach((element) => {--%>
+<%--        row += `<option data-id="${element.code}" value="${element.name}">${element.name}</option>`;--%>
+<%--      });--%>
+<%--      document.querySelector("#" + select).innerHTML = row;--%>
+<%--    };--%>
+
+<%--    $("#city").change(() => {--%>
+<%--      callApiDistrict(--%>
+<%--        host + "p/" + $("#city").find(":selected").data("id") + "?depth=2"--%>
+<%--      );--%>
+<%--      printResult();--%>
+<%--    });--%>
+<%--    $("#district").change(() => {--%>
+<%--      callApiWard(--%>
+<%--        host + "d/" + $("#district").find(":selected").data("id") + "?depth=2"--%>
+<%--      );--%>
+<%--      printResult();--%>
+<%--    });--%>
+<%--    $("#ward").change(() => {--%>
+<%--      printResult();--%>
+<%--    });--%>
+
+<%--    var printResult = () => {--%>
+<%--      if (--%>
+<%--        $("#district").find(":selected").data("id") != "" &&--%>
+<%--        $("#city").find(":selected").data("id") != "" &&--%>
+<%--        $("#ward").find(":selected").data("id") != ""--%>
+<%--      ) {--%>
+<%--        let result =--%>
+<%--          $("#city option:selected").text() +--%>
+<%--          " | " +--%>
+<%--          $("#district option:selected").text() +--%>
+<%--          " | " +--%>
+<%--          $("#ward option:selected").text();--%>
+<%--        $("#result").text(result);--%>
+<%--      }--%>
+<%--    };--%>
+<%--  </script>--%>
+
+
 </html>
