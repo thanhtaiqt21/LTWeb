@@ -1,3 +1,19 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!-- Thêm thông báo thành công hoặc thất bại -->
+<%
+    String error = (String) request.getAttribute("error");
+    String success = (String) request.getAttribute("success");
+%>
+
+<% if (error != null && !error.isEmpty()) { %>
+<p class="message"><%= error %></p>
+<% } %>
+
+<% if (success != null && !success.isEmpty()) { %>
+<p class="message"><%= success %></p>
+<% } %>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -815,13 +831,19 @@
                         <div class="card flex-grow-1 mb-0">
                             <div class="card-body">
                                 <h3 class="card-title">Thay Đổi Mật Khẩu</h3>
-                                <form>
+                                <form action="/ecommerce/doChangePassword" method="post">
+
+                                    <div class="form-group">
+                                        <label>Tài Khoản:</label>
+                                        <input style="display: none" type="text" class="form-control" value="${sessionScope.username}" readonly/>
+                                    </div>
                                     <div class="form-group">
                                         <label>Mật Khẩu Hiện Tại</label>
                                         <input
                                                 type="password"
                                                 class="form-control"
                                                 placeholder="Nhập Mật Khẩu Hiện Tại"
+                                                name="currentPassword"
                                         />
                                     </div>
                                     <div class="form-group">
@@ -830,6 +852,7 @@
                                                 type="password"
                                                 class="form-control"
                                                 placeholder="Nhập Mật Khẩu Mới"
+                                                name="newPassword"
                                         />
                                     </div>
                                     <div class="form-group">
@@ -838,6 +861,7 @@
                                                 type="password"
                                                 class="form-control"
                                                 placeholder="Nhập Lại Mật Khẩu Mới"
+                                                name="confirmNewPassword"
                                         />
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">
@@ -1029,5 +1053,8 @@
     <!-- site__footer / end -->
 </div>
 <!-- site / end -->
+
+
+
 </body>
 </html>
