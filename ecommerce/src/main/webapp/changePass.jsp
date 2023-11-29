@@ -64,6 +64,15 @@
         gtag("js", new Date());
         gtag("config", "UA-97489509-6");
     </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+    <style type="text/css">
+        label.error {
+            display: inline-block;
+            color:red;
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
 <!-- quickview-modal -->
@@ -831,7 +840,7 @@
                         <div class="card flex-grow-1 mb-0">
                             <div class="card-body">
                                 <h3 class="card-title">Thay Đổi Mật Khẩu</h3>
-                                <form action="/ecommerce/doChangePassword" method="post">
+                                <form action="/ecommerce/doChangePassword" method="post" id="formChangePass">
 
                                     <div class="form-group">
                                         <label>Tài Khoản:</label>
@@ -862,6 +871,7 @@
                                                 class="form-control"
                                                 placeholder="Nhập Lại Mật Khẩu Mới"
                                                 name="confirmNewPassword"
+                                                id="password"
                                         />
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">
@@ -1054,6 +1064,38 @@
 </div>
 <!-- site / end -->
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#formChangePass").validate({
+            rules:{
+                username: {
+                    required: true,
+                    minlength: 6
+                },
+                newPassword: {
+                    required: true,
+                    minlength: 8
+                },
+                confirmNewPassword: {
+                    required: true,
+                    equalTo: "#password",
+                    minlength: 8
+                },
+            },
+            messages: {
+                newPassword: {
+                    required: "Vui lòng nhập mật khẩu",
+                    minlength: "Mật khẩu tối thiểu 8 kí tự"
+                },
+                confirmNewPassword: {
+                    required: "Vui lòng nhập mật khẩu",
+                    minlength: "Mật khẩu tối thiểu 8 kí tự",
+                    equalTo: "Mật khẩu không trùng khớp"
+                },
+            }
+        });
+    });
+</script>
 
 
 </body>

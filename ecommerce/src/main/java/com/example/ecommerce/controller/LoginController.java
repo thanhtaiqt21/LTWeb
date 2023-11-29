@@ -22,7 +22,7 @@ public class LoginController extends HttpServlet {
             // Đăng nhập thành công, thêm username vào session
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
-            resp.sendRedirect("/ecommerce/changePass.jsp");
+            resp.sendRedirect("/ecommerce/");
         } else {
             req.setAttribute("error", "Đăng nhập thất bại");
             req.getRequestDispatcher("/login.jsp").forward(req,resp);

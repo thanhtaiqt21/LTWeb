@@ -890,6 +890,7 @@
                             class="form-control"
                             placeholder="Nhập Lại Mật Khẩu"
                             name="confirmPassword"
+                            id="password"
 
                           />
                         </div>
@@ -1110,16 +1111,16 @@
         rules:{
           username: {
             required:true,
-            minLength:6
+            minlength:6
           },
           password: {
             required:true,
-            minLength:8
+            minlength:8
           },
           confirmPassword: {
             required:true,
             equalTo: "#password",
-            minLength:8
+            minlength:8
           },
           fullname: "required",
           email: {
@@ -1135,15 +1136,15 @@
           fullname: "Vui lòng nhập họ tên",
           username: {
             required: "Vui lòng nhập tên đăng nhập",
-            minLength: "Tên đăng nhập tối thiểu 6 kí tự"
+            minlength: "Tên đăng nhập tối thiểu 6 kí tự"
           },
           password: {
             required: "Vui lòng nhập mật khẩu",
-            minLength: "Mật khẩu tối thiểu 8 kí tự"
+            minlength: "Mật khẩu tối thiểu 8 kí tự"
           },
           confirmPassword: {
             required: "Vui lòng nhập mật khẩu",
-            minLength: "Mật khẩu tối thiểu 8 kí tự",
+            minlength: "Mật khẩu tối thiểu 8 kí tự",
             equalTo: "Mật khẩu không trùng khớp"
           },
           email: {
