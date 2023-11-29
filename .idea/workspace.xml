@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d2d8a4a1-e238-423d-a136-2260cbc47756" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2X6ntMFkRNAzGqaCW4zaBWyL0Qq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Admin/Documents/LTWeb/ecommerce",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\LTWeb\template" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d2d8a4a1-e238-423d-a136-2260cbc47756" name="Changes" comment="" />
+      <created>1697958619243</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1697958619243</updated>
+      <workItem from="1697958622363" duration="6000" />
+      <workItem from="1697958645849" duration="6134000" />
+      <workItem from="1697965479054" duration="1215000" />
+      <workItem from="1697966870525" duration="403000" />
+      <workItem from="1697969853966" duration="123000" />
+      <workItem from="1697988413507" duration="180000" />
+      <workItem from="1698334163116" duration="344000" />
+      <workItem from="1698334543713" duration="23000" />
+      <workItem from="1698334585232" duration="81000" />
+      <workItem from="1698336422912" duration="121000" />
+      <workItem from="1698376287099" duration="6851000" />
+      <workItem from="1698397406289" duration="654000" />
+      <workItem from="1698398138092" duration="2054000" />
+      <workItem from="1698401447667" duration="6181000" />
+      <workItem from="1698408602146" duration="388000" />
+      <workItem from="1698417541692" duration="5465000" />
+      <workItem from="1698572658860" duration="1980000" />
+      <workItem from="1698592431326" duration="3744000" />
+      <workItem from="1698656518559" duration="7403000" />
+      <workItem from="1700099106648" duration="1627000" />
+      <workItem from="1700114070625" duration="1146000" />
+      <workItem from="1700119461713" duration="10514000" />
+      <workItem from="1700141992568" duration="184000" />
+      <workItem from="1700143899409" duration="5873000" />
+      <workItem from="1700150537232" duration="615000" />
+      <workItem from="1700156521540" duration="171000" />
+      <workItem from="1700181767554" duration="1379000" />
+      <workItem from="1700184858517" duration="2051000" />
+      <workItem from="1700546625614" duration="1043000" />
+      <workItem from="1700982460423" duration="24000" />
+      <workItem from="1700982553841" duration="49000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

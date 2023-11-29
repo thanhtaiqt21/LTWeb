@@ -30,4 +30,9 @@ public class UserService {
     public boolean verifyEmail(String email, String hashcode) {
         return UserDao.getInstance().verifyEmail(email, hashcode);
     }
+
+    public boolean changePassword(String username, String currentPassword, String newPassword) {
+        return UserDao.getInstance().changePassword(username, currentPassword, newPassword);
+    }
+
 }

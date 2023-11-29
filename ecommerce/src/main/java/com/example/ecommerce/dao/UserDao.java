@@ -102,6 +102,31 @@ public class UserDao {
         return false;
     }
 
+    public boolean changePassword(String username, String currentPassword, String newPassword) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE username=? AND password=? AND active = '1'");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, hashPassword(currentPassword));
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                preparedStatement = connection.prepareStatement("UPDATE user SET password=? WHERE username=?");
+                preparedStatement.setString(1, hashPassword(newPassword));
+                preparedStatement.setString(2, username);
+                int i = preparedStatement.executeUpdate();
+
+                if (i > 0) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
     public String hashPassword(String password) {
         MessageDigest sha256;
         try {

@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class DBConnect {
     private Connection conn;
     private static DBConnect instance;
-    private static final String DB_URL = "jdbc:mysql://localhost:3307/ecommerce";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/ecommerce";
     private static final String USER = "root";
     private static final String PASS = "";
 
