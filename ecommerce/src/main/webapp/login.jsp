@@ -1091,21 +1091,21 @@
         rules:{
           username: {
             required:true,
-            minLength:6
+            minlength:6
           },
           password: {
             required:true,
-            minLength:8
+            minlength:8
           }
         },
         messages: {
           username: {
             required: "Vui lòng nhập tên đăng nhập",
-            minLength: "Tên đăng nhập tối thiểu 6 kí tự"
+            minlength: "Tên đăng nhập tối thiểu 6 kí tự"
           },
           password: {
             required: "Vui lòng nhập mật khẩu",
-            minLength: "Mật khẩu tối thiểu 8 kí tự"
+            minlength: "Mật khẩu tối thiểu 8 kí tự"
           }
         }
       });

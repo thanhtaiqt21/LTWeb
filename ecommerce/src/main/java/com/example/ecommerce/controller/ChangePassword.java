@@ -19,27 +19,13 @@ public class ChangePassword extends HttpServlet {
 
         String currentPassword = req.getParameter("currentPassword");
         String newPassword = req.getParameter("newPassword");
-        String confirmNewPassword = req.getParameter("confirmNewPassword");
 
-        // Kiểm tra mật khẩu mới có ít nhất 8 ký tự
-        if (newPassword.length() < 8) {
-            req.setAttribute("error", "Mật khẩu mới phải có ít nhất 8 ký tự");
-            req.getRequestDispatcher("/changePass.jsp").forward(req, resp);
-            return;
-        }
-
-        // Kiểm tra mật khẩu mới và nhập lại mật khẩu mới có khớp nhau không
-        if (!newPassword.equals(confirmNewPassword)) {
-            req.setAttribute("error", "Nhập lại mật khẩu mới không khớp");
-            req.getRequestDispatcher("/changePass.jsp").forward(req, resp);
-            return;
-        }
 
         boolean success = UserService.getInstance().changePassword(username, currentPassword, newPassword);
 
         if (success) {
             req.setAttribute("success", "Thay đổi mật khẩu thành công");
-            resp.sendRedirect("/ecommerce/index.jsp");
+            resp.sendRedirect("/ecommerce/");
         } else {
             req.setAttribute("error", "Thay đổi mật khẩu thất bại");
             req.getRequestDispatcher("/changePass.jsp").forward(req, resp);
