@@ -1,3 +1,7 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+  String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -75,6 +79,15 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+    <style type="text/css">
+      label.error {
+        display: inline-block;
+        color:red;
+        width: 200px;
+      }
+    </style>
   </head>
 
   <body>
@@ -147,6 +160,7 @@
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
+                </ul>
               </li>
             </ul>
           </nav>
@@ -1345,7 +1359,7 @@
               <div class="product-status-wrap">
                 <h4>Danh mục sản phẩm</h4>
                 <div class="add-product">
-                  <a href="category-add.html">Thêm danh mục sản phẩm</a>
+                  <a href="category-add.jsp">Thêm danh mục sản phẩm</a>
                 </div>
                 <table>
                   <tr>
@@ -1366,7 +1380,7 @@
                         title="Edit"
                         class="pd-setting-ed"
                       >
-                        <a href="category-edit.html">
+                        <a href="category-edit.jsp">
                           <i
                             class="fa fa-pencil-square-o"
                             aria-hidden="true"
@@ -1394,7 +1408,7 @@
                         title="Edit"
                         class="pd-setting-ed"
                       >
-                        <a href="category-edit.html">
+                        <a href="category-edit.jsp">
                           <i
                             class="fa fa-pencil-square-o"
                             aria-hidden="true"
@@ -1422,7 +1436,7 @@
                         title="Edit"
                         class="pd-setting-ed"
                       >
-                        <a href="category-edit.html">
+                        <a href="category-edit.jsp">
                           <i
                             class="fa fa-pencil-square-o"
                             aria-hidden="true"
@@ -1450,7 +1464,7 @@
                         title="Edit"
                         class="pd-setting-ed"
                       >
-                        <a href="category-edit.html">
+                        <a href="category-edit.jsp">
                           <i
                             class="fa fa-pencil-square-o"
                             aria-hidden="true"
