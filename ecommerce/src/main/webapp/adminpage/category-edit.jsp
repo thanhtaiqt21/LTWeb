@@ -1,3 +1,7 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+  String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -64,7 +68,7 @@
     <link rel="stylesheet" href="../css/calendar/fullcalendar.print.min.css" />
     <!-- style CSS
 		============================================ -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" type="text/css"/>
     <!-- responsive CSS
 		============================================ -->
     <link rel="stylesheet" href="../css/responsive.css" />
@@ -75,6 +79,15 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+    <style type="text/css">
+      label.error {
+        display: inline-block;
+        color:red;
+        width: 200px;
+      }
+    </style>
   </head>
 
   <body>
@@ -138,7 +151,7 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="category-list.html"
+                    <a title="Product List" href="category-list.jsp"
                       ><span class="mini-sub-pro">Danh mục sản phẩm</span></a
                     >
                   </li>
@@ -147,6 +160,7 @@
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
+                </ul>
               </li>
             </ul>
           </nav>
