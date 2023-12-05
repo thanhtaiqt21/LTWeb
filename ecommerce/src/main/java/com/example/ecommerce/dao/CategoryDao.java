@@ -43,5 +43,61 @@ public class CategoryDao {
         return false;
     }
 
+    public boolean editCategory(String name, String status) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE category SET name=?, active=?");
+            preparedStatement.setString(1,name);
+            if (status.equals("Hoạt động")) {
+                preparedStatement.setInt(2, 1);
+            } else {
+                preparedStatement.setInt(2, 0);
+            }
+            int i = preparedStatement.executeUpdate();
+            if (i > 0 ) return true;
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return false;
+    }
 
+    public List<Category> getCategories(int start, int total) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        List<Category> categories = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM category LIMIT ?, ? ");
+            preparedStatement.setInt(1, start);
+            preparedStatement.setInt(2, total);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Category category = new Category();
+                category.setId(rs.getInt("id"));
+                category.setName(rs.getString("name"));
+                category.setStatus(rs.getInt("active"));
+                category.setTimestamp(rs.getTimestamp("date_create"));
+                categories.add(category);
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return categories;
+    }
+
+    public long total() {
+        long count = 0;
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS total FROM category");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                count = rs.getLong("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return count;
+    }
 }
