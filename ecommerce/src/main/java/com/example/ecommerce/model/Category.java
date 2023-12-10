@@ -3,12 +3,14 @@ package com.example.ecommerce.model;
 import java.sql.Timestamp;
 
 public class Category {
+    private int id;
     private String name;
-    private String status;
+    private int status;
     private Timestamp timestamp;
 
     public Category() {}
-    public Category(String name, String status, Timestamp timestamp) {
+    public Category(int id, String name, int status, Timestamp timestamp) {
+        this.id = id;
         this.name = name;
         this.status = status;
         this.timestamp = timestamp;
@@ -22,11 +24,11 @@ public class Category {
         this.name = name;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -36,5 +38,13 @@ public class Category {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
