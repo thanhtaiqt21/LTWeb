@@ -8,6 +8,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
     private static UserDao instance;
@@ -125,6 +127,39 @@ public class UserDao {
             throw new RuntimeException(e);
         }
         return false;
+    }
+
+
+
+    public List<User> getUsersByPage(int page, int pageSize) {
+        List<User> userList = new ArrayList<>();
+        Connection connection = DBConnect.getInstance().getConnection();
+        try {
+            // Sử dụng LIMIT và OFFSET để phân trang
+            String query = "SELECT * FROM user LIMIT ? OFFSET ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, pageSize);
+            preparedStatement.setInt(2, (page - 1) * pageSize);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String fullname = resultSet.getString("fullname");
+                String email = resultSet.getString("email");
+                String phone = resultSet.getString("phone");
+                String role = resultSet.getString("role");
+                int active = resultSet.getInt("active");
+
+                User user = new User(id, username, password, fullname, email, phone, role, active);
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
     }
 
     public String hashPassword(String password) {

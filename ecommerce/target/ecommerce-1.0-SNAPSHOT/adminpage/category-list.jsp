@@ -2,6 +2,7 @@
 <%
   String error = (String) request.getAttribute("error");
 %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -146,12 +147,12 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="user-list.html"
+                    <a title="Product List" href="user-list.jsp"
                       ><span class="mini-sub-pro">Người dùng</span></a
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="user-list.html"
+                    <a title="Product List" href="user-list.jsp"
                       ><span class="mini-sub-pro">Danh mục sản phẩm</span></a
                     >
                   </li>
@@ -1368,12 +1369,18 @@
                     <th>Ngày tạo</th>
                     <th>Setting</th>
                   </tr>
+                  <c:forEach var="category" items="${categories}">
                   <tr>
-                    <td>Danh mục 1</td>
+                    <td>${category.name}</td>
                     <td>
-                      <button class="pd-setting">Active</button>
+                        <c:if test="${category.status == 1}">
+                          <button class="pd-setting">Hoạt động</button>
+                        </c:if>
+                      <c:if test="${category.status == 0}">
+                        <button class="pd-setting">Ngưng hoạt động</button>
+                      </c:if>
                     </td>
-                    <td>20/10/2023</td>
+                    <td>${category.timestamp}</td>
                     <td>
                       <button
                         data-toggle="tooltip"
@@ -1396,108 +1403,34 @@
                       </button>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Danh mục 1</td>
-                    <td>
-                      <button class="pd-setting">Active</button>
-                    </td>
-                    <td>20/10/2023</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <a href="category-edit.jsp">
-                          <i
-                            class="fa fa-pencil-square-o"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Danh mục 1</td>
-                    <td>
-                      <button class="pd-setting">Active</button>
-                    </td>
-                    <td>20/10/2023</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <a href="category-edit.jsp">
-                          <i
-                            class="fa fa-pencil-square-o"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Danh mục 1</td>
-                    <td>
-                      <button class="pd-setting">Active</button>
-                    </td>
-                    <td>20/10/2023</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <a href="category-edit.jsp">
-                          <i
-                            class="fa fa-pencil-square-o"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  </c:forEach>
                 </table>
                 <div class="custom-pagination">
                   <ul class="pagination">
+                    <c:if test="${currentPage != 1}">
                     <li class="page-item">
-                      <a class="page-link" href="#">Trước</a>
+                      <a class="page-link" href="/ecommerce/adminpage/category-list?page=${currentPage - 1}">Trước</a>
                     </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">Tiếp theo</a>
-                    </li>
+                    </c:if>
+                    <c:forEach begin="1" end="${numOfPage}" var="i">
+                      <c:choose>
+                        <c:when test="${currentPage eq i}">
+                          <li class="page-item">
+                            <a style="color: steelblue" class="page-link" href="">${i}</a>
+                          </li>
+                        </c:when>
+                        <c:otherwise>
+                          <li class="page-item">
+                            <a href="/ecommerce/adminpage/category-list?page=${i}">${i}</a>
+                          </li>
+                        </c:otherwise>
+                      </c:choose>
+                    </c:forEach>
+                    <c:if test="${currentPage lt numOfPage}">
+                      <li class="page-item">
+                        <a class="page-link" href="/ecommerce/adminpage/category-list?page=${currentPage + 1}">Tiếp theo</a>
+                      </li>
+                    </c:if>
                   </ul>
                 </div>
               </div>
