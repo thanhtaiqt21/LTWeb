@@ -15,20 +15,30 @@ import java.util.List;
 
 @WebServlet(name = "UserListController", value = "/adminpage/user-list")
 public class UserListController extends HttpServlet {
-    private static final int PAGE_SIZE = 5;
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int page = 1; // Mặc định là trang đầu tiên
-        if (req.getParameter("page") != null) {
-            page = Integer.parseInt(req.getParameter("page"));
-        }
-
-        List<User> userList = UserService.getInstance().getUsersByPage(page, PAGE_SIZE);
+        List<User> userList = UserService.getInstance().getAllUsers();
 
         // Truyền dữ liệu dưới dạng JSON
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(new Gson().toJson(userList));
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String userIdParam = req.getParameter("userId");
+        if (userIdParam != null && !userIdParam.isEmpty()) {
+            int userId = Integer.parseInt(userIdParam);
+            boolean deleted = UserService.getInstance().deleteUser(userId);
+
+            if (deleted) {
+                resp.getWriter().write("User deleted successfully");
+            } else {
+                resp.getWriter().write("Error deleting user");
+            }
+        } else {
+            resp.getWriter().write("Invalid user ID");
+        }
     }
 }

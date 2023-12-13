@@ -35,7 +35,10 @@ public class UserService {
     public boolean changePassword(String username, String currentPassword, String newPassword) {
         return UserDao.getInstance().changePassword(username, currentPassword, newPassword);
     }
-    public List<User> getUsersByPage(int page, int pageSize) {
-        return UserDao.getInstance().getUsersByPage(page, pageSize);
+    public List<User> getAllUsers() {
+        return UserDao.getInstance().getAllUsers();
+    }
+    public boolean deleteUser(int userId) {
+        return UserDao.getInstance().deleteUser(userId);
     }
 }

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ page import="com.example.ecommerce.controller.UserListController"%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -10,6 +10,8 @@
     <title>User List | Nalika - Material Admin Template</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
     <!-- favicon
 		============================================ -->
     <link
@@ -82,7 +84,7 @@
 
 
     <style>
-      /* Thêm CSS cho phần phân trang */
+       Thêm CSS cho phần phân trang
       .pagination {
         display: flex;
         list-style: none;
@@ -1373,6 +1375,7 @@
                 <h4>Danh sách người dùng</h4>
 
                 <table>
+                  <thead>
                   <tr>
                     <th>Id</th>
                     <th>Tên người dùng</th>
@@ -1382,12 +1385,25 @@
                     <th>Role</th>
                     <th>Setting</th>
                   </tr>
-
+                  </thead>
                   <tbody id="userTableBody"></tbody>
-
                 </table>
+
+                <!-- Thêm mã HTML cho phân trang -->
                 <div class="custom-pagination">
-                  <ul class="pagination" id="pagination"></ul>
+                  <ul class="pagination" id="pagination">
+                    <li class="page-item" id="previousPage">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        Trước
+                      </a>
+                    </li>
+                    <!-- Các liên kết trang sẽ được thêm ở đây bằng jQuery -->
+                    <li class="page-item" id="nextPage">
+                      <a class="page-link" href="#" aria-label="Next">
+                        Tiếp theo
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -1395,73 +1411,26 @@
         </div>
       </div>
 
-      <script type="text/javascript">
-        function loadUsers(page) {
-          $.ajax({
-            type: 'GET',
-            url: '/adminpage/user-list?page=' + page,
-            dataType: 'json',
-            success: function (data) {
-              var tableBody = $('#userTableBody');
-              tableBody.empty();
+      <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteUserModalLabel">Xác nhận xóa tài khoản</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Bạn có chắc chắn muốn xóa tài khoản không?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+              <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Đồng ý</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              $.each(data.userList, function (index, user) {
-                var statusButton = user.active === 1 ? '<button class="pd-setting">Active</button>' :
-                        '<button class="pd-setting" style="background-color: red;">Not Active</button>';
-
-                var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed">' +
-                        '<a href="user-edit.html">' +
-                        '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>' +
-                        '</a>' +
-                        '</button>';
-
-                var trashButton = '<button data-toggle="tooltip" title="Trash" class="pd-setting-ed">' +
-                        '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
-                        '</button>';
-
-                var row = '<tr>' +
-                        '<td>' + user.id + '</td>' +
-                        '<td>' + user.fullname + '</td>' +
-                        '<td>' + statusButton + '</td>' +
-                        '<td>' + user.email + '</td>' +
-                        '<td>' + user.phone + '</td>' +
-                        '<td>' + user.role + '</td>' +
-                        '<td>' + editButton + trashButton + '</td>' +
-                        '</tr>';
-                tableBody.append(row);
-              });
-
-              // Load phân trang
-              loadPagination(data.totalPages, page);
-            },
-            error: function (xhr, status, error) {
-              console.error('Error fetching data:', status, error);
-            }
-          });
-        }
-
-        function loadPagination(totalPages, currentPage) {
-          var pagination = $('#pagination');
-          pagination.empty();
-
-          if (totalPages <= 1) {
-            return; // Ẩn phân trang nếu chỉ có 1 trang hoặc không có dữ liệu
-          }
-
-          for (var i = 1; i <= totalPages; i++) {
-            var buttonClass = (currentPage === i) ? 'active' : '';
-            var button = '<li class="page-item ' + buttonClass + '">' +
-                    '<a class="page-link" onclick="loadUsers(' + i + ')" ' + ((currentPage === i) ? 'tabindex="-1" aria-disabled="true"' : '') + '>' + i + '</a>' +
-                    '</li>';
-            pagination.append(button);
-          }
-        }
-
-        // Gọi hàm loadUsers khi trang được tải lần đầu tiên
-        $(document).ready(function () {
-          loadUsers(1);
-        });
-      </script>
       <div class="footer-copyright-area">
         <div class="container-fluid">
           <div class="row">
@@ -1532,5 +1501,114 @@
     <!-- main JS
 		============================================ -->
     <script src="../js/main1.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        loadUsers(1);
+      });
+
+      function loadUsers(page) {
+        $.ajax({
+          type: 'GET',
+          url: '/ecommerce/adminpage/user-list?page=' + page,
+          dataType: 'json',
+          success: function (data) {
+            var tableBody = $('#userTableBody');
+            tableBody.empty();
+
+            // Hiển thị 10 tài khoản trên mỗi trang
+            var itemsPerPage = 5;
+            var startIndex = (page - 1) * itemsPerPage;
+            var endIndex = startIndex + itemsPerPage;
+            var usersToShow = data.slice(startIndex, endIndex);
+
+            $.each(usersToShow, function (index, user) {
+              var statusButton = user.active === 1 ? '<button class="pd-setting">Active</button>' :
+                      '<button class="pd-setting" style="background-color: red;">Not Active</button>';
+
+              var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed">' +
+                      '<a href="user-edit.html">' +
+                      '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>' +
+                      '</a>' +
+                      '</button>';
+
+              var trashButton = '<button data-toggle="tooltip" title="Trash" class="pd-setting-ed" onclick="confirmDeleteUser(' + user.id + ')">' +
+                      '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
+                      '</button>';
+
+
+
+
+              var row = '<tr>' +
+                      '<td>' + user.id + '</td>' +
+                      '<td>' + user.fullname + '</td>' +
+                      '<td>' + statusButton + '</td>' +
+                      '<td>' + user.email + '</td>' +
+                      '<td>' + user.phone + '</td>' +
+                      '<td>' + user.role + '</td>' +
+                      '<td>' + editButton + trashButton + '</td>' +
+                      '</tr>';
+              tableBody.append(row);
+            });
+
+            // Hiển thị phân trang
+            var pagination = $('#pagination');
+            pagination.empty();
+
+            var totalPages = Math.ceil(data.length / itemsPerPage);
+            var currentPage = page;
+
+            // Hiển thị nút "Trước" và thiết lập sự kiện khi nhấp vào
+            if (currentPage > 1) {
+              pagination.append('<li class="page-item" id="previousPage"><a class="page-link" href="#" onclick="loadUsers(' + (currentPage - 1) + ')">Trước</a></li>');
+            }
+
+            // Hiển thị các liên kết trang
+            for (var i = 1; i <= totalPages; i++) {
+              var pageLink = '<li class="page-item"><a class="page-link" href="#" onclick="loadUsers(' + i + ')">' + i + '</a></li>';
+              pagination.append(pageLink);
+            }
+
+            // Hiển thị nút "Tiếp theo" và thiết lập sự kiện khi nhấp vào
+            if (currentPage < totalPages) {
+              pagination.append('<li class="page-item" id="nextPage"><a class="page-link" href="#" onclick="loadUsers(' + (currentPage + 1) + ')">Tiếp theo</a></li>');
+            }
+          },
+          error: function (xhr, status, error) {
+            console.error('Error fetching data:', status, error);
+          }
+        });
+      }
+
+      function deleteUser(userId) {
+        $.ajax({
+          type: 'DELETE',
+          url: '/ecommerce/adminpage/user-list?userId=' + userId,
+          success: function (data) {
+            // Gọi lại hàm loadUsers để cập nhật danh sách sau khi xóa
+            loadUsers(1);
+          },
+          error: function (xhr, status, error) {
+            console.error('Error deleting user:', status, error);
+          }
+        });
+      }
+
+      function confirmDeleteUser(userId) {
+        $('#deleteUserModal').modal('show');
+
+        $('#confirmDeleteBtn').on('click', function () {
+          deleteUser(userId);
+          $('#deleteUserModal').modal('hide');
+        });
+
+        // Đặt sự kiện khi đóng modal
+        $('#deleteUserModal').on('hidden.bs.modal', function () {
+          // Đảm bảo loại bỏ sự kiện click để tránh thực hiện đa lần
+          $('#confirmDeleteBtn').off('click');
+        });
+      }
+    </script>
+
   </body>
 </html>
