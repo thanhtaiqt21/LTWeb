@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -78,6 +79,7 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+
 
     <style>
       /* Thêm CSS cho phần phân trang */
@@ -1397,7 +1399,7 @@
         function loadUsers(page) {
           $.ajax({
             type: 'GET',
-            url: '/webapp/adminpage/user-list?page=' + page,
+            url: '/adminpage/user-list?page=' + page,
             dataType: 'json',
             success: function (data) {
               var tableBody = $('#userTableBody');

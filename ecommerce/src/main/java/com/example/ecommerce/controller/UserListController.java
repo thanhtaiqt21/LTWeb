@@ -2,6 +2,7 @@ package com.example.ecommerce.controller;
 
 import com.example.ecommerce.dao.UserDao;
 import com.example.ecommerce.model.User;
+import com.example.ecommerce.service.UserService;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ public class UserListController extends HttpServlet {
             page = Integer.parseInt(req.getParameter("page"));
         }
 
-        List<User> userList = UserDao.getInstance().getUsersByPage(page, PAGE_SIZE);
+        List<User> userList = UserService.getInstance().getUsersByPage(page, PAGE_SIZE);
 
         // Truyền dữ liệu dưới dạng JSON
         resp.setContentType("application/json");
