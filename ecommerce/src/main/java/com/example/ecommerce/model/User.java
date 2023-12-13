@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
+    private int id;
     private String username;
     private String password;
     private String fullname;
@@ -11,16 +12,32 @@ public class User implements Serializable {
     private String phone;
     private String role;
 
+    private int active;
+
+
     public User() {
     }
 
-    public User(String username, String password, String fullname, String email, String phone, String role) {
+    public User(int id,String username, String password, String fullname, String email, String phone, String role, int active) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.fullname = fullname;
         this.email = email;
         this.phone = phone;
         this.role = role;
+        this.active = active;
+    }
+
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -69,5 +86,13 @@ public class User implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 }
