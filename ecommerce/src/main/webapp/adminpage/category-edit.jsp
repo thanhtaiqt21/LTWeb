@@ -1,7 +1,6 @@
+<%@ page import="com.example.ecommerce.model.Category" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%
-  String error = (String) request.getAttribute("error");
-%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -79,13 +78,13 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
     <style type="text/css">
       label.error {
         display: inline-block;
         color:red;
-        width: 200px;
+        width: 100%;
+        position: relative;
+        bottom: 2px;
       }
     </style>
   </head>
@@ -1376,16 +1375,20 @@
                       class="product-tab-list tab-pane fade active in"
                       id="description"
                     >
+                      <form action="/ecommerce/adminpage/category-update" method="post" id="form-update">
                       <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
                             <div class="input-group mg-b-pro-edt">
+                              <input type="hidden" name="id" value="<c:out value="${category.id}"/>">
                               <span class="input-group-addon"
                                 ><i class="fa-solid fa-file-signature"></i></span>
                               <input
                                 type="text"
                                 class="form-control"
                                 placeholder="Tên danh mục"
+                                name="name"
+                                value="${category.name}"
                               />
                             </div> 
                           </div>
@@ -1396,12 +1399,12 @@
                               <span class="input-group-addon"
                                 > <i class="fa-solid fa-signal"></i></span>
                               <select
-                              name="select"
+                              name="status"
                               class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
                               >
-                              <option value="opt1">Trạng thái</option>
-                              <option value="opt2">Hoạt động</option>
-                              <option value="opt3">Ngừng hoạt động</option>
+                              <option disabled selected value="opt1">Trạng thái</option>
+                              <option value="1" ${category.status == 1 ? "selected":""}>Hoạt động</option>
+                              <option value="0" ${category.status == 0 ? "selected":""}>Ngừng hoạt động</option>
                               </select>
                           </div>
                           </div>
@@ -1411,7 +1414,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="text-center custom-pro-edt-ds">
                             <button
-                              type="button"
+                              type="submit"
                               class="btn btn-ctl-bt waves-effect waves-light m-r-10"
                             >
                               Lưu
@@ -1420,11 +1423,12 @@
                               type="button"
                               class="btn btn-ctl-bt waves-effect waves-light"
                             >
-                              Hủy
+                              <a style="color: white" href="/ecommerce/adminpage/category-list">Hủy</a>
                             </button>
                           </div>
                         </div>
                       </div>
+                      </form>
                     </div>
                     <div class="product-tab-list tab-pane fade" id="reviews">
                       <div class="row">
@@ -1854,6 +1858,7 @@
     <!-- jquery
 		============================================ -->
     <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
     <!-- bootstrap JS
 		============================================ -->
     <script src="../js/bootstrap.min.js"></script>
@@ -1904,5 +1909,17 @@
     <!-- main JS
 		============================================ -->
     <script src="../js/main1.js"></script>
+    <script type="text/javascript">
+      $(document).ready(() => {
+        $("#form-update").validate({
+          rules:{
+            name: "required"
+          },
+          messages: {
+            name:  "Vui lòng nhập tên danh mục sản phẩm"
+          }
+        });
+      });
+    </script>
   </body>
 </html>
