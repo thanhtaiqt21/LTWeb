@@ -147,12 +147,12 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="user-list.html"
+                    <a title="Product List" href="user-list.jsp"
                       ><span class="mini-sub-pro">Người dùng</span></a
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="user-list.html"
+                    <a title="Product List" href="user-list.jsp"
                       ><span class="mini-sub-pro">Danh mục sản phẩm</span></a
                     >
                   </li>

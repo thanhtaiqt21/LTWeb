@@ -8,6 +8,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
     private static UserDao instance;
@@ -123,6 +125,49 @@ public class UserDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+
+
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
+        Connection connection = DBConnect.getInstance().getConnection();
+        try {
+            String query = "SELECT * FROM user";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String fullname = resultSet.getString("fullname");
+                String email = resultSet.getString("email");
+                String phone = resultSet.getString("phone");
+                String role = resultSet.getString("role");
+                int active = resultSet.getInt("active");
+
+                User user = new User(id, fullname, email, phone, role, active);
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    public boolean deleteUser(int userId) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        try {
+            String query = "DELETE FROM user WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, userId);
+
+            int affectedRows = preparedStatement.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return false;
     }

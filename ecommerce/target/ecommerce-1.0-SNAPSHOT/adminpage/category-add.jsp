@@ -146,7 +146,7 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="user-list.html"
+                    <a title="Product List" href="user-list.jsp"
                       ><span class="mini-sub-pro">Người dùng</span></a
                     >
                   </li>
@@ -1422,7 +1422,7 @@
                               type="button"
                               class="btn btn-ctl-bt waves-effect waves-light"
                             >
-                              <a style="color: white" href="category-list.jsp">Hủy</a>
+                              <a style="color: white" href="/ecommerce/adminpage/category-list">Hủy</a>
                             </button>
                           </div>
                         </div>
