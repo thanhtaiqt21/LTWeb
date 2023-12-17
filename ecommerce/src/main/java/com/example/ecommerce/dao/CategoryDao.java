@@ -100,4 +100,57 @@ public class CategoryDao {
         }
         return count;
     }
+
+    public Category getCategoryById(int id) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        Category category;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM category WHERE id=?");
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                category = new Category();
+                category.setId(rs.getInt("id"));
+                category.setName(rs.getString("name"));
+                category.setStatus(rs.getInt("active"));
+                category.setTimestamp(rs.getTimestamp("date_create"));
+                return category;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    public boolean deleteCategory(int id) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM category WHERE id=?");
+            preparedStatement.setInt(1, id);
+            int i = preparedStatement.executeUpdate();
+            if (i > 0) return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+    public boolean updateCategory(String name, int status, int id) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE category SET name=?, active=? WHERE id=?");
+            preparedStatement.setString(1,name);
+            preparedStatement.setInt(2, status);
+            preparedStatement.setInt(3, id);
+            int i = preparedStatement.executeUpdate();
+            if (i > 0 ) return true;
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return false;
+    }
 }

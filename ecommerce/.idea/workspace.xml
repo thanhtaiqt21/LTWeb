@@ -9,37 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f958ac96-aed8-4fc5-aa91-a718172373a6" name="Changes" comment="">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="4d08f5be-ef30-4c70-8d80-b0d26e143844" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/category/DeleteCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/category/UpdateCategory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/ChangInfor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/ChangInfor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/controller/ChangInfor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/controller/ChangInfor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/controller/ChangInfor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/controller/ChangInfor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/category-add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/category-add.jsp" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/UserListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/UserListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/CategoryDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/db/DBConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/db/DBConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/blog-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/blog-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/user-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/user-list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/category-edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/category-edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/category-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/category-list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/dao/CategoryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/dao/CategoryDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/db/DBConnect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/db/DBConnect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/service/CategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/service/CategoryService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/blog-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/blog-list.html" afterDir="false" />
->>>>>>> f89b96a5058533a7332a05f4889f506fbd2460eb
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/dao/CategoryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/dao/CategoryDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/db/DBConnect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/db/DBConnect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/service/CategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/service/CategoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/category-edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/category-edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/category-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/category-list.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,37 +65,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-<<<<<<< HEAD
-    &quot;git-widget-placeholder&quot;: &quot;thanhtai&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/WebJsp/LTWeb/ecommerce&quot;,
-=======
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Documents/CD web/raucuqua&quot;,
->>>>>>> f89b96a5058533a7332a05f4889f506fbd2460eb
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "thanhtai",
+    "last_opened_file_path": "D:/WebJsp/LTWeb/ecommerce/src/main/java/com/example/ecommerce/controller/category",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WebJsp\LTWeb\ecommerce\src\main\java\com\example\ecommerce\controller\category" />
       <recent name="C:\Users\Admin\Documents\LTWeb\ecommerce\src\main\webapp\WEB-INF\lib" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.ecommerce.controller" />
     </key>
   </component>
-<<<<<<< HEAD
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.84">
     <configuration name="Tomcat 9.0.84" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.84" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -195,9 +178,11 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Tomcat Server.Tomcat 9.0.84" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.55" />
+    </list>
   </component>
-=======
->>>>>>> f89b96a5058533a7332a05f4889f506fbd2460eb
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -218,18 +203,15 @@
       <workItem from="1702355762603" duration="4791000" />
       <workItem from="1702537895072" duration="6292000" />
       <workItem from="1702622250970" duration="2965000" />
-<<<<<<< HEAD
       <workItem from="1702713581867" duration="3395000" />
       <workItem from="1702804654408" duration="3971000" />
       <workItem from="1702809845900" duration="24000" />
-=======
       <workItem from="1702281308289" duration="945000" />
       <workItem from="1702283731161" duration="9658000" />
       <workItem from="1702293464479" duration="616000" />
       <workItem from="1702365610487" duration="3774000" />
       <workItem from="1702462003821" duration="8522000" />
       <workItem from="1702479030424" duration="6416000" />
->>>>>>> f89b96a5058533a7332a05f4889f506fbd2460eb
     </task>
     <servers />
   </component>

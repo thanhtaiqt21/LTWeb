@@ -2,7 +2,7 @@
 <%
   String error = (String) request.getAttribute("error");
 %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -80,8 +80,10 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
     <style type="text/css">
       label.error {
         display: inline-block;
@@ -1383,23 +1385,27 @@
                     <td>${category.timestamp}</td>
                     <td>
                       <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
+                              data-toggle="tooltip"
+                              title="Edit"
+                              class="pd-setting-ed"
                       >
-                        <a href="category-edit.jsp">
+                        <a href="/ecommerce/adminpage/category-update?id=<c:out value="${category.id}"/>">
                           <i
-                            class="fa fa-pencil-square-o"
-                            aria-hidden="true"
+                                  class="fa fa-pencil-square-o"
+                                  aria-hidden="true"
                           ></i>
                         </a>
                       </button>
                       <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
+                              data-toggle="tooltip"
+                              title="Trash"
+                              class="pd-setting-ed"
                       >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        <a class="text-white delete"
+                           href="/ecommerce/adminpage/category-delete?id=<c:out value="${category.id}"/>"
+                        >
+                          <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
                       </button>
                     </td>
                   </tr>
@@ -1457,7 +1463,7 @@
 
     <!-- jquery
 		============================================ -->
-    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+<%--    <script src="../js/vendor/jquery-1.12.4.min.js"></script>--%>
     <!-- bootstrap JS
 		============================================ -->
     <script src="../js/bootstrap.min.js"></script>
@@ -1508,5 +1514,23 @@
     <!-- main JS
 		============================================ -->
     <script src="../js/main1.js"></script>
+    <script>
+      $('a.delete').confirm({
+        title: 'Xóa?',
+        content: 'Bạn có chắc chắn xóa danh mục sản phẩm này không?',
+        buttons:{
+          delete:{
+            text:'Có',
+            btnClass: 'btn-blue',
+            action: function() {
+              location.href = this.$target.attr("href");
+            }},
+          close: {
+            text:'Không',
+            action: function() {
+            }}
+        }
+      })
+    </script>
   </body>
 </html>
