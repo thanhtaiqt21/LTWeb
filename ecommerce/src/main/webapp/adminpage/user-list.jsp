@@ -1,11 +1,17 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.example.ecommerce.controller.UserListController"%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Thêm người dùng | Nalika - Material Admin Template</title>
+    <title>User List | Nalika - Material Admin Template</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
     <!-- favicon
 		============================================ -->
     <link
@@ -75,6 +81,28 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+
+
+    <style>
+       Thêm CSS cho phần phân trang
+      .pagination {
+        display: flex;
+        list-style: none;
+        padding: 0;
+      }
+
+      .pagination button {
+        margin: 0 5px;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+
+      .pagination button.active {
+        background-color: #007bff;
+        color: #fff;
+      }
+    </style>
+
   </head>
 
   <body>
@@ -85,6 +113,7 @@
         your experience.
       </p>
     <![endif]-->
+
     <div class="left-sidebar-pro">
       <nav id="sidebar" class="">
         <div class="sidebar-header">
@@ -132,7 +161,7 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="user-list.html"
+                    <a title="Product List" href="user-list.jsp"
                       ><span class="mini-sub-pro">Người dùng</span></a
                     >
                   </li>
@@ -146,6 +175,7 @@
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
+                  </ul>
               </li>
             </ul>
           </nav>
@@ -159,7 +189,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="logo-pro">
               <a href="index.html"
-                ><img class="main-logo" src="img/logo/logo.png" alt=""
+                ><img class="main-logo" src="../images/logo/logo.png" alt=""
               /></a>
             </div>
           </div>
@@ -1337,538 +1367,70 @@
           </div>
         </div>
       </div>
-      <!-- Single pro tab start-->
-      <div class="single-product-tab-area mg-b-30">
-        <!-- Single pro tab review Start-->
-        <div class="single-pro-review-area">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="review-tab-pro-inner">
-                  <ul id="myTab3" class="tab-review-design">
-                    <li class="active">
-                      <a href="#description"
-                        ><i class="fa-solid fa-plus"></i>
-                        Chỉnh sửa thông tin người dùng</a
-                      >
+      <div class="product-status mg-b-30">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="product-status-wrap">
+                <h4>Danh sách người dùng</h4>
+
+                <table>
+                  <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Tên người dùng</th>
+                    <th>Trạng thái</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Role</th>
+                    <th>Setting</th>
+                  </tr>
+                  </thead>
+                  <tbody id="userTableBody"></tbody>
+                </table>
+
+                <!-- Thêm mã HTML cho phân trang -->
+                <div class="custom-pagination">
+                  <ul class="pagination" id="pagination">
+                    <li class="page-item" id="previousPage">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        Trước
+                      </a>
+                    </li>
+                    <!-- Các liên kết trang sẽ được thêm ở đây bằng jQuery -->
+                    <li class="page-item" id="nextPage">
+                      <a class="page-link" href="#" aria-label="Next">
+                        Tiếp theo
+                      </a>
                     </li>
                   </ul>
-                  <div
-                    id="myTabContent"
-                    class="tab-content custom-product-edit"
-                  >
-                    <div
-                      class="product-tab-list tab-pane fade active in"
-                      id="description"
-                    >
-                      <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                          <div class="review-content-section">
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-user"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Tên tài khoản"
-                              />
-                            </div>
-                            
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-file-signature"></i></i
-                              ></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Tên người dùng"
-                              />
-                            </div>
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-envelope"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Email"
-                              />
-                            </div>
-                            
-                          </div>
-                          
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                          <div class="review-content-section">
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-location-dot"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Địa chỉ"
-                              />
-                            </div>
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-phone"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Số điện thoại"
-                              />
-                            </div>
-
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-circle-info"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Role"
-                              />
-                            </div>
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                > <i class="fa-solid fa-signal"></i></span>
-                              <select
-                              name="select"
-                              class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
-                              >
-                              <option value="opt1">Trạng thái</option>
-                              <option value="opt2">Hoạt động</option>
-                              <option value="opt3">Ngưng hoạt động</option>
-                              </select>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <div class="text-center custom-pro-edt-ds">
-                            <button
-                              type="button"
-                              class="btn btn-ctl-bt waves-effect waves-light m-r-10"
-                            >
-                              Lưu
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-ctl-bt waves-effect waves-light"
-                            >
-                              Hủy
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-tab-list tab-pane fade" id="reviews">
-                      <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <div class="review-content-section">
-                            <div class="row">
-                              <div class="col-lg-4">
-                                <div class="pro-edt-img">
-                                  <img
-                                    src="img/new-product/5-small.jpg"
-                                    alt=""
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-lg-8">
-                                <div class="row">
-                                  <div class="col-lg-12">
-                                    <div class="product-edt-pix-wrap">
-                                      <div class="input-group">
-                                        <span class="input-group-addon"
-                                          >TT</span
-                                        >
-                                        <input
-                                          type="text"
-                                          class="form-control"
-                                          placeholder="Label Name"
-                                        />
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-lg-6">
-                                          <div class="form-radio">
-                                            <form>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i
-                                                  >Largest Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Medium
-                                                  Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Small
-                                                  Image
-                                                </label>
-                                              </div>
-                                            </form>
-                                          </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                          <div class="product-edt-remove">
-                                            <button
-                                              type="button"
-                                              class="btn btn-ctl-bt waves-effect waves-light"
-                                            >
-                                              Remove
-                                              <i
-                                                class="fa fa-times"
-                                                aria-hidden="true"
-                                              ></i>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-lg-4">
-                                <div class="pro-edt-img">
-                                  <img
-                                    src="img/new-product/6-small.jpg"
-                                    alt=""
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-lg-8">
-                                <div class="row">
-                                  <div class="col-lg-12">
-                                    <div class="product-edt-pix-wrap">
-                                      <div class="input-group">
-                                        <span class="input-group-addon"
-                                          >TT</span
-                                        >
-                                        <input
-                                          type="text"
-                                          class="form-control"
-                                          placeholder="Label Name"
-                                        />
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-lg-6">
-                                          <div class="form-radio">
-                                            <form>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i
-                                                  >Largest Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Medium
-                                                  Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Small
-                                                  Image
-                                                </label>
-                                              </div>
-                                            </form>
-                                          </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                          <div class="product-edt-remove">
-                                            <button
-                                              type="button"
-                                              class="btn btn-ctl-bt waves-effect waves-light"
-                                            >
-                                              Remove
-                                              <i
-                                                class="fa fa-times"
-                                                aria-hidden="true"
-                                              ></i>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-lg-4">
-                                <div class="pro-edt-img mg-b-0">
-                                  <img
-                                    src="img/new-product/7-small.jpg"
-                                    alt=""
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-lg-8">
-                                <div class="row">
-                                  <div class="col-lg-12">
-                                    <div class="product-edt-pix-wrap">
-                                      <div class="input-group">
-                                        <span class="input-group-addon"
-                                          >TT</span
-                                        >
-                                        <input
-                                          type="text"
-                                          class="form-control"
-                                          placeholder="Label Name"
-                                        />
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-lg-6">
-                                          <div class="form-radio">
-                                            <form>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i
-                                                  >Largest Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Medium
-                                                  Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Small
-                                                  Image
-                                                </label>
-                                              </div>
-                                            </form>
-                                          </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                          <div class="product-edt-remove">
-                                            <button
-                                              type="button"
-                                              class="btn btn-ctl-bt waves-effect waves-light"
-                                            >
-                                              Remove
-                                              <i
-                                                class="fa fa-times"
-                                                aria-hidden="true"
-                                              ></i>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="product-tab-list tab-pane fade"
-                      id="INFORMATION"
-                    >
-                      <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <div class="review-content-section">
-                            <div class="card-block">
-                              <div class="text-muted f-w-400">
-                                <p>No reviews yet.</p>
-                              </div>
-                              <div class="m-t-10">
-                                <div class="txt-primary f-18 f-w-600">
-                                  <p>Your Rating</p>
-                                </div>
-                                <div
-                                  class="stars stars-example-css detail-stars"
-                                >
-                                  <div class="review-rating">
-                                    <fieldset class="rating">
-                                      <input
-                                        type="radio"
-                                        id="star5"
-                                        name="rating"
-                                        value="5"
-                                      />
-                                      <label class="full" for="star5"></label>
-                                      <input
-                                        type="radio"
-                                        id="star4half"
-                                        name="rating"
-                                        value="4 and a half"
-                                      />
-                                      <label
-                                        class="half"
-                                        for="star4half"
-                                      ></label>
-                                      <input
-                                        type="radio"
-                                        id="star4"
-                                        name="rating"
-                                        value="4"
-                                      />
-                                      <label class="full" for="star4"></label>
-                                      <input
-                                        type="radio"
-                                        id="star3half"
-                                        name="rating"
-                                        value="3 and a half"
-                                      />
-                                      <label
-                                        class="half"
-                                        for="star3half"
-                                      ></label>
-                                      <input
-                                        type="radio"
-                                        id="star3"
-                                        name="rating"
-                                        value="3"
-                                      />
-                                      <label class="full" for="star3"></label>
-                                      <input
-                                        type="radio"
-                                        id="star2half"
-                                        name="rating"
-                                        value="2 and a half"
-                                      />
-                                      <label
-                                        class="half"
-                                        for="star2half"
-                                      ></label>
-                                      <input
-                                        type="radio"
-                                        id="star2"
-                                        name="rating"
-                                        value="2"
-                                      />
-                                      <label class="full" for="star2"></label>
-                                      <input
-                                        type="radio"
-                                        id="star1half"
-                                        name="rating"
-                                        value="1 and a half"
-                                      />
-                                      <label
-                                        class="half"
-                                        for="star1half"
-                                      ></label>
-                                      <input
-                                        type="radio"
-                                        id="star1"
-                                        name="rating"
-                                        value="1"
-                                      />
-                                      <label class="full" for="star1"></label>
-                                      <input
-                                        type="radio"
-                                        id="starhalf"
-                                        name="rating"
-                                        value="half"
-                                      />
-                                      <label
-                                        class="half"
-                                        for="starhalf"
-                                      ></label>
-                                    </fieldset>
-                                  </div>
-                                  <div class="clear"></div>
-                                </div>
-                              </div>
-                              <div class="input-group mg-b-15 mg-t-15">
-                                <span class="input-group-addon"
-                                  ><i
-                                    class="icon nalika-user"
-                                    aria-hidden="true"
-                                  ></i
-                                ></span>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="User Name"
-                                />
-                              </div>
-                              <div class="input-group mg-b-15">
-                                <span class="input-group-addon"
-                                  ><i
-                                    class="icon nalika-user"
-                                    aria-hidden="true"
-                                  ></i
-                                ></span>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Last Name"
-                                />
-                              </div>
-                              <div class="input-group mg-b-15">
-                                <span class="input-group-addon"
-                                  ><i
-                                    class="icon nalika-mail"
-                                    aria-hidden="true"
-                                  ></i
-                                ></span>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Email"
-                                />
-                              </div>
-                              <div class="form-group review-pro-edt mg-b-0-pt">
-                                <button
-                                  type="submit"
-                                  class="btn btn-ctl-bt waves-effect waves-light"
-                                >
-                                  Submit
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteUserModalLabel">Xác nhận xóa tài khoản</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Bạn có chắc chắn muốn xóa tài khoản không?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+              <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Đồng ý</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="footer-copyright-area">
         <div class="container-fluid">
           <div class="row">
@@ -1888,53 +1450,165 @@
 
     <!-- jquery
 		============================================ -->
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
     <!-- bootstrap JS
 		============================================ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- wow JS
 		============================================ -->
-    <script src="js/wow.min.js"></script>
+    <script src="../js/wow.min.js"></script>
     <!-- price-slider JS
 		============================================ -->
-    <script src="js/jquery-price-slider.js"></script>
+    <script src="../js/jquery-price-slider.js"></script>
     <!-- meanmenu JS
 		============================================ -->
-    <script src="js/jquery.meanmenu.js"></script>
+    <script src="../js/jquery.meanmenu.js"></script>
     <!-- owl.carousel JS
 		============================================ -->
-    <script src="js/owl.carousel.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
     <!-- sticky JS
 		============================================ -->
-    <script src="js/jquery.sticky.js"></script>
+    <script src="../js/jquery.sticky.js"></script>
     <!-- scrollUp JS
 		============================================ -->
-    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="../js/jquery.scrollUp.min.js"></script>
     <!-- mCustomScrollbar JS
 		============================================ -->
-    <script src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/scrollbar/mCustomScrollbar-active.js"></script>
+    <script src="../js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../js/scrollbar/mCustomScrollbar-active.js"></script>
     <!-- metisMenu JS
 		============================================ -->
-    <script src="js/metisMenu/metisMenu.min.js"></script>
-    <script src="js/metisMenu/metisMenu-active.js"></script>
-    <!-- morrisjs JS
+    <script src="../js/metisMenu/metisMenu.min.js"></script>
+    <script src="../js/metisMenu/metisMenu-active.js"></script>
+    <!-- sparkline JS
 		============================================ -->
-    <script src="js/sparkline/jquery.sparkline.min.js"></script>
-    <script src="js/sparkline/jquery.charts-sparkline.js"></script>
+    <script src="../js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="../js/sparkline/jquery.charts-sparkline.js"></script>
     <!-- calendar JS
 		============================================ -->
-    <script src="js/calendar/moment.min.js"></script>
-    <script src="js/calendar/fullcalendar.min.js"></script>
-    <script src="js/calendar/fullcalendar-active.js"></script>
-    <!-- tab JS
+    <script src="../js/calendar/moment.min.js"></script>
+    <script src="../js/calendar/fullcalendar.min.js"></script>
+    <script src="../js/calendar/fullcalendar-active.js"></script>
+    <!-- float JS
 		============================================ -->
-    <script src="js/tab.js"></script>
+    <script src="../js/flot/jquery.flot.js"></script>
+    <script src="../js/flot/jquery.flot.resize.js"></script>
+    <script src="../js/flot/curvedLines.js"></script>
+    <script src="../js/flot/flot-active.js"></script>
     <!-- plugins JS
 		============================================ -->
-    <script src="js/plugins.js"></script>
+    <script src="../js/plugins.js"></script>
     <!-- main JS
 		============================================ -->
-    <script src="js/main.js"></script>
+    <script src="../js/main1.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        loadUsers(1);
+      });
+
+      function loadUsers(page) {
+        $.ajax({
+          type: 'GET',
+          url: '/ecommerce/adminpage/user-list?page=' + page,
+          dataType: 'json',
+          success: function (data) {
+            var tableBody = $('#userTableBody');
+            tableBody.empty();
+
+            // Hiển thị 10 tài khoản trên mỗi trang
+            var itemsPerPage = 5;
+            var startIndex = (page - 1) * itemsPerPage;
+            var endIndex = startIndex + itemsPerPage;
+            var usersToShow = data.slice(startIndex, endIndex);
+
+            $.each(usersToShow, function (index, user) {
+              var statusButton = user.active === 1 ? '<button class="pd-setting">Active</button>' :
+                      '<button class="pd-setting" style="background-color: red;">Not Active</button>';
+
+              var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed">' +
+                      '<a href="user-edit.html">' +
+                      '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>' +
+                      '</a>' +
+                      '</button>';
+
+              var trashButton = '<button data-toggle="tooltip" title="Trash" class="pd-setting-ed" onclick="confirmDeleteUser(' + user.id + ')">' +
+                      '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
+                      '</button>';
+
+
+
+
+              var row = '<tr>' +
+                      '<td>' + user.id + '</td>' +
+                      '<td>' + user.fullname + '</td>' +
+                      '<td>' + statusButton + '</td>' +
+                      '<td>' + user.email + '</td>' +
+                      '<td>' + user.phone + '</td>' +
+                      '<td>' + user.role + '</td>' +
+                      '<td>' + editButton + trashButton + '</td>' +
+                      '</tr>';
+              tableBody.append(row);
+            });
+
+            // Hiển thị phân trang
+            var pagination = $('#pagination');
+            pagination.empty();
+
+            var totalPages = Math.ceil(data.length / itemsPerPage);
+            var currentPage = page;
+
+            // Hiển thị nút "Trước" và thiết lập sự kiện khi nhấp vào
+            if (currentPage > 1) {
+              pagination.append('<li class="page-item" id="previousPage"><a class="page-link" href="#" onclick="loadUsers(' + (currentPage - 1) + ')">Trước</a></li>');
+            }
+
+            // Hiển thị các liên kết trang
+            for (var i = 1; i <= totalPages; i++) {
+              var pageLink = '<li class="page-item"><a class="page-link" href="#" onclick="loadUsers(' + i + ')">' + i + '</a></li>';
+              pagination.append(pageLink);
+            }
+
+            // Hiển thị nút "Tiếp theo" và thiết lập sự kiện khi nhấp vào
+            if (currentPage < totalPages) {
+              pagination.append('<li class="page-item" id="nextPage"><a class="page-link" href="#" onclick="loadUsers(' + (currentPage + 1) + ')">Tiếp theo</a></li>');
+            }
+          },
+          error: function (xhr, status, error) {
+            console.error('Error fetching data:', status, error);
+          }
+        });
+      }
+
+      function deleteUser(userId) {
+        $.ajax({
+          type: 'DELETE',
+          url: '/ecommerce/adminpage/user-list?userId=' + userId,
+          success: function (data) {
+            // Gọi lại hàm loadUsers để cập nhật danh sách sau khi xóa
+            loadUsers(1);
+          },
+          error: function (xhr, status, error) {
+            console.error('Error deleting user:', status, error);
+          }
+        });
+      }
+
+      function confirmDeleteUser(userId) {
+        $('#deleteUserModal').modal('show');
+
+        $('#confirmDeleteBtn').on('click', function () {
+          deleteUser(userId);
+          $('#deleteUserModal').modal('hide');
+        });
+
+        // Đặt sự kiện khi đóng modal
+        $('#deleteUserModal').on('hidden.bs.modal', function () {
+          // Đảm bảo loại bỏ sự kiện click để tránh thực hiện đa lần
+          $('#confirmDeleteBtn').off('click');
+        });
+      }
+    </script>
+
   </body>
 </html>

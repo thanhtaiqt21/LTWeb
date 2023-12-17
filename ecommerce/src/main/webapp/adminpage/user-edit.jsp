@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -132,7 +133,7 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="user-list.html"
+                    <a title="Product List" href="user-list.jsp"
                       ><span class="mini-sub-pro">Người dùng</span></a
                     >
                   </li>

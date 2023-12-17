@@ -27,16 +27,4 @@ public class CategoryService {
     public long total() {
         return CategoryDao.getInstance().total();
     }
-
-    public Category getCategoryById(int id) {
-        return CategoryDao.getInstance().getCategoryById(id);
-    }
-
-    public boolean updateCategory(String name, int status, int id) {
-        return CategoryDao.getInstance().updateCategory(name, status, id);
-    }
-
-    public boolean deleteCategory(int id) {
-        return CategoryDao.getInstance().deleteCategory(id);
-    }
 }

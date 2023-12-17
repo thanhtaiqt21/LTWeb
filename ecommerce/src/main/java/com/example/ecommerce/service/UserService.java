@@ -4,6 +4,7 @@ import com.example.ecommerce.dao.UserDao;
 import com.example.ecommerce.model.User;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserService {
     private static UserService instance;
@@ -34,5 +35,10 @@ public class UserService {
     public boolean changePassword(String username, String currentPassword, String newPassword) {
         return UserDao.getInstance().changePassword(username, currentPassword, newPassword);
     }
-
+    public List<User> getAllUsers() {
+        return UserDao.getInstance().getAllUsers();
+    }
+    public boolean deleteUser(int userId) {
+        return UserDao.getInstance().deleteUser(userId);
+    }
 }
