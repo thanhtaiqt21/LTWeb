@@ -23,12 +23,18 @@ public class CategoryService {
     public List<Category> getCategories(int start, int total) {
         return CategoryDao.getInstance().getCategories(start, total);
     }
-
+    public List<Category> getCategories() {
+        return CategoryDao.getInstance().getCategories();
+    }
     public long total() {
         return CategoryDao.getInstance().total();
     }
     public Category getCategoryById(int id) {
         return CategoryDao.getInstance().getCategoryById(id);
+    }
+
+    public Category getCategoryByName(String name) {
+        return CategoryDao.getInstance().getCategoryByName(name);
     }
 
     public boolean updateCategory(String name, int status, int id) {

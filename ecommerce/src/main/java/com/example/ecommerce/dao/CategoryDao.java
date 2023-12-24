@@ -85,6 +85,26 @@ public class CategoryDao {
         return categories;
     }
 
+    public List<Category> getCategories() {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        List<Category> categories = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM category");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Category category = new Category();
+                category.setId(rs.getInt("id"));
+                category.setName(rs.getString("name"));
+                category.setStatus(rs.getInt("active"));
+                category.setTimestamp(rs.getTimestamp("date_create"));
+                categories.add(category);
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return categories;
+    }
     public long total() {
         long count = 0;
         Connection connection = DBConnect.getInstance().getConnection();
@@ -108,6 +128,28 @@ public class CategoryDao {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM category WHERE id=?");
             preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                category = new Category();
+                category.setId(rs.getInt("id"));
+                category.setName(rs.getString("name"));
+                category.setStatus(rs.getInt("active"));
+                category.setTimestamp(rs.getTimestamp("date_create"));
+                return category;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+    public Category getCategoryByName(String name) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        Category category;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM category WHERE name=?");
+            preparedStatement.setString(1, name);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 category = new Category();
