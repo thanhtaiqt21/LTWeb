@@ -175,6 +175,11 @@
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
+                  <li>
+                    <a title="Product List" href="contact.jsp"
+                    ><span class="mini-sub-pro">Liên hệ</span></a
+                    >
+                  </li>
                   </ul>
               </li>
             </ul>
@@ -1527,7 +1532,7 @@
                       '<button class="pd-setting" style="background-color: red;">Not Active</button>';
 
               var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed">' +
-                      '<a href="user-edit.html">' +
+                      '<a href="user-edit.jsp">' +
                       '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>' +
                       '</a>' +
                       '</button>';
