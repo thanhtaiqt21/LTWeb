@@ -8,14 +8,23 @@ public class Contact {
     private String address;
     private String workingTime;
 
+    private String workingTimeMF;
+    private String workingTimeSA;
+    private String workingTimeSU;
+    private String greeting;
+
     public Contact() {}
 
-    public Contact(int id, String email, String phone, String address, String workingTime) {
+    public Contact(int id, String email, String phone, String address,
+                   String workingTimeMF, String workingTimeSA, String workingTimeSU, String greeting) {
         this.id = id;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.workingTime = workingTime;
+        this.workingTimeMF = workingTimeMF;
+        this.workingTimeSA = workingTimeSA;
+        this.workingTimeSU = workingTimeSU;
+        this.greeting = greeting;
     }
 
     public String getEmail() {
@@ -56,5 +65,37 @@ public class Contact {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getWorkingTimeMF() {
+        return workingTimeMF;
+    }
+
+    public void setWorkingTimeMF(String workingTimeMF) {
+        this.workingTimeMF = workingTimeMF;
+    }
+
+    public String getWorkingTimeSA() {
+        return workingTimeSA;
+    }
+
+    public void setWorkingTimeSA(String workingTimeSA) {
+        this.workingTimeSA = workingTimeSA;
+    }
+
+    public String getWorkingTimeSU() {
+        return workingTimeSU;
+    }
+
+    public void setWorkingTimeSU(String workingTimeSU) {
+        this.workingTimeSU = workingTimeSU;
+    }
+
+    public String getGreeting() {
+        return greeting;
+    }
+
+    public void setGreeting(String greeting) {
+        this.greeting = greeting;
     }
 }

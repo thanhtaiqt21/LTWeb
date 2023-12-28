@@ -30,10 +30,15 @@ public class ContactController extends HttpServlet {
         String newAddress = req.getParameter("address");
         String newEmail = req.getParameter("email");
         String newPhone = req.getParameter("phone");
-        String newWorkingTime = req.getParameter("workingTime");
+        String newWorkingTimeMF = req.getParameter("workingTimeMF");
+        String newWorkingTimeSA = req.getParameter("workingTimeSA");
+        String newWorkingTimeSU = req.getParameter("workingTimeSU");
+        String newGreeting = req.getParameter("greeting");
 
         // Lưu thông tin mới vào cơ sở dữ liệu
-        ContactService.getInstance().updateContactInfo(newAddress, newEmail, newPhone, newWorkingTime);
+        ContactService.getInstance().updateContactInfo(
+                newAddress, newEmail, newPhone, newWorkingTimeMF, newWorkingTimeSA, newWorkingTimeSU, newGreeting
+        );
 
         // Trả về thông báo hoặc mã trạng thái thành công (nếu cần)
         resp.getWriter().write("Contact info updated successfully");

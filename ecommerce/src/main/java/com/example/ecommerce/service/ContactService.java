@@ -19,7 +19,12 @@ public class ContactService {
     public Contact getContactInfo() {
         return ContactDao.getInstance().getContactInfo();
     }
-    public void updateContactInfo(String newAddress, String newEmail, String newPhone, String newWorkingTime) {
-        ContactDao.getInstance().updateContactInfo(newAddress, newEmail, newPhone, newWorkingTime);
+
+    public void updateContactInfo(String newAddress, String newEmail, String newPhone,
+                                  String newWorkingTimeMF, String newWorkingTimeSA, String newWorkingTimeSU,
+                                  String newGreeting) {
+        ContactDao.getInstance().updateContactInfo(
+                newAddress, newEmail, newPhone, newWorkingTimeMF, newWorkingTimeSA, newWorkingTimeSU, newGreeting
+        );
     }
 }
