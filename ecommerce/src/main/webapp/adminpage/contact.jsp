@@ -1386,17 +1386,29 @@
                               <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
                               <input type="email" class="form-control" id="email" placeholder="Email" />
                             </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                          <div class="review-content-section">
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
                               <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" />
                             </div>
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
-                              <input type="text" class="form-control" id="workingTime" placeholder="Thời gian làm việc" />
+                              <input type="text" class="form-control" id="workingTimeMF" placeholder="Thời gian làm việc (Thứ 2 - Thứ 6)" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <div class="review-content-section">
+                            <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
+                              <input type="text" class="form-control" id="workingTimeSA" placeholder="Thời gian làm việc (Thứ 7)" />
+                            </div>
+                            <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
+                              <input type="text" class="form-control" id="workingTimeSU" placeholder="Thời gian làm việc (Chủ nhật)" />
+                            </div>
+                            <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
+                              <input type="text" class="form-control"  id="greeting" placeholder="Lời chào" />
                             </div>
                           </div>
                         </div>
@@ -1848,7 +1860,10 @@
             $('#address').val(data.address);
             $('#email').val(data.email);
             $('#phone').val(data.phone);
-            $('#workingTime').val(data.workingTime);
+            $('#workingTimeMF').val(data.workingTimeMF);
+            $('#workingTimeSA').val(data.workingTimeSA);
+            $('#workingTimeSU').val(data.workingTimeSU);
+            $('#greeting').val(data.greeting); // Add this line
           },
           error: function (xhr, status, error) {
             console.error('Error fetching contact info:', status, error);
@@ -1861,12 +1876,14 @@
         });
       });
 
-      // Hàm lưu thông tin liên hệ mới
       function saveContactInfo() {
         var newAddress = $('#address').val();
         var newEmail = $('#email').val();
         var newPhone = $('#phone').val();
-        var newWorkingTime = $('#workingTime').val();
+        var newWorkingTimeMF = $('#workingTimeMF').val();
+        var newWorkingTimeSA = $('#workingTimeSA').val();
+        var newWorkingTimeSU = $('#workingTimeSU').val();
+        var newGreeting = $('#greeting').val(); // Add this line
 
         // Gửi yêu cầu đến servlet để lưu thông tin mới
         $.ajax({
@@ -1877,7 +1894,10 @@
             address: newAddress,
             email: newEmail,
             phone: newPhone,
-            workingTime: newWorkingTime
+            workingTimeMF: newWorkingTimeMF,
+            workingTimeSA: newWorkingTimeSA,
+            workingTimeSU: newWorkingTimeSU,
+            greeting: newGreeting // Add this line
           },
           success: function (data) {
             if (data && data.success) {
