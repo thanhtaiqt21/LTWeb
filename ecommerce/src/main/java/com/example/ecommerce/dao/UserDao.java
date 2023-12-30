@@ -34,6 +34,7 @@ public class UserDao {
             User user;
             if (rs.next()) {
                 user = new User();
+                user.setId(rs.getInt("id"));
                 user.setUsername(rs.getString("username"));
                 user.setFullname(rs.getString("fullname"));
                 user.setEmail(rs.getString("email"));
@@ -183,4 +184,21 @@ public class UserDao {
             return null;
         }
     }
+    public boolean updateInfor(String fullname, String email, String phone, int id) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        try {
+            String query = "UPDATE user SET fullname=?, email=?, phone=? WHERE id=?";
+            PreparedStatement p = connection.prepareStatement(query);
+            p.setString(1, fullname);
+            p.setString(2, email);
+            p.setString(3, phone);
+            p.setInt(4, id);
+            int i = p.executeUpdate();
+            if(i > 0) return true;
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return false;
+    }
+
 }

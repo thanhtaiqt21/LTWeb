@@ -47,4 +47,14 @@ public class Category {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }

@@ -2,6 +2,7 @@ package com.example.ecommerce.dao;
 
 import com.example.ecommerce.db.DBConnect;
 import com.example.ecommerce.model.Category;
+import com.example.ecommerce.model.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class CategoryDao {
     private static CategoryDao instance;
-    private CategoryDao(){}
+    public CategoryDao(){}
 
     public static CategoryDao getInstance(){
         if (instance == null) {
@@ -152,5 +153,34 @@ public class CategoryDao {
             throw new RuntimeException();
         }
         return false;
+    }
+
+    public List<Category> getAllCategory(){
+        List<Category> listC = new ArrayList<>();
+        String query = "SELECT * FROM `category`";
+        try {
+            Connection connection = DBConnect.getInstance().getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                listC.add(new Category(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getTimestamp(4)
+                ));
+            }
+        }catch (Exception e){
+
+        }
+
+        return listC;
+    }
+
+    public static void main(String[] args) {
+        CategoryDao dao = new CategoryDao();
+        List<Category> list = dao.getAllCategory();
+        for (Category o : list){
+            System.out.println(o);
+        }
     }
 }

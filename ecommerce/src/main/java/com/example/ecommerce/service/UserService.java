@@ -3,7 +3,6 @@ package com.example.ecommerce.service;
 import com.example.ecommerce.dao.UserDao;
 import com.example.ecommerce.model.User;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class UserService {
@@ -40,5 +39,9 @@ public class UserService {
     }
     public boolean deleteUser(int userId) {
         return UserDao.getInstance().deleteUser(userId);
+    }
+
+    public boolean updateInfor(String fullname, String email, String phone, int id) {
+        return UserDao.getInstance().updateInfor(fullname, email, phone, id);
     }
 }
