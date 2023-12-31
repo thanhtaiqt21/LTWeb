@@ -87,4 +87,35 @@ public class ProductDao {
         }
     }
 
+    public List<Product> getProductByCID(String id){
+//        Connection connection = DBConnect.getInstance().getConnection();
+//        PreparedStatement preparedStatement;
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM `products` WHERE id_category = ?";
+        try {
+            Connection connection = DBConnect.getInstance().getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        rs.getInt(6),
+                        rs.getInt(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getTimestamp(10),
+                        rs.getString(11)
+                ));
+            }
+        }catch (Exception e){
+
+        }
+
+        return list;
+    }
+
 }

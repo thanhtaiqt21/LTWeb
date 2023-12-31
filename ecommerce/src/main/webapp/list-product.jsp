@@ -535,7 +535,7 @@
                         <ul class="menu menu--layout--classic">
                           <c:forEach items="${listC}" var="o">
                           <li>
-                            <a href="">${o.name}</a>
+                            <a href="category?id=${o.id}">${o.name}</a>
                           </li>
                          </c:forEach>
                         </ul>
