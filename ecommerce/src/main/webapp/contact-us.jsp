@@ -1,12 +1,12 @@
+<%@ page import="com.example.ecommerce.model.Category" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%
+  String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="format-detection" content="telephone=no" />
@@ -88,7 +88,7 @@
         >
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
-              <a href="index.html" class="mobile-links__item-link"
+              <a href="index.jsp" class="mobile-links__item-link"
               >Trang Chủ</a
               >
             </div>
@@ -96,7 +96,7 @@
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
               <a
-                      href="shop-grid-4-columns-full.html"
+                      href="list-product.jsp"
                       class="mobile-links__item-link"
               >Danh Mục Sản Phẩm</a
               >
@@ -178,7 +178,7 @@
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
               <a
-                      href="shop-grid-4-columns-full.html"
+                      href="list-product.jsp"
                       class="mobile-links__item-link"
               >Tài Khoản</a
               >
@@ -228,14 +228,14 @@
           </li>
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
-              <a href="blog-classic.html" class="mobile-links__item-link"
+              <a href="blog-classic.jsp" class="mobile-links__item-link"
               >Blog</a
               >
             </div>
           </li>
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
-              <a href="contact-us.jsp" class="mobile-links__item-link"
+              <a href="contact-us.html" class="mobile-links__item-link"
               >Liên Hệ</a
               >
             </div>
@@ -309,7 +309,7 @@
                   <use xlink:href="images/sprite.svg#menu-18x14"></use>
                 </svg>
               </button>
-              <a class="mobile-header__logo" href="index.html"
+              <a class="mobile-header__logo" href="index.jsp"
               ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="120px"
@@ -378,7 +378,7 @@
                   </button>
                 </div>
                 <div class="indicator indicator--mobile d-sm-flex d-none">
-                  <a href="wishlist.html" class="indicator__button"
+                  <a href="wishlist.jsp" class="indicator__button"
                   ><span class="indicator__area"
                   ><svg width="20px" height="20px">
                           <use xlink:href="images/sprite.svg#heart-20"></use>
@@ -388,7 +388,7 @@
                   >
                 </div>
                 <div class="indicator indicator--mobile">
-                  <a href="cart.html" class="indicator__button"
+                  <a href="cart.jsp" class="indicator__button"
                   ><span class="indicator__area"
                   ><svg width="20px" height="20px">
                           <use xlink:href="images/sprite.svg#cart-20"></use>
@@ -412,7 +412,7 @@
           <div class="topbar__container container">
             <div class="topbar__row">
               <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" href="about-us.html">Giới thiệu</a>
+                <a class="topbar-link" href="about-us.jsp">Giới thiệu</a>
               </div>
               <div class="topbar__spring"></div>
               <div class="topbar__item">
@@ -430,7 +430,7 @@
                     <ul class="menu menu--layout--topbar">
                       <li><a href="login.jsp">Đăng Nhập</a></li>
                       <li><a href="register.jsp">Đăng Kí</a></li>
-                      <li><a href="orders-history.html">Lịch sử đơn Hàng</a></li>
+                      <li><a href="orders-history.jsp">Lịch sử đơn Hàng</a></li>
                     </ul>
                     <!-- .menu / end -->
                   </div>
@@ -479,7 +479,7 @@
             <div class="nav-panel__container container">
               <div class="nav-panel__row">
                 <div class="nav-panel__logo">
-                  <a href="index.html">
+                  <a href="index.jsp">
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="120px"
@@ -511,7 +511,7 @@
                 <div class="nav-panel__nav-links nav-links">
                   <ul class="nav-links__list">
                     <li class="nav-links__item nav-links__item--with-submenu">
-                      <a href="index.html"><span>Trang chủ </span></a>
+                      <a href="index.jsp"><span>Trang chủ </span></a>
                       <div class="nav-links__menu">
                         <!-- .menu -->
 
@@ -534,48 +534,22 @@
                       <div class="nav-links__menu">
                         <!-- .menu -->
                         <ul class="menu menu--layout--classic">
+                          <% List<Category> listC = (List<Category>) request.getSession().getAttribute("listC");
+                            for (Category category : listC) { %>
                           <li>
-                            <a href="shop-grid-4-columns-full.html"
-                            >Gạch Block Xi Măng
-                            </a>
+                            <a href="category?id=<%= category.getId() %>"><%= category.getName() %></a>
                           </li>
-                          <li>
-                            <a href="shop-list.html"
-                            >Gạch Trang Trí Cao Cấp</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html">Gạch Men</a>
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html"
-                            >Thiết Bị Ngành Nước</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html">Đá Tự Nhiên</a>
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html">Vật Liệu Thô</a>
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html"
-                            >Các Loại VLXD Khác</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product.html">Ngói Lợp Nhà </a>
-                          </li>
+                          <% } %>
                         </ul>
                         <!-- .menu / end -->
                       </div>
                     </li>
                     <li class="nav-links__item nav-links__item--with-submenu">
-                      <a href="blog-classic.html"><span>Blog </span></a>
+                      <a href="blog-classic.jsp"><span>Blog </span></a>
                     </li>
 
                     <li class="nav-links__item">
-                      <a href="contact-us.jsp"><span>Liên hệ</span></a>
+                      <a href="contact-us.html"><span>Liên hệ</span></a>
                     </li>
                   </ul>
                 </div>
@@ -627,7 +601,7 @@
                     </div>
                   </div>
                   <div class="indicator">
-                    <a href="wishlist.html" class="indicator__button"
+                    <a href="wishlist.jsp" class="indicator__button"
                     ><span class="indicator__area"
                     ><svg width="20px" height="20px">
                             <use xlink:href="images/sprite.svg#heart-20"></use>
@@ -637,7 +611,7 @@
                     >
                   </div>
                   <div class="indicator indicator--trigger--click">
-                    <a href="cart.html" class="indicator__button"
+                    <a href="cart.jsp" class="indicator__button"
                     ><span class="indicator__area"
                     ><svg width="20px" height="20px">
                             <use xlink:href="images/sprite.svg#cart-20"></use>
@@ -651,7 +625,7 @@
                         <div class="dropcart__products-list">
                           <div class="dropcart__product">
                             <div class="dropcart__product-image">
-                              <a href="product.html"
+                              <a href="product.jsp"
                               ><img
                                       src="https://cdn.hoasenhome.vn/catalog/product/i/n/indal1001000016-1.jpg"
                                       alt=""
@@ -659,7 +633,7 @@
                             </div>
                             <div class="dropcart__product-info">
                               <div class="dropcart__product-name">
-                                <a href="product.html"
+                                <a href="product.jsp"
                                 >Gạch granite LUSTRA INDAL1001000016: 1000mmx1000mm</a
                                 >
                               </div>
@@ -686,7 +660,7 @@
                           </div>
                           <div class="dropcart__product">
                             <div class="dropcart__product-image">
-                              <a href="product.html"
+                              <a href="product.jsp"
                               ><img
                                       src="https://cdn.hoasenhome.vn/catalog/product/t/h/thep-cay-viet-my-grade-40.jpg"
                                       alt=""
@@ -694,7 +668,7 @@
                             </div>
                             <div class="dropcart__product-info">
                               <div class="dropcart__product-name">
-                                <a href="product.html"
+                                <a href="product.jsp"
                                 >Thép cây VAS Grade 40</a
                                 >
                               </div>
@@ -721,7 +695,7 @@
                           </div>
                           <div class="dropcart__product">
                             <div class="dropcart__product-image">
-                              <a href="product.html"
+                              <a href="product.jsp"
                               ><img
                                       src="https://cdn.hoasenhome.vn/catalog/product/n/g/ngoi-trang-men-casa-pro-n_u-cafe.jpg"
                                       alt=""
@@ -729,7 +703,7 @@
                             </div>
                             <div class="dropcart__product-info">
                               <div class="dropcart__product-name">
-                                <a href="product.html"
+                                <a href="product.jsp"
                                 >Ngói tráng men CASA PRO nâu cafe 009</a
                                 >
                               </div>
@@ -773,10 +747,10 @@
                           </table>
                         </div>
                         <div class="dropcart__buttons">
-                          <a class="btn btn-secondary" href="cart.html"
+                          <a class="btn btn-secondary" href="cart.jsp"
                           >Giỏ hàng</a
                           >
-                          <a class="btn btn-primary" href="checkout.html"
+                          <a class="btn btn-primary" href="checkout.jsp"
                           >Thanh toán</a
                           >
                         </div>
@@ -805,7 +779,7 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
-                    <a href="index.html">Trang chủ</a>
+                    <a href="index.jsp">Trang chủ</a>
                     <svg class="breadcrumb-arrow" width="6px" height="9px">
                       <use
                         xlink:href="images/sprite.svg#arrow-rounded-right-6x9"
@@ -837,8 +811,18 @@
                   <div class="row">
                     <div class="col-12 col-lg-6 pb-4 pb-lg-0">
                       <h4 class="contact-us__header card-title">Địa chỉ</h4>
-                      <div class="contact-us__address" id="contactAddress">
-                        <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+                      <div class="contact-us__address">
+                        <p>
+                          VQCR+GP6, Khu Phố 6, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam<br />Email:
+                          vatLieuXayDung@gmail.com<br />Số điện thoại: 034 4675 885
+                        </p>
+                        <p>
+                          <strong>Giờ mở cửa</strong><br />Thứ 2 đến thứ sáu:
+                          7h-17h<br />Thứ bảy: 8h-15h<br />Chủ nhật: 9h-15h
+                        </p>
+                        <p>
+                          <strong>Lời chào</strong><br />Xin chào mừng bạn đến với cửa hàng vật liệu xây dựng của chúng tôi! Chúng tôi sẵn sàng phục vụ và đồng hành cùng bạn trong mọi dự án xây dựng của bạn. Hãy đặt câu hỏi hoặc yêu cầu bất kỳ thông tin nào bạn cần, chúng tôi luôn ở đây để giúp đỡ.
+                        </p>
                       </div>
                     </div>
                     <div class="col-12 col-lg-6">
@@ -849,22 +833,43 @@
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="form-name">Tên của bạn</label>
-                            <input type="text" id="form-name" class="form-control" placeholder="Họ và tên" />
+                            <input
+                              type="text"
+                              id="form-name"
+                              class="form-control"
+                              placeholder="Họ và tên"
+                            />
                           </div>
                           <div class="form-group col-md-6">
                             <label for="form-email">Email</label>
-                            <input type="email" id="form-email" class="form-control" placeholder="Địa chỉ Email" />
+                            <input
+                              type="email"
+                              id="form-email"
+                              class="form-control"
+                              placeholder="Địa chỉ Email"
+                            />
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="form-subject">chủ đề</label>
-                          <input type="text" id="form-subject" class="form-control" placeholder="Subject" />
+                          <input
+                            type="text"
+                            id="form-subject"
+                            class="form-control"
+                            placeholder="Subject"
+                          />
                         </div>
                         <div class="form-group">
                           <label for="form-message">Lời nhắn</label>
-                          <textarea id="form-message" class="form-control" rows="4"></textarea>
+                          <textarea
+                            id="form-message"
+                            class="form-control"
+                            rows="4"
+                          ></textarea>
                         </div>
-                        <button type="button" class="btn btn-primary" id="submitBtn">Gửi lời nhắn</button>
+                        <button type="submit" class="btn btn-primary">
+                          Gửi lời nhắn
+                        </button>
                       </form>
                     </div>
                   </div>
@@ -887,8 +892,25 @@
                       Luôn đem lại cho khách hàng những sản phẩm có chất lượng
                       tốt nhất.
                     </div>
-                    <ul class="footer-contacts__contacts" id="contactInfoList">
-                      <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+                    <ul class="footer-contacts__contacts">
+                      <li>
+                        <i
+                                class="footer-contacts__icon fas fa-globe-americas"
+                        ></i>
+                        Linh Trung, Tp Thủ Đức
+                      </li>
+                      <li>
+                        <i class="footer-contacts__icon far fa-envelope"></i>
+                        email@example.com
+                      </li>
+                      <li>
+                        <i class="footer-contacts__icon fas fa-mobile-alt"></i>
+                        0123456789
+                      </li>
+                      <li>
+                        <i class="footer-contacts__icon far fa-clock"></i>
+                        T2-T7 10:00pm - 7:00pm
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -1034,82 +1056,5 @@
       <!-- site__footer / end -->
     </div>
     <!-- site / end -->
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      // Gửi yêu cầu đến servlet khi trang được tải
-      $.ajax({
-        type: 'GET',
-        url: '/ecommerce/contact-us',
-        dataType: 'json',
-        success: function (data) {
-          // Hiển thị thông tin liên hệ trên trang
-          var contactInfoList = $('#contactInfoList');
-
-          // Xóa mọi nội dung cũ trong ul
-          contactInfoList.empty();
-
-          // Thêm các mục thông tin liên hệ mới
-          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-globe-americas"></i>' + data.address + '</li>');
-          contactInfoList.append('<li><i class="footer-contacts__icon far fa-envelope"></i>' + data.email + '</li>');
-          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-mobile-alt"></i>' + data.phone + '</li>');
-          contactInfoList.append('<li>Thứ 2-6<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeMF + '</li>');
-          contactInfoList.append('<li>Thứ 7<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSA + '</li>');
-          contactInfoList.append('<li>Thứ chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
-        },
-        error: function (xhr, status, error) {
-          console.error('Error fetching contact info:', status, error);
-        }
-      });
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      // Gửi yêu cầu đến servlet khi trang được tải
-      $.ajax({
-        type: 'GET',
-        url: '/ecommerce/contact-us',
-        dataType: 'json',
-        success: function (data) {
-          // Hiển thị thông tin liên hệ trên trang
-          var contactAddress = $('#contactAddress');
-          contactAddress.empty();
-          contactAddress.append('<p> ' + data.address + '<br />Email: ' + data.email + '<br />Số điện thoại: ' + data.phone + '</p>');
-          contactAddress.append('<p><strong>Giờ mở cửa</strong><br />Thứ 2 đến thứ sáu: ' + data.workingTimeMF + '<br />Thứ bảy: ' + data.workingTimeSA + '<br />Chủ nhật: ' + data.workingTimeSU + '</p>');
-          contactAddress.append('<p><strong>Lời chào</strong><br />' + data.greeting + '</p>');
-        },
-        error: function (xhr, status, error) {
-          console.error('Error fetching contact info:', status, error);
-        }
-      });
-
-      // Xử lý sự kiện khi nhấn nút Gửi lời nhắn
-      $('#submitBtn').on('click', function () {
-        var name = $('#form-name').val();
-        var email = $('#form-email').val();
-        var subject = $('#form-subject').val();
-        var message = $('#form-message').val();
-
-        // Gửi dữ liệu về servlet để xử lý và gửi email
-        $.ajax({
-          type: 'POST',
-          url: '/ecommerce/contact-us',
-          data: {
-            name: name,
-            email: email,
-            subject: subject,
-            message: message
-          },
-          success: function (response) {
-            alert('Lời nhắn đã được gửi thành công!');
-          },
-          error: function (xhr, status, error) {
-            console.error('Error sending message:', status, error);
-          }
-        });
-      });
-    });
-  </script>
   </body>
 </html>
