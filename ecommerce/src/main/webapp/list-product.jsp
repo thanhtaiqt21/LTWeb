@@ -845,11 +845,11 @@
                           </div>
                           <div class="product-card__image">
                             <a href="product.jsp"
-                              ><img src="${o.image_url}" alt="" width="240px" height="245px"/></a>
+                              ><img src="${o.imgUrl.get(0)}" alt="" width="240px" height="245px"/></a>
                           </div>
                           <div class="product-card__info">
                             <div class="product-card__name">
-                              <a href="product.jsp">${o.name}</a>
+                              <a href="product.jsp">${o.title}</a>
                             </div>
                             <div class="product-card__rating">
                               <div class="rating">

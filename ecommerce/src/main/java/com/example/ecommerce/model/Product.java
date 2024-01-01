@@ -1,34 +1,36 @@
 package com.example.ecommerce.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Product {
     private int id;
-    private String name;
+    private String title;
     private String description;
     private int price;
-    private int discount;
+    private double discount;
     private int quantity;
     private int sold;
-    private String image_url;
-    private String status;
-    private Timestamp date_create;
-    private String id_category;
+    private List<String> imgUrl;
+    private int active;
+    private Timestamp dateCreate;
+    private int categoryId;
 
-    public Product(int id, String name, String description, int price,
-                   int discount, int quantity, int sold, String image_url,
-                   String status, Timestamp date_create, String id_category) {
+    public Product() {
+    }
+
+    public Product(int id, String title, String description, int price, double discount, int quantity, int sold, List<String> imgUrl, int active, Timestamp dateCreate, int categoryId) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.price = price;
         this.discount = discount;
         this.quantity = quantity;
         this.sold = sold;
-        this.image_url = image_url;
-        this.status = status;
-        this.date_create = date_create;
-        this.id_category = id_category;
+        this.imgUrl = imgUrl;
+        this.active = active;
+        this.dateCreate = dateCreate;
+        this.categoryId = categoryId;
     }
 
     public int getId() {
@@ -39,12 +41,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -63,11 +65,11 @@ public class Product {
         this.price = price;
     }
 
-    public int getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 
@@ -87,53 +89,52 @@ public class Product {
         this.sold = sold;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public List<String> getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImgUrl(List<String> imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
-    public String getStatus() {
-        return status;
+    public int getActive() {
+        return active;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setActive(int active) {
+        this.active = active;
     }
 
-    public Timestamp getDate_create() {
-        return date_create;
+    public Timestamp getDateCreate() {
+        return dateCreate;
     }
 
-    public void setDate_create(Timestamp date_create) {
-        this.date_create = date_create;
+    public void setDateCreate(Timestamp dateCreate) {
+        this.dateCreate = dateCreate;
     }
 
-    public String getId_category() {
-        return id_category;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setId_category(String id_category) {
-        this.id_category = id_category;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", discount=" + discount +
                 ", quantity=" + quantity +
                 ", sold=" + sold +
-                ", image_url='" + image_url + '\'' +
-                ", status='" + status + '\'' +
-                ", date_create=" + date_create +
-                ", id_category='" + id_category + '\'' +
+                ", imgUrl=" + imgUrl +
+                ", active=" + active +
+                ", dateCreate=" + dateCreate +
+                ", categoryId=" + categoryId +
                 '}';
     }
-
 }

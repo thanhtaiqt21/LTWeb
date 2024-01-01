@@ -3,6 +3,7 @@ package com.example.ecommerce.controller.category;
 import com.example.ecommerce.dao.ProductDao;
 import com.example.ecommerce.model.Product;
 import com.example.ecommerce.service.CategoryService;
+import com.example.ecommerce.service.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +18,10 @@ public class CategoryControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        String id_category = req.getParameter("id");
+        String id = req.getParameter("id");
 
-        ProductDao pDao = new ProductDao();
-        List<Product> list = pDao.getProductByCID(id_category);
+
+        List<Product> list = ProductService.getInstance().getProductByCID(id);
 
         req.getSession().setAttribute("listP", list);
         req.getRequestDispatcher("list-product.jsp").forward(req, resp);

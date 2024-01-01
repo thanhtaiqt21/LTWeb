@@ -1,8 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%--    <meta http-equiv="x-ua-compatible" content="ie=edge" />--%>
     <title>Thêm sản phẩm | Nalika - Material Admin Template</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -75,6 +78,13 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+      <style type="text/css">
+          label.error {
+              display: inline-block;
+              color:red;
+              width: 100%;
+          }
+      </style>
   </head>
 
   <body>
@@ -145,6 +155,11 @@
                   <li>
                     <a title="Product List" href="blog-list.html"
                       ><span class="mini-sub-pro">Blog</span></a
+                    >
+                  </li>
+                  <li>
+                    <a title="Product List" href="contact.jsp"
+                    ><span class="mini-sub-pro">Liên hệ</span></a
                     >
                   </li>
                 </ul>
@@ -1363,6 +1378,17 @@
                       class="product-tab-list tab-pane fade active in"
                       id="description"
                     >
+                        <c:if test="${not empty error}">
+                            <div class="alert alert-danger" role="alert">
+                                ${error}
+                            </div>
+                        </c:if>
+                        <c:if test="${not empty success}">
+                            <div class="alert alert-success" role="alert">
+                                    ${success}
+                            </div>
+                        </c:if>
+                      <form action="/ecommerce/adminpage/product-add" method="post" enctype="multipart/form-data" id="form-add-product">
                       <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
@@ -1373,26 +1399,27 @@
                                 type="text"
                                 class="form-control"
                                 placeholder="Tên sản phẩm"
+                                name="title"
                               />
                             </div>
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
                                 ><i class="fa-solid fa-image"></i></span>
-                                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                                <input class="form-control" type="file" id="formFileMultiple" name="imgs" multiple="multiple">
                             </div>
                             <div class="input-group mg-b-pro-edt">
-                              <!-- <span class="input-group-addon"
-                                ><i class="fa-solid fa-audio-description"></i></i
-                              ></span> -->
+                              <span class="input-group-addon"
+                                ><i class="fa-solid fa-audio-description"></i>
+                              </span>
                               <textarea
                                 type="text"
                                 class="form-control"
                                 placeholder="Mô tả sản phẩm"
                                 rows="7"
                                 cols="70"
+                                name="description"
                               ></textarea>
                             </div>
-                            
                           </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -1405,6 +1432,7 @@
                                 type="text"
                                 class="form-control"
                                 placeholder="Giá"
+                                name="price"
                               />
                             </div>
                             <div class="input-group mg-b-pro-edt">
@@ -1414,7 +1442,8 @@
                               <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Giá khuyến mãi"
+                                placeholder="Khuyến mãi"
+                                name="discount"
                               />
                             </div>
                             <div class="input-group mg-b-pro-edt">
@@ -1424,33 +1453,22 @@
                                 type="text"
                                 class="form-control"
                                 placeholder="Số lượng"
+                                name="quantity"
                               />
                             </div>
-                            
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
-                                > <i class="fa-solid fa-signal"></i></span>
-                              <select
-                              name="select"
-                              class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
-                              >
-                              <option value="opt1">Trạng thái</option>
-                              <option value="opt2">Còn hàng</option>
-                              <option value="opt3">Hết hàng</option>
+                                ><i class="fa-solid fa-bars"></i></span>
+                                <select
+                                name="category"
+                                class="form-control pro-edt-select form-control-primary"
+                                >
+                                <option disabled selected>Danh mục sản phẩm</option>
+                                <c:forEach var="category" items="${categories}">
+                                  <option value=${category.name}>${category.name}</option>
+                                </c:forEach>
                               </select>
-                          </div>
-                          <div class="input-group mg-b-pro-edt">
-                            <span class="input-group-addon"
-                              ><i class="fa-solid fa-bars"></i></span>
-                              <select
-                              name="select"
-                              class="form-control pro-edt-select form-control-primary"
-                            >
-                              <option value="opt1">Danh mục sản phẩm</option>
-                              <option value="opt2">Vật liệu thô</option>
-                              <option value="opt3">Gạch men</option>
-                            </select>
-                          </div>   
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1458,7 +1476,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="text-center custom-pro-edt-ds">
                             <button
-                              type="button"
+                              type="submit"
                               class="btn btn-ctl-bt waves-effect waves-light m-r-10"
                             >
                               Lưu
@@ -1472,6 +1490,7 @@
                           </div>
                         </div>
                       </div>
+                      </form>
                     </div>
                     <div class="product-tab-list tab-pane fade" id="reviews">
                       <div class="row">
@@ -1901,6 +1920,7 @@
     <!-- jquery
 		============================================ -->
     <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
     <!-- bootstrap JS
 		============================================ -->
     <script src="../js/bootstrap.min.js"></script>
@@ -1951,5 +1971,47 @@
     <!-- main JS
 		============================================ -->
     <script src="../js/main1.js"></script>
+    <script type="text/javascript">
+      $(document).ready(() => {
+        $("#form-add-product").validate({
+          rules:{
+              title: "required",
+              imgs: "required",
+              description: "required",
+              price: {
+                  required: true,
+                  number:true
+              },
+              discount: {
+                  required: true,
+                  number: true
+              },
+              quantity: {
+                  required: true,
+                  number: true
+              },
+              category: "required"
+          },
+          messages: {
+              title:  "Vui lòng nhập tên sản phẩm",
+              imgs: "Vui lòng chọn ảnh sản phẩm",
+              description: "Vui lòng nhập mô tả sản phẩm",
+              price: {
+                  required: "Vui lòng nhập giá sản phẩm",
+                  number: "Vui lòng nhập đúng định dạng số"
+              },
+              discount: {
+                  required: "Vui lòng nhập khuyến mãi",
+                  number: "Vui lòng nhập đúng định dạng số"
+              },
+              quantity: {
+                  required: "Vui lòng nhập số lượng sản phẩm",
+                  number: "Vui lòng nhập đúng định dạng số"
+              },
+              category: "Vui lòng chọn danh mục sản phẩm"
+          }
+        });
+      });
+    </script>
   </body>
 </html>

@@ -1,9 +1,10 @@
 package com.example.ecommerce.controller.product;
 
-import com.example.ecommerce.dao.CategoryDao;
 import com.example.ecommerce.dao.ProductDao;
 import com.example.ecommerce.model.Category;
 import com.example.ecommerce.model.Product;
+import com.example.ecommerce.service.CategoryService;
+import com.example.ecommerce.service.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,12 +16,12 @@ import java.util.List;
 
 @WebServlet(name = "LoadProduct", value = "")
 public class LoadProduct extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        ProductDao pDao = new ProductDao();
-        List<Product> list = pDao.getAllProduct();
-        List<Category> listC = pDao.getAllCategory();
+        List<Product> list = ProductService.getInstance().getAllProduct();
+        List<Category> listC = CategoryService.getInstance().getAllCategory();
 
         req.setAttribute("listP",list);
         req.getSession().setAttribute("listC", listC);

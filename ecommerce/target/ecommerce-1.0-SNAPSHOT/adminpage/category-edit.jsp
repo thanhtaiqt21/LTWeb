@@ -158,6 +158,11 @@
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
+                  <li>
+                    <a title="Product List" href="contact.jsp"
+                    ><span class="mini-sub-pro">Liên hệ</span></a
+                    >
+                  </li>
                 </ul>
               </li>
             </ul>

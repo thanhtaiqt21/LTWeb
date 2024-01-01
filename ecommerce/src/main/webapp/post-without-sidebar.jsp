@@ -1,3 +1,4 @@
+<<<<<<< HEAD:ecommerce/src/main/webapp/post-without-sidebar.jsp
 <%@ page import="com.example.ecommerce.model.Category" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
