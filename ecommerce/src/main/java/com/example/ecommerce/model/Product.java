@@ -1,7 +1,9 @@
 package com.example.ecommerce.model;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Product {
     private int id;
