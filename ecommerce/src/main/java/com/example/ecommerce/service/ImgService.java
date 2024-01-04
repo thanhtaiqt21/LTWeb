@@ -1,6 +1,9 @@
 package com.example.ecommerce.service;
 
 import com.example.ecommerce.dao.ImgDao;
+import com.example.ecommerce.model.Img;
+
+import java.util.List;
 
 public class ImgService {
     private static ImgService instance;
@@ -14,5 +17,8 @@ public class ImgService {
     }
     public boolean addImg(String imgUrl, int productId) {
         return ImgDao.getInstance().addImg(imgUrl, productId);
+    }
+    public List<Img> getImgUrlByProductId(int productId) {
+        return ImgDao.getInstance().getImgUrlByProductId(productId);
     }
 }

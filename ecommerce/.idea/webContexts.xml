@@ -11,6 +11,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/category-list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/product-add.html" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/product-add.jsp" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/product-list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/user-edit.jsp" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/user-list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/blog-classic.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
@@ -19,6 +20,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/checkout.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/contact-us.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/forgotPass.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/list-product.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/orders-history-detail.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
