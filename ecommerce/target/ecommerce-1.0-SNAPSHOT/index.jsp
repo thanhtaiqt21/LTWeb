@@ -534,12 +534,12 @@
                         <div class="nav-links__menu">
                           <!-- .menu -->
                           <ul class="menu menu--layout--classic">
-<%--                            <% List<Category> listC = (List<Category>) request.getSession().getAttribute("listC");--%>
-<%--                              for (Category category : listC) { %>--%>
-<%--                            <li>--%>
-<%--                              <a href="category?id=<%= category.getId() %>"><%= category.getName() %></a>--%>
-<%--                            </li>--%>
-<%--                            <% } %>--%>
+                            <% List<Category> listC = (List<Category>) request.getSession().getAttribute("listC");
+                              for (Category category : listC) { %>
+                            <li>
+                              <a href="category?id=<%= category.getId() %>"><%= category.getName() %></a>
+                            </li>
+                            <% } %>
                           </ul>
                           <!-- .menu / end -->
                         </div>

@@ -214,4 +214,19 @@ public class ProductDao {
 
         return list;
     }
+
+    public boolean deleteProductById(int id) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM product WHERE id=?");
+            preparedStatement.setInt(1, id);
+            int i = preparedStatement.executeUpdate();
+            if (i > 0) return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
 }

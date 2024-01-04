@@ -78,6 +78,9 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
   </head>
 
   <body>
@@ -1390,7 +1393,7 @@
                                 title="Edit"
                                 class="pd-setting-ed"
                         >
-                          <a href="product-edit.html">
+                          <a href="/ecommerce/adminpage/product-update?id=<c:out value="${product.id}"/>">
                             <i
                                     class="fa fa-pencil-square-o"
                                     aria-hidden="true"
@@ -1402,7 +1405,11 @@
                                 title="Trash"
                                 class="pd-setting-ed"
                         >
-                          <i class="fa fa-trash-o" aria-hidden="true"></i>
+                          <a class="text-white delete"
+                             href="/ecommerce/adminpage/product-delete?id=<c:out value="${product.id}"/>"
+                          >
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                          </a>
                         </button>
                       </td>
                     </tr>
@@ -1460,7 +1467,7 @@
 
     <!-- jquery
 		============================================ -->
-    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+<%--    <script src="../js/vendor/jquery-1.12.4.min.js"></script>--%>
     <!-- bootstrap JS
 		============================================ -->
     <script src="../js/bootstrap.min.js"></script>
@@ -1511,5 +1518,23 @@
     <!-- main JS
 		============================================ -->
     <script src="../js/main1.js"></script>
+    <script>
+      $('a.delete').confirm({
+        title: 'Xóa?',
+        content: 'Bạn có chắc chắn xóa sản phẩm này không?',
+        buttons:{
+          delete:{
+            text:'Có',
+            btnClass: 'btn-blue',
+            action: function() {
+              location.href = this.$target.attr("href");
+            }},
+          close: {
+            text:'Không',
+            action: function() {
+            }}
+        }
+      })
+    </script>
   </body>
 </html>
