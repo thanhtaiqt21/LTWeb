@@ -1,3 +1,9 @@
+<%@ page import="com.example.ecommerce.model.Category" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+  String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -82,7 +88,7 @@
         >
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
-              <a href="index.html" class="mobile-links__item-link"
+              <a href="index.jsp" class="mobile-links__item-link"
               >Trang Chủ</a
               >
             </div>
@@ -90,7 +96,7 @@
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
               <a
-                      href="shop-grid-4-columns-full.html"
+                      href="list-product.jsp"
                       class="mobile-links__item-link"
               >Danh Mục Sản Phẩm</a
               >
@@ -172,7 +178,7 @@
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
               <a
-                      href="shop-grid-4-columns-full.html"
+                      href="list-product.jsp"
                       class="mobile-links__item-link"
               >Tài Khoản</a
               >
@@ -222,14 +228,14 @@
           </li>
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
-              <a href="blog-classic.html" class="mobile-links__item-link"
+              <a href="blog-classic.jsp" class="mobile-links__item-link"
               >Blog</a
               >
             </div>
           </li>
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
-              <a href="contact-us.html" class="mobile-links__item-link"
+              <a href="contact-us.jsp" class="mobile-links__item-link"
               >Liên Hệ</a
               >
             </div>
@@ -303,7 +309,7 @@
                   <use xlink:href="images/sprite.svg#menu-18x14"></use>
                 </svg>
               </button>
-              <a class="mobile-header__logo" href="index.html"
+              <a class="mobile-header__logo" href="index.jsp"
               ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="120px"
@@ -372,7 +378,7 @@
                   </button>
                 </div>
                 <div class="indicator indicator--mobile d-sm-flex d-none">
-                  <a href="wishlist.html" class="indicator__button"
+                  <a href="wishlist.jsp" class="indicator__button"
                   ><span class="indicator__area"
                   ><svg width="20px" height="20px">
                           <use xlink:href="images/sprite.svg#heart-20"></use>
@@ -406,7 +412,7 @@
           <div class="topbar__container container">
             <div class="topbar__row">
               <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" href="about-us.html">Giới thiệu</a>
+                <a class="topbar-link" href="about-us.jsp">Giới thiệu</a>
               </div>
               <div class="topbar__spring"></div>
               <div class="topbar__item">
@@ -424,7 +430,7 @@
                     <ul class="menu menu--layout--topbar">
                       <li><a href="login.jsp">Đăng Nhập</a></li>
                       <li><a href="register.jsp">Đăng Kí</a></li>
-                      <li><a href="orders-history.html">Lịch sử đơn Hàng</a></li>
+                      <li><a href="orders-history.jsp">Lịch sử đơn Hàng</a></li>
                     </ul>
                     <!-- .menu / end -->
                   </div>
@@ -473,7 +479,7 @@
             <div class="nav-panel__container container">
               <div class="nav-panel__row">
                 <div class="nav-panel__logo">
-                  <a href="index.html">
+                  <a href="index.jsp">
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="120px"
@@ -505,7 +511,7 @@
                 <div class="nav-panel__nav-links nav-links">
                   <ul class="nav-links__list">
                     <li class="nav-links__item nav-links__item--with-submenu">
-                      <a href="index.html"><span>Trang chủ </span></a>
+                      <a href="index.jsp"><span>Trang chủ </span></a>
                       <div class="nav-links__menu">
                         <!-- .menu -->
 
@@ -528,48 +534,22 @@
                       <div class="nav-links__menu">
                         <!-- .menu -->
                         <ul class="menu menu--layout--classic">
+                          <% List<Category> listC = (List<Category>) request.getSession().getAttribute("listC");
+                            for (Category category : listC) { %>
                           <li>
-                            <a href="shop-grid-4-columns-full.html"
-                            >Gạch Block Xi Măng
-                            </a>
+                            <a href="category?id=<%= category.getId() %>"><%= category.getName() %></a>
                           </li>
-                          <li>
-                            <a href="shop-list.html"
-                            >Gạch Trang Trí Cao Cấp</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html">Gạch Men</a>
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html"
-                            >Thiết Bị Ngành Nước</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html">Đá Tự Nhiên</a>
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html">Vật Liệu Thô</a>
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html"
-                            >Các Loại VLXD Khác</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product.html">Ngói Lợp Nhà </a>
-                          </li>
+                          <% } %>
                         </ul>
                         <!-- .menu / end -->
                       </div>
                     </li>
                     <li class="nav-links__item nav-links__item--with-submenu">
-                      <a href="blog-classic.html"><span>Blog </span></a>
+                      <a href="blog-classic.jsp"><span>Blog </span></a>
                     </li>
 
                     <li class="nav-links__item">
-                      <a href="contact-us.html"><span>Liên hệ</span></a>
+                      <a href="contact-us.jsp"><span>Liên hệ</span></a>
                     </li>
                   </ul>
                 </div>
@@ -621,7 +601,7 @@
                     </div>
                   </div>
                   <div class="indicator">
-                    <a href="wishlist.html" class="indicator__button"
+                    <a href="wishlist.jsp" class="indicator__button"
                     ><span class="indicator__area"
                     ><svg width="20px" height="20px">
                             <use xlink:href="images/sprite.svg#heart-20"></use>
@@ -645,7 +625,7 @@
                         <div class="dropcart__products-list">
                           <div class="dropcart__product">
                             <div class="dropcart__product-image">
-                              <a href="product.html"
+                              <a href="product.jsp"
                               ><img
                                       src="https://cdn.hoasenhome.vn/catalog/product/i/n/indal1001000016-1.jpg"
                                       alt=""
@@ -653,7 +633,7 @@
                             </div>
                             <div class="dropcart__product-info">
                               <div class="dropcart__product-name">
-                                <a href="product.html"
+                                <a href="product.jsp"
                                 >Gạch granite LUSTRA INDAL1001000016: 1000mmx1000mm</a
                                 >
                               </div>
@@ -680,7 +660,7 @@
                           </div>
                           <div class="dropcart__product">
                             <div class="dropcart__product-image">
-                              <a href="product.html"
+                              <a href="product.jsp"
                               ><img
                                       src="https://cdn.hoasenhome.vn/catalog/product/t/h/thep-cay-viet-my-grade-40.jpg"
                                       alt=""
@@ -688,7 +668,7 @@
                             </div>
                             <div class="dropcart__product-info">
                               <div class="dropcart__product-name">
-                                <a href="product.html"
+                                <a href="product.jsp"
                                 >Thép cây VAS Grade 40</a
                                 >
                               </div>
@@ -715,7 +695,7 @@
                           </div>
                           <div class="dropcart__product">
                             <div class="dropcart__product-image">
-                              <a href="product.html"
+                              <a href="product.jsp"
                               ><img
                                       src="https://cdn.hoasenhome.vn/catalog/product/n/g/ngoi-trang-men-casa-pro-n_u-cafe.jpg"
                                       alt=""
@@ -723,7 +703,7 @@
                             </div>
                             <div class="dropcart__product-info">
                               <div class="dropcart__product-name">
-                                <a href="product.html"
+                                <a href="product.jsp"
                                 >Ngói tráng men CASA PRO nâu cafe 009</a
                                 >
                               </div>
@@ -770,7 +750,7 @@
                           <a class="btn btn-secondary" href="cart.html"
                           >Giỏ hàng</a
                           >
-                          <a class="btn btn-primary" href="checkout.html"
+                          <a class="btn btn-primary" href="checkout.jsp"
                           >Thanh toán</a
                           >
                         </div>
@@ -788,26 +768,13 @@
     <!-- desktop site__header / end -->
     <!-- site__body -->
       <div class="site__body">
-        <div class="block-map block">
-          <div class="block-map__body">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.214525515987!2d106.78918677589934!3d10.871281657435203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276398969f7b%3A0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRQLiBI4buTIENow60gTWluaA!5e0!3m2!1svi!2sus!4v1698662509218!5m2!1svi!2sus" width="1800" height="800" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
         <div class="page-header">
           <div class="page-header__container container">
             <div class="page-header__breadcrumb">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
-                    <a href="index.html">Trang chủ</a>
-                    <svg class="breadcrumb-arrow" width="6px" height="9px">
-                      <use
-                        xlink:href="images/sprite.svg#arrow-rounded-right-6x9"
-                      ></use>
-                    </svg>
-                  </li>
-                  <li class="breadcrumb-item">
-                    <a href="#"> Liên hệ </a>
+                    <a href="index.jsp">Trang chủ</a>
                     <svg class="breadcrumb-arrow" width="6px" height="9px">
                       <use
                         xlink:href="images/sprite.svg#arrow-rounded-right-6x9"
@@ -815,83 +782,239 @@
                     </svg>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-
+                    Giỏ hàng
                   </li>
                 </ol>
               </nav>
             </div>
-            <div class="page-header__title"><h1>Liên hệ</h1></div>
+            <div class="page-header__title"><h1>Giỏ hàng</h1></div>
           </div>
         </div>
-        <div class="block">
+        <div class="cart block">
           <div class="container">
-            <div class="card mb-0">
-              <div class="card-body contact-us">
-                <div class="contact-us__container">
-                  <div class="row">
-                    <div class="col-12 col-lg-6 pb-4 pb-lg-0">
-                      <h4 class="contact-us__header card-title">Địa chỉ</h4>
-                      <div class="contact-us__address">
-                        <p>
-                          VQCR+GP6, Khu Phố 6, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam<br />Email:
-                          vatLieuXayDung@gmail.com<br />Số điện thoại: 034 4675 885
-                        </p>
-                        <p>
-                          <strong>Giờ mở cửa</strong><br />Thứ 2 đến thứ sáu:
-                          7h-17h<br />Thứ bảy: 8h-15h<br />Chủ nhật: 9h-15h
-                        </p>
-                        <p>
-                          <strong>Lời chào</strong><br />Xin chào mừng bạn đến với cửa hàng vật liệu xây dựng của chúng tôi! Chúng tôi sẵn sàng phục vụ và đồng hành cùng bạn trong mọi dự án xây dựng của bạn. Hãy đặt câu hỏi hoặc yêu cầu bất kỳ thông tin nào bạn cần, chúng tôi luôn ở đây để giúp đỡ.
-                        </p>
-                      </div>
+            <table class="cart__table cart-table">
+              <thead class="cart-table__head">
+                <tr class="cart-table__row">
+                  <th class="cart-table__column cart-table__column--image">
+                    Hình ảnh
+                  </th>
+                  <th class="cart-table__column cart-table__column--product">
+                    Sản phẩm
+                  </th>
+                  <th class="cart-table__column cart-table__column--price">
+                    Giá
+                  </th>
+                  <th class="cart-table__column cart-table__column--quantity">
+                    Số lượng
+                  </th>
+                  <th class="cart-table__column cart-table__column--total">
+                    Tổng
+                  </th>
+                  <th
+                    class="cart-table__column cart-table__column--remove"
+                  ></th>
+                </tr>
+              </thead>
+              <tbody class="cart-table__body">
+                <tr class="cart-table__row">
+                  <td class="cart-table__column cart-table__column--image">
+                    <a href="#"
+                      ><img src="images/products/product-1.jpg" alt=""
+                    /></a>
+                  </td>
+                  <td class="cart-table__column cart-table__column--product">
+                    <a href="#" class="cart-table__product-name"
+                      >Electric Planer Brandix KL370090G 300 Watts</a
+                    >
+                    <ul class="cart-table__options">
+                      <li>Color: Yellow</li>
+                      <li>Material: Aluminium</li>
+                    </ul>
+                  </td>
+                  <td
+                    class="cart-table__column cart-table__column--price"
+                    data-title="Price"
+                  >
+                    $699.00
+                  </td>
+                  <td
+                    class="cart-table__column cart-table__column--quantity"
+                    data-title="Quantity"
+                  >
+                    <div class="input-number">
+                      <input
+                        class="form-control input-number__input"
+                        type="number"
+                        min="1"
+                        value="2"
+                      />
+                      <div class="input-number__add"></div>
+                      <div class="input-number__sub"></div>
                     </div>
-                    <div class="col-12 col-lg-6">
-                      <h4 class="contact-us__header card-title">
-                        Để lại tin nhắn cho chúng tôi
-                      </h4>
-                      <form>
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="form-name">Tên của bạn</label>
-                            <input
-                              type="text"
-                              id="form-name"
-                              class="form-control"
-                              placeholder="Họ và tên"
-                            />
-                          </div>
-                          <div class="form-group col-md-6">
-                            <label for="form-email">Email</label>
-                            <input
-                              type="email"
-                              id="form-email"
-                              class="form-control"
-                              placeholder="Địa chỉ Email"
-                            />
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="form-subject">chủ đề</label>
-                          <input
-                            type="text"
-                            id="form-subject"
-                            class="form-control"
-                            placeholder="Subject"
-                          />
-                        </div>
-                        <div class="form-group">
-                          <label for="form-message">Lời nhắn</label>
-                          <textarea
-                            id="form-message"
-                            class="form-control"
-                            rows="4"
-                          ></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                          Gửi lời nhắn
-                        </button>
-                      </form>
+                  </td>
+                  <td
+                    class="cart-table__column cart-table__column--total"
+                    data-title="Total"
+                  >
+                    $1,398.00
+                  </td>
+                  <td class="cart-table__column cart-table__column--remove">
+                    <button
+                      type="button"
+                      class="btn btn-light btn-sm btn-svg-icon"
+                    >
+                      <svg width="12px" height="12px">
+                        <use xlink:href="images/sprite.svg#cross-12"></use>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="cart-table__row">
+                  <td class="cart-table__column cart-table__column--image">
+                    <a href="#"
+                      ><img src="images/products/product-2.jpg" alt=""
+                    /></a>
+                  </td>
+                  <td class="cart-table__column cart-table__column--product">
+                    <a href="#" class="cart-table__product-name"
+                      >Undefined Tool IRadix DPS3000SY 2700 watts</a
+                    >
+                  </td>
+                  <td
+                    class="cart-table__column cart-table__column--price"
+                    data-title="Price"
+                  >
+                    $849.00
+                  </td>
+                  <td
+                    class="cart-table__column cart-table__column--quantity"
+                    data-title="Quantity"
+                  >
+                    <div class="input-number">
+                      <input
+                        class="form-control input-number__input"
+                        type="number"
+                        min="1"
+                        value="1"
+                      />
+                      <div class="input-number__add"></div>
+                      <div class="input-number__sub"></div>
                     </div>
+                  </td>
+                  <td
+                    class="cart-table__column cart-table__column--total"
+                    data-title="Total"
+                  >
+                    $849.00
+                  </td>
+                  <td class="cart-table__column cart-table__column--remove">
+                    <button
+                      type="button"
+                      class="btn btn-light btn-sm btn-svg-icon"
+                    >
+                      <svg width="12px" height="12px">
+                        <use xlink:href="images/sprite.svg#cross-12"></use>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="cart-table__row">
+                  <td class="cart-table__column cart-table__column--image">
+                    <a href="#"
+                      ><img src="images/products/product-5.jpg" alt=""
+                    /></a>
+                  </td>
+                  <td class="cart-table__column cart-table__column--product">
+                    <a href="#" class="cart-table__product-name"
+                      >Brandix Router Power Tool 2017ERXPK</a
+                    >
+                    <ul class="cart-table__options">
+                      <li>Color: True Red</li>
+                    </ul>
+                  </td>
+                  <td
+                    class="cart-table__column cart-table__column--price"
+                    data-title="Price"
+                  >
+                    $1,210.00
+                  </td>
+                  <td
+                    class="cart-table__column cart-table__column--quantity"
+                    data-title="Quantity"
+                  >
+                    <div class="input-number">
+                      <input
+                        class="form-control input-number__input"
+                        type="number"
+                        min="1"
+                        value="3"
+                      />
+                      <div class="input-number__add"></div>
+                      <div class="input-number__sub"></div>
+                    </div>
+                  </td>
+                  <td
+                    class="cart-table__column cart-table__column--total"
+                    data-title="Total"
+                  >
+                    $3,630.00
+                  </td>
+                  <td class="cart-table__column cart-table__column--remove">
+                    <button
+                      type="button"
+                      class="btn btn-light btn-sm btn-svg-icon"
+                    >
+                      <svg width="12px" height="12px">
+                        <use xlink:href="images/sprite.svg#cross-12"></use>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="cart__actions">
+              <div class="cart__buttons">
+                <a href="index.jsp" class="btn btn-light">Tiếp tục mua hàng</a>
+                <a href="#" class="btn btn-primary cart__update-button"
+                  >Cập nhật giỏ hàng</a
+                >
+              </div>
+            </div>
+            <div class="row justify-content-end pt-5">
+              <div class="col-12 col-md-7 col-lg-6 col-xl-5">
+                <div class="card">
+                  <div class="card-body">
+                    <h3 class="card-title">Tổng giỏ hàng</h3>
+                    <table class="cart__totals">
+                      <thead class="cart__totals-header">
+                        <tr>
+                          <th>Tạm tính</th>
+                          <td>$5,877.00</td>
+                        </tr>
+                      </thead>
+                      <tbody class="cart__totals-body">
+                        <tr>
+                          <th>Phí vận chuyển</th>
+                          <td>
+                            $25.00
+                            <!-- <div class="cart__calc-shipping">
+                              <a href="#">Calculate Shipping</a>
+                            </div> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                      <tfoot class="cart__totals-footer">
+                        <tr>
+                          <th>Tổng</th>
+                          <td>$5,902.00</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                    <a
+                      class="btn btn-primary btn-xl btn-block cart__checkout-button"
+                      href="checkout.jsp"
+                      >Tiến hành thanh toán</a
+                    >
                   </div>
                 </div>
               </div>
@@ -899,7 +1022,7 @@
           </div>
         </div>
       </div>
-      <!-- site__body / end --> <!-- site__footer -->
+      <!-- site__body / end --><!-- site__footer -->
       <footer class="site__footer">
         <div class="site-footer">
           <div class="container">
@@ -915,7 +1038,7 @@
                     <ul class="footer-contacts__contacts">
                       <li>
                         <i
-                                class="footer-contacts__icon fas fa-globe-americas"
+                          class="footer-contacts__icon fas fa-globe-americas"
                         ></i>
                         Linh Trung, Tp Thủ Đức
                       </li>
@@ -943,7 +1066,7 @@
                       </li>
                       <li class="footer-links__item">
                         <a href="#" class="footer-links__link"
-                        >Thông tin vận chuyển</a
+                          >Thông tin vận chuyển</a
                         >
                       </li>
                       <li class="footer-links__item">
@@ -968,12 +1091,12 @@
                     <ul class="footer-links__list">
                       <li class="footer-links__item">
                         <a href="#" class="footer-links__link"
-                        >Lịch sử đặt hàng</a
+                          >Lịch sử đặt hàng</a
                         >
                       </li>
                       <li class="footer-links__item">
                         <a href="#" class="footer-links__link"
-                        >Sản phẩm yêu thích</a
+                          >Sản phẩm yêu thích</a
                         >
                       </li>
                       <li class="footer-links__item">
@@ -990,69 +1113,69 @@
                     </div>
                     <form action="#" class="footer-newsletter__form">
                       <label class="sr-only" for="footer-newsletter-address"
-                      >Địa chỉ email</label
+                        >Địa chỉ email</label
                       >
                       <input
-                              type="text"
-                              class="footer-newsletter__form-input form-control"
-                              id="footer-newsletter-address"
-                              placeholder="Địa chỉ email..."
+                        type="text"
+                        class="footer-newsletter__form-input form-control"
+                        id="footer-newsletter-address"
+                        placeholder="Địa chỉ email..."
                       />
                       <button
-                              class="footer-newsletter__form-button btn btn-primary"
+                        class="footer-newsletter__form-button btn btn-primary"
                       >
                         Subcribe
                       </button>
                     </form>
                     <div
-                            class="footer-newsletter__text footer-newsletter__text--social"
+                      class="footer-newsletter__text footer-newsletter__text--social"
                     >
                       Theo dõi chúng tôi trên các nền tảng xã hội
                     </div>
                     <ul class="footer-newsletter__social-links">
                       <li
-                              class="footer-newsletter__social-link footer-newsletter__social-link--facebook"
+                        class="footer-newsletter__social-link footer-newsletter__social-link--facebook"
                       >
                         <a
-                                href="https://themeforest.net/user/kos9"
-                                target="_blank"
-                        ><i class="fab fa-facebook-f"></i
+                          href="https://themeforest.net/user/kos9"
+                          target="_blank"
+                          ><i class="fab fa-facebook-f"></i
                         ></a>
                       </li>
                       <li
-                              class="footer-newsletter__social-link footer-newsletter__social-link--twitter"
+                        class="footer-newsletter__social-link footer-newsletter__social-link--twitter"
                       >
                         <a
-                                href="https://themeforest.net/user/kos9"
-                                target="_blank"
-                        ><i class="fab fa-twitter"></i
+                          href="https://themeforest.net/user/kos9"
+                          target="_blank"
+                          ><i class="fab fa-twitter"></i
                         ></a>
                       </li>
                       <li
-                              class="footer-newsletter__social-link footer-newsletter__social-link--youtube"
+                        class="footer-newsletter__social-link footer-newsletter__social-link--youtube"
                       >
                         <a
-                                href="https://themeforest.net/user/kos9"
-                                target="_blank"
-                        ><i class="fab fa-youtube"></i
+                          href="https://themeforest.net/user/kos9"
+                          target="_blank"
+                          ><i class="fab fa-youtube"></i
                         ></a>
                       </li>
                       <li
-                              class="footer-newsletter__social-link footer-newsletter__social-link--instagram"
+                        class="footer-newsletter__social-link footer-newsletter__social-link--instagram"
                       >
                         <a
-                                href="https://themeforest.net/user/kos9"
-                                target="_blank"
-                        ><i class="fab fa-instagram"></i
+                          href="https://themeforest.net/user/kos9"
+                          target="_blank"
+                          ><i class="fab fa-instagram"></i
                         ></a>
                       </li>
                       <li
-                              class="footer-newsletter__social-link footer-newsletter__social-link--rss"
+                        class="footer-newsletter__social-link footer-newsletter__social-link--rss"
                       >
                         <a
-                                href="https://themeforest.net/user/kos9"
-                                target="_blank"
-                        ><i class="fas fa-rss"></i
+                          href="https://themeforest.net/user/kos9"
+                          target="_blank"
+                          ><i class="fas fa-rss"></i
                         ></a>
                       </li>
                     </ul>
@@ -1063,7 +1186,7 @@
             <div class="site-footer__bottom">
               <div class="site-footer__copyright">
                 <a target="_blank" href="https://www.templateshub.net"
-                >Templates Hub</a
+                  >Templates Hub</a
                 >
               </div>
               <div class="site-footer__payments">

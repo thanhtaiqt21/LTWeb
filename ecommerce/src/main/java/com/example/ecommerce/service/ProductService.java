@@ -16,16 +16,19 @@ public class ProductService {
         }
         return instance;
     }
-
     public int addProduct(String title, String description, int price, double discount, int quantity, int categoryId) throws SQLException {
         return ProductDao.getInstance().addProduct(title, description, price, discount, quantity, categoryId);
     }
-
     public List<Product> getProducts(int start, int total) {
         return ProductDao.getInstance().getProducts(start, total);
     }
-
     public long total() {
         return ProductDao.getInstance().totalProduct();
+    }
+    public List<Product> getAllProduct() {
+        return  ProductDao.getInstance().getAllProduct();
+    }
+    public List<Product> getProductByCID(String id) {
+        return  ProductDao.getInstance().getProductByCID(id);
     }
 }

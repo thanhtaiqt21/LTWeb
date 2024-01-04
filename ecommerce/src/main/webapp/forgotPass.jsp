@@ -1,3 +1,9 @@
+<%@ page import="com.example.ecommerce.model.Category" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -82,7 +88,7 @@
             >
                 <li class="mobile-links__item" data-collapse-item>
                     <div class="mobile-links__item-title">
-                        <a href="index.html" class="mobile-links__item-link"
+                        <a href="index.jsp" class="mobile-links__item-link"
                         >Trang Chủ</a
                         >
                     </div>
@@ -90,7 +96,7 @@
                 <li class="mobile-links__item" data-collapse-item>
                     <div class="mobile-links__item-title">
                         <a
-                                href="shop-grid-4-columns-full.html"
+                                href="list-product.jsp"
                                 class="mobile-links__item-link"
                         >Danh Mục Sản Phẩm</a
                         >
@@ -172,7 +178,7 @@
                 <li class="mobile-links__item" data-collapse-item>
                     <div class="mobile-links__item-title">
                         <a
-                                href="shop-grid-4-columns-full.html"
+                                href="list-product.jsp"
                                 class="mobile-links__item-link"
                         >Tài Khoản</a
                         >
@@ -222,14 +228,14 @@
                 </li>
                 <li class="mobile-links__item" data-collapse-item>
                     <div class="mobile-links__item-title">
-                        <a href="blog-classic.html" class="mobile-links__item-link"
+                        <a href="blog-classic.jsp" class="mobile-links__item-link"
                         >Blog</a
                         >
                     </div>
                 </li>
                 <li class="mobile-links__item" data-collapse-item>
                     <div class="mobile-links__item-title">
-                        <a href="contact-us.html" class="mobile-links__item-link"
+                        <a href="contact-us.jsp" class="mobile-links__item-link"
                         >Liên Hệ</a
                         >
                     </div>
@@ -303,7 +309,7 @@
                                 <use xlink:href="images/sprite.svg#menu-18x14"></use>
                             </svg>
                         </button>
-                        <a class="mobile-header__logo" href="index.html"
+                        <a class="mobile-header__logo" href="index.jsp"
                         ><svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="120px"
@@ -372,7 +378,7 @@
                                 </button>
                             </div>
                             <div class="indicator indicator--mobile d-sm-flex d-none">
-                                <a href="wishlist.html" class="indicator__button"
+                                <a href="wishlist.jsp" class="indicator__button"
                                 ><span class="indicator__area"
                                 ><svg width="20px" height="20px">
                           <use xlink:href="images/sprite.svg#heart-20"></use>
@@ -382,7 +388,7 @@
                                 >
                             </div>
                             <div class="indicator indicator--mobile">
-                                <a href="cart.html" class="indicator__button"
+                                <a href="cart.jsp" class="indicator__button"
                                 ><span class="indicator__area"
                                 ><svg width="20px" height="20px">
                           <use xlink:href="images/sprite.svg#cart-20"></use>
@@ -406,7 +412,7 @@
                 <div class="topbar__container container">
                     <div class="topbar__row">
                         <div class="topbar__item topbar__item--link">
-                            <a class="topbar-link" href="about-us.html">Giới thiệu</a>
+                            <a class="topbar-link" href="about-us.jsp">Giới thiệu</a>
                         </div>
                         <div class="topbar__spring"></div>
                         <div class="topbar__item">
@@ -424,7 +430,7 @@
                                     <ul class="menu menu--layout--topbar">
                                         <li><a href="login.jsp">Đăng Nhập</a></li>
                                         <li><a href="register.jsp">Đăng Kí</a></li>
-                                        <li><a href="orders-history.html">Lịch sử đơn Hàng</a></li>
+                                        <li><a href="orders-history.jsp">Lịch sử đơn Hàng</a></li>
                                     </ul>
                                     <!-- .menu / end -->
                                 </div>
@@ -473,7 +479,7 @@
                     <div class="nav-panel__container container">
                         <div class="nav-panel__row">
                             <div class="nav-panel__logo">
-                                <a href="index.html">
+                                <a href="index.jsp">
                                     <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="120px"
@@ -505,7 +511,7 @@
                             <div class="nav-panel__nav-links nav-links">
                                 <ul class="nav-links__list">
                                     <li class="nav-links__item nav-links__item--with-submenu">
-                                        <a href="index.html"><span>Trang chủ </span></a>
+                                        <a href="index.jsp"><span>Trang chủ </span></a>
                                         <div class="nav-links__menu">
                                             <!-- .menu -->
 
@@ -528,48 +534,22 @@
                                         <div class="nav-links__menu">
                                             <!-- .menu -->
                                             <ul class="menu menu--layout--classic">
+                                                <% List<Category> listC = (List<Category>) request.getSession().getAttribute("listC");
+                                                    for (Category category : listC) { %>
                                                 <li>
-                                                    <a href="shop-grid-4-columns-full.html"
-                                                    >Gạch Block Xi Măng
-                                                    </a>
+                                                    <a href="category?id=<%= category.getId() %>"><%= category.getName() %></a>
                                                 </li>
-                                                <li>
-                                                    <a href="shop-list.html"
-                                                    >Gạch Trang Trí Cao Cấp</a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="shop-right-sidebar.html">Gạch Men</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-right-sidebar.html"
-                                                    >Thiết Bị Ngành Nước</a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="shop-right-sidebar.html">Đá Tự Nhiên</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-right-sidebar.html">Vật Liệu Thô</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-right-sidebar.html"
-                                                    >Các Loại VLXD Khác</a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Ngói Lợp Nhà </a>
-                                                </li>
+                                                <% } %>
                                             </ul>
                                             <!-- .menu / end -->
                                         </div>
                                     </li>
                                     <li class="nav-links__item nav-links__item--with-submenu">
-                                        <a href="blog-classic.html"><span>Blog </span></a>
+                                        <a href="blog-classic.jsp"><span>Blog </span></a>
                                     </li>
 
                                     <li class="nav-links__item">
-                                        <a href="contact-us.html"><span>Liên hệ</span></a>
+                                        <a href="contact-us.jsp"><span>Liên hệ</span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -621,7 +601,7 @@
                                     </div>
                                 </div>
                                 <div class="indicator">
-                                    <a href="wishlist.html" class="indicator__button"
+                                    <a href="wishlist.jsp" class="indicator__button"
                                     ><span class="indicator__area"
                                     ><svg width="20px" height="20px">
                             <use xlink:href="images/sprite.svg#heart-20"></use>
@@ -631,7 +611,7 @@
                                     >
                                 </div>
                                 <div class="indicator indicator--trigger--click">
-                                    <a href="cart.html" class="indicator__button"
+                                    <a href="cart.jsp" class="indicator__button"
                                     ><span class="indicator__area"
                                     ><svg width="20px" height="20px">
                             <use xlink:href="images/sprite.svg#cart-20"></use>
@@ -645,7 +625,7 @@
                                             <div class="dropcart__products-list">
                                                 <div class="dropcart__product">
                                                     <div class="dropcart__product-image">
-                                                        <a href="product.html"
+                                                        <a href="product.jsp"
                                                         ><img
                                                                 src="https://cdn.hoasenhome.vn/catalog/product/i/n/indal1001000016-1.jpg"
                                                                 alt=""
@@ -653,7 +633,7 @@
                                                     </div>
                                                     <div class="dropcart__product-info">
                                                         <div class="dropcart__product-name">
-                                                            <a href="product.html"
+                                                            <a href="product.jsp"
                                                             >Gạch granite LUSTRA INDAL1001000016: 1000mmx1000mm</a
                                                             >
                                                         </div>
@@ -680,7 +660,7 @@
                                                 </div>
                                                 <div class="dropcart__product">
                                                     <div class="dropcart__product-image">
-                                                        <a href="product.html"
+                                                        <a href="product.jsp"
                                                         ><img
                                                                 src="https://cdn.hoasenhome.vn/catalog/product/t/h/thep-cay-viet-my-grade-40.jpg"
                                                                 alt=""
@@ -688,7 +668,7 @@
                                                     </div>
                                                     <div class="dropcart__product-info">
                                                         <div class="dropcart__product-name">
-                                                            <a href="product.html"
+                                                            <a href="product.jsp"
                                                             >Thép cây VAS Grade 40</a
                                                             >
                                                         </div>
@@ -715,7 +695,7 @@
                                                 </div>
                                                 <div class="dropcart__product">
                                                     <div class="dropcart__product-image">
-                                                        <a href="product.html"
+                                                        <a href="product.jsp"
                                                         ><img
                                                                 src="https://cdn.hoasenhome.vn/catalog/product/n/g/ngoi-trang-men-casa-pro-n_u-cafe.jpg"
                                                                 alt=""
@@ -723,7 +703,7 @@
                                                     </div>
                                                     <div class="dropcart__product-info">
                                                         <div class="dropcart__product-name">
-                                                            <a href="product.html"
+                                                            <a href="product.jsp"
                                                             >Ngói tráng men CASA PRO nâu cafe 009</a
                                                             >
                                                         </div>
@@ -767,10 +747,10 @@
                                                 </table>
                                             </div>
                                             <div class="dropcart__buttons">
-                                                <a class="btn btn-secondary" href="cart.html"
+                                                <a class="btn btn-secondary" href="cart.jsp"
                                                 >Giỏ hàng</a
                                                 >
-                                                <a class="btn btn-primary" href="checkout.html"
+                                                <a class="btn btn-primary" href="checkout.jsp"
                                                 >Thanh toán</a
                                                 >
                                             </div>
@@ -786,7 +766,6 @@
         </div>
     </header>
     <!-- desktop site__header / end -->
-
     <!-- site__body -->
     <div class="site__body">
         <div class="page-header">
@@ -795,12 +774,12 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="index.html">Trang chủ</a>
+                                <a href="index.jsp">Trang chủ</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
                                     <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Cập nhật thông tin cá nhân</li>
+                            <li class="breadcrumb-item active" aria-current="page">Quên mật khẩu</li>
                         </ol>
                     </nav>
                 </div>
@@ -815,16 +794,8 @@
                     <div class="col-md-6 d-flex mt-4 mt-md-0">
                         <div class="card flex-grow-1 mb-0">
                             <div class="card-body">
-                                <h3 class="card-title">Cập Nhật Thông Tin Cá Nhân</h3>
+                                <h3 class="card-title">Quên Mật Khẩu</h3>
                                 <form>
-                                    <div class="form-group">
-                                        <label>Họ và Tên</label>
-                                        <input
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="Nhập Họ và Tên"
-                                        />
-                                    </div>
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input
@@ -833,56 +804,8 @@
                                                 placeholder="Nhập Email"
                                         />
                                     </div>
-                                    <div class="form-group">
-                                        <label>Số Điện Thoại</label>
-                                        <input
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="Nhập Số Điện Thoại"
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tỉnh/Thành phố</label>
-                                        <select
-                                                id="city"
-                                                class="form-control"
-                                                aria-label="Default select example"
-                                        >
-                                            <option selected>--Tỉnh/Thành phố--</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label>Quận/Huyện</label>
-                                            <select
-                                                    id="district"
-                                                    class="form-control"
-                                                    aria-label="Default select example"
-                                            >
-                                                <option selected>--Quận/Huyện--</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label>Phường/Xã</label>
-                                            <select
-                                                    id="ward"
-                                                    class="form-control"
-                                                    aria-label="Default select example"
-                                            >
-                                                <option selected>--Phường/Xã--</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Địa chỉ cụ thể</label>
-                                        <input
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="Số nhà,đường..."
-                                        />
-                                    </div>
                                     <button type="submit" class="btn btn-primary mt-4">
-                                        Cập Nhật
+                                        Gửi Yêu Cầu
                                     </button>
                                 </form>
                             </div>

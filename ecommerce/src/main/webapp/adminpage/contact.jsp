@@ -1,6 +1,16 @@
+
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Liên hệ | Nalika - Material Admin Template</title>
@@ -147,6 +157,12 @@
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
+                  <li>
+                    <a title="Product List" href="contact.jsp"
+                    ><span class="mini-sub-pro">Liên hệ</span></a
+                    >
+                  </li>
+                </ul>
               </li>
             </ul>
           </nav>
@@ -1358,71 +1374,50 @@
                     id="myTabContent"
                     class="tab-content custom-product-edit"
                   >
-                    <div
-                      class="product-tab-list tab-pane fade active in"
-                      id="description"
-                    >
+                    <div class="product-tab-list tab-pane fade active in" id="description">
                       <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
                             <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-location-dot"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Địa chỉ"
-                              />
+                              <span class="input-group-addon"><i class="fa-solid fa-location-dot"></i></span>
+                              <input type="text" class="form-control" id="address" placeholder="Địa chỉ" />
                             </div>
                             <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-envelope"></i></span>
-                              <input
-                                type="email"
-                                class="form-control"
-                                placeholder="Email"
-                              />
+                              <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
+                              <input type="email" class="form-control" id="email" placeholder="Email" />
                             </div>
-                            
+                            <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
+                              <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" />
+                            </div>
+                            <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
+                              <input type="text" class="form-control" id="workingTimeMF" placeholder="Thời gian làm việc (Thứ 2 - Thứ 6)" />
+                            </div>
                           </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
                             <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-envelope"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Số điện thoại"
-                              />
+                              <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
+                              <input type="text" class="form-control" id="workingTimeSA" placeholder="Thời gian làm việc (Thứ 7)" />
                             </div>
                             <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-clock"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Thời gian làm việc"
-                              />
-                            </div>                         
+                              <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
+                              <input type="text" class="form-control" id="workingTimeSU" placeholder="Thời gian làm việc (Chủ nhật)" />
+                            </div>
+                            <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
+                              <input type="text" class="form-control"  id="greeting" placeholder="Lời chào" />
+                            </div>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="text-center custom-pro-edt-ds">
-                            <button
-                              type="button"
-                              class="btn btn-ctl-bt waves-effect waves-light m-r-10"
-                            >
+                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light m-r-10" id="saveButton">
                               Lưu
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-ctl-bt waves-effect waves-light"
-                            >
-                              Hủy
                             </button>
                           </div>
                         </div>
@@ -1436,7 +1431,7 @@
                               <div class="col-lg-4">
                                 <div class="pro-edt-img">
                                   <img
-                                    src="img/new-product/5-small.jpg"
+<%--                                    src="img/new-product/5-small.jpg"--%>
                                     alt=""
                                   />
                                 </div>
@@ -1513,7 +1508,7 @@
                               <div class="col-lg-4">
                                 <div class="pro-edt-img">
                                   <img
-                                    src="img/new-product/6-small.jpg"
+<%--                                    src="img/new-product/6-small.jpg"--%>
                                     alt=""
                                   />
                                 </div>
@@ -1590,7 +1585,7 @@
                               <div class="col-lg-4">
                                 <div class="pro-edt-img mg-b-0">
                                   <img
-                                    src="img/new-product/7-small.jpg"
+<%--                                    src="img/new-product/7-small.jpg"--%>
                                     alt=""
                                   />
                                 </div>
@@ -1852,6 +1847,82 @@
         </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        // Gửi yêu cầu đến servlet khi trang được tải
+        $.ajax({
+          type: 'GET',
+          url: '/ecommerce/adminpage/contact',
+          dataType: 'json',
+          success: function (data) {
+            // Hiển thị thông tin liên hệ trên trang
+            $('#address').val(data.address);
+            $('#email').val(data.email);
+            $('#phone').val(data.phone);
+            $('#workingTimeMF').val(data.workingTimeMF);
+            $('#workingTimeSA').val(data.workingTimeSA);
+            $('#workingTimeSU').val(data.workingTimeSU);
+            $('#greeting').val(data.greeting); // Add this line
+          },
+          error: function (xhr, status, error) {
+            console.error('Error fetching contact info:', status, error);
+          }
+        });
+
+        // Sự kiện click cho nút "Lưu"
+        $('#saveButton').on('click', function () {
+          saveContactInfo();
+        });
+      });
+
+      function saveContactInfo() {
+        var newAddress = $('#address').val();
+        var newEmail = $('#email').val();
+        var newPhone = $('#phone').val();
+        var newWorkingTimeMF = $('#workingTimeMF').val();
+        var newWorkingTimeSA = $('#workingTimeSA').val();
+        var newWorkingTimeSU = $('#workingTimeSU').val();
+        var newGreeting = $('#greeting').val(); // Add this line
+
+        // Gửi yêu cầu đến servlet để lưu thông tin mới
+        $.ajax({
+          type: 'POST',
+          url: '/ecommerce/adminpage/contact',
+          dataType: 'json',
+          data: {
+            address: newAddress,
+            email: newEmail,
+            phone: newPhone,
+            workingTimeMF: newWorkingTimeMF,
+            workingTimeSA: newWorkingTimeSA,
+            workingTimeSU: newWorkingTimeSU,
+            greeting: newGreeting // Add this line
+          },
+          success: function (data) {
+            if (data && data.success) {
+              // Hiển thị thông báo lỗi
+              showAlert('Cập nhật thành công', 'success');
+              console.log('Lỗi khi lưu thông tin liên hệ');
+            } else {
+              // Hiển thị thông báo lỗi
+              showAlert('Cập nhật thất bại', 'error');
+              console.error('Lỗi khi lưu thông tin liên hệ:', data ? data.message : 'Lỗi không xác định');
+            }
+          },
+          error: function (xhr, status, error) {
+            // Hiển thị thông báo thành công
+            showAlert('Cập nhật thành công', 'error');
+            console.error('Lỗi khi lưu thông tin liên hệ:', status, error);
+          }
+        });
+      }
+
+      // Hàm hiển thị cửa sổ thông báo
+      function showAlert(message, type) {
+        alert(message);
+      }
+    </script>
 
     <!-- jquery
 		============================================ -->

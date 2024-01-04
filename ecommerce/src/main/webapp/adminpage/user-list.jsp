@@ -175,6 +175,11 @@
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
+                  <li>
+                    <a title="Product List" href="contact.jsp"
+                    ><span class="mini-sub-pro">Liên hệ</span></a
+                    >
+                  </li>
                   </ul>
               </li>
             </ul>
@@ -1378,7 +1383,7 @@
                   <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Tên người dùng</th>
+                    <th>Tài khoản</th>
                     <th>Trạng thái</th>
                     <th>Email</th>
                     <th>Số điện thoại</th>
@@ -1526,11 +1531,9 @@
               var statusButton = user.active === 1 ? '<button class="pd-setting">Active</button>' :
                       '<button class="pd-setting" style="background-color: red;">Not Active</button>';
 
-              var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed">' +
-                      '<a href="user-edit.html">' +
-                      '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>' +
-                      '</a>' +
-                      '</button>';
+              var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed editUser" data-id="' + user.id + '">'
+                      + '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'
+                      + '</button>';
 
               var trashButton = '<button data-toggle="tooltip" title="Trash" class="pd-setting-ed" onclick="confirmDeleteUser(' + user.id + ')">' +
                       '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
@@ -1541,7 +1544,7 @@
 
               var row = '<tr>' +
                       '<td>' + user.id + '</td>' +
-                      '<td>' + user.fullname + '</td>' +
+                      '<td>' + user.username + '</td>' +
                       '<td>' + statusButton + '</td>' +
                       '<td>' + user.email + '</td>' +
                       '<td>' + user.phone + '</td>' +
@@ -1608,6 +1611,10 @@
           $('#confirmDeleteBtn').off('click');
         });
       }
+      $(document).on('click', '.editUser', function () {
+        var userId = $(this).data('id');
+        window.location.href = 'user-edit.jsp?userId=' + userId;
+      });
     </script>
 
   </body>

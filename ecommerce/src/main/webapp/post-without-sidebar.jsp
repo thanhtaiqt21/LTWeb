@@ -1,3 +1,10 @@
+<<<<<<< HEAD:ecommerce/src/main/webapp/post-without-sidebar.jsp
+<%@ page import="com.example.ecommerce.model.Category" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+  String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -82,7 +89,7 @@
         >
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
-              <a href="index.html" class="mobile-links__item-link"
+              <a href="index.jsp" class="mobile-links__item-link"
               >Trang Chủ</a
               >
             </div>
@@ -90,7 +97,7 @@
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
               <a
-                      href="shop-grid-4-columns-full.html"
+                      href="list-product.jsp"
                       class="mobile-links__item-link"
               >Danh Mục Sản Phẩm</a
               >
@@ -172,7 +179,7 @@
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
               <a
-                      href="shop-grid-4-columns-full.html"
+                      href="list-product.jsp"
                       class="mobile-links__item-link"
               >Tài Khoản</a
               >
@@ -222,14 +229,14 @@
           </li>
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
-              <a href="blog-classic.html" class="mobile-links__item-link"
+              <a href="blog-classic.jsp" class="mobile-links__item-link"
               >Blog</a
               >
             </div>
           </li>
           <li class="mobile-links__item" data-collapse-item>
             <div class="mobile-links__item-title">
-              <a href="contact-us.html" class="mobile-links__item-link"
+              <a href="contact-us.jsp" class="mobile-links__item-link"
               >Liên Hệ</a
               >
             </div>
@@ -303,7 +310,7 @@
                   <use xlink:href="images/sprite.svg#menu-18x14"></use>
                 </svg>
               </button>
-              <a class="mobile-header__logo" href="index.html"
+              <a class="mobile-header__logo" href="index.jsp"
               ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="120px"
@@ -372,7 +379,7 @@
                   </button>
                 </div>
                 <div class="indicator indicator--mobile d-sm-flex d-none">
-                  <a href="wishlist.html" class="indicator__button"
+                  <a href="wishlist.jsp" class="indicator__button"
                   ><span class="indicator__area"
                   ><svg width="20px" height="20px">
                           <use xlink:href="images/sprite.svg#heart-20"></use>
@@ -382,7 +389,7 @@
                   >
                 </div>
                 <div class="indicator indicator--mobile">
-                  <a href="cart.html" class="indicator__button"
+                  <a href="cart.jsp" class="indicator__button"
                   ><span class="indicator__area"
                   ><svg width="20px" height="20px">
                           <use xlink:href="images/sprite.svg#cart-20"></use>
@@ -406,7 +413,7 @@
           <div class="topbar__container container">
             <div class="topbar__row">
               <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" href="about-us.html">Giới thiệu</a>
+                <a class="topbar-link" href="about-us.jsp">Giới thiệu</a>
               </div>
               <div class="topbar__spring"></div>
               <div class="topbar__item">
@@ -424,7 +431,7 @@
                     <ul class="menu menu--layout--topbar">
                       <li><a href="login.jsp">Đăng Nhập</a></li>
                       <li><a href="register.jsp">Đăng Kí</a></li>
-                      <li><a href="orders-history.html">Lịch sử đơn Hàng</a></li>
+                      <li><a href="orders-history.jsp">Lịch sử đơn Hàng</a></li>
                     </ul>
                     <!-- .menu / end -->
                   </div>
@@ -473,7 +480,7 @@
             <div class="nav-panel__container container">
               <div class="nav-panel__row">
                 <div class="nav-panel__logo">
-                  <a href="index.html">
+                  <a href="index.jsp">
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="120px"
@@ -505,7 +512,7 @@
                 <div class="nav-panel__nav-links nav-links">
                   <ul class="nav-links__list">
                     <li class="nav-links__item nav-links__item--with-submenu">
-                      <a href="index.html"><span>Trang chủ </span></a>
+                      <a href="index.jsp"><span>Trang chủ </span></a>
                       <div class="nav-links__menu">
                         <!-- .menu -->
 
@@ -528,48 +535,22 @@
                       <div class="nav-links__menu">
                         <!-- .menu -->
                         <ul class="menu menu--layout--classic">
+                          <% List<Category> listC = (List<Category>) request.getSession().getAttribute("listC");
+                            for (Category category : listC) { %>
                           <li>
-                            <a href="shop-grid-4-columns-full.html"
-                            >Gạch Block Xi Măng
-                            </a>
+                            <a href="category?id=<%= category.getId() %>"><%= category.getName() %></a>
                           </li>
-                          <li>
-                            <a href="shop-list.html"
-                            >Gạch Trang Trí Cao Cấp</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html">Gạch Men</a>
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html"
-                            >Thiết Bị Ngành Nước</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html">Đá Tự Nhiên</a>
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html">Vật Liệu Thô</a>
-                          </li>
-                          <li>
-                            <a href="shop-right-sidebar.html"
-                            >Các Loại VLXD Khác</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product.html">Ngói Lợp Nhà </a>
-                          </li>
+                          <% } %>
                         </ul>
                         <!-- .menu / end -->
                       </div>
                     </li>
                     <li class="nav-links__item nav-links__item--with-submenu">
-                      <a href="blog-classic.html"><span>Blog </span></a>
+                      <a href="blog-classic.jsp"><span>Blog </span></a>
                     </li>
 
                     <li class="nav-links__item">
-                      <a href="contact-us.html"><span>Liên hệ</span></a>
+                      <a href="contact-us.jsp"><span>Liên hệ</span></a>
                     </li>
                   </ul>
                 </div>
@@ -621,7 +602,7 @@
                     </div>
                   </div>
                   <div class="indicator">
-                    <a href="wishlist.html" class="indicator__button"
+                    <a href="wishlist.jsp" class="indicator__button"
                     ><span class="indicator__area"
                     ><svg width="20px" height="20px">
                             <use xlink:href="images/sprite.svg#heart-20"></use>
@@ -631,7 +612,7 @@
                     >
                   </div>
                   <div class="indicator indicator--trigger--click">
-                    <a href="cart.html" class="indicator__button"
+                    <a href="cart.jsp" class="indicator__button"
                     ><span class="indicator__area"
                     ><svg width="20px" height="20px">
                             <use xlink:href="images/sprite.svg#cart-20"></use>
@@ -645,7 +626,7 @@
                         <div class="dropcart__products-list">
                           <div class="dropcart__product">
                             <div class="dropcart__product-image">
-                              <a href="product.html"
+                              <a href="product.jsp"
                               ><img
                                       src="https://cdn.hoasenhome.vn/catalog/product/i/n/indal1001000016-1.jpg"
                                       alt=""
@@ -653,7 +634,7 @@
                             </div>
                             <div class="dropcart__product-info">
                               <div class="dropcart__product-name">
-                                <a href="product.html"
+                                <a href="product.jsp"
                                 >Gạch granite LUSTRA INDAL1001000016: 1000mmx1000mm</a
                                 >
                               </div>
@@ -680,7 +661,7 @@
                           </div>
                           <div class="dropcart__product">
                             <div class="dropcart__product-image">
-                              <a href="product.html"
+                              <a href="product.jsp"
                               ><img
                                       src="https://cdn.hoasenhome.vn/catalog/product/t/h/thep-cay-viet-my-grade-40.jpg"
                                       alt=""
@@ -688,7 +669,7 @@
                             </div>
                             <div class="dropcart__product-info">
                               <div class="dropcart__product-name">
-                                <a href="product.html"
+                                <a href="product.jsp"
                                 >Thép cây VAS Grade 40</a
                                 >
                               </div>
@@ -715,7 +696,7 @@
                           </div>
                           <div class="dropcart__product">
                             <div class="dropcart__product-image">
-                              <a href="product.html"
+                              <a href="product.jsp"
                               ><img
                                       src="https://cdn.hoasenhome.vn/catalog/product/n/g/ngoi-trang-men-casa-pro-n_u-cafe.jpg"
                                       alt=""
@@ -723,7 +704,7 @@
                             </div>
                             <div class="dropcart__product-info">
                               <div class="dropcart__product-name">
-                                <a href="product.html"
+                                <a href="product.jsp"
                                 >Ngói tráng men CASA PRO nâu cafe 009</a
                                 >
                               </div>
@@ -767,10 +748,10 @@
                           </table>
                         </div>
                         <div class="dropcart__buttons">
-                          <a class="btn btn-secondary" href="cart.html"
+                          <a class="btn btn-secondary" href="cart.jsp"
                           >Giỏ hàng</a
                           >
-                          <a class="btn btn-primary" href="checkout.html"
+                          <a class="btn btn-primary" href="checkout.jsp"
                           >Thanh toán</a
                           >
                         </div>
@@ -785,7 +766,9 @@
         </div>
       </div>
     </header>
-    <!-- desktop site__header / end --><!-- site__body -->
+    <!-- desktop site__header / end -->
+
+    <!-- site__body -->
       <div class="site__body">
         <div class="page-header">
           <div class="page-header__container container">
@@ -793,252 +776,323 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
-                    <a href="index.html">Trang chủ</a>
+                    <a href="index.jsp">Trang chủ</a>
                     <svg class="breadcrumb-arrow" width="6px" height="9px">
                       <use
                         xlink:href="images/sprite.svg#arrow-rounded-right-6x9"
                       ></use>
                     </svg>
                   </li>
-
+                  <li class="breadcrumb-item">
+                    <a href="#">Blog</a>
+                    <svg class="breadcrumb-arrow" width="6px" height="9px">
+                      <use
+                        xlink:href="images/sprite.svg#arrow-rounded-right-6x9"
+                      ></use>
+                    </svg>
+                  </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Lịch sử đơn hàng
+                    Sản Phẩm Vật Liệu Xây Dựng Được Cải Tiến Mới Nhất
                   </li>
                 </ol>
               </nav>
             </div>
-            <div class="page-header__title"><h1>Lịch sử đơn hàng</h1></div>
           </div>
         </div>
-        <div class="block">
-          <div class="container">
-            <table class="wishlist">
-              <thead class="wishlist__head">
-                <tr class="wishlist__row">
-                  <th class="wishlist__column wishlist__column--image">
-                    Mã đơn hàng
-                  </th>
-                  <th class="wishlist__column wishlist__column--product">
-                    Ngày đặt hàng
-                  </th>
-                  <th class="wishlist__column wishlist__column--stock">
-                    Tình trạng
-                  </th>
-                  <th class="wishlist__column wishlist__column--price">Giá</th>
-                  <th class="wishlist__column wishlist__column--tocart"></th>
-                  <th class="wishlist__column wishlist__column--remove"></th>
-                </tr>
-              </thead>
-              <tbody class="wishlist__body">
-                <tr class="wishlist__row">
-                  <td class="wishlist__column wishlist__column--image">
-                    <p>#1278</p>
-                  </td>
-                  <td class="wishlist__column wishlist__column--product">
-                    <p>20/10/2023</p>
-                  </td>
-                  <td class="wishlist__column wishlist__column--stock">
-                    <div class="badge badge-success">Chờ xác nhận</div>
-                  </td>
-                  <td class="wishlist__column wishlist__column--price">
-                    $699.00
-                  </td>
-                  <td class="wishlist__column wishlist__column--tocart">
-                    <button type="button" class="btn btn-primary btn-sm" >
-                      Xem chi tiết
-                    </button>
-                  </td>
-                  <td class="wishlist__column wishlist__column--remove">
-                    <button
-                      type="button"
-                      class="btn btn-light btn-sm btn-svg-icon"
-                    >
-                      <svg width="12px" height="12px">
-                        <use xlink:href="images/sprite.svg#cross-12"></use>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-9 col-xl-8">
+              <div class="block post post--layout--full">
+                <div class="post__header post-header post-header--layout--full">
+                  <div class="post-header__categories">
+                    <a href="#">tin mới nhất</a>
+                  </div>
+                  <h1 class="post-header__title">
+                    Sản Phẩm Vật Liệu Xây Dựng Được Cải Tiến Mới Nhất
+                  </h1>
+                  <div class="post-header__meta">
+                    <div class="post-header__meta-item">
+                      By <a href="#">Thanh Tài</a>
+                    </div>
+                    <div class="post-header__meta-item">
+                      <a href="#">Ngày 12 Tháng 3, 2023</a>
+                    </div>
+                    <div class="post-header__meta-item">
+                      <a href="#">4 bình luận</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="post__featured">
+                  <a href="#"
+                    ><img src="https://ttpcert.com.vn/wp-content/uploads/2021/03/mau-nha-kinh-theo-phong-cach-chau-au-1-min.png" alt=""
+                  /></a>
+                </div>
+                <div class="post__content typography typography--expanded">
+                  <p>
+                    Trong thời gian gần đây, ngành công nghiệp vật liệu xây dựng đã chứng kiến sự ra đời của nhiều sản phẩm mới và cải tiến độc đáo. Các sản phẩm này hứa hẹn mang lại sự tiến bộ và hiệu quả lớn trong việc xây dựng và cải thiện chất lượng công trình. Trong bài viết này, chúng ta sẽ tìm hiểu về một số sản phẩm vật liệu xây dựng mới nhất và những cải tiến đáng chú ý.
+                  </p>
+                  <p>
+                    Vật liệu xây dựng bền hơn và nhẹ hơn: Một trong những xu hướng đáng chú ý là phát triển vật liệu xây dựng bền hơn nhưng vẫn nhẹ, giúp giảm tải trọng trên các cấu trúc xây dựng và kéo dài tuổi thọ của chúng. Các loại gạch và bê tông sợi thủy tinh là một ví dụ điển hình, chúng có khả năng chịu nén tốt và giảm khả năng nứt nẻ.
+                  </p>
+
+                  <p>
+                    Công nghệ xây dựng thông minh: Sự phát triển của công nghệ đã ảnh hưởng đến ngành xây dựng, với việc sử dụng máy móc và thiết bị thông minh để tăng cường hiệu suất và đảm bảo an toàn. Các máy móc xây dựng tự động và các hệ thống quản lý công trình đã trở thành một phần quan trọng của dự án xây dựng.
+                  </p>
+                  <p>
+                    Các loại sơn và chất chống thấm tiên tiến: Sự phát triển trong lĩnh vực sơn và chất chống thấm đã giúp bảo vệ và làm đẹp các công trình xây dựng. Các công nghệ mới giúp sơn bền màu và chống nứt nẻ trong thời gian dài.
+                  </p>
+                  <p>
+                    Vật liệu cách âm và cách nhiệt: Việc sử dụng vật liệu cách âm và cách nhiệt đã trở thành một yếu tố quan trọng để cải thiện sự thoải mái trong các công trình xây dựng. Các sản phẩm mới có khả năng cách âm tốt hơn và giúp tiết kiệm năng lượng.
+                  </p>
+                  <p>
+                    Như vậy, ngành công nghiệp vật liệu xây dựng đang trải qua sự đổi mới và cải tiến liên tục. Các sản phẩm và công nghệ mới giúp cải thiện hiệu suất và bảo vệ môi trường, tạo nên những công trình xây dựng chất lượng và bền vững hơn. Việc theo dõi và áp dụng những cải tiến này trong dự án xây dựng sẽ là lợi ích lớn cho cả ngành và môi trường.
+                  </p>
+
+                </div>
+                <div class="post__footer">
+                  <div class="post__tags-share-links">
+                    <div class="post__tags tags">
+                      <div class="tags__list">
+                        <a href="#">Tin mới nhất</a> <a href="#">Vật liệu xậy dựng</a>
+
+                      </div>
+                    </div>
+                    <div class="post__share-links share-links">
+                      <ul class="share-links__list">
+                        <li
+                          class="share-links__item share-links__item--type--like"
+                        >
+                          <a href="#">Thích</a>
+                        </li>
+                        <li
+                          class="share-links__item share-links__item--type--counter"
+                        >
+                          <a href="#">4K</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+                <section class="post__section">
+                  <h4 class="post__section-title">Bài viết liên quan</h4>
+                  <div class="related-posts">
+                    <div class="related-posts__list">
+                      <div
+                        class="related-posts__item post-card post-card--layout--related"
+                      >
+                        <div class="post-card__image">
+                          <a href="#"
+                            ><img src="https://hiepthanhvn.com.vn/wp-content/uploads/2021/04/tui-khi-cach-nhiet-dem-lai-hieu-qua-chong-nong-tot-1.jpg" alt=""
+                          /></a>
+                        </div>
+                        <div class="post-card__info">
+                          <div class="post-card__name">
+                            <a href="#">Mùa Hè Sôi Động: Giảm Giá Lớn Cho Các Sản Phẩm Cách Nhiệt</a>
+                          </div>
+                          <div class="post-card__date">Ngày 5 Tháng 7, 2023</div>
+                        </div>
+                      </div>
+                      <div
+                        class="related-posts__item post-card post-card--layout--related"
+                      >
+                        <div class="post-card__image">
+                          <a href="#"
+                            ><img src="https://congtrinhxanhvn.com/wp-content/uploads/2021/06/cac-yeu-to-tao-nen-noi-that-xanh.jpeg" alt=""
+                          /></a>
+                        </div>
+                        <div class="post-card__info">
+                          <div class="post-card__name">
+                            <a href="#"
+                              >Xu Hướng Thiết Kế Nội Thất Xanh Mới Nhất</a>
+                          </div>
+                          <div class="post-card__date">Ngày 12 Tháng 10, 2023</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <!-- site__body / end --><!-- site__footer -->
-      <footer class="site__footer">
-        <div class="site-footer">
-          <div class="container">
-            <div class="site-footer__widgets">
-              <div class="row">
-                <div class="col-12 col-md-6 col-lg-4">
-                  <div class="site-footer__widget footer-contacts">
-                    <h5 class="footer-contacts__title">Liên hệ</h5>
-                    <div class="footer-contacts__text">
-                      Luôn đem lại cho khách hàng những sản phẩm có chất lượng
-                      tốt nhất.
-                    </div>
-                    <ul class="footer-contacts__contacts">
-                      <li>
-                        <i
-                          class="footer-contacts__icon fas fa-globe-americas"
-                        ></i>
-                        Linh Trung, Tp Thủ Đức
-                      </li>
-                      <li>
-                        <i class="footer-contacts__icon far fa-envelope"></i>
-                        email@example.com
-                      </li>
-                      <li>
-                        <i class="footer-contacts__icon fas fa-mobile-alt"></i>
-                        0123456789
-                      </li>
-                      <li>
-                        <i class="footer-contacts__icon far fa-clock"></i>
-                        T2-T7 10:00pm - 7:00pm
-                      </li>
-                    </ul>
+      <!-- site__body / end -->
+    <!-- site__footer -->
+    <footer class="site__footer">
+      <div class="site-footer">
+        <div class="container">
+          <div class="site-footer__widgets">
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="site-footer__widget footer-contacts">
+                  <h5 class="footer-contacts__title">Liên hệ</h5>
+                  <div class="footer-contacts__text">
+                    Luôn đem lại cho khách hàng những sản phẩm có chất lượng
+                    tốt nhất.
                   </div>
+                  <ul class="footer-contacts__contacts">
+                    <li>
+                      <i
+                              class="footer-contacts__icon fas fa-globe-americas"
+                      ></i>
+                      Linh Trung, Tp Thủ Đức
+                    </li>
+                    <li>
+                      <i class="footer-contacts__icon far fa-envelope"></i>
+                      email@example.com
+                    </li>
+                    <li>
+                      <i class="footer-contacts__icon fas fa-mobile-alt"></i>
+                      0123456789
+                    </li>
+                    <li>
+                      <i class="footer-contacts__icon far fa-clock"></i>
+                      T2-T7 10:00pm - 7:00pm
+                    </li>
+                  </ul>
                 </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                  <div class="site-footer__widget footer-links">
-                    <h5 class="footer-links__title">Thông tin</h5>
-                    <ul class="footer-links__list">
-                      <li class="footer-links__item">
-                        <a href="#" class="footer-links__link">Giới thiệu</a>
-                      </li>
-                      <li class="footer-links__item">
-                        <a href="#" class="footer-links__link"
-                          >Thông tin vận chuyển</a
-                        >
-                      </li>
-                      <li class="footer-links__item">
-                        <a href="#" class="footer-links__link">Chính sách</a>
-                      </li>
+              </div>
+              <div class="col-6 col-md-3 col-lg-2">
+                <div class="site-footer__widget footer-links">
+                  <h5 class="footer-links__title">Thông tin</h5>
+                  <ul class="footer-links__list">
+                    <li class="footer-links__item">
+                      <a href="#" class="footer-links__link">Giới thiệu</a>
+                    </li>
+                    <li class="footer-links__item">
+                      <a href="#" class="footer-links__link"
+                      >Thông tin vận chuyển</a
+                      >
+                    </li>
+                    <li class="footer-links__item">
+                      <a href="#" class="footer-links__link">Chính sách</a>
+                    </li>
 
-                      <li class="footer-links__item">
-                        <a href="#" class="footer-links__link">Liên hệ</a>
-                      </li>
-                      <li class="footer-links__item">
-                        <a href="#" class="footer-links__link">Hoàn đơn</a>
-                      </li>
-                      <li class="footer-links__item">
-                        <a href="#" class="footer-links__link">Vị trị</a>
-                      </li>
-                    </ul>
-                  </div>
+                    <li class="footer-links__item">
+                      <a href="#" class="footer-links__link">Liên hệ</a>
+                    </li>
+                    <li class="footer-links__item">
+                      <a href="#" class="footer-links__link">Hoàn đơn</a>
+                    </li>
+                    <li class="footer-links__item">
+                      <a href="#" class="footer-links__link">Vị trị</a>
+                    </li>
+                  </ul>
                 </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                  <div class="site-footer__widget footer-links">
-                    <h5 class="footer-links__title">Tài khoản</h5>
-                    <ul class="footer-links__list">
-                      <li class="footer-links__item">
-                        <a href="#" class="footer-links__link"
-                          >Lịch sử đặt hàng</a
-                        >
-                      </li>
-                      <li class="footer-links__item">
-                        <a href="#" class="footer-links__link"
-                          >Sản phẩm yêu thích</a
-                        >
-                      </li>
-                      <li class="footer-links__item">
-                        <a href="#" class="footer-links__link">Bản tin</a>
-                      </li>
-                    </ul>
-                  </div>
+              </div>
+              <div class="col-6 col-md-3 col-lg-2">
+                <div class="site-footer__widget footer-links">
+                  <h5 class="footer-links__title">Tài khoản</h5>
+                  <ul class="footer-links__list">
+                    <li class="footer-links__item">
+                      <a href="#" class="footer-links__link"
+                      >Lịch sử đặt hàng</a
+                      >
+                    </li>
+                    <li class="footer-links__item">
+                      <a href="#" class="footer-links__link"
+                      >Sản phẩm yêu thích</a
+                      >
+                    </li>
+                    <li class="footer-links__item">
+                      <a href="#" class="footer-links__link">Bản tin</a>
+                    </li>
+                  </ul>
                 </div>
-                <div class="col-12 col-md-12 col-lg-4">
-                  <div class="site-footer__widget footer-newsletter">
-                    <h5 class="footer-newsletter__title">Bản tin</h5>
-                    <div class="footer-newsletter__text">
-                      Theo dõi chúng tôi để nhận thêm nhiều thông tin mới nhất.
-                    </div>
-                    <form action="#" class="footer-newsletter__form">
-                      <label class="sr-only" for="footer-newsletter-address"
-                        >Địa chỉ email</label
-                      >
-                      <input
-                        type="text"
-                        class="footer-newsletter__form-input form-control"
-                        id="footer-newsletter-address"
-                        placeholder="Địa chỉ email..."
-                      />
-                      <button
-                        class="footer-newsletter__form-button btn btn-primary"
-                      >
-                        Subcribe
-                      </button>
-                    </form>
-                    <div
-                      class="footer-newsletter__text footer-newsletter__text--social"
+              </div>
+              <div class="col-12 col-md-12 col-lg-4">
+                <div class="site-footer__widget footer-newsletter">
+                  <h5 class="footer-newsletter__title">Bản tin</h5>
+                  <div class="footer-newsletter__text">
+                    Theo dõi chúng tôi để nhận thêm nhiều thông tin mới nhất.
+                  </div>
+                  <form action="#" class="footer-newsletter__form">
+                    <label class="sr-only" for="footer-newsletter-address"
+                    >Địa chỉ email</label
                     >
-                      Theo dõi chúng tôi trên các nền tảng xã hội
-                    </div>
-                    <ul class="footer-newsletter__social-links">
-                      <li
-                        class="footer-newsletter__social-link footer-newsletter__social-link--facebook"
-                      >
-                        <a
-                          href="https://themeforest.net/user/kos9"
-                          target="_blank"
-                          ><i class="fab fa-facebook-f"></i
-                        ></a>
-                      </li>
-                      <li
-                        class="footer-newsletter__social-link footer-newsletter__social-link--twitter"
-                      >
-                        <a
-                          href="https://themeforest.net/user/kos9"
-                          target="_blank"
-                          ><i class="fab fa-twitter"></i
-                        ></a>
-                      </li>
-                      <li
-                        class="footer-newsletter__social-link footer-newsletter__social-link--youtube"
-                      >
-                        <a
-                          href="https://themeforest.net/user/kos9"
-                          target="_blank"
-                          ><i class="fab fa-youtube"></i
-                        ></a>
-                      </li>
-                      <li
-                        class="footer-newsletter__social-link footer-newsletter__social-link--instagram"
-                      >
-                        <a
-                          href="https://themeforest.net/user/kos9"
-                          target="_blank"
-                          ><i class="fab fa-instagram"></i
-                        ></a>
-                      </li>
-                      <li
-                        class="footer-newsletter__social-link footer-newsletter__social-link--rss"
-                      >
-                        <a
-                          href="https://themeforest.net/user/kos9"
-                          target="_blank"
-                          ><i class="fas fa-rss"></i
-                        ></a>
-                      </li>
-                    </ul>
+                    <input
+                            type="text"
+                            class="footer-newsletter__form-input form-control"
+                            id="footer-newsletter-address"
+                            placeholder="Địa chỉ email..."
+                    />
+                    <button
+                            class="footer-newsletter__form-button btn btn-primary"
+                    >
+                      Subcribe
+                    </button>
+                  </form>
+                  <div
+                          class="footer-newsletter__text footer-newsletter__text--social"
+                  >
+                    Theo dõi chúng tôi trên các nền tảng xã hội
                   </div>
+                  <ul class="footer-newsletter__social-links">
+                    <li
+                            class="footer-newsletter__social-link footer-newsletter__social-link--facebook"
+                    >
+                      <a
+                              href="https://themeforest.net/user/kos9"
+                              target="_blank"
+                      ><i class="fab fa-facebook-f"></i
+                      ></a>
+                    </li>
+                    <li
+                            class="footer-newsletter__social-link footer-newsletter__social-link--twitter"
+                    >
+                      <a
+                              href="https://themeforest.net/user/kos9"
+                              target="_blank"
+                      ><i class="fab fa-twitter"></i
+                      ></a>
+                    </li>
+                    <li
+                            class="footer-newsletter__social-link footer-newsletter__social-link--youtube"
+                    >
+                      <a
+                              href="https://themeforest.net/user/kos9"
+                              target="_blank"
+                      ><i class="fab fa-youtube"></i
+                      ></a>
+                    </li>
+                    <li
+                            class="footer-newsletter__social-link footer-newsletter__social-link--instagram"
+                    >
+                      <a
+                              href="https://themeforest.net/user/kos9"
+                              target="_blank"
+                      ><i class="fab fa-instagram"></i
+                      ></a>
+                    </li>
+                    <li
+                            class="footer-newsletter__social-link footer-newsletter__social-link--rss"
+                    >
+                      <a
+                              href="https://themeforest.net/user/kos9"
+                              target="_blank"
+                      ><i class="fas fa-rss"></i
+                      ></a>
+                    </li>
+                  </ul>
                 </div>
-              </div>
-            </div>
-            <div class="site-footer__bottom">
-              <div class="site-footer__copyright">
-                <a target="_blank" href="https://www.templateshub.net"
-                  >Templates Hub</a
-                >
-              </div>
-              <div class="site-footer__payments">
-                <img src="images/payments.png" alt="" />
               </div>
             </div>
           </div>
+          <div class="site-footer__bottom">
+            <div class="site-footer__copyright">
+              <a target="_blank" href="https://www.templateshub.net"
+              >Templates Hub</a
+              >
+            </div>
+            <div class="site-footer__payments">
+              <img src="images/payments.png" alt="" />
+            </div>
+          </div>
         </div>
-      </footer>
-      <!-- site__footer / end -->
+      </div>
+    </footer>
+    <!-- site__footer / end -->
     </div>
     <!-- site / end -->
   </body>

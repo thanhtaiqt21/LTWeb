@@ -1,6 +1,7 @@
 package com.example.ecommerce.service;
 
 import com.example.ecommerce.dao.CategoryDao;
+import com.example.ecommerce.dao.ProductDao;
 import com.example.ecommerce.model.Category;
 
 import java.util.List;
@@ -44,4 +45,9 @@ public class CategoryService {
     public boolean deleteCategory(int id) {
         return CategoryDao.getInstance().deleteCategory(id);
     }
+    public List<Category> getAllCategory(){
+        return ProductDao.getInstance().getAllCategory();
+    }
 }
+
+
