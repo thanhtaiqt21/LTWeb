@@ -811,65 +811,33 @@
                   <div class="row">
                     <div class="col-12 col-lg-6 pb-4 pb-lg-0">
                       <h4 class="contact-us__header card-title">Địa chỉ</h4>
-                      <div class="contact-us__address">
-                        <p>
-                          VQCR+GP6, Khu Phố 6, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam<br />Email:
-                          vatLieuXayDung@gmail.com<br />Số điện thoại: 034 4675 885
-                        </p>
-                        <p>
-                          <strong>Giờ mở cửa</strong><br />Thứ 2 đến thứ sáu:
-                          7h-17h<br />Thứ bảy: 8h-15h<br />Chủ nhật: 9h-15h
-                        </p>
-                        <p>
-                          <strong>Lời chào</strong><br />Xin chào mừng bạn đến với cửa hàng vật liệu xây dựng của chúng tôi! Chúng tôi sẵn sàng phục vụ và đồng hành cùng bạn trong mọi dự án xây dựng của bạn. Hãy đặt câu hỏi hoặc yêu cầu bất kỳ thông tin nào bạn cần, chúng tôi luôn ở đây để giúp đỡ.
-                        </p>
+                      <div class="contact-us__address" id="contactAddress">
+                        <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
                       </div>
                     </div>
                     <div class="col-12 col-lg-6">
                       <h4 class="contact-us__header card-title">
                         Để lại tin nhắn cho chúng tôi
                       </h4>
-                      <form>
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="form-name">Tên của bạn</label>
-                            <input
-                              type="text"
-                              id="form-name"
-                              class="form-control"
-                              placeholder="Họ và tên"
-                            />
-                          </div>
-                          <div class="form-group col-md-6">
-                            <label for="form-email">Email</label>
-                            <input
-                              type="email"
-                              id="form-email"
-                              class="form-control"
-                              placeholder="Địa chỉ Email"
-                            />
-                          </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="form-name">Tên của bạn</label>
+                          <input type="text" id="form-name" class="form-control" placeholder="Họ và tên" />
                         </div>
-                        <div class="form-group">
-                          <label for="form-subject">chủ đề</label>
-                          <input
-                            type="text"
-                            id="form-subject"
-                            class="form-control"
-                            placeholder="Subject"
-                          />
+                        <div class="form-group col-md-6">
+                          <label for="form-email">Email</label>
+                          <input type="email" id="form-email" class="form-control" placeholder="Địa chỉ Email" />
                         </div>
-                        <div class="form-group">
-                          <label for="form-message">Lời nhắn</label>
-                          <textarea
-                            id="form-message"
-                            class="form-control"
-                            rows="4"
-                          ></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="form-subject">chủ đề</label>
+                        <input type="text" id="form-subject" class="form-control" placeholder="Subject" />
+                      </div>
+                      <div class="form-group">
+                        <label for="form-message">Lời nhắn</label>
+                        <textarea id="form-message" class="form-control" rows="4"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">
-                          Gửi lời nhắn
-                        </button>
+                      <button type="button" class="btn btn-primary" id="submitBtn">Gửi lời nhắn</button>
                       </form>
                     </div>
                   </div>
@@ -892,25 +860,8 @@
                       Luôn đem lại cho khách hàng những sản phẩm có chất lượng
                       tốt nhất.
                     </div>
-                    <ul class="footer-contacts__contacts">
-                      <li>
-                        <i
-                                class="footer-contacts__icon fas fa-globe-americas"
-                        ></i>
-                        Linh Trung, Tp Thủ Đức
-                      </li>
-                      <li>
-                        <i class="footer-contacts__icon far fa-envelope"></i>
-                        email@example.com
-                      </li>
-                      <li>
-                        <i class="footer-contacts__icon fas fa-mobile-alt"></i>
-                        0123456789
-                      </li>
-                      <li>
-                        <i class="footer-contacts__icon far fa-clock"></i>
-                        T2-T7 10:00pm - 7:00pm
-                      </li>
+                    <ul class="footer-contacts__contacts" id="contactInfoList">
+                      <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
                     </ul>
                   </div>
                 </div>
@@ -1056,5 +1007,80 @@
       <!-- site__footer / end -->
     </div>
     <!-- site / end -->
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      // Gửi yêu cầu đến servlet khi trang được tải
+      $.ajax({
+        type: 'GET',
+        url: '/ecommerce/contact-us',
+        dataType: 'json',
+        success: function (data) {
+          // Hiển thị thông tin liên hệ trên trang
+          var contactInfoList = $('#contactInfoList');
+          // Xóa mọi nội dung cũ trong ul
+          contactInfoList.empty();
+          // Thêm các mục thông tin liên hệ mới
+          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-globe-americas"></i>' + data.address + '</li>');
+          contactInfoList.append('<li><i class="footer-contacts__icon far fa-envelope"></i>' + data.email + '</li>');
+          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-mobile-alt"></i>' + data.phone + '</li>');
+          contactInfoList.append('<li>Thứ 2-6<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeMF + '</li>');
+          contactInfoList.append('<li>Thứ 7<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSA + '</li>');
+          contactInfoList.append('<li>Thứ chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
+        },
+        error: function (xhr, status, error) {
+          console.error('Error fetching contact info:', status, error);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      // Gửi yêu cầu đến servlet khi trang được tải
+      $.ajax({
+        type: 'GET',
+        url: '/ecommerce/contact-us',
+        dataType: 'json',
+        success: function (data) {
+          // Hiển thị thông tin liên hệ trên trang
+          var contactAddress = $('#contactAddress');
+          contactAddress.empty();
+          contactAddress.append('<p> ' + data.address + '<br />Email: ' + data.email + '<br />Số điện thoại: ' + data.phone + '</p>');
+          contactAddress.append('<p><strong>Giờ mở cửa</strong><br />Thứ 2 đến thứ sáu: ' + data.workingTimeMF + '<br />Thứ bảy: ' + data.workingTimeSA + '<br />Chủ nhật: ' + data.workingTimeSU + '</p>');
+          contactAddress.append('<p><strong>Lời chào</strong><br />' + data.greeting + '</p>');
+        },
+        error: function (xhr, status, error) {
+          console.error('Error fetching contact info:', status, error);
+        }
+      });
+      // Xử lý sự kiện khi nhấn nút Gửi lời nhắn
+      $('#submitBtn').on('click', function () {
+        var name = $('#form-name').val();
+        var email = $('#form-email').val();
+        var subject = $('#form-subject').val();
+        var message = $('#form-message').val();
+        // Gửi dữ liệu về servlet để xử lý và gửi email
+        $.ajax({
+          type: 'POST',
+          url: '/ecommerce/contact-us',
+          data: {
+            name: name,
+            email: email,
+            subject: subject,
+            message: message
+          },
+          success: function (response) {
+            alert('Lời nhắn đã được gửi thành công!');
+          },
+          error: function (xhr, status, error) {
+            console.error('Error sending message:', status, error);
+          }
+        });
+      });
+    });
+  </script>
+
+
   </body>
 </html>

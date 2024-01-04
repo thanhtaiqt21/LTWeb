@@ -44,4 +44,7 @@ public class UserService {
     public boolean updateInfor(String fullname, String email, String phone, int id) {
         return UserDao.getInstance().updateInfor(fullname, email, phone, id);
     }
+    public User getUserById(int userId) {
+        return UserDao.getInstance().getUserById(userId);
+    }
 }

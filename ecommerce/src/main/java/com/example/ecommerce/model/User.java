@@ -1,6 +1,7 @@
 package com.example.ecommerce.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -14,11 +15,19 @@ public class User implements Serializable {
 
     private int active;
 
+    private int status;
+
+    private List<Address> addresses;
+
 
     public User() {
     }
 
-    public User(int id,String username, String password, String fullname, String email, String phone, String role, int active) {
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public User(int id,String username, String password, String fullname, String email, String phone, String role, int active, int status) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -27,12 +36,13 @@ public class User implements Serializable {
         this.phone = phone;
         this.role = role;
         this.active = active;
+        this.status = status;
     }
 
-    public User(int id, String fullname, String email, String phone, String role, int active) {
+    public User(int id, String username, String email, String phone, String role, int active) {
         this.id = id;
         this.active = active;
-        this.fullname = fullname;
+        this.username = username;
         this.email = email;
         this.phone = phone;
         this.role = role;
@@ -104,5 +114,16 @@ public class User implements Serializable {
 
     public void setActive(int active) {
         this.active = active;
+    }
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }
