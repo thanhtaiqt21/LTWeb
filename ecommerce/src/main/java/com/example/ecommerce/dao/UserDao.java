@@ -305,4 +305,26 @@ public class UserDao {
         return addresses;
     }
 
+    public boolean updateUserStatusAndRole(int userId, int status, String role) {
+        Connection connection = DBConnect.getInstance().getConnection();
+
+        try {
+            String query = "UPDATE user SET status=?, role=? WHERE id=?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setInt(1, status);
+                preparedStatement.setString(2, role);
+                preparedStatement.setInt(3, userId);
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnect.getInstance().closeConnection(connection);
+        }
+
+        return false;
+    }
+
 }
