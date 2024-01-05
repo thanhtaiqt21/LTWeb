@@ -47,4 +47,8 @@ public class UserService {
     public User getUserById(int userId) {
         return UserDao.getInstance().getUserById(userId);
     }
+
+    public boolean updateUserStatusAndRole(int userId, int status, String role) {
+        return UserDao.getInstance().updateUserStatusAndRole(userId, status, role);
+    }
 }
