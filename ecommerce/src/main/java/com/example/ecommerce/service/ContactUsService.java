@@ -2,6 +2,7 @@ package com.example.ecommerce.service;
 
 import com.example.ecommerce.dao.ContactUsDao;
 import com.example.ecommerce.model.Contact;
+import com.example.ecommerce.model.Feedback;
 
 public class ContactUsService {
 
@@ -18,5 +19,10 @@ public class ContactUsService {
 
     public Contact getContactInfo() {
         return ContactUsDao.getInstance().getContactInfo();
+    }
+
+    // Include a method for submitting feedback
+    public boolean storeFeedback(Feedback feedback) {
+        return ContactUsDao.getInstance().storeFeedback(feedback);
     }
 }
