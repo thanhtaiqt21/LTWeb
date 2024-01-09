@@ -32,11 +32,11 @@ public class ContactUsController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Set character encoding for request and response
+        // Đặt mã hóa ký tự cho yêu cầu và phản hồi
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        // Process and store feedback data
+        // Xử lý và lưu trữ dữ liệu phản hồi
         BufferedReader reader = req.getReader();
         StringBuilder requestData = new StringBuilder();
         String line;
@@ -44,10 +44,10 @@ public class ContactUsController extends HttpServlet {
             requestData.append(line);
         }
 
-        // Convert JSON data to Feedback object
+        // Chuyển đổi dữ liệu JSON thành đối tượng Phản hồi
         Feedback feedback = new Gson().fromJson(requestData.toString(), Feedback.class);
 
-        // Store feedback in the database
+        // Lưu trữ phản hồi trong cơ sở dữ liệu
         boolean feedbackStored = ContactUsService.getInstance().storeFeedback(feedback);
 
         if (feedbackStored) {

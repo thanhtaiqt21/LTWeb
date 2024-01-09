@@ -159,7 +159,7 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="blog-list.html"
+                    <a title="Product List" href="blog-list.jsp"
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
