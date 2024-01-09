@@ -154,7 +154,7 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="blog-list.html"
+                    <a title="Product List" href="blog-list.jsp"
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
@@ -1449,7 +1449,6 @@
                                       name="status" id="status"
                                       class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
                               >
-                                <option value="2" <% if (user.getStatus() == 2) { %>selected<% } %>>Trạng thái</option>
                                 <option value="0" <% if (user.getStatus() == 0) { %>selected<% } %>>Hoạt động</option>
                                 <option value="1" <% if (user.getStatus() == 1) { %>selected<% } %>>Ngưng hoạt động</option>
                               </select>
@@ -1461,7 +1460,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="text-center custom-pro-edt-ds">
                             <button type="button" class="btn btn-ctl-bt waves-effect waves-light m-r-10" onclick="saveUser()">Lưu</button>
-                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light">Hủy</button>
+                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light" href="user-list.jsp">Hủy</button>
                           </div>
                         </div>
                       </div>
