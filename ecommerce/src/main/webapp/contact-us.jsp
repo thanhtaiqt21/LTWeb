@@ -35,6 +35,15 @@
     <script src="js/number.js"></script>
     <script src="js/main.js"></script>
     <script src="vendor/svg4everybody-2.1.9/svg4everybody.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+    <style type="text/css">
+      label.error {
+        display: inline-block;
+        color:red;
+        width: 200px;
+      }
+    </style>
     <script>
       svg4everybody();
     </script>
@@ -816,7 +825,17 @@
                       </div>
                     </div>
                     <div class="col-12 col-lg-6">
-                      <form >
+                      <form  id="formFeedback">
+                        <fieldset>
+                            <%
+                          if (error != null){
+                        %>
+                          <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                          </div>
+                            <%
+                          }
+                        %>
                       <h4 class="contact-us__header card-title">
                         Để lại tin nhắn cho chúng tôi
                       </h4>
@@ -831,7 +850,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="form-subject">chủ đề</label>
+                        <label for="form-subject">Chủ đề</label>
                         <input type="text" id="form-subject" name="topic" class="form-control" placeholder="Subject" />
                       </div>
                       <div class="form-group">
@@ -839,6 +858,7 @@
                         <textarea id="form-message" name="message" class="form-control" rows="4"></textarea>
                         </div>
                       <button type="submit" class="btn btn-primary" id="submitBtn">Gửi lời nhắn</button>
+                        </fieldset>
                       </form>
                     </div>
                   </div>
@@ -1080,6 +1100,49 @@
       //     }
       //   });
       // });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#formFeedback").validate({
+        rules:{
+          name: {
+            required:true,
+            minlength:2
+          },
+          email: {
+            required:true,
+            email:true
+          },
+          topic: {
+            required:true,
+            minlength:2
+          },
+          message: {
+            required:true,
+            minlength:2
+          }
+        },
+        messages: {
+          name: {
+            required: "Vui lòng nhập họ tên",
+            minlength: "Vui lòng nhập họ tên"
+          },
+          email: {
+            required: "Vui lòng nhập email",
+            email: "Vui lòng nhập đúng định dạng email"
+          },
+          topic: {
+            required: "Vui lòng nhập tiêu đề",
+            minlength: "Vui lòng nhập tiêu đề"
+          },
+          message: {
+            required: "Vui lòng nhập lời nhắn",
+            minlength: "Vui lòng nhập lời nhắn"
+          }
+        }
+      });
     });
   </script>
 

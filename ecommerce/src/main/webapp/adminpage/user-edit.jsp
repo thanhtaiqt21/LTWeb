@@ -163,6 +163,11 @@
                     ><span class="mini-sub-pro">Liên hệ</span></a
                     >
                   </li>
+                  <li>
+                    <a title="Product List" href="feedback.jsp"
+                    ><span class="mini-sub-pro">Lời nhắn từ người dùng</span></a
+                    >
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -1460,7 +1465,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="text-center custom-pro-edt-ds">
                             <button type="button" class="btn btn-ctl-bt waves-effect waves-light m-r-10" onclick="saveUser()">Lưu</button>
-                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light" href="user-list.jsp">Hủy</button>
+                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light" onclick="goBack()">Hủy</button>
                           </div>
                         </div>
                       </div>
@@ -1565,6 +1570,13 @@
             alert("Failed to update user.");
           }
         });
+      }
+    </script>
+
+    <script>
+      function goBack() {
+        // Use JavaScript to navigate back in history
+        window.history.back();
       }
     </script>
 

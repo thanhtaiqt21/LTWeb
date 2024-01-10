@@ -179,6 +179,11 @@
                     ><span class="mini-sub-pro">Liên hệ</span></a
                     >
                   </li>
+                  <li>
+                    <a title="Product List" href="feedback.jsp"
+                    ><span class="mini-sub-pro">Lời nhắn từ người dùng</span></a
+                    >
+                  </li>
                   </ul>
               </li>
             </ul>
@@ -1413,17 +1418,17 @@
         </div>
       </div>
 
-      <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+      <div class="modal fade" id="deleteFeedbackModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="deleteUserModalLabel">Xác nhận xóa tài khoản</h5>
+              <h5 class="modal-title" id="deleteFeedbackModalLabel">Xác nhận xóa Lời nhắn</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              Bạn có chắc chắn muốn xóa tài khoản không?
+              Bạn có chắc chắn muốn xóa lời nhắn này không?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -1514,14 +1519,14 @@
       function loadFeedbacks(page) {
         $.ajax({
           type: 'GET',
-          url: '/ecommerce/feedback?page=' + page, // Adjust the URL as needed
+          url: '/ecommerce/adminpage/feedback?page=' + page, // Adjust the URL as needed
           dataType: 'json',
           success: function (data) {
             var tableBody = $('#feedbackTableBody');
             tableBody.empty();
 
             // Hiển thị 10 tài khoản trên mỗi trang
-            var itemsPerPage = 5;
+            var itemsPerPage = 10;
             var startIndex = (page - 1) * itemsPerPage;
             var endIndex = startIndex + itemsPerPage;
             var feedbackToShow = data.slice(startIndex, endIndex);
@@ -1529,10 +1534,10 @@
             $.each(feedbackToShow, function (index, feedback) {
 
               var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed editUser" data-id="' + feedback.id + '">'
-                      + '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'
+                      + 'Xem'
                       + '</button>';
 
-              var trashButton = '<button data-toggle="tooltip" title="Trash" class="pd-setting-ed" onclick="">' +
+              var trashButton = '<button data-toggle="tooltip" title="Trash" class="pd-setting-ed" onclick="confirmDeleteFeedback(' + feedback.id + ')">' +
                       '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
                       '</button>';
 
@@ -1579,6 +1584,39 @@
       }
 
 
+      function deleteFeedback(feedbackId) {
+        $.ajax({
+          type: 'DELETE',
+          url: '/ecommerce/adminpage/feedback?feedbackId=' + feedbackId,
+          success: function (data) {
+            // Gọi lại hàm load  loadFeedbacks để cập nhật danh sách sau khi xóa
+            loadFeedbacks(1);
+          },
+          error: function (xhr, status, error) {
+            console.error('Error deleting user:', status, error);
+          }
+        });
+      }
+
+      function confirmDeleteFeedback(feedbackId) {
+        $('#deleteFeedbackModal').modal('show');
+
+        $('#confirmDeleteBtn').on('click', function () {
+          deleteFeedback(feedbackId);
+          $('#deleteFeedbackModal').modal('hide');
+        });
+
+        // Đặt sự kiện khi đóng modal
+        $('#deleteFeedbackModal').on('hidden.bs.modal', function () {
+          // Đảm bảo loại bỏ sự kiện click để tránh thực hiện đa lần
+          $('#confirmDeleteBtn').off('click');
+        });
+      }
+
+      $(document).on('click', '.editUser', function () {
+        var feedbackId = $(this).data('id');
+        window.location.href = 'see-feedback.jsp?feedbackId=' + feedbackId;
+      });
     </script>
 
   </body>
