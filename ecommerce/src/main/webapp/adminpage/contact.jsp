@@ -162,6 +162,11 @@
                     ><span class="mini-sub-pro">Liên hệ</span></a
                     >
                   </li>
+                  <li>
+                    <a title="Product List" href="feedback.jsp"
+                    ><span class="mini-sub-pro">Lời nhắn từ người dùng</span></a
+                    >
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -1408,7 +1413,7 @@
                             </div>
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
-                              <input type="text" class="form-control"  id="greeting" placeholder="Lời chào" />
+                              <textarea type="text" style="height:97px" class="form-control"  id="greeting" placeholder="Lời chào" ></textarea>
                             </div>
                           </div>
                         </div>

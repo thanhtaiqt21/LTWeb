@@ -1,7 +1,9 @@
 package com.example.ecommerce.dao;
 
 import com.example.ecommerce.db.DBConnect;
+import com.example.ecommerce.model.Address;
 import com.example.ecommerce.model.Feedback;
+import com.example.ecommerce.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class FeedbackDao {
         List<Feedback> feedbackList = new ArrayList<>();
         Connection connection = DBConnect.getInstance().getConnection();
         try {
-            String query = "SELECT * FROM feedback";
+            String query = "SELECT * FROM feedback ORDER BY date_created DESC";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -47,5 +49,54 @@ public class FeedbackDao {
         return feedbackList;
     }
 
-    // Add other methods if needed, such as inserting a new feedback entry
+    public boolean deleteFeedback(int feedbackId) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        try {
+
+            // Xóa lời nhắn người dùng từ bảng feedback
+            String deleteFeedbackQuery = "DELETE FROM feedback WHERE id=?";
+            try (PreparedStatement deleteFeedbackStatement = connection.prepareStatement(deleteFeedbackQuery)) {
+                deleteFeedbackStatement.setInt(1, feedbackId);
+                deleteFeedbackStatement.executeUpdate();
+            }
+            return true;
+        }   catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        DBConnect.getInstance().closeConnection(connection);
+    }
+
+        return false;
+}
+
+    public Feedback getFeedbackById(int feedbackId) {
+        Feedback feedback = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DBConnect.getInstance().getConnection();
+
+            String query = "SELECT * FROM feedback WHERE id=?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, feedbackId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                feedback = new Feedback();
+                feedback.setId(resultSet.getInt("id"));
+                feedback.setName(resultSet.getString("name"));
+                feedback.setEmail(resultSet.getString("email"));
+                feedback.setMessage(resultSet.getString("message"));
+                feedback.setTopic(resultSet.getString("topic"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnect.getInstance().closeConnection2(connection, preparedStatement, resultSet);
+        }
+
+        return feedback;
+    }
 }
