@@ -844,12 +844,12 @@
                             </div>
                           </div>
                           <div class="product-card__image">
-                            <a href="product.jsp"
+                            <a href="detail?pid=${o.id}&cid=${o.categoryId}"
                               ><img src="${o.imgUrl.get(0)}" alt="" width="240px" height="245px"/></a>
                           </div>
                           <div class="product-card__info">
                             <div class="product-card__name">
-                              <a href="product.jsp">${o.title}</a>
+                              <a href="detail?pid=${o.id}">${o.title}</a>
                             </div>
                             <div class="product-card__rating">
                               <div class="rating">

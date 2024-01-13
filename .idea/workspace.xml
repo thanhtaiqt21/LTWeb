@@ -4,7 +4,130 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2d8a4a1-e238-423d-a136-2260cbc47756" name="Changes" comment="" />
+    <list default="true" id="d2d8a4a1-e238-423d-a136-2260cbc47756" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ecommerce/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/controller/UserEditController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/controller/feedback/FeedbackController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/controller/product/DeleteProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/controller/product/ProductList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/dao/FeedbackDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/model/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/model/Feedback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/model/Img.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/service/FeedbackService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/controller/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/controller/contact/ContactUsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/controller/contact/ContactUsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/controller/product/AddProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/controller/product/AddProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/dao/ContactUsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/dao/ContactUsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/dao/ImgDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/dao/ImgDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/dao/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/db/DBConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/db/DBConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/model/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/model/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/sendmail/SendMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/sendmail/SendMail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/service/ContactUsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/service/ContactUsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/service/ImgService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/service/ImgService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/example/ecommerce/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/about-us.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/about-us.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/area-charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/area-charts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/bar-charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/bar-charts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/blog-add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/blog-add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/blog-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/blog-edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/blog-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/see-feedback.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/buttons.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/buttons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/category-add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/category-add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/category-edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/category-edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/category-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/category-list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/contact.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/data-maps.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/data-maps.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/data-table.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/data-table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/line-charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/line-charts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/notifications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/order-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/order-details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/order-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/order-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/peity.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/peity.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/product-add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/product-add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/product-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/product-edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/product-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/product-list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/static-table.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/static-table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/tabs.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/tabs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/tree-view.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/tree-view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/user-edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/user-edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/user-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/user-list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/blog-classic.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/blog-classic.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/changePass.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/changePass.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/checkout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/checkout.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/contact-us.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/contact-us.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/forgotPass.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/forgotPass.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/list-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/list-product.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/orders-history-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/orders-history-detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/orders-history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/orders-history.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/post-without-sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/post-without-sidebar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/product.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/update_profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/update_profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/verify-email.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/verify-email.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/webapp/wishlist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/wishlist.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/controller/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/controller/RegisterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/db/DBConnect.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/db/DBConnect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/sendmail/SendMail$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/sendmail/SendMail$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/sendmail/SendMail.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/sendmail/SendMail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/classes/com/example/ecommerce/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/controller/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/controller/RegisterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/db/DBConnect.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/db/DBConnect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/sendmail/SendMail$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/sendmail/SendMail$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/sendmail/SendMail.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/sendmail/SendMail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/about-us.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/area-charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/area-charts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/bar-charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/bar-charts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/blog-edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/blog-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/blog-list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/buttons.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/buttons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/category-add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/category-add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/category-edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/category-edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/category-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/category-list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/data-maps.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/data-maps.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/data-table.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/data-table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/line-charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/line-charts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/notifications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/order-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/order-details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/order-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/order-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/peity.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/peity.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/product-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/product-edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/product-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/webapp/adminpage/feedback.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/static-table.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/static-table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/tabs.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/tabs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/tree-view.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/adminpage/tree-view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/changePass.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/changePass.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/forgotPass.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/orders-history.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/product.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/update_profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/update_profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/verify-email.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/verify-email.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/target/ecommerce-1.0-SNAPSHOT/wishlist.html" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +139,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 3
+}]]></component>
   <component name="ProjectId" id="2X6ntMFkRNAzGqaCW4zaBWyL0Qq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -27,12 +154,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Merging nguyenminh",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Admin/Documents/LTWeb/ecommerce",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Web/LTWeb/ecommerce",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -80,6 +213,7 @@
       <workItem from="1700546625614" duration="1043000" />
       <workItem from="1700982460423" duration="24000" />
       <workItem from="1700982553841" duration="49000" />
+      <workItem from="1705130689286" duration="152000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,5 @@
 package com.example.ecommerce.controller.product;
 
-import com.example.ecommerce.dao.ProductDao;
 import com.example.ecommerce.model.Category;
 import com.example.ecommerce.model.Product;
 import com.example.ecommerce.service.CategoryService;
