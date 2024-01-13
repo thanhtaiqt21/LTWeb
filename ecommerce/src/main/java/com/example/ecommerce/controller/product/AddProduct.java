@@ -40,6 +40,7 @@ public class AddProduct extends HttpServlet {
         double discount = Double.parseDouble(req.getParameter("discount"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         String category = req.getParameter("category");
+        System.out.println(category);
         int categoryId = CategoryService.getInstance().getCategoryByName(category).getId();
         int i = 0;
         try {

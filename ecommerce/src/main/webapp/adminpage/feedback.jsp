@@ -1,11 +1,16 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Blog List | Nalika - Material Admin Template</title>
+    <title>User List | Nalika - Material Admin Template</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
     <!-- favicon
 		============================================ -->
     <link
@@ -75,6 +80,28 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+
+
+    <style>
+       Thêm CSS cho phần phân trang
+      .pagination {
+        display: flex;
+        list-style: none;
+        padding: 0;
+      }
+
+      .pagination button {
+        margin: 0 5px;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+
+      .pagination button.active {
+        background-color: #007bff;
+        color: #fff;
+      }
+    </style>
+
   </head>
 
   <body>
@@ -123,7 +150,7 @@
                 </a>
                 <ul class="submenu-angle" aria-expanded="true">
                   <li>
-                    <a title="Product List" href="product-list.html"
+                    <a title="Product List" href="product-list.jsp"
                       ><span class="mini-sub-pro">Sản phẩm</span></a
                     >
                   </li>
@@ -143,7 +170,7 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="category-list.jsp"
+                    <a title="Product List" href="blog-list.jsp"
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
@@ -152,7 +179,12 @@
                     ><span class="mini-sub-pro">Liên hệ</span></a
                     >
                   </li>
-                </ul>
+                  <li>
+                    <a title="Product List" href="feedback.jsp"
+                    ><span class="mini-sub-pro">Lời nhắn từ người dùng</span></a
+                    >
+                  </li>
+                  </ul>
               </li>
             </ul>
           </nav>
@@ -1100,7 +1132,7 @@
                           <li><a href="index.html">Dashboard v.1</a></li>
                           <li><a href="index-1.html">Dashboard v.2</a></li>
                           <li><a href="index-3.html">Dashboard v.3</a></li>
-                          <li><a href="product-list.html">Product List</a></li>
+                          <li><a href="product-list.jsp">Product List</a></li>
                           <li><a href="product-edit.html">Product Edit</a></li>
                           <li>
                             <a href="product-detail.html">Product Detail</a>
@@ -1349,62 +1381,34 @@
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="product-status-wrap">
-                <h4>Blog</h4>
-                <div class="add-product">
-                  <a href="blog-add.jsp">Thêm blog mới</a>
-                </div>
+                <h4>Lời nhắn từ người dùng</h4>
+
                 <table>
+                  <thead>
                   <tr>
-                    <th>Tên bài blog</th>
-                    <th>Trạng thái</th>
+                    <th>Id</th>
+                    <th>Tiêu đề</th>
+                    <th>Người gửi</th>
                     <th>Ngày tạo</th>
-                    <th>Setting</th>
+                    <th>Tùy chọn</th>
                   </tr>
-                  <tr>
-                    <td>Tên bài blog 1</td>
-                    <td>
-                      <button class="pd-setting">Active</button>
-                    </td>
-                    <td>20/10/2023</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <a href="blog-edit.html">
-                          <i
-                            class="fa fa-pencil-square-o"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                 
+                  </thead>
+                  <tbody id="feedbackTableBody" style="background-color: #1b2a47"></tbody>
                 </table>
+
+                <!-- Thêm mã HTML cho phân trang -->
                 <div class="custom-pagination">
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#">Trước</a>
+                  <ul class="pagination" id="pagination">
+                    <li class="page-item" id="previousPage">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        Trước
+                      </a>
                     </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">Tiếp theo</a>
+                    <!-- Các liên kết trang sẽ được thêm ở đây bằng jQuery -->
+                    <li class="page-item" id="nextPage">
+                      <a class="page-link" href="#" aria-label="Next">
+                        Tiếp theo
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -1413,6 +1417,27 @@
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="deleteFeedbackModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteFeedbackModalLabel">Xác nhận xóa Lời nhắn</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Bạn có chắc chắn muốn xóa lời nhắn này không?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+              <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Đồng ý</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="footer-copyright-area">
         <div class="container-fluid">
           <div class="row">
@@ -1483,5 +1508,116 @@
     <!-- main JS
 		============================================ -->
     <script src="../js/main1.js"></script>
+
+    <script type="text/javascript">
+
+
+      $(document).ready(function () {
+        loadFeedbacks(1);
+      });
+
+      function loadFeedbacks(page) {
+        $.ajax({
+          type: 'GET',
+          url: '/ecommerce/adminpage/feedback?page=' + page, // Adjust the URL as needed
+          dataType: 'json',
+          success: function (data) {
+            var tableBody = $('#feedbackTableBody');
+            tableBody.empty();
+
+            // Hiển thị 10 tài khoản trên mỗi trang
+            var itemsPerPage = 10;
+            var startIndex = (page - 1) * itemsPerPage;
+            var endIndex = startIndex + itemsPerPage;
+            var feedbackToShow = data.slice(startIndex, endIndex);
+
+            $.each(feedbackToShow, function (index, feedback) {
+
+              var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed editUser" data-id="' + feedback.id + '">'
+                      + 'Xem'
+                      + '</button>';
+
+              var trashButton = '<button data-toggle="tooltip" title="Trash" class="pd-setting-ed" onclick="confirmDeleteFeedback(' + feedback.id + ')">' +
+                      '<i class="fa fa-trash-o" aria-hidden="true"></i>' +
+                      '</button>';
+
+
+
+
+              var row = '<tr>' +
+                      '<td>' + feedback.id + '</td>' +
+                      '<td>' + feedback.topic + '</td>' +
+                      '<td>' + feedback.name + '</td>' +
+                      '<td>' + feedback.dateCreated + '</td>' +
+                      '<td>' + editButton + trashButton + '</td>' +
+                      '</tr>';
+              tableBody.append(row);
+            });
+
+            // Hiển thị phân trang
+            var pagination = $('#pagination');
+            pagination.empty();
+
+            var totalPages = Math.ceil(data.length / itemsPerPage);
+            var currentPage = page;
+
+            // Hiển thị nút "Trước" và thiết lập sự kiện khi nhấp vào
+            if (currentPage > 1) {
+              pagination.append('<li class="page-item" id="previousPage"><a class="page-link" href="#" onclick="loadFeedbacks(' + (currentPage - 1) + ')">Trước</a></li>');
+            }
+
+            // Hiển thị các liên kết trang
+            for (var i = 1; i <= totalPages; i++) {
+              var pageLink = '<li class="page-item"><a class="page-link" href="#" onclick="loadFeedbacks(' + i + ')">' + i + '</a></li>';
+              pagination.append(pageLink);
+            }
+
+            // Hiển thị nút "Tiếp theo" và thiết lập sự kiện khi nhấp vào
+            if (currentPage < totalPages) {
+              pagination.append('<li class="page-item" id="nextPage"><a class="page-link" href="#" onclick="loadFeedbacks(' + (currentPage + 1) + ')">Tiếp theo</a></li>');
+            }
+          },
+          error: function (xhr, status, error) {
+            console.error('Error fetching data:', status, error);
+          }
+        });
+      }
+
+
+      function deleteFeedback(feedbackId) {
+        $.ajax({
+          type: 'DELETE',
+          url: '/ecommerce/adminpage/feedback?feedbackId=' + feedbackId,
+          success: function (data) {
+            // Gọi lại hàm load  loadFeedbacks để cập nhật danh sách sau khi xóa
+            loadFeedbacks(1);
+          },
+          error: function (xhr, status, error) {
+            console.error('Error deleting user:', status, error);
+          }
+        });
+      }
+
+      function confirmDeleteFeedback(feedbackId) {
+        $('#deleteFeedbackModal').modal('show');
+
+        $('#confirmDeleteBtn').on('click', function () {
+          deleteFeedback(feedbackId);
+          $('#deleteFeedbackModal').modal('hide');
+        });
+
+        // Đặt sự kiện khi đóng modal
+        $('#deleteFeedbackModal').on('hidden.bs.modal', function () {
+          // Đảm bảo loại bỏ sự kiện click để tránh thực hiện đa lần
+          $('#confirmDeleteBtn').off('click');
+        });
+      }
+
+      $(document).on('click', '.editUser', function () {
+        var feedbackId = $(this).data('id');
+        window.location.href = 'see-feedback.jsp?feedbackId=' + feedbackId;
+      });
+    </script>
+
   </body>
 </html>

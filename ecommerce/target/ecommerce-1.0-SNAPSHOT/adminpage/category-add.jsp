@@ -136,7 +136,7 @@
                 </a>
                 <ul class="submenu-angle" aria-expanded="true">
                   <li>
-                    <a title="Product List" href="product-list.html"
+                    <a title="Product List" href="product-list.jsp"
                       ><span class="mini-sub-pro">Sản phẩm</span></a
                     >
                   </li>
@@ -156,13 +156,18 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="blog-list.html"
+                    <a title="Product List" href="blog-list.jsp"
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
                   <li>
                     <a title="Product List" href="contact.jsp"
                     ><span class="mini-sub-pro">Liên hệ</span></a
+                    >
+                  </li>
+                  <li>
+                    <a title="Product List" href="feedback.jsp"
+                    ><span class="mini-sub-pro">Lời nhắn từ người dùng</span></a
                     >
                   </li>
                 </ul>
@@ -1113,7 +1118,7 @@
                           <li><a href="index.html">Dashboard v.1</a></li>
                           <li><a href="index-1.html">Dashboard v.2</a></li>
                           <li><a href="index-3.html">Dashboard v.3</a></li>
-                          <li><a href="product-list.html">Product List</a></li>
+                          <li><a href="product-list.jsp">Product List</a></li>
                           <li><a href="product-edit.html">Product Edit</a></li>
                           <li>
                             <a href="product-detail.html">Product Detail</a>

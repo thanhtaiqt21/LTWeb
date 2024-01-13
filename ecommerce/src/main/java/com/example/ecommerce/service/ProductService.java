@@ -19,6 +19,12 @@ public class ProductService {
     public int addProduct(String title, String description, int price, double discount, int quantity, int categoryId) throws SQLException {
         return ProductDao.getInstance().addProduct(title, description, price, discount, quantity, categoryId);
     }
+    public List<Product> getProducts(int start, int total) {
+        return ProductDao.getInstance().getProducts(start, total);
+    }
+    public long total() {
+        return ProductDao.getInstance().totalProduct();
+    }
     public List<Product> getAllProduct() {
         return  ProductDao.getInstance().getAllProduct();
     }
@@ -28,7 +34,12 @@ public class ProductService {
     public Product getProductByID(String id) {
         return ProductDao.getInstance().getProductByID(id);
     }
+
     public List<Product> getRelatedProducts(String categoryId) {
         return ProductDao.getInstance().getRelatedProducts(categoryId);
+    }
+
+    public boolean deleteProductById(int id) {
+        return ProductDao.getInstance().deleteProductById(id);
     }
 }

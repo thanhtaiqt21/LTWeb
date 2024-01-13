@@ -7,7 +7,6 @@ public class Contact {
     private String phone;
     private String address;
     private String workingTime;
-
     private String workingTimeMF;
     private String workingTimeSA;
     private String workingTimeSU;

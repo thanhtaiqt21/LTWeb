@@ -2,6 +2,7 @@ package com.example.ecommerce.dao;
 
 import com.example.ecommerce.db.DBConnect;
 import com.example.ecommerce.model.Contact;
+import com.example.ecommerce.model.Feedback;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,5 +46,24 @@ public class ContactUsDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    // Include a method for saving feedback
+    public boolean storeFeedback(Feedback feedback) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        try {
+            String query = "INSERT INTO feedback (name, email, topic, message) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, feedback.getName());
+            preparedStatement.setString(2, feedback.getEmail());
+            preparedStatement.setString(3, feedback.getTopic());
+            preparedStatement.setString(4, feedback.getMessage());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

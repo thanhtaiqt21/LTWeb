@@ -1,4 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.example.ecommerce.model.User" %>
+<%@ page import="com.example.ecommerce.service.UserService" %>
+<%@ page import="com.example.ecommerce.model.Address" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -77,7 +82,13 @@
       crossorigin="anonymous"
     ></script>
   </head>
-
+  <style>
+    .readonly-input {
+      background-color: #262626; /* Màu nền của ô readonly */
+      color: #0f0f0f;
+      cursor: not-allowed; /* Không hiển thị con trỏ khi di chuột vào ô readonly */
+    }
+  </style>
   <body>
     <!--[if lt IE 8]>
       <p class="browserupgrade">
@@ -123,7 +134,7 @@
                 </a>
                 <ul class="submenu-angle" aria-expanded="true">
                   <li>
-                    <a title="Product List" href="product-list.html"
+                    <a title="Product List" href="product-list.jsp"
                       ><span class="mini-sub-pro">Sản phẩm</span></a
                     >
                   </li>
@@ -143,13 +154,18 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="blog-list.html"
+                    <a title="Product List" href="blog-list.jsp"
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
                   <li>
                     <a title="Product List" href="contact.jsp"
                     ><span class="mini-sub-pro">Liên hệ</span></a
+                    >
+                  </li>
+                  <li>
+                    <a title="Product List" href="feedback.jsp"
+                    ><span class="mini-sub-pro">Lời nhắn từ người dùng</span></a
                     >
                   </li>
                 </ul>
@@ -1100,7 +1116,7 @@
                           <li><a href="index.html">Dashboard v.1</a></li>
                           <li><a href="index-1.html">Dashboard v.2</a></li>
                           <li><a href="index-3.html">Dashboard v.3</a></li>
-                          <li><a href="product-list.html">Product List</a></li>
+                          <li><a href="product-list.jsp">Product List</a></li>
                           <li><a href="product-edit.html">Product Edit</a></li>
                           <li>
                             <a href="product-detail.html">Product Detail</a>
@@ -1349,124 +1365,114 @@
         <!-- Single pro tab review Start-->
         <div class="single-pro-review-area">
           <div class="container-fluid">
+
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="review-tab-pro-inner">
                   <ul id="myTab3" class="tab-review-design">
                     <li class="active">
                       <a href="#description"
-                        ><i class="fa-solid fa-plus"></i>
+                      ><i class="fa-solid fa-plus"></i>
                         Chỉnh sửa thông tin người dùng</a
                       >
                     </li>
                   </ul>
                   <div
-                    id="myTabContent"
-                    class="tab-content custom-product-edit"
+                          id="myTabContent"
+                          class="tab-content custom-product-edit"
                   >
                     <div
-                      class="product-tab-list tab-pane fade active in"
-                      id="description"
+                            class="product-tab-list tab-pane fade active in"
+                            id="description"
                     >
+                      <%
+                        String userIdParam = request.getParameter("userId");
+                        User user = null;
+                        if (userIdParam != null && !userIdParam.isEmpty()) {
+                          int userId = Integer.parseInt(userIdParam);
+                          user = UserService.getInstance().getUserById(userId);
+
+                          if (user != null) {
+                      %>
                       <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
                             <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-user"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Tên tài khoản"
-                              />
-                            </div>
-                            
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon">
-                                <i class="fa-solid fa-file-signature"></i>
-                              </span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Tên người dùng"
-                              />
+                              <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
+                              <input type="text" class="form-control readonly-input" placeholder="Tên tài khoản" value="<%= user.getUsername() %>" readonly/>
                             </div>
                             <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-envelope"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Email"
-                              />
+                              <span class="input-group-addon"><i class="fa-solid fa-file-signature"></i></span>
+                              <input type="text" class="form-control readonly-input" placeholder="Tên người dùng" value="<%= user.getFullname() %>" readonly/>
                             </div>
-                            
+                            <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
+                              <input type="text" class="form-control readonly-input" placeholder="Email" value="<%= user.getEmail() %>" readonly/>
+                            </div>
+
                           </div>
-                          
+
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
+                            <%
+                              if (user != null) {
+                                List<Address> addresses = user.getAddresses(); // Lấy danh sách địa chỉ của người dùng
+
+                                if (addresses != null && !addresses.isEmpty()) {
+                                  for (Address address : addresses) {
+                            %>
                             <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-location-dot"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Địa chỉ"
-                              />
+                              <span class="input-group-addon"><i class="fa-solid fa-location-dot"></i></span>
+                              <input type="text" class="form-control readonly-input" placeholder="Địa chỉ" value="<%= address.getSpecify() %>, <%= address.getWard() %>, <%= address.getDistrict() %>, <%= address.getProvince() %>" readonly/>
                             </div>
+                            <!-- Thêm các trường địa chỉ khác tương tự như trên -->
+                            <%
+                                  }
+                                }
+                              }
+                            %>
                             <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-phone"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Số điện thoại"
-                              />
+                              <span class="input-group-addon"><i class="fa-solid fa-phone"></i></span>
+                              <input type="text" class="form-control readonly-input" placeholder="Số điện thoại" value="<%= user.getPhone() %>" readonly/>
                             </div>
+
 
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
-                                ><i class="fa-solid fa-circle-info"></i></span>
+                              ><i class="fa-solid fa-circle-info"></i></span>
                               <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Role"
+                                      type="text" id="role" name="role"
+                                      class="form-control"
+                                      placeholder="Role"
+                                      value="<%=user.getRole()%>"
                               />
                             </div>
                             <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                > <i class="fa-solid fa-signal"></i></span>
+                              <span class="input-group-addon"><i class="fa-solid fa-signal"></i></span>
                               <select
-                              name="select"
-                              class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
+                                      name="status" id="status"
+                                      class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
                               >
-                              <option value="opt1">Trạng thái</option>
-                              <option value="opt2">Hoạt động</option>
-                              <option value="opt3">Ngưng hoạt động</option>
+                                <option value="0" <% if (user.getStatus() == 0) { %>selected<% } %>>Hoạt động</option>
+                                <option value="1" <% if (user.getStatus() == 1) { %>selected<% } %>>Ngưng hoạt động</option>
                               </select>
-                          </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="text-center custom-pro-edt-ds">
-                            <button
-                              type="button"
-                              class="btn btn-ctl-bt waves-effect waves-light m-r-10"
-                            >
-                              Lưu
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-ctl-bt waves-effect waves-light"
-                            >
-                              Hủy
-                            </button>
+                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light m-r-10" onclick="saveUser()">Lưu</button>
+                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light" onclick="goBack()">Hủy</button>
                           </div>
                         </div>
                       </div>
+                      <%
+                          }
+                        }
+                      %>
                     </div>
                   </div>
                 </div>
@@ -1542,5 +1548,39 @@
     <!-- main JS
 		============================================ -->
     <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+      function saveUser() {
+        var userId = <%= user.getId() %>;
+        var status = document.getElementById("status").value;
+        var role = document.getElementById("role").value;
+
+        // Assuming you have jQuery available for AJAX
+        $.ajax({
+          type: "POST",
+          url: "/ecommerce/adminpage/user-edit",
+          data: { userId: userId, status: status, role: role },
+          success: function () {
+            // Handle success, e.g., redirect to another page
+            alert("cập nhật thông tin tài khoản thành công.");
+          },
+          error: function () {
+            // Handle error, e.g., display an error message
+            alert("Failed to update user.");
+          }
+        });
+      }
+    </script>
+
+    <script>
+      function goBack() {
+        // Use JavaScript to navigate back in history
+        window.history.back();
+      }
+    </script>
+
   </body>
+
 </html>
+

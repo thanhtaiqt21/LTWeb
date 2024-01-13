@@ -1,11 +1,19 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.example.ecommerce.model.Feedback" %>
+<%@ page import="com.example.ecommerce.service.FeedbackService" %>
+<%@ page import="com.example.ecommerce.controller.UserListController"%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Chỉnh sửa bài blog | Nalika - Material Admin Template</title>
+    <title>User List | Nalika - Material Admin Template</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
     <!-- favicon
 		============================================ -->
     <link
@@ -75,6 +83,28 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+
+
+    <style>
+       Thêm CSS cho phần phân trang
+      .pagination {
+        display: flex;
+        list-style: none;
+        padding: 0;
+      }
+
+      .pagination button {
+        margin: 0 5px;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+
+      .pagination button.active {
+        background-color: #007bff;
+        color: #fff;
+      }
+    </style>
+
   </head>
 
   <body>
@@ -123,7 +153,7 @@
                 </a>
                 <ul class="submenu-angle" aria-expanded="true">
                   <li>
-                    <a title="Product List" href="product-list.html"
+                    <a title="Product List" href="product-list.jsp"
                       ><span class="mini-sub-pro">Sản phẩm</span></a
                     >
                   </li>
@@ -143,7 +173,7 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="blog-list.html"
+                    <a title="Product List" href="blog-list.jsp"
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
@@ -152,7 +182,12 @@
                     ><span class="mini-sub-pro">Liên hệ</span></a
                     >
                   </li>
-                </ul>
+                  <li>
+                    <a title="Product List" href="feedback.jsp"
+                    ><span class="mini-sub-pro">Lời nhắn từ người dùng</span></a
+                    >
+                  </li>
+                  </ul>
               </li>
             </ul>
           </nav>
@@ -166,7 +201,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="logo-pro">
               <a href="index.html"
-                ><img class="main-logo" src="img/logo/logo.png" alt=""
+                ><img class="main-logo" src="../images/logo/logo.png" alt=""
               /></a>
             </div>
           </div>
@@ -1100,7 +1135,7 @@
                           <li><a href="index.html">Dashboard v.1</a></li>
                           <li><a href="index-1.html">Dashboard v.2</a></li>
                           <li><a href="index-3.html">Dashboard v.3</a></li>
-                          <li><a href="product-list.html">Product List</a></li>
+                          <li><a href="product-list.jsp">Product List</a></li>
                           <li><a href="product-edit.html">Product Edit</a></li>
                           <li>
                             <a href="product-detail.html">Product Detail</a>
@@ -1344,502 +1379,59 @@
           </div>
         </div>
       </div>
-      <!-- Single pro tab start-->
-      <div class="single-product-tab-area mg-b-30">
-        <!-- Single pro tab review Start-->
-        <div class="single-pro-review-area">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="review-tab-pro-inner">
-                  <ul id="myTab3" class="tab-review-design">
-                    <li class="active">
-                      <a href="#description"
-                        ><i class="fa-solid fa-plus"></i>
-                        Chỉnh sửa bài blog</a
-                      >
-                    </li>
-                  </ul>
-                  <div
-                    id="myTabContent"
-                    class="tab-content custom-product-edit"
-                  >
-                    <div
-                      class="product-tab-list tab-pane fade active in"
-                      id="description"
-                    >
-                      <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                          <div class="review-content-section">
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-file-signature"></i></span>
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Tiêu đề"
-                              />
-                            </div> 
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                ><i class="fa-solid fa-image"></i></span>
-                                <input class="form-control" type="file" id="formFileMultiple" multiple>
-                            </div> 
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                > <i class="fa-solid fa-signal"></i></span>
-                              <select
-                              name="select"
-                              class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
-                              >
-                              <option value="opt1">Trạng thái</option>
-                              <option value="opt2">Hoạt động</option>
-                              <option value="opt3">Ngừng hoạt động</option>
-                              </select>
-                          </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                          <div class="review-content-section">
-                            <div class="input-group mg-b-pro-edt">
-                                <textarea
-                                type="text"
-                                class="form-control"
-                                placeholder="Nội dung"
-                                rows="7"
-                                cols="70"
-                              ></textarea>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <div class="text-center custom-pro-edt-ds">
-                            <button
-                              type="button"
-                              class="btn btn-ctl-bt waves-effect waves-light m-r-10"
-                            >
-                              Lưu
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-ctl-bt waves-effect waves-light"
-                            >
-                              Hủy
-                            </button>
-                          </div>
-                        </div>
-                      </div>
+      <div class="product-status mg-b-30">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="product-status-wrap">
+                <%
+                  String feedbackIdParam = request.getParameter("feedbackId");
+                  Feedback feedback = null;
+                  if (feedbackIdParam != null && !feedbackIdParam.isEmpty()) {
+                    int feedbackId = Integer.parseInt(feedbackIdParam);
+                    feedback = FeedbackService.getInstance().getFeedbckById(feedbackId);
+
+                    if (feedback != null) {
+                %>
+                <form id="formFeedback">
+                  <h4 class="contact-us__header card-title">
+                    Để lại tin nhắn cho chúng tôi
+                  </h4>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label style="color: white" for="form-name">Tên của bạn</label>
+                      <input type="text" id="form-name" name="name" class="form-control" placeholder="Họ và tên"
+                             value="<%= feedback.getName()%>" />
                     </div>
-                    <div class="product-tab-list tab-pane fade" id="reviews">
-                      <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <div class="review-content-section">
-                            <div class="row">
-                              <div class="col-lg-4">
-                                <div class="pro-edt-img">
-                                  <img
-                                    src="img/new-product/5-small.jpg"
-                                    alt=""
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-lg-8">
-                                <div class="row">
-                                  <div class="col-lg-12">
-                                    <div class="product-edt-pix-wrap">
-                                      <div class="input-group">
-                                        <span class="input-group-addon"
-                                          >TT</span
-                                        >
-                                        <input
-                                          type="text"
-                                          class="form-control"
-                                          placeholder="Label Name"
-                                        />
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-lg-6">
-                                          <div class="form-radio">
-                                            <form>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i
-                                                  >Largest Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Medium
-                                                  Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Small
-                                                  Image
-                                                </label>
-                                              </div>
-                                            </form>
-                                          </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                          <div class="product-edt-remove">
-                                            <button
-                                              type="button"
-                                              class="btn btn-ctl-bt waves-effect waves-light"
-                                            >
-                                              Remove
-                                              <i
-                                                class="fa fa-times"
-                                                aria-hidden="true"
-                                              ></i>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-lg-4">
-                                <div class="pro-edt-img">
-                                  <img
-                                    src="img/new-product/6-small.jpg"
-                                    alt=""
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-lg-8">
-                                <div class="row">
-                                  <div class="col-lg-12">
-                                    <div class="product-edt-pix-wrap">
-                                      <div class="input-group">
-                                        <span class="input-group-addon"
-                                          >TT</span
-                                        >
-                                        <input
-                                          type="text"
-                                          class="form-control"
-                                          placeholder="Label Name"
-                                        />
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-lg-6">
-                                          <div class="form-radio">
-                                            <form>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i
-                                                  >Largest Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Medium
-                                                  Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Small
-                                                  Image
-                                                </label>
-                                              </div>
-                                            </form>
-                                          </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                          <div class="product-edt-remove">
-                                            <button
-                                              type="button"
-                                              class="btn btn-ctl-bt waves-effect waves-light"
-                                            >
-                                              Remove
-                                              <i
-                                                class="fa fa-times"
-                                                aria-hidden="true"
-                                              ></i>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-lg-4">
-                                <div class="pro-edt-img mg-b-0">
-                                  <img
-                                    src="img/new-product/7-small.jpg"
-                                    alt=""
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-lg-8">
-                                <div class="row">
-                                  <div class="col-lg-12">
-                                    <div class="product-edt-pix-wrap">
-                                      <div class="input-group">
-                                        <span class="input-group-addon"
-                                          >TT</span
-                                        >
-                                        <input
-                                          type="text"
-                                          class="form-control"
-                                          placeholder="Label Name"
-                                        />
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-lg-6">
-                                          <div class="form-radio">
-                                            <form>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i
-                                                  >Largest Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Medium
-                                                  Image
-                                                </label>
-                                              </div>
-                                              <div class="radio radiofill">
-                                                <label>
-                                                  <input
-                                                    type="radio"
-                                                    name="radio"
-                                                  /><i class="helper"></i>Small
-                                                  Image
-                                                </label>
-                                              </div>
-                                            </form>
-                                          </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                          <div class="product-edt-remove">
-                                            <button
-                                              type="button"
-                                              class="btn btn-ctl-bt waves-effect waves-light"
-                                            >
-                                              Remove
-                                              <i
-                                                class="fa fa-times"
-                                                aria-hidden="true"
-                                              ></i>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="product-tab-list tab-pane fade"
-                      id="INFORMATION"
-                    >
-                      <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <div class="review-content-section">
-                            <div class="card-block">
-                              <div class="text-muted f-w-400">
-                                <p>No reviews yet.</p>
-                              </div>
-                              <div class="m-t-10">
-                                <div class="txt-primary f-18 f-w-600">
-                                  <p>Your Rating</p>
-                                </div>
-                                <div
-                                  class="stars stars-example-css detail-stars"
-                                >
-                                  <div class="review-rating">
-                                    <fieldset class="rating">
-                                      <input
-                                        type="radio"
-                                        id="star5"
-                                        name="rating"
-                                        value="5"
-                                      />
-                                      <label class="full" for="star5"></label>
-                                      <input
-                                        type="radio"
-                                        id="star4half"
-                                        name="rating"
-                                        value="4 and a half"
-                                      />
-                                      <label
-                                        class="half"
-                                        for="star4half"
-                                      ></label>
-                                      <input
-                                        type="radio"
-                                        id="star4"
-                                        name="rating"
-                                        value="4"
-                                      />
-                                      <label class="full" for="star4"></label>
-                                      <input
-                                        type="radio"
-                                        id="star3half"
-                                        name="rating"
-                                        value="3 and a half"
-                                      />
-                                      <label
-                                        class="half"
-                                        for="star3half"
-                                      ></label>
-                                      <input
-                                        type="radio"
-                                        id="star3"
-                                        name="rating"
-                                        value="3"
-                                      />
-                                      <label class="full" for="star3"></label>
-                                      <input
-                                        type="radio"
-                                        id="star2half"
-                                        name="rating"
-                                        value="2 and a half"
-                                      />
-                                      <label
-                                        class="half"
-                                        for="star2half"
-                                      ></label>
-                                      <input
-                                        type="radio"
-                                        id="star2"
-                                        name="rating"
-                                        value="2"
-                                      />
-                                      <label class="full" for="star2"></label>
-                                      <input
-                                        type="radio"
-                                        id="star1half"
-                                        name="rating"
-                                        value="1 and a half"
-                                      />
-                                      <label
-                                        class="half"
-                                        for="star1half"
-                                      ></label>
-                                      <input
-                                        type="radio"
-                                        id="star1"
-                                        name="rating"
-                                        value="1"
-                                      />
-                                      <label class="full" for="star1"></label>
-                                      <input
-                                        type="radio"
-                                        id="starhalf"
-                                        name="rating"
-                                        value="half"
-                                      />
-                                      <label
-                                        class="half"
-                                        for="starhalf"
-                                      ></label>
-                                    </fieldset>
-                                  </div>
-                                  <div class="clear"></div>
-                                </div>
-                              </div>
-                              <div class="input-group mg-b-15 mg-t-15">
-                                <span class="input-group-addon"
-                                  ><i
-                                    class="icon nalika-user"
-                                    aria-hidden="true"
-                                  ></i
-                                ></span>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="User Name"
-                                />
-                              </div>
-                              <div class="input-group mg-b-15">
-                                <span class="input-group-addon"
-                                  ><i
-                                    class="icon nalika-user"
-                                    aria-hidden="true"
-                                  ></i
-                                ></span>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Last Name"
-                                />
-                              </div>
-                              <div class="input-group mg-b-15">
-                                <span class="input-group-addon"
-                                  ><i
-                                    class="icon nalika-mail"
-                                    aria-hidden="true"
-                                  ></i
-                                ></span>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Email"
-                                />
-                              </div>
-                              <div class="form-group review-pro-edt mg-b-0-pt">
-                                <button
-                                  type="submit"
-                                  class="btn btn-ctl-bt waves-effect waves-light"
-                                >
-                                  Submit
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="form-group col-md-6">
+                      <label style="color: white" for="form-email">Email</label>
+                      <input type="email" id="form-email" name="email" class="form-control" placeholder="Địa chỉ Email"
+                             value="<%= feedback.getEmail()%>" />
                     </div>
                   </div>
-                </div>
+                  <div class="form-group">
+                    <label style="color: white;" for="form-subject">Chủ đề</label>
+                    <input type="text" id="form-subject" name="topic" class="form-control" placeholder="Subject"
+                           value="<%= feedback.getTopic()%>" />
+                  </div>
+                  <div class="form-group">
+                    <label style="color: white" for="form-message">Lời nhắn</label>
+                    <textarea id="form-message" name="message" class="form-control" rows="4"><%= feedback.getMessage()%></textarea>
+                  </div>
+                  <!-- Move the button inside the form -->
+                  <button type="submit" class="btn btn-primary" id="submitBtn" onclick="goBack()" >trở về </button>
+                </form>
+                <%
+                    }
+                  }
+                %>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
       <div class="footer-copyright-area">
         <div class="container-fluid">
           <div class="row">
@@ -1910,5 +1502,14 @@
     <!-- main JS
 		============================================ -->
     <script src="../js/main1.js"></script>
+
+    <script>
+      function goBack() {
+        // Use JavaScript to navigate back in history
+        window.history.back();
+      }
+    </script>
+
   </body>
 </html>
+

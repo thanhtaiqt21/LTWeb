@@ -2,6 +2,7 @@ package com.example.ecommerce.dao;
 
 import com.example.ecommerce.db.DBConnect;
 import com.example.ecommerce.model.User;
+import com.example.ecommerce.model.Address;
 import com.example.ecommerce.sendmail.SendMail;
 
 import java.math.BigInteger;
@@ -61,7 +62,7 @@ public class UserDao {
                     return false;
                 }
             } else {
-                preparedStatement = connection.prepareStatement("INSERT INTO user(username, password, fullname, email, phone, hashcode, role) VALUES(?,?,?,?,?,?,?)");
+                preparedStatement = connection.prepareStatement("INSERT INTO user(username, password, fullname, email, phone, hashcode, role, status) VALUES(?,?,?,?,?,?,?,?)");
                 preparedStatement.setString(1,username);
                 preparedStatement.setString(2,hashPassword(password));
                 preparedStatement.setString(3,fullname);
@@ -69,6 +70,7 @@ public class UserDao {
                 preparedStatement.setString(5,phone);
                 preparedStatement.setString(6,hashcode);
                 preparedStatement.setString(7,"USER");
+                preparedStatement.setString(8,"0");
                 int i = preparedStatement.executeUpdate();
 
                 if (i > 0) {
@@ -143,13 +145,13 @@ public class UserDao {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String fullname = resultSet.getString("fullname");
+                String username = resultSet.getString("username");
                 String email = resultSet.getString("email");
                 String phone = resultSet.getString("phone");
                 String role = resultSet.getString("role");
                 int active = resultSet.getInt("active");
 
-                User user = new User(id, fullname, email, phone, role, active);
+                User user = new User(id, username, email, phone, role, active);
                 userList.add(user);
             }
         } catch (SQLException e) {
@@ -161,14 +163,42 @@ public class UserDao {
     public boolean deleteUser(int userId) {
         Connection connection = DBConnect.getInstance().getConnection();
         try {
-            String query = "DELETE FROM user WHERE id=?";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, userId);
+            // Bắt đầu một giao dịch để đảm bảo tính nhất quán khi xóa từ nhiều bảng
+            connection.setAutoCommit(false);
 
-            int affectedRows = preparedStatement.executeUpdate();
-            return affectedRows > 0;
+
+            // Xóa thông tin liên quan từ bảng Address
+            String deleteAddressQuery = "DELETE FROM address WHERE id_user=?";
+            try (PreparedStatement deleteAddressStatement = connection.prepareStatement(deleteAddressQuery)) {
+                deleteAddressStatement.setInt(1, userId);
+                deleteAddressStatement.executeUpdate();
+            }
+
+            // Xóa thông tin người dùng từ bảng User
+            String deleteUserQuery = "DELETE FROM user WHERE id=?";
+            try (PreparedStatement deleteUserStatement = connection.prepareStatement(deleteUserQuery)) {
+                deleteUserStatement.setInt(1, userId);
+                deleteUserStatement.executeUpdate();
+            }
+            // Commit giao dịch nếu mọi thứ thành công
+            connection.commit();
+            return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            // Nếu có lỗi, rollback giao dịch để tránh tình trạng không nhất quán
+            try {
+                connection.rollback();
+            } catch (SQLException rollbackException) {
+                rollbackException.printStackTrace();  // Hoặc log lỗi rollback
+            }
+            e.printStackTrace();  // Hoặc log lỗi xóa tài khoản
+        } finally {
+            // Khôi phục chế độ tự động commit
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();  // Hoặc log lỗi
+            }
+            DBConnect.getInstance().closeConnection(connection);
         }
         return false;
     }
@@ -198,6 +228,102 @@ public class UserDao {
         } catch (SQLException e) {
             throw new RuntimeException();
         }
+        return false;
+    }
+
+
+
+    public User getUserById(int userId) {
+        User user = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DBConnect.getInstance().getConnection();
+
+            String query = "SELECT * FROM user WHERE id=?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setUsername(resultSet.getString("username"));
+                user.setPassword(resultSet.getString("password"));
+                user.setFullname(resultSet.getString("fullname"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPhone(resultSet.getString("phone"));
+                user.setRole(resultSet.getString("role"));
+                user.setActive(resultSet.getInt("active"));
+                user.setStatus(resultSet.getInt("status"));
+
+                // Lấy danh sách địa chỉ
+                List<Address> addresses = getAddressesByUserId(userId);
+                user.setAddresses(addresses);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnect.getInstance().closeConnection2(connection, preparedStatement, resultSet);
+        }
+
+        return user;
+    }
+
+    private List<Address> getAddressesByUserId(int userId) {
+        List<Address> addresses = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DBConnect.getInstance().getConnection();
+
+            String query = "SELECT * FROM address WHERE id_user=?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String specify = resultSet.getString("specify");
+                String ward = resultSet.getString("ward");
+                String district = resultSet.getString("district");
+                String province = resultSet.getString("province");
+
+                Address address = new Address(id, specify, ward, district, province, userId);
+                addresses.add(address);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnect.getInstance().closeConnection2(connection, preparedStatement, resultSet);
+        }
+
+        return addresses;
+    }
+
+    public boolean updateUserStatusAndRole(int userId, int status, String role) {
+        Connection connection = DBConnect.getInstance().getConnection();
+
+        try {
+            String query = "UPDATE user SET status=?, role=? WHERE id=?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setInt(1, status);
+                preparedStatement.setString(2, role);
+                preparedStatement.setInt(3, userId);
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnect.getInstance().closeConnection(connection);
+        }
+
         return false;
     }
 

@@ -1,9 +1,6 @@
 package com.example.ecommerce.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DBConnect {
     private Connection conn;
@@ -37,7 +34,31 @@ public class DBConnect {
         return conn;
     }
 
+    public void closeConnection(Connection connection) {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();  // hoặc log lỗi
+        }
+    }
 
+    public void closeConnection2(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
+        try {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 //    public Statement get() {
 //        try {
 //            connect();

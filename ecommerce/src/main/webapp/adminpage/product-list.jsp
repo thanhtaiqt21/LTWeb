@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -75,6 +78,9 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
   </head>
 
   <body>
@@ -143,10 +149,21 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="blog-list.html"
+                    <a title="Product List" href="blog-list.jsp"
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
+                  <li>
+                    <a title="Product List" href="contact.jsp"
+                    ><span class="mini-sub-pro">Liên hệ</span></a
+                    >
+                  </li>
+                  <li>
+                    <a title="Product List" href="feedback.jsp"
+                    ><span class="mini-sub-pro">Lời nhắn từ người dùng</span></a
+                    >
+                  </li>
+                </ul>
               </li>
             </ul>
           </nav>
@@ -1351,210 +1368,89 @@
                   <tr>
                     <th>Hình ảnh</th>
                     <th>Tên sản phẩm</th>
+                    <th>Mô tả</th>
                     <th>Trạng thái</th>
-                    <th>Đã bán</th>
+                    <th>Giá</th>
                     <th>Khuyến mãi</th>
                     <th>Số lượng</th>
-                    <th>Giá</th>
+                    <th>Đã bán</th>
                     <th>Setting</th>
                   </tr>
-                  <tr>
-                    <td>
-                      <img src="../images/new-product/5-small.jpg" alt="" />
-                    </td>
-                    <td>Product Title 1</td>
-                    <td>
-                      <button class="pd-setting">Active</button>
-                    </td>
-                    <td>50</td>
-                    <td>$750</td>
-                    <td>Out Of Stock</td>
-                    <td>$15</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <a href="product-edit.html">
-                          <i
-                            class="fa fa-pencil-square-o"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="../images/new-product/6-small.jpg" alt="" />
-                    </td>
-                    <td>Product Title 2</td>
-                    <td>
-                      <button class="ps-setting">Paused</button>
-                    </td>
-                    <td>60</td>
-                    <td>$1020</td>
-                    <td>In Stock</td>
-                    <td>$17</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="../images/new-product/7.jpg" alt="" />
-                    </td>
-                    <td>Product Title 3</td>
-                    <td>
-                      <button class="ds-setting">Disabled</button>
-                    </td>
-                    <td>70</td>
-                    <td>$1050</td>
-                    <td>Low Stock</td>
-                    <td>$15</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="../images/new-product/5-small.jpg" alt="" />
-                    </td>
-                    <td>Product Title 4</td>
-                    <td>
-                      <button class="pd-setting">Active</button>
-                    </td>
-                    <td>120</td>
-                    <td>$1440</td>
-                    <td>In Stock</td>
-                    <td>$12</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="../images/new-product/6-small.jpg" alt="" />
-                    </td>
-                    <td>Product Title 5</td>
-                    <td>
-                      <button class="pd-setting">Active</button>
-                    </td>
-                    <td>30</td>
-                    <td>$540</td>
-                    <td>Out Of Stock</td>
-                    <td>$18</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="../images/new-product/7-small.jpg" alt="" />
-                    </td>
-                    <td>Product Title 6</td>
-                    <td>
-                      <button class="ps-setting">Paused</button>
-                    </td>
-                    <td>400</td>
-                    <td>$4000</td>
-                    <td>In Stock</td>
-                    <td>$10</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Trash"
-                        class="pd-setting-ed"
-                      >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  <c:forEach var="product" items="${products}">
+                    <tr>
+                      <td>
+                        <img src="${product.imgUrl.get(0)}" alt="" />
+                      </td>
+                      <td>${product.title}</td>
+                      <td>${product.description}</td>
+                        <c:if test="${product.active == 1}">
+                          <td>Hoạt động</td>
+                        </c:if>
+                        <c:if test="${product.active == 0}">
+                          <td><td>Ngưng hoạt động</td></td>
+                        </c:if>
+                      <td>
+                        <fmt:setLocale value="vi_VN"/>
+                        <fmt:formatNumber value="${product.price}" type="currency"/>
+                      </td>
+                      <td> <fmt:formatNumber value="${product.discount}" type="percent"/>
+                      </td>
+                      <td>${product.quantity}</td>
+                      <td>${product.sold}</td>
+                      <td>
+                        <button
+                                data-toggle="tooltip"
+                                title="Edit"
+                                class="pd-setting-ed"
+                        >
+                          <a href="/ecommerce/adminpage/product-update?id=<c:out value="${product.id}"/>">
+                            <i
+                                    class="fa fa-pencil-square-o"
+                                    aria-hidden="true"
+                            ></i>
+                          </a>
+                        </button>
+                        <button
+                                data-toggle="tooltip"
+                                title="Trash"
+                                class="pd-setting-ed"
+                        >
+                          <a class="text-white delete"
+                             href="/ecommerce/adminpage/product-delete?id=<c:out value="${product.id}"/>"
+                          >
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                          </a>
+                        </button>
+                      </td>
+                    </tr>
+                  </c:forEach>
                 </table>
                 <div class="custom-pagination">
                   <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#">Trước</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">Tiếp theo</a>
-                    </li>
+                    <c:if test="${currentPage != 1}">
+                      <li class="page-item">
+                        <a class="page-link" href="/ecommerce/adminpage/product-list?page=${currentPage - 1}">Trước</a>
+                      </li>
+                    </c:if>
+                    <c:forEach begin="1" end="${numOfPage}" var="i">
+                      <c:choose>
+                        <c:when test="${currentPage eq i}">
+                          <li class="page-item">
+                            <a style="color: steelblue" class="page-link" href="">${i}</a>
+                          </li>
+                        </c:when>
+                        <c:otherwise>
+                          <li class="page-item">
+                            <a href="/ecommerce/adminpage/product-list?page=${i}">${i}</a>
+                          </li>
+                        </c:otherwise>
+                      </c:choose>
+                    </c:forEach>
+                    <c:if test="${currentPage lt numOfPage}">
+                      <li class="page-item">
+                        <a class="page-link" href="/ecommerce/adminpage/product-list?page=${currentPage + 1}">Tiếp theo</a>
+                      </li>
+                    </c:if>
                   </ul>
                 </div>
               </div>
@@ -1581,7 +1477,7 @@
 
     <!-- jquery
 		============================================ -->
-    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+<%--    <script src="../js/vendor/jquery-1.12.4.min.js"></script>--%>
     <!-- bootstrap JS
 		============================================ -->
     <script src="../js/bootstrap.min.js"></script>
@@ -1632,5 +1528,23 @@
     <!-- main JS
 		============================================ -->
     <script src="../js/main1.js"></script>
+    <script>
+      $('a.delete').confirm({
+        title: 'Xóa?',
+        content: 'Bạn có chắc chắn xóa sản phẩm này không?',
+        buttons:{
+          delete:{
+            text:'Có',
+            btnClass: 'btn-blue',
+            action: function() {
+              location.href = this.$target.attr("href");
+            }},
+          close: {
+            text:'Không',
+            action: function() {
+            }}
+        }
+      })
+    </script>
   </body>
 </html>
