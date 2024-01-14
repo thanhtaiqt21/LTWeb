@@ -17,7 +17,7 @@ public class UploadImg {
             fileDir.mkdirs();
         }
         for (Part part : request.getParts()) {
-            if (part.getName().equals("imgs")) {
+            if (part.getName().equals("imgs") && !getFilename(part).isEmpty()) {
                 String filePath = uploadFilePath + File.separator + getFilename(part);
                 filePaths.add(filePath);
                 part.write(filePath);
@@ -28,6 +28,7 @@ public class UploadImg {
 
     public String getFilename(Part part) {
         for (String content: part.getHeader("content-disposition").split(";")) {
+            System.out.println(content);
             if (content.trim().startsWith("filename")) {
                 return content.substring(content.indexOf("=") + 2, content.length() - 1);
             }
