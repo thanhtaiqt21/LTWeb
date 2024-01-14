@@ -35,4 +35,11 @@ public class ProductService {
     public boolean deleteProductById(int id) {
         return ProductDao.getInstance().deleteProductById(id);
     }
+    public boolean updateProduct(int id, String title, String description, int price, double discount, int quantity, int categoryId, int active) {
+        return ProductDao.getInstance().updateProduct(id, title, description, price, discount, quantity, categoryId, active);
+    }
+
+    public Product getProductById(int id) {
+        return ProductDao.getInstance().getProductById(id);
+    }
 }

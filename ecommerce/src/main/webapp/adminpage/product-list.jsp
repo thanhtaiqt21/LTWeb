@@ -1354,7 +1354,7 @@
                 <div class="add-product">
                   <a href="product-add.jsp">Thêm sản phẩm</a>
                 </div>
-                <table>
+                <table style="table-layout: fixed">
                   <tr>
                     <th>Hình ảnh</th>
                     <th>Tên sản phẩm</th>
@@ -1372,12 +1372,12 @@
                         <img src="${product.imgUrl.get(0)}" alt="" />
                       </td>
                       <td>${product.title}</td>
-                      <td>${product.description}</td>
+                      <td style="overflow: hidden;text-overflow: ellipsis">${product.description}</td>
                         <c:if test="${product.active == 1}">
                           <td>Hoạt động</td>
                         </c:if>
                         <c:if test="${product.active == 0}">
-                          <td><td>Ngưng hoạt động</td></td>
+                          <td>Ngưng hoạt động</td>
                         </c:if>
                       <td>
                         <fmt:setLocale value="vi_VN"/>
