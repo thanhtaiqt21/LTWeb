@@ -154,13 +154,18 @@
                     >
                   </li>
                   <li>
-                    <a title="Product List" href="blog-list.html"
+                    <a title="Product List" href="blog-list.jsp"
                       ><span class="mini-sub-pro">Blog</span></a
                     >
                   </li>
                   <li>
                     <a title="Product List" href="contact.jsp"
                     ><span class="mini-sub-pro">Liên hệ</span></a
+                    >
+                  </li>
+                  <li>
+                    <a title="Product List" href="feedback.jsp"
+                    ><span class="mini-sub-pro">Lời nhắn từ người dùng</span></a
                     >
                   </li>
                 </ul>
@@ -1382,9 +1387,10 @@
                     >
                       <%
                         String userIdParam = request.getParameter("userId");
+                        User user = null;
                         if (userIdParam != null && !userIdParam.isEmpty()) {
                           int userId = Integer.parseInt(userIdParam);
-                          User user = UserService.getInstance().getUserById(userId);
+                          user = UserService.getInstance().getUserById(userId);
 
                           if (user != null) {
                       %>
@@ -1431,25 +1437,25 @@
                               <input type="text" class="form-control readonly-input" placeholder="Số điện thoại" value="<%= user.getPhone() %>" readonly/>
                             </div>
 
+
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
                               ><i class="fa-solid fa-circle-info"></i></span>
                               <input
-                                      type="text"
+                                      type="text" id="role" name="role"
                                       class="form-control"
                                       placeholder="Role"
-                                      value="<%= user.getRole() %>"
+                                      value="<%=user.getRole()%>"
                               />
                             </div>
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"><i class="fa-solid fa-signal"></i></span>
                               <select
-                                      name="select"
+                                      name="status" id="status"
                                       class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
                               >
-                                <option value="opt1" <% if (user.getStatus() == 2) { %>selected<% } %>>Trạng thái</option>
-                                <option value="opt2" <% if (user.getStatus() == 0) { %>selected<% } %>>Hoạt động</option>
-                                <option value="opt3" <% if (user.getStatus() == 1) { %>selected<% } %>>Ngưng hoạt động</option>
+                                <option value="0" <% if (user.getStatus() == 0) { %>selected<% } %>>Hoạt động</option>
+                                <option value="1" <% if (user.getStatus() == 1) { %>selected<% } %>>Ngưng hoạt động</option>
                               </select>
                             </div>
                           </div>
@@ -1458,8 +1464,8 @@
                       <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="text-center custom-pro-edt-ds">
-                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light m-r-10">Lưu</button>
-                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light">Hủy</button>
+                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light m-r-10" onclick="saveUser()">Lưu</button>
+                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light" onclick="goBack()">Hủy</button>
                           </div>
                         </div>
                       </div>
@@ -1542,7 +1548,37 @@
     <!-- main JS
 		============================================ -->
     <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    <script>
+      function saveUser() {
+        var userId = <%= user.getId() %>;
+        var status = document.getElementById("status").value;
+        var role = document.getElementById("role").value;
+
+        // Assuming you have jQuery available for AJAX
+        $.ajax({
+          type: "POST",
+          url: "/ecommerce/adminpage/user-edit",
+          data: { userId: userId, status: status, role: role },
+          success: function () {
+            // Handle success, e.g., redirect to another page
+            alert("cập nhật thông tin tài khoản thành công.");
+          },
+          error: function () {
+            // Handle error, e.g., display an error message
+            alert("Failed to update user.");
+          }
+        });
+      }
+    </script>
+
+    <script>
+      function goBack() {
+        // Use JavaScript to navigate back in history
+        window.history.back();
+      }
+    </script>
 
   </body>
 

@@ -1,3 +1,4 @@
+
 package com.example.ecommerce.dao;
 
 import com.example.ecommerce.db.DBConnect;
@@ -213,6 +214,86 @@ public class ProductDao {
         }
 
         return list;
+    }
+    public List<Product> getRelatedProducts(String categoryId) {
+        String query = "SELECT * FROM `products` WHERE categoryId = ? ORDER BY RAND()";
+        List<Product> productList = new ArrayList<>();
+        try {
+            Connection connection = DBConnect.getInstance().getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, categoryId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setTitle(rs.getString("title"));
+                product.setDescription(rs.getString("description"));
+                product.setPrice(rs.getInt("price"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setSold(rs.getInt("sold"));
+                product.setActive(rs.getInt("active"));
+                product.setDateCreate(rs.getTimestamp("dateCreate"));
+                product.setCategoryId(rs.getInt("categoryId"));
+
+                List<String> imgUrlList = new ArrayList<>();
+                int productId = rs.getInt("id");
+                String imgQuery = "SELECT imgUrl FROM `images` WHERE productId = ?";
+                PreparedStatement imgPs = connection.prepareStatement(imgQuery);
+                imgPs.setInt(1, productId);
+                ResultSet imgRs = imgPs.executeQuery();
+                while (imgRs.next()) {
+                    String imgUrl = imgRs.getString("imgUrl");
+                    imgUrlList.add(imgUrl);
+                }
+                product.setImgUrl(imgUrlList);
+
+                productList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return productList;
+    }
+        public Product getProductByID(String id) {
+        String query = "SELECT * FROM `products` WHERE id = ?";
+        Product product = null;
+        try {
+            Connection connection = DBConnect.getInstance().getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setTitle(rs.getString("title"));
+                product.setDescription(rs.getString("description"));
+                product.setPrice(rs.getInt("price"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setSold(rs.getInt("sold"));
+                product.setActive(rs.getInt("active"));
+                product.setDateCreate(rs.getTimestamp("dateCreate"));
+                product.setCategoryId(rs.getInt("categoryId"));
+
+                List<String> imgUrlList = new ArrayList<>();
+                int productId = rs.getInt("id");
+                String imgQuery = "SELECT imgUrl FROM `images` WHERE productId = ?";
+                PreparedStatement imgPs = connection.prepareStatement(imgQuery);
+                imgPs.setInt(1, productId);
+                ResultSet imgRs = imgPs.executeQuery();
+                while (imgRs.next()) {
+                    String imgUrl = imgRs.getString("imgUrl");
+                    imgUrlList.add(imgUrl);
+                }
+                product.setImgUrl(imgUrlList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return product;
     }
 
     public boolean deleteProductById(int id) {

@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="format-detection" content="telephone=no" />
     <title>Stroyka</title>
@@ -35,6 +35,15 @@
     <script src="js/number.js"></script>
     <script src="js/main.js"></script>
     <script src="vendor/svg4everybody-2.1.9/svg4everybody.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+    <style type="text/css">
+      label.error {
+        display: inline-block;
+        color:red;
+        width: 200px;
+      }
+    </style>
     <script>
       svg4everybody();
     </script>
@@ -816,28 +825,40 @@
                       </div>
                     </div>
                     <div class="col-12 col-lg-6">
+                      <form  id="formFeedback">
+                        <fieldset>
+                            <%
+                          if (error != null){
+                        %>
+                          <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                          </div>
+                            <%
+                          }
+                        %>
                       <h4 class="contact-us__header card-title">
                         Để lại tin nhắn cho chúng tôi
                       </h4>
                       <div class="form-row">
                         <div class="form-group col-md-6">
                           <label for="form-name">Tên của bạn</label>
-                          <input type="text" id="form-name" class="form-control" placeholder="Họ và tên" />
+                          <input type="text" id="form-name" name="name" class="form-control" placeholder="Họ và tên" />
                         </div>
                         <div class="form-group col-md-6">
                           <label for="form-email">Email</label>
-                          <input type="email" id="form-email" class="form-control" placeholder="Địa chỉ Email" />
+                          <input type="email" id="form-email" name="email" class="form-control" placeholder="Địa chỉ Email" />
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="form-subject">chủ đề</label>
-                        <input type="text" id="form-subject" class="form-control" placeholder="Subject" />
+                        <label for="form-subject">Chủ đề</label>
+                        <input type="text" id="form-subject" name="topic" class="form-control" placeholder="Subject" />
                       </div>
                       <div class="form-group">
                         <label for="form-message">Lời nhắn</label>
-                        <textarea id="form-message" class="form-control" rows="4"></textarea>
+                        <textarea id="form-message" name="message" class="form-control" rows="4"></textarea>
                         </div>
-                      <button type="button" class="btn btn-primary" id="submitBtn">Gửi lời nhắn</button>
+                      <button type="submit" class="btn btn-primary" id="submitBtn">Gửi lời nhắn</button>
+                        </fieldset>
                       </form>
                     </div>
                   </div>
@@ -1054,32 +1075,113 @@
           console.error('Error fetching contact info:', status, error);
         }
       });
-      // Xử lý sự kiện khi nhấn nút Gửi lời nhắn
-      $('#submitBtn').on('click', function () {
-        var name = $('#form-name').val();
-        var email = $('#form-email').val();
-        var subject = $('#form-subject').val();
-        var message = $('#form-message').val();
-        // Gửi dữ liệu về servlet để xử lý và gửi email
+
+      // // Xử lý sự kiện khi nhấn nút Gửi lời nhắn
+      // $('#submitBtn').on('click', function () {
+      //   var name = $('#form-name').val();
+      //   var email = $('#form-email').val();
+      //   var subject = $('#form-subject').val();
+      //   var message = $('#form-message').val();
+      //   // Gửi dữ liệu về servlet để xử lý và gửi email
+      //   $.ajax({
+      //     type: 'POST',
+      //     url: '/ecommerce/contact-us',
+      //     data: {
+      //       name: name,
+      //       email: email,
+      //       subject: subject,
+      //       message: message
+      //     },
+      //     success: function (response) {
+      //       alert('Lời nhắn đã được gửi thành công!');
+      //     },
+      //     error: function (xhr, status, error) {
+      //       console.error('Error sending message:', status, error);
+      //     }
+      //   });
+      // });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#formFeedback").validate({
+        rules:{
+          name: {
+            required:true,
+            minlength:2
+          },
+          email: {
+            required:true,
+            email:true
+          },
+          topic: {
+            required:true,
+            minlength:2
+          },
+          message: {
+            required:true,
+            minlength:2
+          }
+        },
+        messages: {
+          name: {
+            required: "Vui lòng nhập họ tên",
+            minlength: "Vui lòng nhập họ tên"
+          },
+          email: {
+            required: "Vui lòng nhập email",
+            email: "Vui lòng nhập đúng định dạng email"
+          },
+          topic: {
+            required: "Vui lòng nhập tiêu đề",
+            minlength: "Vui lòng nhập tiêu đề"
+          },
+          message: {
+            required: "Vui lòng nhập lời nhắn",
+            minlength: "Vui lòng nhập lời nhắn"
+          }
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      // ... existing AJAX code ...
+
+      // Handle form submission
+      $('#submitBtn').click(function (event) {
+        event.preventDefault();
+
+        var formData = {
+          name: $('#form-name').val(),
+          email: $('#form-email').val(),
+          topic: $('#form-subject').val(),
+          message: $('#form-message').val()
+        };
+
         $.ajax({
           type: 'POST',
           url: '/ecommerce/contact-us',
-          data: {
-            name: name,
-            email: email,
-            subject: subject,
-            message: message
-          },
+          contentType: 'application/json',
+          data: JSON.stringify(formData),
           success: function (response) {
+            console.log('Feedback submitted successfully:', response);
+
+            // Display a simple alert for success (replace with your preferred notification method)
             alert('Lời nhắn đã được gửi thành công!');
+
+            // Optionally, you can reset the form or redirect the user.
           },
           error: function (xhr, status, error) {
-            console.error('Error sending message:', status, error);
+            console.error('Error submitting feedback:', status, error);
           }
         });
       });
     });
   </script>
+
 
 
   </body>

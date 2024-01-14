@@ -31,6 +31,13 @@ public class ProductService {
     public List<Product> getProductByCID(String id) {
         return  ProductDao.getInstance().getProductByCID(id);
     }
+    public Product getProductByID(String id) {
+        return ProductDao.getInstance().getProductByID(id);
+    }
+
+    public List<Product> getRelatedProducts(String categoryId) {
+        return ProductDao.getInstance().getRelatedProducts(categoryId);
+    }
 
     public boolean deleteProductById(int id) {
         return ProductDao.getInstance().deleteProductById(id);

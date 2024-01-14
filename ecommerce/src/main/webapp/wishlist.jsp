@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.example.ecommerce.model.Category" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -815,344 +817,12 @@
                 <tr class="wishlist__row">
                   <td class="wishlist__column wishlist__column--image">
                     <a href="#"
-                      ><img src="images/products/product-1.jpg" alt=""
+                      ><img src="${o.imgUrl.get(0)}" alt=""
                     /></a>
                   </td>
                   <td class="wishlist__column wishlist__column--product">
                     <a href="#" class="wishlist__product-name"
-                      >Electric Planer Brandix KL370090G 300 Watts</a
-                    >
-                    <div class="wishlist__product-rating">
-                      <div class="rating">
-                        <div class="rating__body">
-                          <svg
-                            class="rating__star rating__star--active"
-                            width="13px"
-                            height="12px"
-                          >
-                            <g class="rating__fill">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal"
-                              ></use>
-                            </g>
-                            <g class="rating__stroke">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal-stroke"
-                              ></use>
-                            </g>
-                          </svg>
-                          <div
-                            class="rating__star rating__star--only-edge rating__star--active"
-                          >
-                            <div class="rating__fill">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                            <div class="rating__stroke">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                          </div>
-                          <svg
-                            class="rating__star rating__star--active"
-                            width="13px"
-                            height="12px"
-                          >
-                            <g class="rating__fill">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal"
-                              ></use>
-                            </g>
-                            <g class="rating__stroke">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal-stroke"
-                              ></use>
-                            </g>
-                          </svg>
-                          <div
-                            class="rating__star rating__star--only-edge rating__star--active"
-                          >
-                            <div class="rating__fill">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                            <div class="rating__stroke">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                          </div>
-                          <svg
-                            class="rating__star rating__star--active"
-                            width="13px"
-                            height="12px"
-                          >
-                            <g class="rating__fill">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal"
-                              ></use>
-                            </g>
-                            <g class="rating__stroke">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal-stroke"
-                              ></use>
-                            </g>
-                          </svg>
-                          <div
-                            class="rating__star rating__star--only-edge rating__star--active"
-                          >
-                            <div class="rating__fill">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                            <div class="rating__stroke">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                          </div>
-                          <svg
-                            class="rating__star rating__star--active"
-                            width="13px"
-                            height="12px"
-                          >
-                            <g class="rating__fill">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal"
-                              ></use>
-                            </g>
-                            <g class="rating__stroke">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal-stroke"
-                              ></use>
-                            </g>
-                          </svg>
-                          <div
-                            class="rating__star rating__star--only-edge rating__star--active"
-                          >
-                            <div class="rating__fill">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                            <div class="rating__stroke">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                          </div>
-                          <svg class="rating__star" width="13px" height="12px">
-                            <g class="rating__fill">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal"
-                              ></use>
-                            </g>
-                            <g class="rating__stroke">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal-stroke"
-                              ></use>
-                            </g>
-                          </svg>
-                          <div class="rating__star rating__star--only-edge">
-                            <div class="rating__fill">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                            <div class="rating__stroke">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="wishlist__product-rating-legend">
-                        9 Reviews
-                      </div>
-                    </div>
-                  </td>
-                  <td class="wishlist__column wishlist__column--stock">
-                    <div class="badge badge-success">Còn hàng</div>
-                  </td>
-                  <td class="wishlist__column wishlist__column--price">
-                    $699.00
-                  </td>
-                  <td class="wishlist__column wishlist__column--tocart">
-                    <button type="button" class="btn btn-primary btn-sm">
-                      Thêm giỏ hàng
-                    </button>
-                  </td>
-                  <td class="wishlist__column wishlist__column--remove">
-                    <button
-                      type="button"
-                      class="btn btn-light btn-sm btn-svg-icon"
-                    >
-                      <svg width="12px" height="12px">
-                        <use xlink:href="images/sprite.svg#cross-12"></use>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-                <tr class="wishlist__row">
-                  <td class="wishlist__column wishlist__column--image">
-                    <a href="#"
-                      ><img src="images/products/product-1.jpg" alt=""
-                    /></a>
-                  </td>
-                  <td class="wishlist__column wishlist__column--product">
-                    <a href="#" class="wishlist__product-name"
-                      >Electric Planer Brandix KL370090G 300 Watts</a
-                    >
-                    <div class="wishlist__product-rating">
-                      <div class="rating">
-                        <div class="rating__body">
-                          <svg
-                            class="rating__star rating__star--active"
-                            width="13px"
-                            height="12px"
-                          >
-                            <g class="rating__fill">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal"
-                              ></use>
-                            </g>
-                            <g class="rating__stroke">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal-stroke"
-                              ></use>
-                            </g>
-                          </svg>
-                          <div
-                            class="rating__star rating__star--only-edge rating__star--active"
-                          >
-                            <div class="rating__fill">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                            <div class="rating__stroke">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                          </div>
-                          <svg
-                            class="rating__star rating__star--active"
-                            width="13px"
-                            height="12px"
-                          >
-                            <g class="rating__fill">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal"
-                              ></use>
-                            </g>
-                            <g class="rating__stroke">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal-stroke"
-                              ></use>
-                            </g>
-                          </svg>
-                          <div
-                            class="rating__star rating__star--only-edge rating__star--active"
-                          >
-                            <div class="rating__fill">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                            <div class="rating__stroke">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                          </div>
-                          <svg
-                            class="rating__star rating__star--active"
-                            width="13px"
-                            height="12px"
-                          >
-                            <g class="rating__fill">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal"
-                              ></use>
-                            </g>
-                            <g class="rating__stroke">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal-stroke"
-                              ></use>
-                            </g>
-                          </svg>
-                          <div
-                            class="rating__star rating__star--only-edge rating__star--active"
-                          >
-                            <div class="rating__fill">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                            <div class="rating__stroke">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                          </div>
-                          <svg
-                            class="rating__star rating__star--active"
-                            width="13px"
-                            height="12px"
-                          >
-                            <g class="rating__fill">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal"
-                              ></use>
-                            </g>
-                            <g class="rating__stroke">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal-stroke"
-                              ></use>
-                            </g>
-                          </svg>
-                          <div
-                            class="rating__star rating__star--only-edge rating__star--active"
-                          >
-                            <div class="rating__fill">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                            <div class="rating__stroke">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                          </div>
-                          <svg class="rating__star" width="13px" height="12px">
-                            <g class="rating__fill">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal"
-                              ></use>
-                            </g>
-                            <g class="rating__stroke">
-                              <use
-                                xlink:href="images/sprite.svg#star-normal-stroke"
-                              ></use>
-                            </g>
-                          </svg>
-                          <div class="rating__star rating__star--only-edge">
-                            <div class="rating__fill">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                            <div class="rating__stroke">
-                              <div class="fake-svg-icon"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="wishlist__product-rating-legend">
-                        9 Reviews
-                      </div>
-                    </div>
-                  </td>
-                  <td class="wishlist__column wishlist__column--stock">
-                    <div class="badge badge-success">Còn hàng</div>
-                  </td>
-                  <td class="wishlist__column wishlist__column--price">
-                    $699.00
-                  </td>
-                  <td class="wishlist__column wishlist__column--tocart">
-                    <button type="button" class="btn btn-primary btn-sm">
-                      Thêm giỏ hàng
-                    </button>
-                  </td>
-                  <td class="wishlist__column wishlist__column--remove">
-                    <button
-                      type="button"
-                      class="btn btn-light btn-sm btn-svg-icon"
-                    >
-                      <svg width="12px" height="12px">
-                        <use xlink:href="images/sprite.svg#cross-12"></use>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-                <tr class="wishlist__row">
-                  <td class="wishlist__column wishlist__column--image">
-                    <a href="#"
-                      ><img src="images/products/product-1.jpg" alt=""
-                    /></a>
-                  </td>
-                  <td class="wishlist__column wishlist__column--product">
-                    <a href="#" class="wishlist__product-name"
-                      >Electric Planer Brandix KL370090G 300 Watts</a
+                      >${o.title}</a
                     >
                     <div class="wishlist__product-rating">
                       <div class="rating">
@@ -1328,25 +998,8 @@
                       Luôn đem lại cho khách hàng những sản phẩm có chất lượng
                       tốt nhất.
                     </div>
-                    <ul class="footer-contacts__contacts">
-                      <li>
-                        <i
-                          class="footer-contacts__icon fas fa-globe-americas"
-                        ></i>
-                        Linh Trung, Tp Thủ Đức
-                      </li>
-                      <li>
-                        <i class="footer-contacts__icon far fa-envelope"></i>
-                        email@example.com
-                      </li>
-                      <li>
-                        <i class="footer-contacts__icon fas fa-mobile-alt"></i>
-                        0123456789
-                      </li>
-                      <li>
-                        <i class="footer-contacts__icon far fa-clock"></i>
-                        T2-T7 10:00pm - 7:00pm
-                      </li>
+                    <ul class="footer-contacts__contacts" id="contactInfoList">
+                      <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
                     </ul>
                   </div>
                 </div>
@@ -1492,5 +1145,33 @@
       <!-- site__footer / end -->
     </div>
     <!-- site / end -->
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      // Gửi yêu cầu đến servlet khi trang được tải
+      $.ajax({
+        type: 'GET',
+        url: '/ecommerce/contact-us',
+        dataType: 'json',
+        success: function (data) {
+          // Hiển thị thông tin liên hệ trên trang
+          var contactInfoList = $('#contactInfoList');
+          // Xóa mọi nội dung cũ trong ul
+          contactInfoList.empty();
+          // Thêm các mục thông tin liên hệ mới
+          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-globe-americas"></i>' + data.address + '</li>');
+          contactInfoList.append('<li><i class="footer-contacts__icon far fa-envelope"></i>' + data.email + '</li>');
+          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-mobile-alt"></i>' + data.phone + '</li>');
+          contactInfoList.append('<li>Thứ 2-6<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeMF + '</li>');
+          contactInfoList.append('<li>Thứ 7<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSA + '</li>');
+          contactInfoList.append('<li>Thứ chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
+        },
+        error: function (xhr, status, error) {
+          console.error('Error fetching contact info:', status, error);
+        }
+      });
+    });
+  </script>
+
   </body>
 </html>
