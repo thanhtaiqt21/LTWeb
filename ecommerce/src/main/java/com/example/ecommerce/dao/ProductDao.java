@@ -122,18 +122,22 @@ public class ProductDao {
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQuantity(rs.getInt("quantity"));
                 product.setSold(rs.getInt("sold"));
-
-                String imgUrlString = rs.getString("imgUrl");
-                if (imgUrlString != null && !imgUrlString.isEmpty()) {
-                    List<String> imgUrlList = Arrays.asList(imgUrlString.split(","));
-                    product.setImgUrl(imgUrlList);
-                } else {
-                    product.setImgUrl(new ArrayList<>());
-                }
-
                 product.setActive(rs.getInt("active"));
                 product.setDateCreate(rs.getTimestamp("dateCreate"));
                 product.setCategoryId(rs.getInt("categoryId"));
+
+                List<String> imgUrlList = new ArrayList<>();
+                int productId = rs.getInt("id");
+                String imgQuery = "SELECT imgUrl FROM `images` WHERE productId = ?";
+                PreparedStatement imgPs = connection.prepareStatement(imgQuery);
+                imgPs.setInt(1, productId);
+                ResultSet imgRs = imgPs.executeQuery();
+                while (imgRs.next()) {
+                    String imgUrl = imgRs.getString("imgUrl");
+                    imgUrlList.add(imgUrl);
+                }
+                product.setImgUrl(imgUrlList);
+
                 list.add(product);
             }
         } catch (Exception e) {
@@ -194,18 +198,22 @@ public class ProductDao {
                 product.setDiscount(rs.getDouble("discount"));
                 product.setQuantity(rs.getInt("quantity"));
                 product.setSold(rs.getInt("sold"));
-
-                String imgUrlString = rs.getString("imgUrl");
-                if (imgUrlString != null && !imgUrlString.isEmpty()) {
-                    List<String> imgUrlList = Arrays.asList(imgUrlString.split(","));
-                    product.setImgUrl(imgUrlList);
-                } else {
-                    product.setImgUrl(new ArrayList<>());
-                }
-
                 product.setActive(rs.getInt("active"));
                 product.setDateCreate(rs.getTimestamp("dateCreate"));
                 product.setCategoryId(rs.getInt("categoryId"));
+
+                List<String> imgUrlList = new ArrayList<>();
+                int productId = rs.getInt("id");
+                String imgQuery = "SELECT imgUrl FROM `images` WHERE productId = ?";
+                PreparedStatement imgPs = connection.prepareStatement(imgQuery);
+                imgPs.setInt(1, productId);
+                ResultSet imgRs = imgPs.executeQuery();
+                while (imgRs.next()) {
+                    String imgUrl = imgRs.getString("imgUrl");
+                    imgUrlList.add(imgUrl);
+                }
+                product.setImgUrl(imgUrlList);
+
                 list.add(product);
 
             }
@@ -256,7 +264,7 @@ public class ProductDao {
 
         return productList;
     }
-        public Product getProductByID(String id) {
+    public Product getProductByID(String id) {
         String query = "SELECT * FROM `products` WHERE id = ?";
         Product product = null;
         try {
@@ -362,5 +370,49 @@ public class ProductDao {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public List<Product> searchByName(String txtSearch) {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM `products` WHERE title like ?";
+        try {
+            Connection connection = DBConnect.getInstance().getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, "%" + txtSearch + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setTitle(rs.getString("title"));
+                product.setDescription(rs.getString("description"));
+                product.setPrice(rs.getInt("price"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setSold(rs.getInt("sold"));
+                product.setActive(rs.getInt("active"));
+                product.setDateCreate(rs.getTimestamp("dateCreate"));
+                product.setCategoryId(rs.getInt("categoryId"));
+
+                // Truy vấn các ảnh tương ứng với sản phẩm từ bảng "images"
+                List<String> imgUrlList = new ArrayList<>();
+                int productId = rs.getInt("id");
+                String imgQuery = "SELECT imgUrl FROM `images` WHERE productId = ?";
+                PreparedStatement imgPs = connection.prepareStatement(imgQuery);
+                imgPs.setInt(1, productId);
+                ResultSet imgRs = imgPs.executeQuery();
+                while (imgRs.next()) {
+                    String imgUrl = imgRs.getString("imgUrl");
+                    imgUrlList.add(imgUrl);
+                }
+                product.setImgUrl(imgUrlList);
+
+                list.add(product);
+
+            }
+        } catch (Exception e) {
+
+        }
+
+        return list;
     }
 }
