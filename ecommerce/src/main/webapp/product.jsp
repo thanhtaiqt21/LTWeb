@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
   String error = (String) request.getAttribute("error");
 %>
@@ -801,72 +802,15 @@
                   <div class="product__availability">
                     Availability: <span class="text-success">In Stock</span>
                   </div>
-                  <div class="product__prices">${detail.price}đ</div>
-                  <!-- .product__options -->
-                  <form class="product__options">
-                    <!-- <div class="form-group product__option">
-                      <label class="product__option-label">Color</label>
-                      <div class="input-radio-color">
-                        <div class="input-radio-color__list">
-                          <label
-                            class="input-radio-color__item input-radio-color__item--white"
-                            style="color: #fff"
-                            data-toggle="tooltip"
-                            title="White"
-                            ><input type="radio" name="color" /> <span></span
-                          ></label>
-                          <label
-                            class="input-radio-color__item"
-                            style="color: #ffd333"
-                            data-toggle="tooltip"
-                            title="Yellow"
-                            ><input type="radio" name="color" /> <span></span
-                          ></label>
-                          <label
-                            class="input-radio-color__item"
-                            style="color: #ff4040"
-                            data-toggle="tooltip"
-                            title="Red"
-                            ><input type="radio" name="color" /> <span></span
-                          ></label>
-                          <label
-                            class="input-radio-color__item input-radio-color__item--disabled"
-                            style="color: #4080ff"
-                            data-toggle="tooltip"
-                            title="Blue"
-                            ><input
-                              type="radio"
-                              name="color"
-                              disabled="disabled" />
-                            <span></span
-                          ></label>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="product__prices">
+                    <fmt:setLocale value="vi_VN"/>
+                    <fmt:formatNumber value="${detail.price}" type="currency"/>
+                  </div>
+
                     <div class="form-group product__option">
-                      <label class="product__option-label">Material</label>
-                      <div class="input-radio-label">
-                        <div class="input-radio-label__list">
-                          <label
-                            ><input type="radio" name="material" />
-                            <span>Metal</span></label
-                          >
-                          <label
-                            ><input type="radio" name="material" />
-                            <span>Wood</span></label
-                          >
-                          <label
-                            ><input
-                              type="radio"
-                              name="material"
-                              disabled="disabled"
-                            />
-                            <span>Plastic</span></label
-                          >
-                        </div>
-                      </div>
-                    </div> -->
-                    <div class="form-group product__option">
+                      <form action="/ecommerce/addToCart" method="post">
+                        <input type="hidden" name="productId" value="${detail.id}"/>
+                        <input type="hidden" name="quantity" value="1"/>
                       <label
                         class="product__option-label"
                         for="product-quantity"
@@ -881,6 +825,7 @@
                               type="number"
                               min="1"
                               value="1"
+                              name="quantity"
                             />
                             <div class="input-number__add"></div>
                             <div class="input-number__sub"></div>
@@ -889,9 +834,9 @@
                         <div
                           class="product__actions-item product__actions-item--addtocart"
                         >
-                          <button class="btn btn-primary btn-lg">
-                            Thêm giỏ hàng
-                          </button>
+                            <button class="btn btn-primary product-card__addtocart" type="submit">
+                              Thêm giỏ hàng
+                            </button>
                         </div>
                         <div
                           class="product__actions-item product__actions-item--wishlist"
@@ -926,17 +871,12 @@
                           </button>
                         </div>
                       </div>
+                      </form>
                     </div>
-                  </form>
                   <!-- .product__options / end -->
                 </div>
                 <!-- .product__end -->
                 <div class="product__footer">
-                  <div class="product__tags tags">
-                    <div class="tags__list">
-                      <a href="#">Ngói</a> <a href="#">Gạch men</a>
-                    </div>
-                  </div>
                   <div class="product__share-links share-links">
                     <ul class="share-links__list">
                       <li
@@ -1775,47 +1715,28 @@
                                           Availability:
                                           <span class="text-success">In Stock</span>
                                       </div>
-                                      <div class="product-card__prices">${o.price}đ</div>
-                                      <div class="product-card__buttons">
-                                          <button
-                                                  class="btn btn-primary product-card__addtocart"
-                                                  type="button"
-                                          >
-                                              Thêm giỏ hàng
-                                          </button>
-                                          <button
-                                                  class="btn btn-secondary product-card__addtocart product-card__addtocart--list"
-                                                  type="button"
-                                          >
-                                              Thêm giỏ hàng
-                                          </button>
-                                          <button
-                                                  class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                                                  type="button"
-                                          >
-                                              <svg width="16px" height="16px">
-                                                  <use
-                                                          xlink:href="images/sprite.svg#wishlist-16"
-                                                  ></use>
-                                              </svg>
-                                              <span
-                                                      class="fake-svg-icon fake-svg-icon--wishlist-16"
-                                              ></span>
-                                          </button>
-                                          <button
-                                                  class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare"
-                                                  type="button"
-                                          >
-                                              <svg width="16px" height="16px">
-                                                  <use
-                                                          xlink:href="images/sprite.svg#compare-16"
-                                                  ></use>
-                                              </svg>
-                                              <span
-                                                      class="fake-svg-icon fake-svg-icon--compare-16"
-                                              ></span>
-                                          </button>
+                                      <div class="product-card__prices">
+                                        <fmt:setLocale value="vi_VN"/>
+                                        <fmt:formatNumber value="${o.price}" type="currency"/>
                                       </div>
+                                    <div class="product-card__buttons">
+                                      <form action="addToCart" method="post">
+                                        <input type="hidden" name="productId" value="${o.id}"/>
+                                        <input type="hidden" name="quantity" value="1"/>
+                                      <button class="btn btn-primary product-card__addtocart" type="submit">
+                                        Thêm giỏ hàng
+                                      </button>
+                                      <button class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="submit">
+                                        Thêm giỏ hàng
+                                      </button>
+                                      <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
+                                        <svg width="16px" height="16px">
+                                          <use xlink:href="images/sprite.svg#compare-16"></use>
+                                        </svg>
+                                        <span class="fake-svg-icon fake-svg-icon--compare-16"></span>
+                                      </button>
+                                      </form>
+                                    </div>
                                   </div>
                               </div>
                           </div>

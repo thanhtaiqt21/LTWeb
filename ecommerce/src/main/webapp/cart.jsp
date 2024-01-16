@@ -1,9 +1,12 @@
 <%@ page import="com.example.ecommerce.model.Category" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.example.ecommerce.model.Cart" %>
+<%@ page import="com.example.ecommerce.model.Item" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
   String error = (String) request.getAttribute("error");
 %>
+<% Cart cart = (Cart) session.getAttribute("cart"); %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -619,144 +622,65 @@
                           <span class="indicator__value">3</span></span
                     ></a
                     >
-                    <div class="indicator__dropdown">
-                      <!-- .dropcart -->
-                      <div class="dropcart">
-                        <div class="dropcart__products-list">
-                          <div class="dropcart__product">
-                            <div class="dropcart__product-image">
-                              <a href="product.jsp"
-                              ><img
-                                      src="https://cdn.hoasenhome.vn/catalog/product/i/n/indal1001000016-1.jpg"
-                                      alt=""
-                              /></a>
-                            </div>
-                            <div class="dropcart__product-info">
-                              <div class="dropcart__product-name">
-                                <a href="product.jsp"
-                                >Gạch granite LUSTRA INDAL1001000016: 1000mmx1000mm</a
-                                >
-                              </div>
-                              <div class="dropcart__product-meta">
-                                  <span class="dropcart__product-quantity"
-                                  >2</span
-                                  >
-                                x
-                                <span class="dropcart__product-price"
-                                >510.840 ₫</span
-                                >
-                              </div>
-                            </div>
-                            <button
-                                    type="button"
-                                    class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon"
-                            >
-                              <svg width="10px" height="10px">
-                                <use
-                                        xlink:href="images/sprite.svg#cross-10"
-                                ></use>
-                              </svg>
-                            </button>
-                          </div>
-                          <div class="dropcart__product">
-                            <div class="dropcart__product-image">
-                              <a href="product.jsp"
-                              ><img
-                                      src="https://cdn.hoasenhome.vn/catalog/product/t/h/thep-cay-viet-my-grade-40.jpg"
-                                      alt=""
-                              /></a>
-                            </div>
-                            <div class="dropcart__product-info">
-                              <div class="dropcart__product-name">
-                                <a href="product.jsp"
-                                >Thép cây VAS Grade 40</a
-                                >
-                              </div>
-                              <div class="dropcart__product-meta">
-                                  <span class="dropcart__product-quantity"
-                                  >1</span
-                                  >
-                                x
-                                <span class="dropcart__product-price"
-                                >98.003 ₫</span
-                                >
-                              </div>
-                            </div>
-                            <button
-                                    type="button"
-                                    class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon"
-                            >
-                              <svg width="10px" height="10px">
-                                <use
-                                        xlink:href="images/sprite.svg#cross-10"
-                                ></use>
-                              </svg>
-                            </button>
-                          </div>
-                          <div class="dropcart__product">
-                            <div class="dropcart__product-image">
-                              <a href="product.jsp"
-                              ><img
-                                      src="https://cdn.hoasenhome.vn/catalog/product/n/g/ngoi-trang-men-casa-pro-n_u-cafe.jpg"
-                                      alt=""
-                              /></a>
-                            </div>
-                            <div class="dropcart__product-info">
-                              <div class="dropcart__product-name">
-                                <a href="product.jsp"
-                                >Ngói tráng men CASA PRO nâu cafe 009</a
-                                >
-                              </div>
-                              <div class="dropcart__product-meta">
-                                  <span class="dropcart__product-quantity"
-                                  >100</span
-                                  >
-                                x
-                                <span class="dropcart__product-price"
-                                >24.840 ₫</span
-                                >
-                              </div>
-                            </div>
-                            <button
-                                    type="button"
-                                    class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon"
-                            >
-                              <svg width="10px" height="10px">
-                                <use
-                                        xlink:href="images/sprite.svg#cross-10"
-                                ></use>
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="dropcart__totals">
-                          <table>
-                            <tr>
-                              <th>Tạm tính</th>
-                              <td>3.603.683 đ</td>
-                            </tr>
-                            <tr>
-                              <th>Phí vận chuyển</th>
-                              <td>250.000đ</td>
-                            </tr>
+<%--                    <div class="indicator__dropdown">--%>
+<%--                      <!-- .dropcart -->--%>
+<%--                      <div class="dropcart">--%>
+<%--                        <div class="dropcart__products-list">--%>
+<%--&lt;%&ndash;                          <c:forEach items="${cart}" var="item">&ndash;%&gt;--%>
+<%--                              <% for (Item item : cart.getItems()) { %>--%>
+<%--                                    <div class="dropcart__product">--%>
+<%--                                      <div class="dropcart__product-image">--%>
+<%--                                        <a href="product.jsp">--%>
+<%--                                          <img src="<%= item.getProduct().getImgUrl().get(0) %>" alt=""/>--%>
+<%--                                        </a>--%>
+<%--                                      </div>--%>
+<%--                                      <div class="dropcart__product-info">--%>
+<%--                                        <div class="dropcart__product-name">--%>
+<%--                                          <a href="product.jsp"><%= item.getProduct().getTitle() %></a>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="dropcart__product-meta">--%>
+<%--                                          <span class="dropcart__product-quantity"><%= item.getQuantity() %></span>--%>
+<%--                                          <span class="dropcart__product-price"><%= item.getProduct().getPrice() %></span>--%>
+<%--                                        </div>--%>
+<%--                                      </div>--%>
+<%--                                      <button type="button" class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">--%>
+<%--                                        <svg width="10px" height="10px">--%>
+<%--                                          <use xlink:href="images/sprite.svg#cross-10"></use>--%>
+<%--                                        </svg>--%>
+<%--                                      </button>--%>
+<%--                                    </div>--%>
+<%--                                    <% } %>--%>
+<%--&lt;%&ndash;                          </c:forEach>&ndash;%&gt;--%>
 
-                            <tr>
-                              <th>Tổng</th>
-                              <td>3.853.683 đ</td>
-                            </tr>
-                          </table>
-                        </div>
-                        <div class="dropcart__buttons">
-                          <a class="btn btn-secondary" href="cart.html"
-                          >Giỏ hàng</a
-                          >
-                          <a class="btn btn-primary" href="checkout.jsp"
-                          >Thanh toán</a
-                          >
-                        </div>
-                      </div>
-                      <!-- .dropcart / end -->
-                    </div>
+<%--                        </div>--%>
+<%--                        <div class="dropcart__totals">--%>
+<%--                          <table>--%>
+<%--                            <tr>--%>
+<%--                              <th>Tạm tính</th>--%>
+<%--                              <td>3.603.683 đ</td>--%>
+<%--                            </tr>--%>
+<%--                            <tr>--%>
+<%--                              <th>Phí vận chuyển</th>--%>
+<%--                              <td>250.000đ</td>--%>
+<%--                            </tr>--%>
+
+<%--                            <tr>--%>
+<%--                              <th>Tổng</th>--%>
+<%--                              <td>3.853.683 đ</td>--%>
+<%--                            </tr>--%>
+<%--                          </table>--%>
+<%--                        </div>--%>
+<%--                        <div class="dropcart__buttons">--%>
+<%--                          <a class="btn btn-secondary" href="cart.html"--%>
+<%--                          >Giỏ hàng</a--%>
+<%--                          >--%>
+<%--                          <a class="btn btn-primary" href="checkout.jsp"--%>
+<%--                          >Thanh toán</a--%>
+<%--                          >--%>
+<%--                        </div>--%>
+<%--                      </div>--%>
+<%--                      <!-- .dropcart / end -->--%>
+<%--                    </div>--%>
                   </div>
                 </div>
               </div>
@@ -816,15 +740,17 @@
                 </tr>
               </thead>
               <tbody class="cart-table__body">
-                <tr class="cart-table__row">
+<%--                <c:forEach items="${cart}" var="item">--%>
+                    <% for (Item item : cart.getItems()) {%>
+                  <tr class="cart-table__row">
                   <td class="cart-table__column cart-table__column--image">
                     <a href="#"
-                      ><img src="images/products/product-1.jpg" alt=""
+                      ><img src="<%= item.getProduct().getImgUrl().get(0) %>" alt=""
                     /></a>
                   </td>
                   <td class="cart-table__column cart-table__column--product">
                     <a href="#" class="cart-table__product-name"
-                      >Electric Planer Brandix KL370090G 300 Watts</a
+                      ><%= item.getProduct().getTitle() %></a
                     >
                     <ul class="cart-table__options">
                       <li>Color: Yellow</li>
@@ -835,7 +761,7 @@
                     class="cart-table__column cart-table__column--price"
                     data-title="Price"
                   >
-                    $699.00
+                    <%= item.getProduct().getPrice() %>
                   </td>
                   <td
                     class="cart-table__column cart-table__column--quantity"
@@ -846,18 +772,15 @@
                         class="form-control input-number__input"
                         type="number"
                         min="1"
-                        value="2"
+                        value="<%=item.getQuantity()%>"
                       />
                       <div class="input-number__add"></div>
                       <div class="input-number__sub"></div>
                     </div>
                   </td>
-                  <td
-                    class="cart-table__column cart-table__column--total"
-                    data-title="Total"
-                  >
-                    $1,398.00
-                  </td>
+                    <td class="cart-table__column cart-table__column--total" data-title="Total">
+                      <span id=""><%=(item.getQuantity() * item.getProduct().getPrice())%></span>
+                    </td>
                   <td class="cart-table__column cart-table__column--remove">
                     <button
                       type="button"
@@ -869,107 +792,8 @@
                     </button>
                   </td>
                 </tr>
-                <tr class="cart-table__row">
-                  <td class="cart-table__column cart-table__column--image">
-                    <a href="#"
-                      ><img src="images/products/product-2.jpg" alt=""
-                    /></a>
-                  </td>
-                  <td class="cart-table__column cart-table__column--product">
-                    <a href="#" class="cart-table__product-name"
-                      >Undefined Tool IRadix DPS3000SY 2700 watts</a
-                    >
-                  </td>
-                  <td
-                    class="cart-table__column cart-table__column--price"
-                    data-title="Price"
-                  >
-                    $849.00
-                  </td>
-                  <td
-                    class="cart-table__column cart-table__column--quantity"
-                    data-title="Quantity"
-                  >
-                    <div class="input-number">
-                      <input
-                        class="form-control input-number__input"
-                        type="number"
-                        min="1"
-                        value="1"
-                      />
-                      <div class="input-number__add"></div>
-                      <div class="input-number__sub"></div>
-                    </div>
-                  </td>
-                  <td
-                    class="cart-table__column cart-table__column--total"
-                    data-title="Total"
-                  >
-                    $849.00
-                  </td>
-                  <td class="cart-table__column cart-table__column--remove">
-                    <button
-                      type="button"
-                      class="btn btn-light btn-sm btn-svg-icon"
-                    >
-                      <svg width="12px" height="12px">
-                        <use xlink:href="images/sprite.svg#cross-12"></use>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-                <tr class="cart-table__row">
-                  <td class="cart-table__column cart-table__column--image">
-                    <a href="#"
-                      ><img src="images/products/product-5.jpg" alt=""
-                    /></a>
-                  </td>
-                  <td class="cart-table__column cart-table__column--product">
-                    <a href="#" class="cart-table__product-name"
-                      >Brandix Router Power Tool 2017ERXPK</a
-                    >
-                    <ul class="cart-table__options">
-                      <li>Color: True Red</li>
-                    </ul>
-                  </td>
-                  <td
-                    class="cart-table__column cart-table__column--price"
-                    data-title="Price"
-                  >
-                    $1,210.00
-                  </td>
-                  <td
-                    class="cart-table__column cart-table__column--quantity"
-                    data-title="Quantity"
-                  >
-                    <div class="input-number">
-                      <input
-                        class="form-control input-number__input"
-                        type="number"
-                        min="1"
-                        value="3"
-                      />
-                      <div class="input-number__add"></div>
-                      <div class="input-number__sub"></div>
-                    </div>
-                  </td>
-                  <td
-                    class="cart-table__column cart-table__column--total"
-                    data-title="Total"
-                  >
-                    $3,630.00
-                  </td>
-                  <td class="cart-table__column cart-table__column--remove">
-                    <button
-                      type="button"
-                      class="btn btn-light btn-sm btn-svg-icon"
-                    >
-                      <svg width="12px" height="12px">
-                        <use xlink:href="images/sprite.svg#cross-12"></use>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
+                    <%}%>
+<%--                </c:forEach>--%>
               </tbody>
             </table>
             <div class="cart__actions">
