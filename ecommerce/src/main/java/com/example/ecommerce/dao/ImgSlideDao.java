@@ -51,4 +51,18 @@ public class ImgSlideDao {
         }
         return imgSlides;
     }
+
+    public boolean deleteImgSlide(int id) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM img_slide WHERE id=?");
+            preparedStatement.setInt(1,id);
+            int i = preparedStatement.executeUpdate();
+            if (i >0) return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
 }

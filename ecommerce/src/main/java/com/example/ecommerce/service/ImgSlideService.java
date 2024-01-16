@@ -23,4 +23,8 @@ public class ImgSlideService {
     public List<ImgSlide> getImgSlides() {
         return ImgSlideDao.getInstance().getImgSlides();
     }
+
+    public boolean deleteImgSlide(int id) {
+        return ImgSlideDao.getInstance().deleteImgSlide(id);
+    }
 }
