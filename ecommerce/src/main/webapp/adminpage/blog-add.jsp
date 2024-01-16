@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -76,6 +77,13 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+    <style type="text/css">
+      label.error {
+        display: inline-block;
+        color:red;
+        width: 100%;
+      }
+    </style>
   </head>
 
   <body>
@@ -1369,6 +1377,12 @@
                       class="product-tab-list tab-pane fade active in"
                       id="description"
                     >
+                      <c:if test="${not empty error}">
+                        <div class="alert alert-danger" role="alert">
+                            ${error}
+                        </div>
+                      </c:if>
+                      <form action="/ecommerce/adminpage/blog-add" method="post" enctype="multipart/form-data" id="form-add-blog">
                       <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
@@ -1379,25 +1393,14 @@
                                 type="text"
                                 class="form-control"
                                 placeholder="Tiêu đề"
+                                name="title"
                               />
                             </div> 
                             <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
                                 ><i class="fa-solid fa-image"></i></span>
-                                <input class="form-control" type="file" id="formFileMultiple" multiple>
-                            </div> 
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"
-                                > <i class="fa-solid fa-signal"></i></span>
-                              <select
-                              name="select"
-                              class="form-control mg-b-pro-edt pro-edt-select form-control-primary"
-                              >
-                              <option value="opt1">Trạng thái</option>
-                              <option value="opt2">Hoạt động</option>
-                              <option value="opt3">Ngừng hoạt động</option>
-                              </select>
-                          </div>
+                                <input class="form-control" type="file" id="formFileMultiple" name="imgs">
+                            </div>
                           </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -1409,6 +1412,7 @@
                                 placeholder="Nội dung"
                                 rows="7"
                                 cols="70"
+                                name="content"
                               ></textarea>
                           </div>
                           </div>
@@ -1418,7 +1422,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="text-center custom-pro-edt-ds">
                             <button
-                              type="button"
+                              type="submit"
                               class="btn btn-ctl-bt waves-effect waves-light m-r-10"
                             >
                               Lưu
@@ -1432,6 +1436,7 @@
                           </div>
                         </div>
                       </div>
+                      </form>
                     </div>
                     <div class="product-tab-list tab-pane fade" id="reviews">
                       <div class="row">
@@ -1861,6 +1866,7 @@
     <!-- jquery
 		============================================ -->
     <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
     <!-- bootstrap JS
 		============================================ -->
     <script src="../js/bootstrap.min.js"></script>
@@ -1911,5 +1917,22 @@
     <!-- main JS
 		============================================ -->
     <script src="../js/main1.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(() => {
+        $("#form-add-blog").validate({
+          rules:{
+            title: "required",
+            imgs: "required",
+            content: "required"
+          },
+          messages: {
+            title:  "Vui lòng nhập tiêu đề blog",
+            imgs: "Vui lòng chọn ảnh blog",
+            content: "Vui lòng nhập nội dung blog"
+          }
+        });
+      });
+    </script>
   </body>
 </html>

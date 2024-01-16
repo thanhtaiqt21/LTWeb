@@ -21,4 +21,7 @@ public class ImgService {
     public List<Img> getImgUrlByProductId(int productId) {
         return ImgDao.getInstance().getImgUrlByProductId(productId);
     }
+    public boolean deleteImgById(int id) {
+        return ImgDao.getInstance().deleteImgById(id);
+    }
 }
