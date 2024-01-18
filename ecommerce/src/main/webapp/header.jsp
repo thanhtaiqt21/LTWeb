@@ -1,4 +1,6 @@
 <%@ page import="com.example.ecommerce.model.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.ecommerce.model.Category" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -7,6 +9,7 @@
         user = (User) request.getSession().getAttribute("user");
         System.out.println(user.getFullname());
     }
+//    List<Category> categories = (List<Category>) request.getSession().getAttribute("categories");
 %>
 <header class="site__header d-lg-block d-none">
     <div class="site-header">
@@ -98,7 +101,7 @@
                 <div class="nav-panel__container container">
                     <div class="nav-panel__row">
                         <div class="nav-panel__logo">
-                            <a href="index.html">
+                            <a href="/ecommerce/home">
                                 <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="120px"
@@ -130,7 +133,7 @@
                         <div class="nav-panel__nav-links nav-links">
                             <ul class="nav-links__list">
                                 <li class="nav-links__item nav-links__item--with-submenu">
-                                    <a href="index.html"><span>Trang chủ </span></a>
+                                    <a href="/ecommerce/home"><span>Trang chủ </span></a>
                                     <div class="nav-links__menu">
                                         <!-- .menu -->
 
@@ -153,12 +156,11 @@
                                     <div class="nav-links__menu">
                                         <!-- .menu -->
                                         <ul class="menu menu--layout--classic">
-<%--                                            <% List<Category> listC = (List<Category>) request.getSession().getAttribute("listC");--%>
-<%--                                                for (Category category : listC) { %>--%>
-<%--                                            <li>--%>
-<%--                                                <a href="category?id=<%= category.getId() %>"><%= category.getName() %></a>--%>
-<%--                                            </li>--%>
-<%--                                            <% } %>--%>
+                                            <c:forEach items="${categories}" var="category">
+                                                <li>
+                                                    <a href="products?cId=${category.id}">${category.name}</a>
+                                                </li>
+                                            </c:forEach>
                                         </ul>
                                         <!-- .menu / end -->
                                     </div>
@@ -168,7 +170,7 @@
                                 </li>
 
                                 <li class="nav-links__item">
-                                    <a href="contact-us.jsp"><span>Liên hệ</span></a>
+                                    <a href="/ecommerce/contact-us"><span>Liên hệ</span></a>
                                 </li>
                             </ul>
                         </div>
