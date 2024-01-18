@@ -1394,7 +1394,7 @@
                                         </div>
                                         <div class="col-lg-8">
                                           <div class="product-edt-remove">
-                                            <button type="button" class="img_delete btn btn-ctl-bt waves-effect waves-light" style="margin-top: 50px ">
+                                            <button type="button" class="img_delete btn btn-ctl-bt waves-effect waves-light">
                                               <a class="text-white delete"
                                                  href="/ecommerce/adminpage/img-slide-delete?id=<c:out value="${img.id}"/>"
                                               >

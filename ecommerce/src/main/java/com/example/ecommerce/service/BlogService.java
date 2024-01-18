@@ -1,6 +1,9 @@
 package com.example.ecommerce.service;
 
 import com.example.ecommerce.dao.BlogDao;
+import com.example.ecommerce.model.Blog;
+
+import java.util.List;
 
 public class BlogService {
     private static BlogService instance;
@@ -15,5 +18,8 @@ public class BlogService {
 
     public boolean addBlog(String title, String content, String imgUrl) {
         return BlogDao.getInstance().addBlog(title, content, imgUrl);
+    }
+    public List<Blog> getNewBlog(){
+        return BlogDao.getInstance().getNewBlog();
     }
 }

@@ -49,4 +49,15 @@ public class ProductService {
     public Product getProductById(int id) {
         return ProductDao.getInstance().getProductById(id);
     }
+    public List<Product> getNewProducts() {
+        return ProductDao.getInstance().getNewProducts();
+    }
+
+    public List<Product> getBestSellingProducts() {
+        return ProductDao.getInstance().getBestSellingProducts();
+    }
+
+    public Product getBestSellingProduct() {
+        return ProductDao.getInstance().getBestSellingProduct();
+    }
 }

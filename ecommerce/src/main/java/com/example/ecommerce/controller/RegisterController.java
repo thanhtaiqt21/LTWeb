@@ -32,7 +32,7 @@ public class RegisterController extends HttpServlet {
         boolean registerCheck = UserService.getInstance().register(username, password, confirmPassword, fullname, email, phone, makeHash);
 
         if (registerCheck) {
-            resp.sendRedirect("/ecommerce/verify.jsp");
+            resp.sendRedirect("/ecommerce/verify-email.jsp");
         } else {
             req.setAttribute("error", "Đăng kí tài khoản thất bại");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
