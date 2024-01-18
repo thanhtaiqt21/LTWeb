@@ -58,7 +58,7 @@ public class ProductService {
     public Product getProductById(int id) {
         return ProductDao.getInstance().getProductById(id);
     }
-<<<<<<< HEAD
+
     public List<Product> getNewProducts() {
         return ProductDao.getInstance().getNewProducts();
     }
@@ -69,11 +69,9 @@ public class ProductService {
 
     public Product getBestSellingProduct() {
         return ProductDao.getInstance().getBestSellingProduct();
-=======
-
+    }
     public List<Product> searchByName(String txtSearch) {
         return ProductDao.getInstance().searchByName(txtSearch);
->>>>>>> 3744d2dd8af558732b81a97f03b67ee255e17611
     }
 }
 
