@@ -79,10 +79,6 @@ public class Product {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public int getSold() {
         return sold;
     }
@@ -138,5 +134,17 @@ public class Product {
                 ", dateCreate=" + dateCreate +
                 ", categoryId=" + categoryId +
                 '}';
+    }
+
+    public void quantityUp() {this.quantity++;
+    }
+    public void quantityUp(int quantity) {setQuantity(this.quantity + quantity);
+    }
+    public void setQuantity(int quantity){
+        if (quantity < 1) {
+            quantity =1;
+        }
+        else this.quantity = quantity;
+
     }
 }
