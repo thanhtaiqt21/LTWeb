@@ -62,7 +62,7 @@ public class UserDao {
                     return false;
                 }
             } else {
-                preparedStatement = connection.prepareStatement("INSERT INTO user(username, password, fullname, email, phone, hashcode, role, status) VALUES(?,?,?,?,?,?,?,?)");
+                preparedStatement = connection.prepareStatement("INSERT INTO user(username, password, fullname, email, phone, hashcode, role, active) VALUES(?,?,?,?,?,?,?,?)");
                 preparedStatement.setString(1,username);
                 preparedStatement.setString(2,hashPassword(password));
                 preparedStatement.setString(3,fullname);

@@ -1,6 +1,13 @@
-<%@ page import="com.example.ecommerce.model.Category" %>
-<%@ page import="java.util.List" %>
+<%@ page import="com.example.ecommerce.model.User" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    User user = null;
+    if (request.getSession().getAttribute("user") != null) {
+        user = (User) request.getSession().getAttribute("user");
+        System.out.println(user.getFullname());
+    }
+%>
 <header class="site__header d-lg-block d-none">
     <div class="site-header">
         <!-- .topbar -->
@@ -13,23 +20,39 @@
                     <div class="topbar__spring"></div>
                     <div class="topbar__item">
                         <div class="topbar-dropdown">
-                            <button class="topbar-dropdown__btn" type="button">
-                                Tài Khoản
-                                <svg width="7px" height="5px">
-                                    <use
-                                            xlink:href="images/sprite.svg#arrow-rounded-down-7x5"
-                                    ></use>
-                                </svg>
-                            </button>
-                            <div class="topbar-dropdown__body">
-                                <!-- .menu -->
-                                <ul class="menu menu--layout--topbar">
-                                    <li><a href="login.jsp">Đăng Nhập</a></li>
-                                    <li><a href="register.jsp">Đăng Kí</a></li>
-                                    <li><a href="orders-history.jsp">Lịch sử đơn Hàng</a></li>
-                                </ul>
-                                <!-- .menu / end -->
-                            </div>
+                            <%if (user != null) {%>
+                                <button class="topbar-dropdown__btn" type="button">
+                                    <%=user.getFullname()%>
+                                    <svg width="7px" height="5px">
+                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
+                                    </svg>
+                                </button>
+                                <div class="topbar-dropdown__body">
+                                    <!-- .menu -->
+                                    <ul class="menu menu--layout--topbar">
+                                        <li><a href="changePass.jsp">Thay đổi mật khẩu</a></li>
+                                        <li><a href="update_profile.jsp">Thay đổi thông tin cá nhân</a></li>
+                                        <li><a href="">Đăng xuất</a></li>
+                                        <li><a href="orders-history-detail.jsp">Lịch sử đơn hàng</a></li>
+                                    </ul>
+                                    <!-- .menu / end -->
+                                </div>
+                            <%} else {%>
+                                <button class="topbar-dropdown__btn" type="button">
+                                    Tài Khoản
+                                    <svg width="7px" height="5px">
+                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
+                                    </svg>
+                                </button>
+                                <div class="topbar-dropdown__body">
+                                    <!-- .menu -->
+                                    <ul class="menu menu--layout--topbar">
+                                        <li><a href="login.jsp">Đăng Nhập</a></li>
+                                        <li><a href="register.jsp">Đăng Kí</a></li>
+                                    </ul>
+                                    <!-- .menu / end -->
+                                </div>
+                            <%}%>
                         </div>
                     </div>
 

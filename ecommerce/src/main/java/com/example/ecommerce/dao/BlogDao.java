@@ -2,8 +2,11 @@ package com.example.ecommerce.dao;
 
 import com.example.ecommerce.db.DBConnect;
 import com.example.ecommerce.model.Blog;
-import com.example.ecommerce.model.Feedback;
-import com.example.ecommerce.model.User;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,6 +41,23 @@ public class BlogDao {
         return false;
     }
 
+    public List<Blog> getNewBlog() {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        List<Blog> newBlogs = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM blog ORDER BY date_create LIMIT 5");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                newBlogs.add(new Blog(rs.getInt("id"),rs.getString("title"),
+                        rs.getString("img_url"),rs.getString("content"),
+                        rs.getTimestamp("date_create")));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return newBlogs;
+    }
 
     public List<Blog> getAllBlogs() {
         List<Blog> blogList = new ArrayList<>();
@@ -130,8 +150,5 @@ public class BlogDao {
             throw new RuntimeException(ex);
         }
     }
-
-
-
 
 }

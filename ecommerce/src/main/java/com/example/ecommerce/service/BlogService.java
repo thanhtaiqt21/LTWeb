@@ -1,6 +1,7 @@
 package com.example.ecommerce.service;
 
 import com.example.ecommerce.dao.BlogDao;
+import com.example.ecommerce.model.Blog;
 import com.example.ecommerce.dao.UserDao;
 import com.example.ecommerce.model.Blog;
 import com.example.ecommerce.model.User;
@@ -24,6 +25,9 @@ public class BlogService {
         return BlogDao.getInstance().addBlog(title, content, imgUrl);
     }
 
+    public List<Blog> getNewBlog() {
+        return BlogDao.getInstance().getNewBlog();
+    }
     public List<Blog> getAllBlogs() {
         return BlogDao.getInstance().getAllBlogs();
     }
