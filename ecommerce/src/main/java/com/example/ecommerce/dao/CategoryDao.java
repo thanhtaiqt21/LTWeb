@@ -205,16 +205,15 @@ public class CategoryDao {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                listC.add(new Category(rs.getInt(1),
-                        rs.getString(2),
-                        rs.getInt(3),
-                        rs.getTimestamp(4)
+                listC.add(new Category(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("active"),
+                        rs.getTimestamp("date_create")
                 ));
             }
         }catch (Exception e){
 
         }
-
         return listC;
     }
 

@@ -18,7 +18,7 @@ public class CategoryControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        String id = req.getParameter("id");
+        int id = Integer.parseInt(req.getParameter("id"));
 
 
         List<Product> list = ProductService.getInstance().getProductByCID(id);

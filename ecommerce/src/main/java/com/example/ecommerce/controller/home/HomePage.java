@@ -1,9 +1,11 @@
 package com.example.ecommerce.controller.home;
 
 import com.example.ecommerce.model.Blog;
+import com.example.ecommerce.model.Category;
 import com.example.ecommerce.model.ImgSlide;
 import com.example.ecommerce.model.Product;
 import com.example.ecommerce.service.BlogService;
+import com.example.ecommerce.service.CategoryService;
 import com.example.ecommerce.service.ImgSlideService;
 import com.example.ecommerce.service.ProductService;
 
@@ -24,6 +26,8 @@ public class HomePage extends HttpServlet {
         List<Product> bestSellingProducts = ProductService.getInstance().getBestSellingProducts();
         Product bestSellingProduct = ProductService.getInstance().getBestSellingProduct();
         List<Blog> newBlogs = BlogService.getInstance().getNewBlog();
+        List<Category> categories = CategoryService.getInstance().getCategories();
+        req.getSession().setAttribute("categories", categories);
         req.setAttribute("imgSlides", imgSlides);
         req.setAttribute("newProducts", newProducts);
         req.setAttribute("bestSellingProducts", bestSellingProducts);
