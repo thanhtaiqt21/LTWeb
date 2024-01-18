@@ -24,28 +24,35 @@ public class UserDao {
         return instance;
     }
 
-    public User checkLogin(String username, String password){
+    public User checkLogin(String username, String password) {
         Connection connection = DBConnect.getInstance().getConnection();
         PreparedStatement preparedStatement;
         try {
-            preparedStatement =connection.prepareStatement("SELECT * FROM user WHERE username=? AND password=? AND active = '1'");
+            preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE username=?");
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, hashPassword(password));
             ResultSet rs = preparedStatement.executeQuery();
-            User user;
             if (rs.next()) {
-                user = new User();
-                user.setId(rs.getInt("id"));
-                user.setUsername(rs.getString("username"));
-                user.setFullname(rs.getString("fullname"));
-                user.setEmail(rs.getString("email"));
-                user.setPhone(rs.getString("phone"));
-                user.setRole(rs.getString("role"));
-                return user;
+                if (rs.getInt("status") == 1) {
+                    return new User(); // Trả về một User với trạng thái đặc biệt
+                }
+                if (!hashPassword(password).equals(rs.getString("password"))) {
+                    return null; // Mật khẩu không đúng
+                }
+                if (rs.getInt("active") == 1) {
+                    User user = new User();
+                    user.setId(rs.getInt("id"));
+                    user.setUsername(rs.getString("username"));
+                    user.setFullname(rs.getString("fullname"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPhone(rs.getString("phone"));
+                    user.setRole(rs.getString("role"));
+                    // Thiết lập các trường khác của User nếu cần
+                    return user; // Trả về đối tượng User nếu đăng nhập thành công
+                }
             }
-            return null;
+            return null; // Tài khoản không tồn tại hoặc không hoạt động
         } catch (SQLException e) {
-            return null;
+            return null; // Lỗi kết nối cơ sở dữ liệu
         }
     }
 

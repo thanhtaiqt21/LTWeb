@@ -14,6 +14,8 @@ public class Logout extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         session.removeAttribute("user");
+        // Hủy phiên
+        session.invalidate();
         resp.sendRedirect("/ecommerce/home");
     }
 }
