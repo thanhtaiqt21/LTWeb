@@ -27,6 +27,6 @@ public class AddImgSlide  extends HttpServlet {
             String imgUrl = CloudinaryService.getInstance().uploadFile(filePath);
             ImgSlideService.getInstance().addImgSlide(imgUrl);
         }
-        resp.sendRedirect("/adminpage/img-slide-list");
+        resp.sendRedirect("img-slide-list");
     }
 }

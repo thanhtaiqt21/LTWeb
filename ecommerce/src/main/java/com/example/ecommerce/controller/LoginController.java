@@ -17,15 +17,30 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        User user = UserService.getInstance().checkLogin(username,password);
-        if (user != null) {
-            // Đăng nhập thành công, thêm username vào session
+        User user = UserService.getInstance().checkLogin(username, password);
+
+        if (user != null && user.getId() > 0) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
-            resp.sendRedirect("/ecommerce/");
+
+            // Kiểm tra vai trò của người dùng
+            String role = user.getRole();
+            if ("ADMIN".equals(role)) {
+                // Nếu là ADMIN, chuyển hướng tới trang quản trị
+                resp.sendRedirect("/ecommerce/adminpage/");
+            } else if ("USER".equals(role)) {
+                // Nếu là USER, chuyển hướng như bình thường
+                resp.sendRedirect("/ecommerce/");
+            } else {
+                // Xử lý cho các trường hợp vai trò khác (nếu có)
+            }
         } else {
-            req.setAttribute("error", "Đăng nhập thất bại");
-            req.getRequestDispatcher("/login.jsp").forward(req,resp);
+            String error = "Thông tin đăng nhập không chính xác";
+            if (user != null && user.getId() == 0) {
+                error = "Tài khoản của bạn đã bị khóa";
+            }
+            req.setAttribute("error", error);
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
         }
     }
 }

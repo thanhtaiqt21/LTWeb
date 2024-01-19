@@ -14,16 +14,14 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "LoadProduct", value = "")
+@WebServlet(name = "LoadProduct", value = "/products")
 public class LoadProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        List<Product> list = ProductService.getInstance().getAllProduct();
-        List<Category> listC = CategoryService.getInstance().getAllCategory();
-
+        int id = Integer.parseInt(req.getParameter("cId"));
+        List<Product> list = ProductService.getInstance().getProductByCID(id);
         req.setAttribute("listP",list);
-        req.getSession().setAttribute("listC", listC);
         req.getRequestDispatcher("list-product.jsp").forward(req, resp);
     }
 

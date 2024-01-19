@@ -35,15 +35,15 @@ public class ProductService {
         return ProductDao.getInstance().getAllProduct();
     }
 
-    public List<Product> getProductByCID(String id) {
+    public List<Product> getProductByCID(int id) {
         return ProductDao.getInstance().getProductByCID(id);
     }
 
     public Product getProductByID(int id) {
-        return ProductDao.getInstance().getProductByID(String.valueOf(id));
+        return ProductDao.getInstance().getProductByID(id);
     }
 
-    public List<Product> getRelatedProducts(String categoryId) {
+    public List<Product> getRelatedProducts(int categoryId) {
         return ProductDao.getInstance().getRelatedProducts(categoryId);
     }
 
@@ -59,6 +59,17 @@ public class ProductService {
         return ProductDao.getInstance().getProductById(id);
     }
 
+    public List<Product> getNewProducts() {
+        return ProductDao.getInstance().getNewProducts();
+    }
+
+    public List<Product> getBestSellingProducts() {
+        return ProductDao.getInstance().getBestSellingProducts();
+    }
+
+    public Product getBestSellingProduct() {
+        return ProductDao.getInstance().getBestSellingProduct();
+    }
     public List<Product> searchByName(String txtSearch) {
         return ProductDao.getInstance().searchByName(txtSearch);
     }

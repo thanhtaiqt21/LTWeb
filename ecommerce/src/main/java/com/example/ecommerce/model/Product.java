@@ -147,4 +147,8 @@ public class Product {
         else this.quantity = quantity;
 
     }
+
+    public String getFirstImgUrl() {
+        return imgUrl != null && !imgUrl.isEmpty() ? imgUrl.get(0) : null;
+    }
 }

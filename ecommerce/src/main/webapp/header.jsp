@@ -1,6 +1,14 @@
-<%@ page import="com.example.ecommerce.model.Category" %>
-<%@ page import="java.util.List" %>
+<%@ page import="com.example.ecommerce.model.User" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
+    User user = null;
+    if (request.getSession().getAttribute("user") != null) {
+        user = (User) request.getSession().getAttribute("user");
+        System.out.println(user.getFullname());
+    }
+%>
 <header class="site__header d-lg-block d-none">
     <div class="site-header">
         <!-- .topbar -->
@@ -13,23 +21,39 @@
                     <div class="topbar__spring"></div>
                     <div class="topbar__item">
                         <div class="topbar-dropdown">
-                            <button class="topbar-dropdown__btn" type="button">
-                                Tài Khoản
-                                <svg width="7px" height="5px">
-                                    <use
-                                            xlink:href="images/sprite.svg#arrow-rounded-down-7x5"
-                                    ></use>
-                                </svg>
-                            </button>
-                            <div class="topbar-dropdown__body">
-                                <!-- .menu -->
-                                <ul class="menu menu--layout--topbar">
-                                    <li><a href="login.jsp">Đăng Nhập</a></li>
-                                    <li><a href="register.jsp">Đăng Kí</a></li>
-                                    <li><a href="orders-history.jsp">Lịch sử đơn Hàng</a></li>
-                                </ul>
-                                <!-- .menu / end -->
-                            </div>
+                            <%if (user != null) {%>
+                                <button class="topbar-dropdown__btn" type="button">
+                                    <%=user.getFullname()%>
+                                    <svg width="7px" height="5px">
+                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
+                                    </svg>
+                                </button>
+                                <div class="topbar-dropdown__body">
+                                    <!-- .menu -->
+                                    <ul class="menu menu--layout--topbar">
+                                        <li><a href="changePass.jsp">Thay đổi mật khẩu</a></li>
+                                        <li><a href="update_profile.jsp">Thay đổi thông tin cá nhân</a></li>
+                                        <li><a href="orders-history.jsp">Lịch sử đơn hàng</a></li>
+                                        <li><a href="/ecommerce/logout">Đăng xuất</a></li>
+                                    </ul>
+                                    <!-- .menu / end -->
+                                </div>
+                            <%} else {%>
+                                <button class="topbar-dropdown__btn" type="button">
+                                    Tài Khoản
+                                    <svg width="7px" height="5px">
+                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
+                                    </svg>
+                                </button>
+                                <div class="topbar-dropdown__body">
+                                    <!-- .menu -->
+                                    <ul class="menu menu--layout--topbar">
+                                        <li><a href="login.jsp">Đăng Nhập</a></li>
+                                        <li><a href="register.jsp">Đăng Kí</a></li>
+                                    </ul>
+                                    <!-- .menu / end -->
+                                </div>
+                            <%}%>
                         </div>
                     </div>
 
@@ -75,7 +99,7 @@
                 <div class="nav-panel__container container">
                     <div class="nav-panel__row">
                         <div class="nav-panel__logo">
-                            <a href="index.html">
+                            <a href="/ecommerce/home">
                                 <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="120px"
@@ -107,7 +131,7 @@
                         <div class="nav-panel__nav-links nav-links">
                             <ul class="nav-links__list">
                                 <li class="nav-links__item nav-links__item--with-submenu">
-                                    <a href="index.html"><span>Trang chủ </span></a>
+                                    <a href="/ecommerce/home"><span>Trang chủ </span></a>
                                     <div class="nav-links__menu">
                                         <!-- .menu -->
 
@@ -130,12 +154,11 @@
                                     <div class="nav-links__menu">
                                         <!-- .menu -->
                                         <ul class="menu menu--layout--classic">
-<%--                                            <% List<Category> listC = (List<Category>) request.getSession().getAttribute("listC");--%>
-<%--                                                for (Category category : listC) { %>--%>
-<%--                                            <li>--%>
-<%--                                                <a href="category?id=<%= category.getId() %>"><%= category.getName() %></a>--%>
-<%--                                            </li>--%>
-<%--                                            <% } %>--%>
+                                            <c:forEach items="${categories}" var="category">
+                                                <li>
+                                                    <a href="products?cId=${category.id}">${category.name}</a>
+                                                </li>
+                                            </c:forEach>
                                         </ul>
                                         <!-- .menu / end -->
                                     </div>
@@ -145,7 +168,7 @@
                                 </li>
 
                                 <li class="nav-links__item">
-                                    <a href="contact-us.jsp"><span>Liên hệ</span></a>
+                                    <a href="/ecommerce/contact-us"><span>Liên hệ</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -200,160 +223,98 @@
                                 <a href="wishlist.jsp" class="indicator__button"
                                 ><span class="indicator__area"
                                 ><svg width="20px" height="20px">
-                            <use xlink:href="images/sprite.svg#heart-20"></use>
-                          </svg>
-                          <span class="indicator__value">0</span></span
-                                ></a
-                                >
+                                    <use xlink:href="images/sprite.svg#heart-20"></use>
+                                </svg><span class="indicator__value">0</span></span></a>
                             </div>
-                            <div class="indicator indicator--trigger--click">
-                                <a href="cart.jsp" class="indicator__button"
-                                ><span class="indicator__area"
-                                ><svg width="20px" height="20px">
-                            <use xlink:href="images/sprite.svg#cart-20"></use>
-                          </svg>
-                          <span class="indicator__value">3</span></span
-                                ></a
-                                >
-                                <div class="indicator__dropdown">
-                                    <!-- .dropcart -->
-                                    <div class="dropcart">
-                                        <div class="dropcart__products-list">
-                                            <div class="dropcart__product">
-                                                <div class="dropcart__product-image">
-                                                    <a href="product.jsp"
-                                                    ><img
-                                                            src="https://cdn.hoasenhome.vn/catalog/product/i/n/indal1001000016-1.jpg"
-                                                            alt=""
-                                                    /></a>
-                                                </div>
-                                                <div class="dropcart__product-info">
-                                                    <div class="dropcart__product-name">
-                                                        <a href="product.jsp"
-                                                        >Gạch granite LUSTRA INDAL1001000016: 1000mmx1000mm</a
-                                                        >
-                                                    </div>
-                                                    <div class="dropcart__product-meta">
-                                  <span class="dropcart__product-quantity"
-                                  >2</span
-                                  >
-                                                        x
-                                                        <span class="dropcart__product-price"
-                                                        >510.840 ₫</span
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <button
-                                                        type="button"
-                                                        class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon"
-                                                >
-                                                    <svg width="10px" height="10px">
-                                                        <use
-                                                                xlink:href="images/sprite.svg#cross-10"
-                                                        ></use>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="dropcart__product">
-                                                <div class="dropcart__product-image">
-                                                    <a href="product.jsp"
-                                                    ><img
-                                                            src="https://cdn.hoasenhome.vn/catalog/product/t/h/thep-cay-viet-my-grade-40.jpg"
-                                                            alt=""
-                                                    /></a>
-                                                </div>
-                                                <div class="dropcart__product-info">
-                                                    <div class="dropcart__product-name">
-                                                        <a href="product.jsp"
-                                                        >Thép cây VAS Grade 40</a
-                                                        >
-                                                    </div>
-                                                    <div class="dropcart__product-meta">
-                                  <span class="dropcart__product-quantity"
-                                  >1</span
-                                  >
-                                                        x
-                                                        <span class="dropcart__product-price"
-                                                        >98.003 ₫</span
-                                                        >
+                            <c:choose>
+                                <c:when test="${(not empty cart) && (cart.getItems().size() > 0)}">
+                                    <div class="indicator indicator--trigger--click">
+                                        <a href="cart.jsp" class="indicator__button">
+                                            <span class="indicator__area">
+                                                <svg width="20px" height="20px">
+                                                    <use xlink:href="images/sprite.svg#cart-20"></use>
+                                                </svg>
+                                                <span class="indicator__value">${cart.getItems().size()}</span>
+                                            </span>
+                                        </a>
+                                        <div class="indicator__dropdown">
+                                            <!-- .dropcart -->
+                                            <c:forEach items="${cart.getItems()}" var="item">
+                                                <div class="dropcart">
+                                                    <div class="dropcart__products-list">
+                                                        <div class="dropcart__product">
+                                                            <div class="dropcart__product-image">
+                                                                <a href="product.jsp">
+                                                                    <img src="${item.product.imgUrl.get(0)}" alt=""/>
+                                                                </a>
+                                                        </div>
+                                                        <div class="dropcart__product-info">
+                                                            <div class="dropcart__product-name">
+                                                                <a href="product.jsp">${item.product.title}</a>
+                                                            </div>
+                                                            <div class="dropcart__product-meta">
+                                                                <span class="dropcart__product-quantity">${item.quantity}</span>
+                                                                <span class="dropcart__product-price">
+                                                                    <fmt:setLocale value="vi_VN"/>
+                                                                    <fmt:formatNumber value="${item.price()}" type="currency"/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <button
-                                                        type="button"
-                                                        class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon"
-                                                >
-                                                    <svg width="10px" height="10px">
-                                                        <use
-                                                                xlink:href="images/sprite.svg#cross-10"
-                                                        ></use>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="dropcart__product">
-                                                <div class="dropcart__product-image">
-                                                    <a href="product.jsp"
-                                                    ><img
-                                                            src="https://cdn.hoasenhome.vn/catalog/product/n/g/ngoi-trang-men-casa-pro-n_u-cafe.jpg"
-                                                            alt=""
-                                                    /></a>
-                                                </div>
-                                                <div class="dropcart__product-info">
-                                                    <div class="dropcart__product-name">
-                                                        <a href="product.jsp"
-                                                        >Ngói tráng men CASA PRO nâu cafe 009</a
-                                                        >
-                                                    </div>
-                                                    <div class="dropcart__product-meta">
-                                  <span class="dropcart__product-quantity"
-                                  >100</span
-                                  >
-                                                        x
-                                                        <span class="dropcart__product-price"
-                                                        >24.840 ₫</span
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <button
-                                                        type="button"
-                                                        class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon"
-                                                >
-                                                    <svg width="10px" height="10px">
-                                                        <use
-                                                                xlink:href="images/sprite.svg#cross-10"
-                                                        ></use>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="dropcart__totals">
-                                            <table>
-                                                <tr>
-                                                    <th>Tạm tính</th>
-                                                    <td>3.603.683 đ</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Phí vận chuyển</th>
-                                                    <td>250.000đ</td>
-                                                </tr>
+                                            </c:forEach>
+                                                <div class="dropcart__totals">
+                                                    <table>
+                                                        <tr>
+                                                            <th>Tạm tính</th>
+                                                            <td>
+                                                                <fmt:setLocale value="vi_VN"/>
+                                                                <fmt:formatNumber value="${cart.total()}" type="currency"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Phí vận chuyển</th>
+                                                            <td>
+                                                                <fmt:setLocale value="vi_VN"/>
+                                                                <fmt:formatNumber value="${cart.total()*0.02}" type="currency"/>
+                                                            </td>
+                                                        </tr>
 
-                                                <tr>
-                                                    <th>Tổng</th>
-                                                    <td>3.853.683 đ</td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="dropcart__buttons">
-                                            <a class="btn btn-secondary" href="cart.jsp"
-                                            >Giỏ hàng</a
-                                            >
-                                            <a class="btn btn-primary" href="checkout.jsp"
-                                            >Thanh toán</a
-                                            >
+                                                        <tr>
+                                                            <th>Tổng</th>
+                                                            <td>
+                                                                <fmt:setLocale value="vi_VN"/>
+                                                                <fmt:formatNumber value="${cart.total() - cart.total()*0.02}" type="currency"/>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="dropcart__buttons">
+                                                    <a class="btn btn-secondary" href="cart.jsp"
+                                                    >Giỏ hàng</a
+                                                    >
+                                                    <a class="btn btn-primary" href="checkout.jsp"
+                                                    >Thanh toán</a
+                                                    >
+                                                </div>
+                                            </div>
+                                            <!-- .dropcart / end -->
                                         </div>
                                     </div>
-                                    <!-- .dropcart / end -->
-                                </div>
-                            </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="indicator indicator--trigger--click">
+                                        <a href="cart.jsp" class="indicator__button">
+                                            <span class="indicator__area">
+                                                <svg width="20px" height="20px">
+                                                    <use xlink:href="images/sprite.svg#cart-20"></use>
+                                                </svg>
+                                                <span class="indicator__value">0</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,9 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/about-us.html" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/about-us.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/blog-add.jsp" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/blog-edit.jsp" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/blog-list.html" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/blog-list1.jsp" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/category-add.jsp" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/category-list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/adminpage/product-add.html" value="file://$PROJECT_DIR$/src/main/webapp/adminpage" />
