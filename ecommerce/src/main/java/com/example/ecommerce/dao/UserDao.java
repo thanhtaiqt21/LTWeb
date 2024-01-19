@@ -5,12 +5,15 @@ import com.example.ecommerce.model.User;
 import com.example.ecommerce.model.Address;
 import com.example.ecommerce.sendmail.SendMail;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class UserDao {
     private static UserDao instance;
@@ -23,6 +26,7 @@ public class UserDao {
         }
         return instance;
     }
+
 
     public User checkLogin(String username, String password){
         Connection connection = DBConnect.getInstance().getConnection();
@@ -74,8 +78,9 @@ public class UserDao {
                 int i = preparedStatement.executeUpdate();
 
                 if (i > 0) {
-                    SendMail se = new SendMail(email, hashcode);
-                    se.sendMail();
+                    SendMail se = new SendMail();
+                    String content = "Click here :: " + "http://localhost:8080/ecommerce/AccountActive?key1=" + email + "&key2=" + hashcode;
+                    se.sendMail(email, content);
                     return true;
                 }
             }
@@ -109,18 +114,18 @@ public class UserDao {
 
     public boolean changePassword(String username, String currentPassword, String newPassword) {
         Connection connection = DBConnect.getInstance().getConnection();
-        PreparedStatement preparedStatement;
+        PreparedStatement ps;
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE username=? AND password=? AND active = '1'");
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, hashPassword(currentPassword));
-            ResultSet rs = preparedStatement.executeQuery();
+            ps = connection.prepareStatement("SELECT * FROM user WHERE username=? AND password=? AND active = '1'");
+            ps.setString(1, username);
+            ps.setString(2, hashPassword(currentPassword));
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                preparedStatement = connection.prepareStatement("UPDATE user SET password=? WHERE username=?");
-                preparedStatement.setString(1, hashPassword(newPassword));
-                preparedStatement.setString(2, username);
-                int i = preparedStatement.executeUpdate();
+                ps = connection.prepareStatement("UPDATE user SET password=? WHERE username=?");
+                ps.setString(1, hashPassword(newPassword));
+                ps.setString(2, username);
+                int i = ps.executeUpdate();
 
                 if (i > 0) {
                     return true;
@@ -165,7 +170,6 @@ public class UserDao {
         try {
             // Bắt đầu một giao dịch để đảm bảo tính nhất quán khi xóa từ nhiều bảng
             connection.setAutoCommit(false);
-
 
             // Xóa thông tin liên quan từ bảng Address
             String deleteAddressQuery = "DELETE FROM address WHERE id_user=?";
@@ -214,6 +218,7 @@ public class UserDao {
             return null;
         }
     }
+
     public boolean updateInfor(String fullname, String email, String phone, int id) {
         Connection connection = DBConnect.getInstance().getConnection();
         try {
@@ -223,10 +228,32 @@ public class UserDao {
             p.setString(2, email);
             p.setString(3, phone);
             p.setInt(4, id);
+
             int i = p.executeUpdate();
-            if(i > 0) return true;
+            if (i > 0) {
+                // Tạo đường dẫn cập nhật thông tin
+                String encodedFullname = URLEncoder.encode(fullname, "UTF-8");
+                String encodedEmail = URLEncoder.encode(email, "UTF-8");
+                String encodedPhone = URLEncoder.encode(phone, "UTF-8");
+
+                String updateUrl = "http://localhost:8080/ecommerce/update_profile.jsp?fullname=" + encodedFullname + "&email=" + encodedEmail + "&phone=" + encodedPhone;
+
+                // Gửi email xác nhận tới email mới
+                int hashcode = hashCode(); // Hàm tạo mã hashcode tùy ý
+
+                // Tạo nội dung email
+                String content = "Nhấn vào đây để cập nhật thông tin: " + updateUrl;
+
+                // Gửi email
+                SendMail se = new SendMail();
+                se.sendMail(email, content);
+
+                return true;
+            }
         } catch (SQLException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -326,5 +353,49 @@ public class UserDao {
 
         return false;
     }
+    public String generateNewPassword() {
+        // Generate a new random password
+        String allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        int passwordLength = 8;
+        Random random = new Random();
+        StringBuilder newPassword = new StringBuilder();
+
+        for (int i = 0; i < passwordLength; i++) {
+            int randomIndex = random.nextInt(allowedChars.length());
+            char randomChar = allowedChars.charAt(randomIndex);
+            newPassword.append(randomChar);
+        }
+
+        return newPassword.toString();
+    }
+    public static void main(String[] args) {
+        UserDao dao = new UserDao();
+        System.out.println(dao.generateNewPassword());
+
+    }
+
+    public boolean resetPassword(String email, String newPassword) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE user SET password = ? WHERE email = ?");
+            preparedStatement.setString(1, hashPassword(newPassword));
+            preparedStatement.setString(2, email);
+            int rowsUpdated = preparedStatement.executeUpdate();
+
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean sendPasswordResetEmail(String email) {
+        String content = "Your new password is: " + UserDao.getInstance().generateNewPassword();
+
+        SendMail se = new SendMail();
+        se.sendMail(email, content);
+        return true;
+    }
+
 
 }

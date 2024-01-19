@@ -41,7 +41,7 @@ public class UserService {
         return UserDao.getInstance().deleteUser(userId);
     }
 
-    public boolean updateInfor(String fullname, String email, String phone, int id) {
+    public boolean updateInfor(String fullname, String email, String phone, int id, int hashcode) {
         return UserDao.getInstance().updateInfor(fullname, email, phone, id);
     }
     public User getUserById(int userId) {
@@ -51,4 +51,15 @@ public class UserService {
     public boolean updateUserStatusAndRole(int userId, int status, String role) {
         return UserDao.getInstance().updateUserStatusAndRole(userId, status, role);
     }
+    public String generateNewPassword() {
+        return UserDao.getInstance().generateNewPassword();
+    }
+    public boolean resetPassword(String email, String newPassword) {
+        return UserDao.getInstance().resetPassword(email, newPassword);
+    }
+
+    public boolean sendPasswordResetEmail(String email) {
+        return UserDao.getInstance().sendPasswordResetEmail(email);
+    }
+
 }

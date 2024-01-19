@@ -10,62 +10,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2d8a4a1-e238-423d-a136-2260cbc47756" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/blog/AddBlog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/img/DeleteImg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/img_slide/AddImgSlide.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/img_slide/DeleteImgSlide.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/img_slide/ImgSlideList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/product/UpdateProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/BlogDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/ImgSlideDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/Blog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/ImgSlide.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/BlogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/ImgSlideService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/img-slide-list.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/product-edit.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/footer.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/product/LoadProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/product/LoadProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/CategoryDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/ImgDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/ImgDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/ProductDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/db/DBConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/db/DBConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/ImgService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/ImgService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/uploadImg/UploadImg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/uploadImg/UploadImg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/blog-add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/blog-add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/product-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/img-slide-add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/product-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/product-list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/ChangInfor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/ChangInfor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/sendmail/SendMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/sendmail/SendMail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/forgotPass.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/forgotPass.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/update_profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/update_profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/controller/ChangInfor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/controller/ChangInfor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/dao/UserDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/sendmail/SendMail$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/sendmail/SendMail$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/sendmail/SendMail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/sendmail/SendMail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/service/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/controller/ChangInfor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/controller/ChangInfor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/dao/UserDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/sendmail/SendMail$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/sendmail/SendMail$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/area-charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/area-charts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/bar-charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/bar-charts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/buttons.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/buttons.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/data-maps.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/data-maps.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/data-table.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/data-table.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/line-charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/line-charts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/notifications.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/order-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/order-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/peity.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/peity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/product-edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/static-table.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/static-table.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/tabs.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/tabs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/tree-view.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/adminpage/tree-view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/sendmail/SendMail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/sendmail/SendMail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/update_profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/update_profile.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Jsp File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -87,33 +69,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Tomcat Server.Tomcat 9.0.84.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging nguyenminh",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Web/LTWeb/ecommerce",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.UserDao.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.84.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;nguyenminh&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Web/LTWeb/ecommerce&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\Documents\LTWeb\template" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.84">
+    <configuration name="UserDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.ecommerce.dao.UserDao" />
+      <module name="ecommerce" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.ecommerce.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 9.0.84" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.84" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -202,6 +198,11 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.UserDao" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -250,6 +251,9 @@
       <workItem from="1700982460423" duration="24000" />
       <workItem from="1700982553841" duration="49000" />
       <workItem from="1705130689286" duration="152000" />
+      <workItem from="1705592989519" duration="13749000" />
+      <workItem from="1705627833410" duration="7423000" />
+      <workItem from="1705684130315" duration="153000" />
     </task>
     <servers />
   </component>

@@ -804,88 +804,87 @@
         <%
             Object obj = session.getAttribute("user");
             User user = null;
-            if (obj!=null)
+            if (obj != null)
                 user = (User) obj;
-            if(user==null){
+            if (user == null) {
         %>
         <h1>Bạn chưa đăng nhập vào hệ thống. Vui lòng quay lại trang chủ!</h1>
         <%
-        }else {
-
+        } else {
+            String successParam = request.getAttribute("success") + "";
+            if (successParam.equals("true")) {
+                // Hiển thị thông báo thành công
+        %>
+        <script>alert('Cập nhật thông tin thành công');</script>
+        <%
+            // Cập nhật thông tin người dùng trên giao diện
+            String fullname = user.getFullname();
+            String email = user.getEmail();
+            String phone = user.getPhone();
+        %>
+        <script>
+            document.querySelector('input[name="fullname"]').value = '<%=fullname%>';
+            document.querySelector('input[name="email"]').value = '<%=email%>';
+            document.querySelector('input[name="phone"]').value = '<%=phone%>';
+        </script>
+        <%
+            }
         %>
         <div class="container">
-            <%
-                String baoLoi = request.getAttribute("error")+"";
-                baoLoi = (baoLoi.equals("null"))?"":baoLoi;
+            <% String baoLoi = request.getAttribute("error") + "";
+                baoLoi = (baoLoi.equals("null")) ? "" : baoLoi;
 
                 String fullname = user.getFullname();
 
                 String email = user.getEmail();
 
                 String phone = user.getPhone();
-
             %>
 
-        <div class="block">
-            <div class="container">
-                <div class="row" style="justify-content: center; align-items: center;">
-                    <div class="col-md-6 d-flex mt-4 mt-md-0">
-                        <div class="card flex-grow-1 mb-0">
-                            <div class="card-body">
-                                <h3 class="card-title">Cập Nhật Thông Tin Cá Nhân</h3>
-                                <div class="red" id="error">
-                                    <%
-                                        if (error != null){
-                                    %>
-                                    <div class="alert alert-danger" role="alert">
-                                        <%= error %>
+            <div class="block">
+                <div class="container">
+                    <div class="row" style="justify-content: center; align-items: center;">
+                        <div class="col-md-6 d-flex mt-4 mt-md-0">
+                            <div class="card flex-grow-1 mb-0">
+                                <div class="card-body">
+                                    <h3 class="card-title">Cập Nhật Thông Tin Cá Nhân</h3>
+                                    <div class="red" id="error">
+                                        <% if (error != null) { %>
+                                        <div class="alert alert-danger" role="alert">
+                                            <%= error %>
+                                        </div>
+                                        <% } %>
                                     </div>
-                                    <%
-                                        }
-                                    %>
+                                    <form id="form_update" action="updateInfor" method="post">
+                                        <div class="form-group">
+                                            <label>Họ và Tên</label>
+                                            <input type="text" class="form-control" placeholder="Nhập Họ và Tên"
+                                                   name="fullname" value="<%=fullname%>"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="email" class="form-control" placeholder="Nhập Email"
+                                                   name="email" value="<%=email%>"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Số Điện Thoại</label>
+                                            <input type="text" class="form-control"
+                                                   placeholder="Nhập Số Điện Thoại" name="phone" value="<%=phone%>"/>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mt-4" name="submit"
+                                                id="submit">Cập Nhật
+                                        </button>
+                                    </form>
                                 </div>
-                                <form id="form_update" action="updateInfor" method="post">
-                                    <div class="form-group">
-                                        <label>Họ và Tên</label>
-                                        <input
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="Nhập Họ và Tên"
-                                                name="fullname"
-                                                value="<%=fullname%>"/>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input
-                                                type="email"
-                                                class="form-control"
-                                                placeholder="Nhập Email"
-                                                name="email"
-                                                value="<%=email%>"/>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Số Điện Thoại</label>
-                                        <input
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="Nhập Số Điện Thoại"
-                                                name="phone"
-                                                value="<%=phone%>"/>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mt-4" name="submit" id="submit">
-                                        Cập Nhật
-                                    </button>
-                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            <%} %>
-        </div>
+        <%
+            }
+        %>
 
     </div>
     <!-- site__body / end -->
