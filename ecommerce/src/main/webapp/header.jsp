@@ -33,7 +33,7 @@
                                     <ul class="menu menu--layout--topbar">
                                         <li><a href="changePass.jsp">Thay đổi mật khẩu</a></li>
                                         <li><a href="update_profile.jsp">Thay đổi thông tin cá nhân</a></li>
-                                        <li><a href="orders-history-detail.jsp">Lịch sử đơn hàng</a></li>
+                                        <li><a href="orders-history.jsp">Lịch sử đơn hàng</a></li>
                                         <li><a href="/ecommerce/logout">Đăng xuất</a></li>
                                     </ul>
                                     <!-- .menu / end -->
