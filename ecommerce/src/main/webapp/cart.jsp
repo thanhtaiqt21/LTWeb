@@ -1,12 +1,7 @@
-<%@ page import="com.example.ecommerce.model.Category" %>
-<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.example.ecommerce.model.Cart" %>
-<%@ page import="com.example.ecommerce.model.Item" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%
-  String error = (String) request.getAttribute("error");
-%>
-<% Cart cart = (Cart) session.getAttribute("cart"); %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -32,12 +27,18 @@
     <link rel="stylesheet" href="css/style.css" />
     <!-- js -->
     <script src="vendor/jquery-3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script src="vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/owl-carousel-2.3.4/owl.carousel.min.js"></script>
     <script src="vendor/nouislider-12.1.0/nouislider.min.js"></script>
     <script src="js/number.js"></script>
     <script src="js/main.js"></script>
     <script src="vendor/svg4everybody-2.1.9/svg4everybody.min.js"></script>
+    <script
+            src="https://kit.fontawesome.com/2fdd50f686.js"
+            crossorigin="anonymous"
+    ></script>
     <script>
       svg4everybody();
     </script>
@@ -351,70 +352,76 @@
                   <th
                     class="cart-table__column cart-table__column--remove"
                   ></th>
+                  <th class="cart-table__column cart-table__column--remove"
+                  ></th>
                 </tr>
               </thead>
               <tbody class="cart-table__body">
-<%--                <c:forEach items="${cart}" var="item">--%>
-                    <% for (Item item : cart.getItems()) {%>
-                  <tr class="cart-table__row">
-                  <td class="cart-table__column cart-table__column--image">
-                    <a href="#"
-                      ><img src="<%= item.getProduct().getImgUrl().get(0) %>" alt=""
-                    /></a>
-                  </td>
-                  <td class="cart-table__column cart-table__column--product">
-                    <a href="#" class="cart-table__product-name"
-                      ><%= item.getProduct().getTitle() %></a
-                    >
-                    <ul class="cart-table__options">
-                      <li>Color: Yellow</li>
-                      <li>Material: Aluminium</li>
-                    </ul>
-                  </td>
-                  <td
-                    class="cart-table__column cart-table__column--price"
-                    data-title="Price"
-                  >
-                    <%= item.getProduct().getPrice() %>
-                  </td>
-                  <td
-                    class="cart-table__column cart-table__column--quantity"
-                    data-title="Quantity"
-                  >
-                    <div class="input-number">
-                      <input
-                        class="form-control input-number__input"
-                        type="number"
-                        min="1"
-                        value="<%=item.getQuantity()%>"
-                      />
-                      <div class="input-number__add"></div>
-                      <div class="input-number__sub"></div>
-                    </div>
-                  </td>
-                    <td class="cart-table__column cart-table__column--total" data-title="Total">
-                      <span id=""><%=(item.getQuantity() * item.getProduct().getPrice())%></span>
-                    </td>
-                  <td class="cart-table__column cart-table__column--remove">
-                    <button
-                      type="button"
-                      class="btn btn-light btn-sm btn-svg-icon"
-                    >
-                      <svg width="12px" height="12px">
-                        <use xlink:href="images/sprite.svg#cross-12"></use>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-                    <%}%>
-<%--                </c:forEach>--%>
+                <c:forEach items="${cart.getItems()}" var="cartItem">
+                  <form action="/ecommerce/cart-update" method="post">
+                    <tr class="cart-table__row">
+                      <input type="hidden" name="id" value="${cartItem.id}">
+                      <td class="cart-table__column cart-table__column--image">
+                        <a href="#"><img src="${cartItem.product.imgUrl.get(0)}" alt=""/></a>
+                      </td>
+                      <td class="cart-table__column cart-table__column--product">
+                        <a href="#" class="cart-table__product-name">${cartItem.product.title}</a>
+                        <ul class="cart-table__options">
+<%--                      <li>Color: Yellow</li>--%>
+<%--                      <li>Material: Aluminium</li>--%>
+                        </ul>
+                      </td>
+                      <td class="cart-table__column cart-table__column--price" data-title="Price">
+                        <fmt:setLocale value="vi_VN"/>
+                        <fmt:formatNumber value="${cartItem.product.price - cartItem.product.price*cartItem.product.discount}" type="currency"/>
+                      </td>
+                      <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
+                        <div class="input-number">
+                          <input
+                            class="form-control input-number__input"
+                            type="number"
+                            min="1"
+                            value="${cartItem.quantity}"
+                            max="${cartItem.product.quantity}"
+                            name="quantity"
+                          />
+                          <div class="input-number__add"></div>
+                          <div class="input-number__sub"></div>
+                        </div>
+                      </td>
+                      <td class="cart-table__column cart-table__column--total" data-title="Total">
+                        <span id="">
+                          <fmt:setLocale value="vi_VN"/>
+                          <fmt:formatNumber value="${cartItem.price()}" type="currency"/>
+                        </span>
+                      </td>
+                      <td class="cart-table__column cart-table__column--remove">
+                        <button
+                                type="submit"
+                                class="btn btn-light btn-sm btn-svg-icon">
+                          <svg width="12px" height="12px">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                          </svg>
+                        </button>
+                      </td>
+                      <td class="cart-table__column cart-table__column--remove">
+                        <button type="button" class="btn btn-light btn-sm btn-svg-icon">
+                          <a href="/ecommerce/cart-remove?id=${cartItem.id}" class="remove">
+                            <svg width="12px" height="12px">
+                              <use xlink:href="images/sprite.svg#cross-12"></use>
+                            </svg>
+                          </a>
+                        </button>
+                      </td>
+                    </tr>
+                  </form>
+                </c:forEach>
               </tbody>
             </table>
             <div class="cart__actions">
               <div class="cart__buttons">
-                <a href="index.jsp" class="btn btn-light">Tiếp tục mua hàng</a>
-                <a href="#" class="btn btn-primary cart__update-button"
-                  >Cập nhật giỏ hàng</a
+                <a href="/ecommerce/home" class="btn btn-primary cart__update-button"
+                  >Tiếp tục mua hàng</a
                 >
               </div>
             </div>
@@ -427,24 +434,28 @@
                       <thead class="cart__totals-header">
                         <tr>
                           <th>Tạm tính</th>
-                          <td>$5,877.00</td>
+                          <td>
+                            <fmt:setLocale value="vi_VN"/>
+                            <fmt:formatNumber value="${cart.total()}" type="currency"/>
+                          </td>
                         </tr>
                       </thead>
                       <tbody class="cart__totals-body">
                         <tr>
                           <th>Phí vận chuyển</th>
                           <td>
-                            $25.00
-                            <!-- <div class="cart__calc-shipping">
-                              <a href="#">Calculate Shipping</a>
-                            </div> -->
+                            <fmt:setLocale value="vi_VN"/>
+                            <fmt:formatNumber value="${cart.total()*0.02}" type="currency"/>
                           </td>
                         </tr>
                       </tbody>
                       <tfoot class="cart__totals-footer">
                         <tr>
                           <th>Tổng</th>
-                          <td>$5,902.00</td>
+                          <td>
+                            <fmt:setLocale value="vi_VN"/>
+                            <fmt:formatNumber value="${cart.total() - cart.total()*0.02}" type="currency"/>
+                          </td>
                         </tr>
                       </tfoot>
                     </table>
@@ -492,6 +503,23 @@
       });
     });
   </script>
-
+  <script>
+    $('a.remove').confirm({
+      title: 'Xóa?',
+      content: 'Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?',
+      buttons:{
+        delete:{
+          text:'Có',
+          btnClass: 'btn-blue',
+          action: function() {
+            location.href = this.$target.attr("href");
+          }},
+        close: {
+          text:'Không',
+          action: function() {
+          }}
+      }
+    })
+  </script>
   </body>
 </html>

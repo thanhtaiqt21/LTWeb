@@ -626,12 +626,13 @@
                           </c:otherwise>
                         </c:choose>
                         <div class="product-card__buttons">
-                          <button
-                            class="btn btn-primary product-card__addtocart"
-                            type="button"
-                          >
-                            Thêm giỏ hàng
-                          </button>
+                          <form action="addToCart" method="post">
+                            <input type="hidden" name="productId" value="${product.id}"/>
+                            <input type="hidden" name="quantity" value="1"/>
+                            <button class="btn btn-primary product-card__addtocart" type="submit">
+                              Thêm giỏ hàng
+                            </button>
+                          </form>
                           <button
                             class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
                             type="button"
@@ -872,12 +873,13 @@
                         </c:otherwise>
                       </c:choose>
                       <div class="product-card__buttons">
-                        <button
-                          class="btn btn-primary product-card__addtocart"
-                          type="button"
-                        >
-                          Thêm giỏ hàng
-                        </button>
+                        <form action="addToCart" method="post">
+                          <input type="hidden" name="productId" value="${product.id}"/>
+                          <input type="hidden" name="quantity" value="1"/>
+                          <button class="btn btn-primary product-card__addtocart" type="submit">
+                            Thêm giỏ hàng
+                          </button>
+                        </form>
                         <button
                           class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
                           type="button"
@@ -1076,12 +1078,13 @@
                         </c:otherwise>
                       </c:choose>
                       <div class="product-card__buttons">
-                        <button
-                          class="btn btn-primary product-card__addtocart"
-                          type="button"
-                        >
-                          Thêm giỏ hàng
-                        </button>
+                        <form action="addToCart" method="post">
+                          <input type="hidden" name="productId" value="${bestSellingProduct.id}"/>
+                          <input type="hidden" name="quantity" value="1"/>
+                          <button class="btn btn-primary product-card__addtocart" type="submit">
+                            Thêm giỏ hàng
+                          </button>
+                        </form>
                         <button
                           class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
                           type="button"

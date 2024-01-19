@@ -339,13 +339,11 @@
                   </div>
                   <div class="product__prices">
                     <fmt:setLocale value="vi_VN"/>
-                    <fmt:formatNumber value="${detail.price}" type="currency"/>
+                    <fmt:formatNumber value="${detail.price - detail.price*detail.discount}" type="currency"/>
                   </div>
 
                     <div class="form-group product__option">
                       <form action="/ecommerce/addToCart" method="post">
-                        <input type="hidden" name="productId" value="${detail.id}"/>
-                        <input type="hidden" name="quantity" value="1"/>
                       <label
                         class="product__option-label"
                         for="product-quantity"
@@ -354,12 +352,14 @@
                       <div class="product__actions">
                         <div class="product__actions-item">
                           <div class="input-number product__quantity">
+                            <input type="hidden" name="productId" value="${detail.id}"/>
                             <input
                               id="product-quantity"
                               class="input-number__input form-control form-control-lg"
                               type="number"
                               min="1"
                               value="1"
+                              max="${detail.quantity}"
                               name="quantity"
                             />
                             <div class="input-number__add"></div>
