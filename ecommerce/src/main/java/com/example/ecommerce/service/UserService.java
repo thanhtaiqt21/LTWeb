@@ -31,8 +31,12 @@ public class UserService {
         return UserDao.getInstance().verifyEmail(email, hashcode);
     }
 
-    public boolean changePassword(String username, String currentPassword, String newPassword) {
-        return UserDao.getInstance().changePassword(username, currentPassword, newPassword);
+    public boolean checkPassword(String username, String password) {
+        return UserDao.getInstance().checkPassword(username, password);
+    }
+
+    public void changePassword(int userId, String newPassword) {
+        UserDao.getInstance().changePassword(userId, newPassword);
     }
     public List<User> getAllUsers() {
         return UserDao.getInstance().getAllUsers();

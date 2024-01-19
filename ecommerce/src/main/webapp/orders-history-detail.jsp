@@ -351,6 +351,7 @@
                           <table class="checkout__totals">
                             <thead class="checkout__totals-header">
                             <tr>
+                              <th>Hình ảnh</th>
                               <th>Sản phẩm</th>
                               <th>Số lượng</th>
                               <th>Tổng</th>
@@ -401,27 +402,30 @@
 
     function displayOrderDetails(orderDetail) {
       var productsHtml = orderDetail.orderItemsList.map(function(item) {
+        var imgUrl = item.product.imgUrl && item.product.imgUrl.length > 0 ? item.product.imgUrl[0] : ''; // Truy cập trực tiếp vào thuộc tính imgUrl
+        var imageHtml = imgUrl ? '<img src="' + imgUrl + '" alt="' + item.product.title + '" style="max-width: 100px; height: auto;" />' : ''; // Tạo thẻ img
 
         return '<tr>' +
+                '<td>' + imageHtml + '</td>' + // Thêm hình ảnh vào cột đầu tiên
                 '<td>' + item.product.title + '</td>' +
                 '<td>× ' + item.quantity + '</td>' +
-                '<td>' + formatPrice(item.totalPrice) + '</td>' +
+                '<td>' + item.totalPrice + '</td>' +
                 '</tr>';
       }).join('');
+      var subtotal = orderDetail.totalPrice - orderDetail.shippingFee;
+      var subtotalsHtml = '<tr><th>Tạm tính</th><td></td><td>'+ subtotal + '</td></tr>' +
+              '<tr><th>Phí vận chuyển</th><td></td><td>' + orderDetail.shippingFee + '</td></tr>';
 
-      var subtotalsHtml = '<tr><th>Tạm tính</th><td></td><td>' + formatPrice(orderDetail.totalPrice - orderDetail.shippingFee) + '</td></tr>' +
-              '<tr><th>Phí vận chuyển</th><td></td><td>' + formatPrice(orderDetail.shippingFee) + '</td></tr>';
-
-      var totalHtml = '<tr><th>Tổng</th><td></td><td>' + formatPrice(orderDetail.totalPrice) + '</td></tr>';
+      var totalHtml = '<tr><th>Tổng</th><td></td><td>' + orderDetail.totalPrice + '</td></tr>';
 
       $('.checkout__totals-products').html(productsHtml);
       $('.checkout__totals-subtotals').html(subtotalsHtml);
       $('.checkout__totals-footer').html(totalHtml);
     }
 
-    function formatPrice(price) {
-      return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-    }
+    // function formatPrice(price) {
+    //   return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    // }
 
     $(document).ready(function() {
       loadOrderDetails();

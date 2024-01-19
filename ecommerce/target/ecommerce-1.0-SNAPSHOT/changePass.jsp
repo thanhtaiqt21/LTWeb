@@ -352,42 +352,19 @@
                             <div class="card-body">
                                 <h3 class="card-title">Thay Đổi Mật Khẩu</h3>
                                 <form action="/ecommerce/doChangePassword" method="post" id="formChangePass">
-
-                                    <div class="form-group">
-                                        <label>Tài Khoản:</label>
-                                        <input style="display: none" type="text" class="form-control" value="${sessionScope.username}" readonly/>
-                                    </div>
                                     <div class="form-group">
                                         <label>Mật Khẩu Hiện Tại</label>
-                                        <input
-                                                type="password"
-                                                class="form-control"
-                                                placeholder="Nhập Mật Khẩu Hiện Tại"
-                                                name="currentPassword"
-                                        />
+                                        <input type="password" class="form-control" placeholder="Nhập Mật Khẩu Hiện Tại" name="currentPassword" required/>
                                     </div>
                                     <div class="form-group">
                                         <label>Mật Khẩu Mới</label>
-                                        <input
-                                                type="password"
-                                                class="form-control"
-                                                placeholder="Nhập Mật Khẩu Mới"
-                                                name="newPassword"
-                                        />
+                                        <input type="password" class="form-control" placeholder="Nhập Mật Khẩu Mới" name="newPassword" required/>
                                     </div>
                                     <div class="form-group">
                                         <label>Nhập Lại Mật Khẩu Mới</label>
-                                        <input
-                                                type="password"
-                                                class="form-control"
-                                                placeholder="Nhập Lại Mật Khẩu Mới"
-                                                name="confirmNewPassword"
-                                                id="password"
-                                        />
+                                        <input type="password" class="form-control" id="password" placeholder="Nhập Lại Mật Khẩu Mới" name="confirmNewPassword" required/>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-4">
-                                        Thay Đổi Mật Khẩu
-                                    </button>
+                                    <button type="submit" class="btn btn-primary mt-4">Thay Đổi Mật Khẩu</button>
                                 </form>
                             </div>
                         </div>
