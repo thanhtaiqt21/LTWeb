@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class OrdersHistoryDetailDao {
@@ -38,10 +39,12 @@ public class OrdersHistoryDetailDao {
                 }
             }
 
-            String sqlItems = "SELECT oi.*, p.title, p.description, p.price " +
+            String sqlItems = "SELECT oi.*, p.title, p.description, p.price, MAX(i.imgUrl) as imgUrl " +
                     "FROM order_items oi " +
                     "JOIN product p ON oi.id_product = p.id " +
-                    "WHERE oi.id_orders = ?";
+                    "LEFT JOIN img i ON p.id = i.id_product " +
+                    "WHERE oi.id_orders = ? " +
+                    "GROUP BY oi.id, p.title, p.description, p.price";
             try (PreparedStatement preparedStatementItems = connection.prepareStatement(sqlItems)) {
                 preparedStatementItems.setInt(1, orderId);
                 ResultSet resultSetItems = preparedStatementItems.executeQuery();
@@ -56,6 +59,8 @@ public class OrdersHistoryDetailDao {
                     product.setTitle(resultSetItems.getString("title"));
                     product.setDescription(resultSetItems.getString("description"));
                     product.setPrice(resultSetItems.getInt("price"));
+                    product.setImgUrl(Collections.singletonList(resultSetItems.getString("imgUrl"))); // Sử dụng hình ảnh duy nhất
+
                     orderItem.setProduct(product);
 
                     orderItemsList.add(orderItem);

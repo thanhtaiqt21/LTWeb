@@ -114,29 +114,57 @@ public class UserDao {
         return false;
     }
 
-    public boolean changePassword(String username, String currentPassword, String newPassword) {
+    public boolean checkPassword(String username, String password) {
         Connection connection = DBConnect.getInstance().getConnection();
-        PreparedStatement preparedStatement;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE username=? AND password=? AND active = '1'");
+            preparedStatement = connection.prepareStatement("SELECT password FROM user WHERE username = ?");
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, hashPassword(currentPassword));
-            ResultSet rs = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
-            if (rs.next()) {
-                preparedStatement = connection.prepareStatement("UPDATE user SET password=? WHERE username=?");
-                preparedStatement.setString(1, hashPassword(newPassword));
-                preparedStatement.setString(2, username);
-                int i = preparedStatement.executeUpdate();
+            if (resultSet.next()) {
+                String storedPassword = resultSet.getString("password");
 
-                if (i > 0) {
-                    return true;
-                }
+                // So sánh mật khẩu đã mã hóa. Thay thế hashPassword với phương thức mã hóa mật khẩu của bạn.
+                return hashPassword(password).equals(storedPassword);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+
         return false;
+    }
+
+    public void changePassword(int userId, String newPassword) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE user SET password = ? WHERE id = ?");
+            preparedStatement.setString(1, hashPassword(newPassword)); // Mã hóa mật khẩu mới trước khi cập nhật
+            preparedStatement.setInt(2, userId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
