@@ -1,10 +1,8 @@
 package com.example.ecommerce.controller.cart;
 
-import com.example.ecommerce.dao.ProductDao;
 import com.example.ecommerce.model.Cart;
-import com.example.ecommerce.model.Item;
+import com.example.ecommerce.model.CartItem;
 import com.example.ecommerce.model.Product;
-import com.example.ecommerce.service.CartService;
 import com.example.ecommerce.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -21,20 +19,20 @@ public class AddToCart extends HttpServlet {
         HttpSession session = request.getSession();
         int productId = Integer.parseInt(request.getParameter("productId"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-
+        System.out.println(quantity);
         Cart c = (Cart) session.getAttribute("cart");
 
         if (c == null) {
             c = new Cart();
-            c.cart = c.getItems(); // Gán danh sách mục cho cart
         }
 
         if (c.get(productId) != null) {
             c.put(productId, quantity);
         } else {
             Product p = ProductService.getInstance().getProductByID(productId);
-            if (p != null) {
-                c.put(p);
+            CartItem  cartItem = new CartItem(p.getId(), p, quantity);
+            if (cartItem != null) {
+                c.put(cartItem);
             }
         }
 

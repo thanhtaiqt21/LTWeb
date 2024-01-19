@@ -1,6 +1,6 @@
 package com.example.ecommerce.service;
 
-import com.example.ecommerce.model.Item;
+import com.example.ecommerce.model.CartItem;
 import com.example.ecommerce.model.Product;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,22 +26,22 @@ public class CartService {
     }
 
 
-    public List<Item> getCartItems(HttpServletRequest request) {
-        // Lấy giỏ hàng từ session
-        HttpSession session = request.getSession();
-        CartService currentCartService = (CartService) session.getAttribute("cartService");
-        if (currentCartService != null) {
-            List<Item> cartItems = new ArrayList<>();
-            for (Map.Entry<Integer, Product> entry : currentCartService.cartItems.entrySet()) {
-                Product product = entry.getValue();
-                int quantity = entry.getKey();
-                Item cartItem = new Item(product, quantity);
-                cartItems.add(cartItem);
-            }
-            return cartItems;
-        }
-        return new ArrayList<>();
-    }
+//    public List<CartItem> getCartItems(HttpServletRequest request) {
+//        // Lấy giỏ hàng từ session
+//        HttpSession session = request.getSession();
+//        CartService currentCartService = (CartService) session.getAttribute("cartService");
+//        if (currentCartService != null) {
+//            List<CartItem> cartItems = new ArrayList<>();
+//            for (Map.Entry<Integer, Product> entry : currentCartService.cartItems.entrySet()) {
+//                Product product = entry.getValue();
+//                int quantity = entry.getKey();
+//                CartItem cartItem = new Item(product, quantity);
+//                cartItems.add(cartItem);
+//            }
+//            return cartItems;
+//        }
+//        return new ArrayList<>();
+//    }
 
     public boolean isCartEmpty() {
         return cartItems.isEmpty();

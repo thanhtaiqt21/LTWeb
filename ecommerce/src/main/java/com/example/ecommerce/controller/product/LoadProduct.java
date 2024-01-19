@@ -22,7 +22,6 @@ public class LoadProduct extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("cId"));
         List<Product> list = ProductService.getInstance().getProductByCID(id);
         req.setAttribute("listP",list);
-        System.out.println(list.size());
         req.getRequestDispatcher("list-product.jsp").forward(req, resp);
     }
 

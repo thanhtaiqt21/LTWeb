@@ -1,8 +1,10 @@
 package com.example.ecommerce.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Category {
+public class Category implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private String name;
     private int status;

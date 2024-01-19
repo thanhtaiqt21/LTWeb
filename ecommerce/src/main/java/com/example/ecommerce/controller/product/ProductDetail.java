@@ -20,10 +20,8 @@ public class ProductDetail extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(req.getParameter("pid"));
         Product p = ProductService.getInstance().getProductByID(id);
-        System.out.println("Day la san pham" + p);
         int cid = Integer.parseInt(req.getParameter("cid"));
         List<Product> list = ProductService.getInstance().getRelatedProducts(cid);
-        System.out.println("Danh sach" + list);
         req.setAttribute("detail", p);
         req.setAttribute("listLP", list);
         req.getRequestDispatcher("product.jsp").forward(req,resp);
