@@ -7,6 +7,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="format-detection" content="telephone=no" />
@@ -327,63 +330,160 @@
         </div>
         <div class="block">
           <div class="container">
-            <table class="wishlist">
+            <table class="wishlist" id="ordersTable">
               <thead class="wishlist__head">
-                <tr class="wishlist__row">
-                  <th class="wishlist__column wishlist__column--image">
-                    Mã đơn hàng
-                  </th>
-                  <th class="wishlist__column wishlist__column--product">
-                    Ngày đặt hàng
-                  </th>
-                  <th class="wishlist__column wishlist__column--stock">
-                    Tình trạng
-                  </th>
-                  <th class="wishlist__column wishlist__column--price">Giá</th>
-                  <th class="wishlist__column wishlist__column--tocart"></th>
-                  <th class="wishlist__column wishlist__column--remove"></th>
-                </tr>
+              <tr class="wishlist__row">
+                <th class="wishlist__column wishlist__column--image">Mã đơn hàng</th>
+                <th class="wishlist__column wishlist__column--product">Ngày đặt hàng</th>
+                <th class="wishlist__column wishlist__column--stock">Tình trạng</th>
+                <th class="wishlist__column wishlist__column--price">Giá</th>
+                <th class="wishlist__column wishlist__column--tocart"></th>
+                <th class="wishlist__column wishlist__column--remove"></th>
+              </tr>
               </thead>
               <tbody class="wishlist__body">
-                <tr class="wishlist__row">
-                  <td class="wishlist__column wishlist__column--image">
-                    <p>#1278</p>
-                  </td>
-                  <td class="wishlist__column wishlist__column--product">
-                    <p>20/10/2023</p>
-                  </td>
-                  <td class="wishlist__column wishlist__column--stock">
-                    <div class="badge badge-success">Chờ xác nhận</div>
-                  </td>
-                  <td class="wishlist__column wishlist__column--price">
-                    $699.00
-                  </td>
-                  <td class="wishlist__column wishlist__column--tocart">
-                    <button type="button" class="btn btn-primary btn-sm" >
-                      Xem chi tiết
-                    </button>
-                  </td>
-                  <td class="wishlist__column wishlist__column--remove">
-                    <button
-                      type="button"
-                      class="btn btn-light btn-sm btn-svg-icon"
-                    >
-                      <svg width="12px" height="12px">
-                        <use xlink:href="images/sprite.svg#cross-12"></use>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
+              <!-- Nội dung ở đây sẽ được cập nhật bằng JavaScript -->
               </tbody>
+
             </table>
+            <div id="pagination" class="pagination"></div>
           </div>
         </div>
       </div>
+    <div class="modal fade" id="deleteOrderModal" tabindex="-1" role="dialog" aria-labelledby="deleteOrderModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteOrderModalLabel">Xác nhận xóa đơn hàng</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Bạn có chắc muốn xóa đơn hàng này khỏi lịch sử không?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Đồng ý</button>
+          </div>
+        </div>
+      </div>
+    </div>
       <!-- site__body / end --><!-- site__footer -->
       <jsp:include page="footer.jsp"/>
       <!-- site__footer / end -->
     </div>
     <!-- site / end -->
+
+  <script>
+    function loadOrdersHistory(page = 1) {
+      $.ajax({
+        url: '/ecommerce/orders-history',
+        type: 'GET',
+        dataType: 'json',
+        success: function (response) {
+          var ordersList = Array.isArray(response) ? response : [];
+          updateOrdersTable(ordersList, page);
+        },
+        error: function (error) {
+          console.log('Error: ', error);
+        }
+      });
+    }
+
+    function updateOrdersTable(ordersList, page) {
+      var itemsPerPage = 5;
+      var startIndex = (page - 1) * itemsPerPage;
+      var endIndex = startIndex + itemsPerPage;
+      var ordersToShow = ordersList.slice(startIndex, endIndex);
+
+      var tableBody = $('#ordersTable .wishlist__body');
+      tableBody.empty();
+
+      ordersToShow.forEach(function(order) {
+        var statusLabel = order.status === 1 ? 'Đã xác nhận' : 'Chưa xác nhận';
+        var statusClass = order.status === 1 ? 'badge-success' : 'badge-warning';
+        var formattedPrice = order.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        var detailButton = '<button type="button" class="btn btn-primary btn-sm" onclick="viewOrderDetail(' + order.id + ')">Xem chi tiết</button>';
+
+        var row = $('<tr class="wishlist__row"></tr>');
+        row.append('<td class="wishlist__column wishlist__column--image"><p>#' + order.id + '</p></td>');
+        row.append('<td class="wishlist__column wishlist__column--product"><p>' + new Date(order.dayCreate).toLocaleDateString() + '</p></td>');
+        row.append('<td class="wishlist__column wishlist__column--stock"><div class="badge ' + statusClass + '">' + statusLabel + '</div></td>');
+        row.append('<td class="wishlist__column wishlist__column--price">' + formattedPrice + '</td>');
+        row.append('<td class="wishlist__column wishlist__column--tocart">' + detailButton + '</td>');
+        row.append('<td class="wishlist__column wishlist__column--remove"><button type="button" class="btn btn-light btn-sm btn-svg-icon" onclick="confirmDeleteOrder(' + order.id + ')"><svg width="12px" height="12px"><use xlink:href="images/sprite.svg#cross-12"></use></svg></button></td>');
+
+        tableBody.append(row);
+      });
+      updatePagination(ordersList.length, itemsPerPage, page);
+    }
+
+    function updatePagination(totalItems, itemsPerPage, currentPage) {
+      var totalPages = Math.ceil(totalItems / itemsPerPage);
+      var pagination = $('#pagination');
+      pagination.empty();
+
+      // Thêm nút "Trước"
+      if (currentPage > 1) {
+        pagination.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage - 1) + '">Trước</a></li>');
+      }
+
+      // Thêm số trang
+      for (var i = 1; i <= totalPages; i++) {
+        pagination.append('<li class="page-item ' + (i === currentPage ? 'active' : '') + '"><a class="page-link" href="#" data-page="' + i + '">' + i + '</a></li>');
+      }
+
+      // Thêm nút "Tiếp theo"
+      if (currentPage < totalPages) {
+        pagination.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage + 1) + '">Tiếp theo</a></li>');
+      }
+    }
+
+    // Sử dụng event delegation cho pagination
+    $(document).on('click', '#pagination .page-link', function(e) {
+      e.preventDefault();
+      var page = $(this).data('page');
+      loadOrdersHistory(page);
+    });
+
+    $(document).ready(function() {
+      loadOrdersHistory();
+    });
+
+    function confirmDeleteOrder(orderId) {
+      $('#deleteOrderModal').modal('show');
+
+      $('#confirmDeleteBtn').off('click').on('click', function () {
+        deleteOrder(orderId);
+        $('#deleteOrderModal').modal('hide');
+      });
+    }
+
+    function deleteOrder(orderId) {
+      $.ajax({
+        type: 'GET',
+        url: '/ecommerce/delete-order?orderId=' + orderId,
+        success: function (response) {
+          if (response.success) {
+            alert('Đơn hàng đã được xóa thành công.');
+            loadOrdersHistory(); // Làm mới danh sách đơn hàng
+          } else {
+            alert('Có lỗi xảy ra khi xóa đơn hàng.');
+          }
+        },
+        error: function (error) {
+          console.error('Error deleting order:', error);
+        }
+      });
+    }
+
+    function viewOrderDetail(orderId) {
+      window.location.href = 'orders-history-detail.jsp?orderId=' + orderId;
+    }
+
+  </script>
+
 
   <script type="text/javascript">
     $(document).ready(function () {
