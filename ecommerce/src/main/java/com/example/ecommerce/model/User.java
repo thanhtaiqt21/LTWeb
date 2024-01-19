@@ -126,4 +126,5 @@ public class User implements Serializable {
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
+
 }

@@ -330,13 +330,14 @@
                         <div class="card flex-grow-1 mb-0">
                             <div class="card-body">
                                 <h3 class="card-title">Quên Mật Khẩu</h3>
-                                <form>
+                                <form action="/ecommerce/doForgotPassword" method="post">
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input
                                                 type="email"
                                                 class="form-control"
                                                 placeholder="Nhập Email"
+                                                name="email"
                                         />
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">
