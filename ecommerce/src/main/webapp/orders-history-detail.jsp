@@ -7,6 +7,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="format-detection" content="telephone=no" />
@@ -340,68 +343,27 @@
               <div class="checkout block">
                 <div class="container">
                   <div class="row">
-    
+
                     <div class="col-12">
                       <div class="card mb-0">
                         <div class="card-body">
                           <h3 class="card-title">Đơn hàng của bạn</h3>
                           <table class="checkout__totals">
                             <thead class="checkout__totals-header">
-                              <tr>
-                                <th>Sản phẩm</th>
-                                <th></th>
-                                <th>Tổng</th>
-                              </tr>
+                            <tr>
+                              <th>Sản phẩm</th>
+                              <th>Số lượng</th>
+                              <th>Tổng</th>
+                            </tr>
                             </thead>
                             <tbody class="checkout__totals-products">
-                              <tr >
-                                <td class="" style="width: 15%;">
-                                  <img class="img-fluid w-50" src="images/products/product-1.jpg" alt="">
-                                </td>
-                                <td>
-                                  Electric Planer Brandix KL370090G 300 Watts × 2
-                                </td>
-                                <td>$1,398.00</td>
-                              </tr>
-                           
-                              <tr >
-                                <td class="" style="width: 15%;">
-                                  <img class="img-fluid w-50" src="images/products/product-1.jpg" alt="">
-                                </td>
-                                <td>
-                                  Electric Planer Brandix KL370090G 300 Watts × 2
-                                </td>
-                                <td>$1,398.00</td>
-                              </tr>
-                              <tr >
-                                <td class="" style="width: 15%;">
-                                  <img class="img-fluid w-50" src="images/products/product-1.jpg" alt="">
-                                </td>
-                                <td>
-                                  Electric Planer Brandix KL370090G 300 Watts × 2
-                                </td>
-                                <td>$1,398.00</td>
-                              </tr>
+                            <!-- Nội dung sản phẩm sẽ được thêm ở đây -->
                             </tbody>
                             <tbody class="checkout__totals-subtotals">
-                              <tr>
-                                <th>Tạm tính</th>
-                                <td></td>
-                                <td>$5,877.00</td>
-                              </tr>
-      
-                              <tr>
-                                <th>Phí vận chuyển</th>
-                                <td></td>
-                                <td>$25.00</td>
-                              </tr>
+                            <!-- Phần tạm tính và phí vận chuyển -->
                             </tbody>
                             <tfoot class="checkout__totals-footer">
-                              <tr>
-                                <th>Tổng</th>
-                                <td></td>
-                                <td>$5,882.00</td>
-                              </tr>
+                            <!-- Tổng cộng -->
                             </tfoot>
                           </table>
                         </div>
@@ -410,620 +372,7 @@
                   </div>
                 </div>
               </div>
-            
-              <!-- <div class="col-7">
-                <h5>Sản phẩm</h5>
-                <table class="wishlist">
-                  <thead class="wishlist__head">
-                    <tr class="wishlist__row">
-                      <th class="wishlist__column wishlist__column--image">
-                        Hình ảnh
-                      </th>
-                      <th class="wishlist__column wishlist__column--product">
-                        Sản phẩm
-                      </th>
-                      <th class="wishlist__column wishlist__column--stock">
-                        Số lượng
-                      </th>
-                      <th class="wishlist__column wishlist__column--price">
-                        Giá
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody class="wishlist__body">
-                    <tr class="wishlist__row">
-                      <td class="wishlist__column wishlist__column--image">
-                        <a href="#"
-                          ><img src="images/products/product-1.jpg" alt=""
-                        /></a>
-                      </td>
-                      <td class="wishlist__column wishlist__column--product">
-                        <a href="#" class="wishlist__product-name"
-                          >Electric Planer Brandix KL370090G 300 Watts</a
-                        >
-                        <div class="wishlist__product-rating">
-                          <div class="rating">
-                            <div class="rating__body">
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div class="rating__star rating__star--only-edge">
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="wishlist__product-rating-legend">
-                            9 Reviews
-                          </div>
-                        </div>
-                      </td>
-                      <td class="wishlist__column wishlist__column--stock">
-                        <div class="badge badge-success">10</div>
-                      </td>
-                      <td class="wishlist__column wishlist__column--price">
-                        $699.00
-                      </td>
-                    </tr>
-                    <tr class="wishlist__row">
-                      <td class="wishlist__column wishlist__column--image">
-                        <a href="#"
-                          ><img src="images/products/product-1.jpg" alt=""
-                        /></a>
-                      </td>
-                      <td class="wishlist__column wishlist__column--product">
-                        <a href="#" class="wishlist__product-name"
-                          >Electric Planer Brandix KL370090G 300 Watts</a
-                        >
-                        <div class="wishlist__product-rating">
-                          <div class="rating">
-                            <div class="rating__body">
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div class="rating__star rating__star--only-edge">
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="wishlist__product-rating-legend">
-                            9 Reviews
-                          </div>
-                        </div>
-                      </td>
-                      <td class="wishlist__column wishlist__column--stock">
-                        <div class="badge badge-success">10</div>
-                      </td>
-                      <td class="wishlist__column wishlist__column--price">
-                        $699.00
-                      </td>
-                    </tr>
-                    <tr class="wishlist__row">
-                      <td class="wishlist__column wishlist__column--image">
-                        <a href="#"
-                          ><img src="images/products/product-1.jpg" alt=""
-                        /></a>
-                      </td>
-                      <td class="wishlist__column wishlist__column--product">
-                        <a href="#" class="wishlist__product-name"
-                          >Electric Planer Brandix KL370090G 300 Watts</a
-                        >
-                        <div class="wishlist__product-rating">
-                          <div class="rating">
-                            <div class="rating__body">
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star rating__star--active"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div
-                                class="rating__star rating__star--only-edge rating__star--active"
-                              >
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                              <svg
-                                class="rating__star"
-                                width="13px"
-                                height="12px"
-                              >
-                                <g class="rating__fill">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal"
-                                  ></use>
-                                </g>
-                                <g class="rating__stroke">
-                                  <use
-                                    xlink:href="images/sprite.svg#star-normal-stroke"
-                                  ></use>
-                                </g>
-                              </svg>
-                              <div class="rating__star rating__star--only-edge">
-                                <div class="rating__fill">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                                <div class="rating__stroke">
-                                  <div class="fake-svg-icon"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="wishlist__product-rating-legend">
-                            9 Reviews
-                          </div>
-                        </div>
-                      </td>
-                      <td class="wishlist__column wishlist__column--stock">
-                        <div class="badge badge-success">10</div>
-                      </td>
-                      <td class="wishlist__column wishlist__column--price">
-                        $699.00
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="col-5">
-                <div class="col-12 col-lg-6 col-xl-5 mt-4 mt-lg-0">
-                  <div class="card mb-0">
-                    <div class="card-body">
-                      <h3 class="card-title">Đơn hàng của bạn</h3>
-                      <table class="checkout__totals">
-                        <thead class="checkout__totals-header">
-                          <tr>
-                            <th>Sản phẩm</th>
-                            <th>Tổng</th>
-                          </tr>
-                        </thead>
-                        <tbody class="checkout__totals-products">
-                          <tr>
-                            <td>
-                              Electric Planer Brandix KL370090G 300 Watts × 2
-                            </td>
-                            <td>$1,398.00</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Undefined Tool IRadix DPS3000SY 2700 watts × 1
-                            </td>
-                            <td>$849.00</td>
-                          </tr>
-                          <tr>
-                            <td>Brandix Router Power Tool 2017ERXPK × 3</td>
-                            <td>$3,630.00</td>
-                          </tr>
-                        </tbody>
-                        <tbody class="checkout__totals-subtotals">
-                          <tr>
-                            <th>Tạm tính</th>
-                            <td>$5,877.00</td>
-                          </tr>
 
-                          <tr>
-                            <th>Phí vận chuyển</th>
-                            <td>$25.00</td>
-                          </tr>
-                        </tbody>
-                        <tfoot class="checkout__totals-footer">
-                          <tr>
-                            <th>Tổng</th>
-                            <td>$5,882.00</td>
-                          </tr>
-                        </tfoot>
-                      </table>
-                      <div class="payment-methods">
-                        <ul class="payment-methods__list">
-                          <li class="payment-methods__item">
-                            <label class="payment-methods__item-header"
-                              ><span
-                                class="payment-methods__item-radio input-radio"
-                                ><span class="input-radio__body"
-                                  ><input
-                                    class="input-radio__input"
-                                    name="checkout_payment_method"
-                                    type="radio"
-                                  />
-                                  <span
-                                    class="input-radio__circle"
-                                  ></span> </span></span
-                              ><span class="payment-methods__item-title"
-                                >Thanh toán khi nhận hàng</span
-                              ></label
-                            >
-                          </li>
-                          <li class="payment-methods__item">
-                            <label class="payment-methods__item-header"
-                              ><span
-                                class="payment-methods__item-radio input-radio"
-                                ><span class="input-radio__body"
-                                  ><input
-                                    class="input-radio__input"
-                                    name="checkout_payment_method"
-                                    type="radio"
-                                  />
-                                  <span
-                                    class="input-radio__circle"
-                                  ></span> </span></span
-                              ><span class="payment-methods__item-title"
-                                >Thanh toán qua thẻ tín dụng</span
-                              ></label
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="checkout__agree form-group">
-                        <div class="form-check">
-                          <span class="form-check-input input-check"
-                            ><span class="input-check__body"
-                              ><input
-                                class="input-check__input"
-                                type="checkbox"
-                                id="checkout-terms"
-                              />
-                              <span class="input-check__box"></span>
-                              <svg
-                                class="input-check__icon"
-                                width="9px"
-                                height="7px"
-                              >
-                                <use
-                                  xlink:href="images/sprite.svg#check-9x7"
-                                ></use>
-                              </svg> </span></span
-                          ><label class="form-check-label" for="checkout-terms"
-                            >Tôi đã đọc kĩ và đồng ý
-                            <a target="_blank" href="terms-and-conditions.html"
-                              >với chính sách và điều kiện của website</a
-                            >*</label
-                          >
-                        </div>
-                      </div>
-                      <button
-                        type="submit"
-                        class="btn btn-primary btn-xl btn-block"
-                      >
-                        Đặt hàng
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -1033,6 +382,52 @@
       <!-- site__footer / end -->
     </div>
     <!-- site / end -->
+
+  <script>
+    function loadOrderDetails() {
+      var orderId = new URLSearchParams(window.location.search).get('orderId');
+      $.ajax({
+        url: '/ecommerce/order-detail?orderId=' + orderId,
+        type: 'GET',
+        dataType: 'json',
+        success: function(orderDetail) {
+          displayOrderDetails(orderDetail);
+        },
+        error: function(error) {
+          console.error('Error fetching order details:', error);
+        }
+      });
+    }
+
+    function displayOrderDetails(orderDetail) {
+      var productsHtml = orderDetail.orderItemsList.map(function(item) {
+
+        return '<tr>' +
+                '<td>' + item.product.title + '</td>' +
+                '<td>× ' + item.quantity + '</td>' +
+                '<td>' + formatPrice(item.totalPrice) + '</td>' +
+                '</tr>';
+      }).join('');
+
+      var subtotalsHtml = '<tr><th>Tạm tính</th><td></td><td>' + formatPrice(orderDetail.totalPrice - orderDetail.shippingFee) + '</td></tr>' +
+              '<tr><th>Phí vận chuyển</th><td></td><td>' + formatPrice(orderDetail.shippingFee) + '</td></tr>';
+
+      var totalHtml = '<tr><th>Tổng</th><td></td><td>' + formatPrice(orderDetail.totalPrice) + '</td></tr>';
+
+      $('.checkout__totals-products').html(productsHtml);
+      $('.checkout__totals-subtotals').html(subtotalsHtml);
+      $('.checkout__totals-footer').html(totalHtml);
+    }
+
+    function formatPrice(price) {
+      return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    }
+
+    $(document).ready(function() {
+      loadOrderDetails();
+    });
+  </script>
+
 
   <script type="text/javascript">
     $(document).ready(function () {
