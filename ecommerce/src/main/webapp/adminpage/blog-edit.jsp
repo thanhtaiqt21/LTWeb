@@ -9,7 +9,7 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>User List | Nalika - Material Admin Template</title>
+  <title>Blog edit | Nalika - Material Admin Template</title>
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -1413,12 +1413,12 @@
               </div>
               <div class="form-group">
                 <label style="color: white" for="form-message">Nội dung blog</label>
-                <textarea id="form-message" name="content" class="form-control" rows="4"><%= blog.getContent()%></textarea>
+                <textarea id="form-message" name="content" class="form-control" rows="10"><%= blog.getContent()%></textarea>
               </div>
 
-              <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
-                <button type="submit" class="btn btn-primary" >Lưu </button>
-                <button type="button" class="btn btn-primary" style="margin-left: 15px" onclick="goBack()">Trở về</button>
+              <div class="form-group custom-pro-edt-ds" style="display: flex; justify-content: center; align-items: center;">
+                <button type="submit" class="btn btn-ctl-bt waves-effect waves-light" >Lưu </button>
+                <button type="button" class="btn btn-ctl-bt waves-effect waves-light" style="margin-left: 15px" onclick="goBack()">Trở về</button>
               </div>
             </form>
             <%

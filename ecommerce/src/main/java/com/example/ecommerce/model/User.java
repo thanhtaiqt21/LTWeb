@@ -17,15 +17,10 @@ public class User implements Serializable {
 
     private int status;
 
-    private List<Address> addresses;
-
 
     public User() {
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
-    }
 
     public User(int id,String username, String password, String fullname, String email, String phone, String role, int active, int status) {
         this.id = id;
@@ -123,7 +118,4 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
 }

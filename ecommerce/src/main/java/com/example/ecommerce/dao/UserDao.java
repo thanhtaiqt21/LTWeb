@@ -2,7 +2,6 @@ package com.example.ecommerce.dao;
 
 import com.example.ecommerce.db.DBConnect;
 import com.example.ecommerce.model.User;
-import com.example.ecommerce.model.Address;
 import com.example.ecommerce.sendmail.SendMail;
 
 import java.math.BigInteger;
@@ -295,8 +294,8 @@ public class UserDao {
                 user.setStatus(resultSet.getInt("status"));
 
                 // Lấy danh sách địa chỉ
-                List<Address> addresses = getAddressesByUserId(userId);
-                user.setAddresses(addresses);
+//                List<Address> addresses = getAddressesByUserId(userId);
+//                user.setAddresses(addresses);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -307,38 +306,38 @@ public class UserDao {
         return user;
     }
 
-    private List<Address> getAddressesByUserId(int userId) {
-        List<Address> addresses = new ArrayList<>();
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
-        try {
-            connection = DBConnect.getInstance().getConnection();
-
-            String query = "SELECT * FROM address WHERE id_user=?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, userId);
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String specify = resultSet.getString("specify");
-                String ward = resultSet.getString("ward");
-                String district = resultSet.getString("district");
-                String province = resultSet.getString("province");
-
-                Address address = new Address(id, specify, ward, district, province, userId);
-                addresses.add(address);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DBConnect.getInstance().closeConnection2(connection, preparedStatement, resultSet);
-        }
-
-        return addresses;
-    }
+//    private List<Address> getAddressesByUserId(int userId) {
+//        List<Address> addresses = new ArrayList<>();
+//        Connection connection = null;
+//        PreparedStatement preparedStatement = null;
+//        ResultSet resultSet = null;
+//
+//        try {
+//            connection = DBConnect.getInstance().getConnection();
+//
+//            String query = "SELECT * FROM address WHERE id_user=?";
+//            preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setInt(1, userId);
+//            resultSet = preparedStatement.executeQuery();
+//
+//            while (resultSet.next()) {
+//                int id = resultSet.getInt("id");
+//                String specify = resultSet.getString("specify");
+//                String ward = resultSet.getString("ward");
+//                String district = resultSet.getString("district");
+//                String province = resultSet.getString("province");
+//
+//                Address address = new Address(id, specify, ward, district, province, userId);
+//                addresses.add(address);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBConnect.getInstance().closeConnection2(connection, preparedStatement, resultSet);
+//        }
+//
+//        return addresses;
+//    }
 
     public boolean updateUserStatusAndRole(int userId, int status, String role) {
         Connection connection = DBConnect.getInstance().getConnection();

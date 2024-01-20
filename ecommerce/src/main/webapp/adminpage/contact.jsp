@@ -1383,37 +1383,64 @@
                       <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"><i class="fa-solid fa-location-dot"></i></span>
-                              <input type="text" class="form-control" id="address" placeholder="Địa chỉ" />
+                            <div class=" mg-b-pro-edt ">
+                              <label style="color: white" >Địa chỉ</label>
+                              <div class="input-group mg-b-pro-edt" >
+                                <span class="input-group-addon"><i class="fa-solid fa-location-dot"></i></span>
+                                <input type="text" class="form-control" id="address" placeholder="Địa chỉ" />
+                              </div>
                             </div>
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
-                              <input type="email" class="form-control" id="email" placeholder="Email" />
+                            <div class=" mg-b-pro-edt">
+                              <label style="color: white" >Email</label>
+                              <div class="input-group mg-b-pro-edt">
+                                <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
+                                <input type="email" class="form-control" id="email" placeholder="Email" />
+                              </div>
+
                             </div>
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
-                              <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" />
+                            <div class=" mg-b-pro-edt">
+                              <label style="color: white" >Số điện thoại</label>
+                              <div class="input-group mg-b-pro-edt">
+                                <span class="input-group-addon"><i class="fas fa-phone" style="color: #ffffff;"></i></span>
+                                <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" />
+                              </div>
+
                             </div>
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
-                              <input type="text" class="form-control" id="workingTimeMF" placeholder="Thời gian làm việc (Thứ 2 - Thứ 6)" />
+                            <div class=" mg-b-pro-edt">
+                              <label style="color: white" >Thời gian làm việc (Thứ 2 - Thứ 6)</label>
+                              <div class="input-group mg-b-pro-edt">
+                                <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
+                                <input type="text" class="form-control" id="workingTimeMF" placeholder="Thời gian làm việc (Thứ 2 - Thứ 6)" />
+                              </div>
+
                             </div>
                           </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
-                              <input type="text" class="form-control" id="workingTimeSA" placeholder="Thời gian làm việc (Thứ 7)" />
+                            <div class=" mg-b-pro-edt">
+                              <label style="color: white" >Thời gian làm việc (Thứ 7)</label>
+                              <div class="input-group mg-b-pro-edt">
+                                <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
+                                <input type="text" class="form-control" id="workingTimeSA" placeholder="Thời gian làm việc (Thứ 7)" />
+                              </div>
+
                             </div>
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
-                              <input type="text" class="form-control" id="workingTimeSU" placeholder="Thời gian làm việc (Chủ nhật)" />
+                            <div class=" mg-b-pro-edt">
+                              <label style="color: white" >Thời gian làm việc (Chủ nhật)</label>
+                              <div class="input-group mg-b-pro-edt">
+                                <span class="input-group-addon"><i class="fa-solid fa-clock"></i></span>
+                                <input type="text" class="form-control" id="workingTimeSU" placeholder="Thời gian làm việc (Chủ nhật)" />
+                              </div>
+
                             </div>
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
-                              <textarea type="text" style="height:97px" class="form-control"  id="greeting" placeholder="Lời chào" ></textarea>
+                            <div class=" mg-b-pro-edt">
+                              <label style="color: white" >Lời chào</label>
+                              <div class="input-group mg-b-pro-edt">
+                                <span class="input-group-addon"><i class="far fa-comment-alt" style="color: #ffffff;"></i></span>
+                                <textarea type="text" style="height:120px" class="form-control"  id="greeting" placeholder="Lời chào" ></textarea>
+                              </div>
+
                             </div>
                           </div>
                         </div>
@@ -1421,7 +1448,7 @@
                       <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="text-center custom-pro-edt-ds">
-                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light m-r-10" id="saveButton">
+                            <button type="button" class="btn btn-ctl-bt waves-effect waves-light" id="saveButton">
                               Lưu
                             </button>
                           </div>

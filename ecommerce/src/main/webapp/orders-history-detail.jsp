@@ -409,56 +409,29 @@
                 '<td>' + imageHtml + '</td>' + // Thêm hình ảnh vào cột đầu tiên
                 '<td>' + item.product.title + '</td>' +
                 '<td>× ' + item.quantity + '</td>' +
-                '<td>' + item.totalPrice + '</td>' +
+                '<td>' + formatPrice(item.totalPrice)  + '</td>' +
                 '</tr>';
       }).join('');
       var subtotal = orderDetail.totalPrice - orderDetail.shippingFee;
-      var subtotalsHtml = '<tr><th>Tạm tính</th><td></td><td>'+ subtotal + '</td></tr>' +
-              '<tr><th>Phí vận chuyển</th><td></td><td>' + orderDetail.shippingFee + '</td></tr>';
+      var subtotalsHtml = '<tr><th>Tạm tính</th><td></td><td>'+ formatPrice(subtotal)  + '</td></tr>' +
+              '<tr><th>Phí vận chuyển</th><td></td><td>' + formatPrice(orderDetail.shippingFee) + '</td></tr>';
 
-      var totalHtml = '<tr><th>Tổng</th><td></td><td>' + orderDetail.totalPrice + '</td></tr>';
+      var totalHtml = '<tr><th>Tổng</th><td></td><td>' + formatPrice(orderDetail.totalPrice) + '</td></tr>';
 
       $('.checkout__totals-products').html(productsHtml);
       $('.checkout__totals-subtotals').html(subtotalsHtml);
       $('.checkout__totals-footer').html(totalHtml);
     }
 
-    // function formatPrice(price) {
-    //   return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-    // }
+    function formatPrice(price) {
+      return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    }
 
     $(document).ready(function() {
       loadOrderDetails();
     });
   </script>
 
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      // Gửi yêu cầu đến servlet khi trang được tải
-      $.ajax({
-        type: 'GET',
-        url: '/ecommerce/contact-us',
-        dataType: 'json',
-        success: function (data) {
-          // Hiển thị thông tin liên hệ trên trang
-          var contactInfoList = $('#contactInfoList');
-          // Xóa mọi nội dung cũ trong ul
-          contactInfoList.empty();
-          // Thêm các mục thông tin liên hệ mới
-          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-globe-americas"></i>' + data.address + '</li>');
-          contactInfoList.append('<li><i class="footer-contacts__icon far fa-envelope"></i>' + data.email + '</li>');
-          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-mobile-alt"></i>' + data.phone + '</li>');
-          contactInfoList.append('<li>Thứ 2-6<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeMF + '</li>');
-          contactInfoList.append('<li>Thứ 7<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSA + '</li>');
-          contactInfoList.append('<li>Thứ chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
-        },
-        error: function (xhr, status, error) {
-          console.error('Error fetching contact info:', status, error);
-        }
-      });
-    });
-  </script>
 
   </body>
 </html>
