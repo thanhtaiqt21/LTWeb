@@ -365,4 +365,20 @@ public class UserDao {
         return false;
     }
 
+    public long totalUser() {
+        long count = 0;
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS total FROM user");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                count = rs.getLong("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return count;
+    }
+
 }
