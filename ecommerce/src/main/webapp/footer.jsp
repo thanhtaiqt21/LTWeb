@@ -22,25 +22,25 @@
                             <h5 class="footer-links__title">Thông tin</h5>
                             <ul class="footer-links__list">
                                 <li class="footer-links__item">
-                                    <a href="#" class="footer-links__link">Giới thiệu</a>
+                                    <a href="contact-us.jsp" class="footer-links__link">Giới thiệu</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="#" class="footer-links__link"
+                                    <a href="orders-history.jsp" class="footer-links__link"
                                     >Thông tin vận chuyển</a
                                     >
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="#" class="footer-links__link">Chính sách</a>
+                                    <a href="contact-us.jsp" class="footer-links__link">Chính sách</a>
                                 </li>
 
                                 <li class="footer-links__item">
-                                    <a href="#" class="footer-links__link">Liên hệ</a>
+                                    <a href="contact-us.jsp" class="footer-links__link">Liên hệ</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="#" class="footer-links__link">Hoàn đơn</a>
+                                    <a href=orders-history.jsp class="footer-links__link">Hoàn đơn</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="#" class="footer-links__link">Vị trị</a>
+                                    <a href="contact-us.jsp" class="footer-links__link">Vị trị</a>
                                 </li>
                             </ul>
                         </div>
@@ -50,17 +50,17 @@
                             <h5 class="footer-links__title">Tài khoản</h5>
                             <ul class="footer-links__list">
                                 <li class="footer-links__item">
-                                    <a href="#" class="footer-links__link"
+                                    <a href="orders-history.jsp" class="footer-links__link"
                                     >Lịch sử đặt hàng</a
                                     >
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="#" class="footer-links__link"
+                                    <a href="wishlist.jsp" class="footer-links__link"
                                     >Sản phẩm yêu thích</a
                                     >
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="#" class="footer-links__link">Bản tin</a>
+                                    <a href="blog-classic.jsp" class="footer-links__link">Bản tin</a>
                                 </li>
                             </ul>
                         </div>
@@ -156,7 +156,11 @@
         </div>
     </div>
 </footer>
+<<<<<<< HEAD
+<script src="vendor/jquery-3.3.1/jquery.min.js"></script>
+=======
 
+>>>>>>> 6892dba5a26e94e47d65558992fc5cdd865d4e36
 <script type="text/javascript">
     $(document).ready(function () {
         // Gửi yêu cầu đến servlet khi trang được tải
@@ -175,7 +179,11 @@
                 contactInfoList.append('<li><i class="footer-contacts__icon fas fa-mobile-alt"></i>' + data.phone + '</li>');
                 contactInfoList.append('<li>Thứ 2-6<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeMF + '</li>');
                 contactInfoList.append('<li>Thứ 7<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSA + '</li>');
+<<<<<<< HEAD
+                contactInfoList.append('<li>Chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
+=======
                 contactInfoList.append('<li>Thứ chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
+>>>>>>> 6892dba5a26e94e47d65558992fc5cdd865d4e36
             },
             error: function (xhr, status, error) {
                 console.error('Error fetching contact info:', status, error);

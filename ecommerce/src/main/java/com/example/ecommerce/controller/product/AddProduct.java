@@ -34,6 +34,8 @@ public class AddProduct extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String title = req.getParameter("title");
         String description = req.getParameter("description");
         int price = Integer.parseInt(req.getParameter("price"));

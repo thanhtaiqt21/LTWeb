@@ -28,7 +28,7 @@ public class ChangInfor extends HttpServlet {
 
        boolean success =  UserService.getInstance().updateInfor(fullname, email, phone, user.getId());
         if (success){
-            response.sendRedirect( "/ecommerce/index.jsp");
+            response.sendRedirect( "/ecommerce/home");
         }else{
             request.setAttribute("error", "Cập nhật thông tin thất bại");
             request.getRequestDispatcher("/update_profile.jsp").forward(request, response);}

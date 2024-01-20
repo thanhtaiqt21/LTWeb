@@ -37,7 +37,6 @@ public class UserDao {
                 if (!hashPassword(password).equals(rs.getString("password"))) {
                     return null; // Mật khẩu không đúng
                 }
-                if (rs.getInt("active") == 1) {
                     User user = new User();
                     user.setId(rs.getInt("id"));
                     user.setUsername(rs.getString("username"));
@@ -45,9 +44,10 @@ public class UserDao {
                     user.setEmail(rs.getString("email"));
                     user.setPhone(rs.getString("phone"));
                     user.setRole(rs.getString("role"));
+                    user.setActive(rs.getInt("active"));
                     // Thiết lập các trường khác của User nếu cần
                     return user; // Trả về đối tượng User nếu đăng nhập thành công
-                }
+
             }
             return null; // Tài khoản không tồn tại hoặc không hoạt động
         } catch (SQLException e) {

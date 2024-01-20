@@ -63,7 +63,7 @@ public class BlogDao {
         List<Blog> blogList = new ArrayList<>();
         Connection connection = DBConnect.getInstance().getConnection();
         try {
-            String query = "SELECT * FROM blog ORDER BY times_tamp DESC";
+            String query = "SELECT * FROM blog ORDER BY date_create DESC";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -73,7 +73,7 @@ public class BlogDao {
                 String title = resultSet.getString("title");
                 String imgUrl = resultSet.getString("img_url");
                 String content = resultSet.getString("content");
-                Timestamp timestamp = resultSet.getTimestamp("times_tamp");
+                Timestamp timestamp = resultSet.getTimestamp("date_create");
 
 
                 Blog blog = new Blog(id, title, imgUrl, content, timestamp);
