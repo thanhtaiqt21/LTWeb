@@ -11,39 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9e56025f-9c41-43d6-9494-0ff38301379a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/FeedbackDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/FeedbackDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/Address.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/about-us.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/about-us.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/blog-edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/blog-edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/blog-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/blog-list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/contact.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/feedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/feedback.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/see-feedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/see-feedback.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/user-edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/user-edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/user-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/user-list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/blog-classic.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/blog-classic.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/changePass.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/changePass.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/contact-us.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/contact-us.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/forgotPass.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/forgotPass.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/list-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/list-product.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/orders-history-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/orders-history-detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/orders-history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/orders-history.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/post-without-sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/post-without-sidebar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/product.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/update_profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/update_profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/verify-email.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/verify-email.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/wishlist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/wishlist.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ecommerce/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ecommerce/dao/UserDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT/WEB-INF/classes/com/example/ecommerce/dao/UserDao.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,6 +230,7 @@
       <workItem from="1705649416963" duration="3920000" />
       <workItem from="1705672832690" duration="567000" />
       <workItem from="1705716947044" duration="10435000" />
+      <workItem from="1705729790560" duration="1240000" />
     </task>
     <servers />
   </component>

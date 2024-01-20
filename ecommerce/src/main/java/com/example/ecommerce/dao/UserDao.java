@@ -197,40 +197,44 @@ public class UserDao {
     public boolean deleteUser(int userId) {
         Connection connection = DBConnect.getInstance().getConnection();
         try {
-            // Bắt đầu một giao dịch để đảm bảo tính nhất quán khi xóa từ nhiều bảng
             connection.setAutoCommit(false);
 
-
-            // Xóa thông tin liên quan từ bảng Address
-            String deleteAddressQuery = "DELETE FROM address WHERE id_user=?";
-            try (PreparedStatement deleteAddressStatement = connection.prepareStatement(deleteAddressQuery)) {
-                deleteAddressStatement.setInt(1, userId);
-                deleteAddressStatement.executeUpdate();
+            // Xóa các mục từ bảng orders-items thông qua các đơn hàng của người dùng
+            String deleteOrderItemsQuery = "DELETE FROM order_items WHERE id_orders IN (SELECT id FROM orders WHERE id_user=?)";
+            try (PreparedStatement deleteOrderItemsStatement = connection.prepareStatement(deleteOrderItemsQuery)) {
+                deleteOrderItemsStatement.setInt(1, userId);
+                deleteOrderItemsStatement.executeUpdate();
             }
 
-            // Xóa thông tin người dùng từ bảng User
+            // Xóa các đơn hàng từ bảng orders
+            String deleteOrdersQuery = "DELETE FROM orders WHERE id_user=?";
+            try (PreparedStatement deleteOrdersStatement = connection.prepareStatement(deleteOrdersQuery)) {
+                deleteOrdersStatement.setInt(1, userId);
+                deleteOrdersStatement.executeUpdate();
+            }
+
+            // Xóa người dùng từ bảng user
             String deleteUserQuery = "DELETE FROM user WHERE id=?";
             try (PreparedStatement deleteUserStatement = connection.prepareStatement(deleteUserQuery)) {
                 deleteUserStatement.setInt(1, userId);
                 deleteUserStatement.executeUpdate();
             }
-            // Commit giao dịch nếu mọi thứ thành công
+
+            // Commit giao dịch
             connection.commit();
             return true;
         } catch (SQLException e) {
-            // Nếu có lỗi, rollback giao dịch để tránh tình trạng không nhất quán
             try {
                 connection.rollback();
             } catch (SQLException rollbackException) {
-                rollbackException.printStackTrace();  // Hoặc log lỗi rollback
+                rollbackException.printStackTrace();
             }
-            e.printStackTrace();  // Hoặc log lỗi xóa tài khoản
+            e.printStackTrace();
         } finally {
-            // Khôi phục chế độ tự động commit
             try {
                 connection.setAutoCommit(true);
             } catch (SQLException e) {
-                e.printStackTrace();  // Hoặc log lỗi
+                e.printStackTrace();
             }
             DBConnect.getInstance().closeConnection(connection);
         }
