@@ -156,7 +156,11 @@
         </div>
     </div>
 </footer>
+<<<<<<< HEAD
 <script src="vendor/jquery-3.3.1/jquery.min.js"></script>
+=======
+
+>>>>>>> 6892dba5a26e94e47d65558992fc5cdd865d4e36
 <script type="text/javascript">
     $(document).ready(function () {
         // Gửi yêu cầu đến servlet khi trang được tải
@@ -175,7 +179,11 @@
                 contactInfoList.append('<li><i class="footer-contacts__icon fas fa-mobile-alt"></i>' + data.phone + '</li>');
                 contactInfoList.append('<li>Thứ 2-6<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeMF + '</li>');
                 contactInfoList.append('<li>Thứ 7<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSA + '</li>');
+<<<<<<< HEAD
                 contactInfoList.append('<li>Chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
+=======
+                contactInfoList.append('<li>Thứ chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
+>>>>>>> 6892dba5a26e94e47d65558992fc5cdd865d4e36
             },
             error: function (xhr, status, error) {
                 console.error('Error fetching contact info:', status, error);

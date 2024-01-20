@@ -6,7 +6,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>User List | Nalika - Material Admin Template</title>
+    <title>Lời nhắn góp ý từ người dùng | Nalika - Material Admin Template</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -450,7 +450,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-              <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Đồng ý</button>
+              <button type="button" class="btn btn-danger" style="background-color: blue" id="confirmDeleteBtn">Đồng ý</button>
             </div>
           </div>
         </div>

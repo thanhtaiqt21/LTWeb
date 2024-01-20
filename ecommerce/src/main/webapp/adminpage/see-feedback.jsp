@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>User List | Nalika - Material Admin Template</title>
+    <title>Xem lời nhắn | Nalika - Material Admin Template</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -411,12 +411,12 @@
 
                     if (feedback != null) {
                 %>
-                <form id="formFeedback">
+                <form id="formFeedback" style="width: 70%; margin-left: 15%">
                   <h4 class="contact-us__header card-title">
                     Để lại tin nhắn cho chúng tôi
                   </h4>
                   <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6" >
                       <label style="color: white" for="form-name">Tên của bạn</label>
                       <input type="text" id="form-name" name="name" class="form-control" placeholder="Họ và tên"
                              value="<%= feedback.getName()%>" />
@@ -437,7 +437,10 @@
                     <textarea id="form-message" name="message" class="form-control" rows="4"><%= feedback.getMessage()%></textarea>
                   </div>
                   <!-- Move the button inside the form -->
-                  <button type="submit" class="btn btn-primary" id="submitBtn" onclick="goBack()" >trở về </button>
+                  <div class="form-group custom-pro-edt-ds" style="display: flex; justify-content: center; align-items: center;">
+                    <button type="button" class="btn btn-ctl-bt waves-effect waves-light" id="submitBtn" onclick="goBack()" >trở về</button>
+                  </div>
+
                 </form>
                 <%
                     }
@@ -521,12 +524,13 @@
 		============================================ -->
     <script src="../js/main1.js"></script>
 
+
     <script>
       function goBack() {
         // Use JavaScript to navigate back in history
         window.history.back();
       }
-    </script>
+    </script>"
 
   </body>
 </html>

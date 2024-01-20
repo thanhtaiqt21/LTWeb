@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.example.ecommerce.model.User" %>
 <%@ page import="com.example.ecommerce.service.UserService" %>
-<%@ page import="com.example.ecommerce.model.Address" %>
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
@@ -9,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Thêm người dùng | Nalika - Material Admin Template</title>
+    <title>Chỉnh sủa thông tin người dùng | Nalika - Material Admin Template</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- favicon
@@ -415,48 +414,45 @@
                       <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
-                            <div class="input-group mg-b-pro-edt">
+                            <div class=" mg-b-pro-edt">
+                              <label style="color: white" >Tài khoản</label>
+                              <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
                               <input type="text" class="form-control readonly-input" placeholder="Tên tài khoản" value="<%= user.getUsername() %>" readonly/>
                             </div>
-                            <div class="input-group mg-b-pro-edt">
+                            </div>
+                            <div class=" mg-b-pro-edt">
+                              <label style="color: white" >Họ và tên</label>
+                              <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"><i class="fa-solid fa-file-signature"></i></span>
                               <input type="text" class="form-control readonly-input" placeholder="Tên người dùng" value="<%= user.getFullname() %>" readonly/>
                             </div>
-                            <div class="input-group mg-b-pro-edt">
+                            </div>
+                              <div class=" mg-b-pro-edt">
+                                <label style="color: white" >Email</label>
+                                <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
                               <input type="text" class="form-control readonly-input" placeholder="Email" value="<%= user.getEmail() %>" readonly/>
                             </div>
+                              </div>
 
                           </div>
 
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <div class="review-content-section">
-                            <%
-                              if (user != null) {
-                                List<Address> addresses = user.getAddresses(); // Lấy danh sách địa chỉ của người dùng
-
-                                if (addresses != null && !addresses.isEmpty()) {
-                                  for (Address address : addresses) {
-                            %>
-                            <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"><i class="fa-solid fa-location-dot"></i></span>
-                              <input type="text" class="form-control readonly-input" placeholder="Địa chỉ" value="<%= address.getSpecify() %>, <%= address.getWard() %>, <%= address.getDistrict() %>, <%= address.getProvince() %>" readonly/>
-                            </div>
-                            <!-- Thêm các trường địa chỉ khác tương tự như trên -->
-                            <%
-                                  }
-                                }
-                              }
-                            %>
-                            <div class="input-group mg-b-pro-edt">
+                            <div class=" mg-b-pro-edt">
+                              <label style="color: white" >Số điện thoại</label>
+                              <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"><i class="fa-solid fa-phone"></i></span>
                               <input type="text" class="form-control readonly-input" placeholder="Số điện thoại" value="<%= user.getPhone() %>" readonly/>
                             </div>
+                            </div>
 
 
-                            <div class="input-group mg-b-pro-edt">
+                              <div class=" mg-b-pro-edt">
+                                <label style="color: white" >Vai trò</label>
+                                <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"
                               ><i class="fa-solid fa-circle-info"></i></span>
                               <input
@@ -466,7 +462,10 @@
                                       value="<%=user.getRole()%>"
                               />
                             </div>
-                            <div class="input-group mg-b-pro-edt">
+                              </div>
+                                <div class=" mg-b-pro-edt">
+                                  <label style="color: white" >Trạng thái</label>
+                                  <div class="input-group mg-b-pro-edt">
                               <span class="input-group-addon"><i class="fa-solid fa-signal"></i></span>
                               <select
                                       name="status" id="status"
@@ -476,6 +475,7 @@
                                 <option value="1" <% if (user.getStatus() == 1) { %>selected<% } %>>Ngưng hoạt động</option>
                               </select>
                             </div>
+                                </div>
                           </div>
                         </div>
                       </div>
