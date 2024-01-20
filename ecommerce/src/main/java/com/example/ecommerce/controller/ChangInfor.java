@@ -22,19 +22,15 @@ public class ChangInfor extends HttpServlet {
         String fullname = request.getParameter("fullname");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
-        int hashcode = hashCode();
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        boolean success = UserService.getInstance().updateInfor(fullname, email, phone, user.getId(), hashcode);
-
-        if (success) {
-            request.setAttribute("success", "true");
-            request.getRequestDispatcher("/verify-email.jsp").forward(request, response);
-        } else {
+       boolean success =  UserService.getInstance().updateInfor(fullname, email, phone, user.getId());
+        if (success){
+            response.sendRedirect( "/ecommerce/index.jsp");
+        }else{
             request.setAttribute("error", "Cập nhật thông tin thất bại");
-            request.getRequestDispatcher("/update_profile.jsp").forward(request, response);
-        }
+            request.getRequestDispatcher("/update_profile.jsp").forward(request, response);}
     }
 }

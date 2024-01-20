@@ -1,9 +1,7 @@
 package com.example.ecommerce.dao;
 
 import com.example.ecommerce.db.DBConnect;
-import com.example.ecommerce.model.Address;
 import com.example.ecommerce.model.Feedback;
-import com.example.ecommerce.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -330,14 +330,13 @@
                         <div class="card flex-grow-1 mb-0">
                             <div class="card-body">
                                 <h3 class="card-title">Quên Mật Khẩu</h3>
-                                <form action="/ecommerce/doForgotPassword" method="post">
+                                <form>
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input
                                                 type="email"
                                                 class="form-control"
                                                 placeholder="Nhập Email"
-                                                name="email"
                                         />
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">
@@ -358,32 +357,7 @@
 </div>
 <!-- site / end -->
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        // Gửi yêu cầu đến servlet khi trang được tải
-        $.ajax({
-            type: 'GET',
-            url: '/ecommerce/contact-us',
-            dataType: 'json',
-            success: function (data) {
-                // Hiển thị thông tin liên hệ trên trang
-                var contactInfoList = $('#contactInfoList');
-                // Xóa mọi nội dung cũ trong ul
-                contactInfoList.empty();
-                // Thêm các mục thông tin liên hệ mới
-                contactInfoList.append('<li><i class="footer-contacts__icon fas fa-globe-americas"></i>' + data.address + '</li>');
-                contactInfoList.append('<li><i class="footer-contacts__icon far fa-envelope"></i>' + data.email + '</li>');
-                contactInfoList.append('<li><i class="footer-contacts__icon fas fa-mobile-alt"></i>' + data.phone + '</li>');
-                contactInfoList.append('<li>Thứ 2-6<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeMF + '</li>');
-                contactInfoList.append('<li>Thứ 7<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSA + '</li>');
-                contactInfoList.append('<li>Thứ chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
-            },
-            error: function (xhr, status, error) {
-                console.error('Error fetching contact info:', status, error);
-            }
-        });
-    });
-</script>
+
 
 </body>
 </html>
