@@ -1,5 +1,6 @@
 package com.example.ecommerce.service;
 
+import com.example.ecommerce.dao.ProductDao;
 import com.example.ecommerce.dao.UserDao;
 import com.example.ecommerce.model.User;
 
@@ -54,5 +55,9 @@ public class UserService {
 
     public boolean updateUserStatusAndRole(int userId, int status, String role) {
         return UserDao.getInstance().updateUserStatusAndRole(userId, status, role);
+    }
+
+    public long total() {
+        return UserDao.getInstance().totalUser();
     }
 }

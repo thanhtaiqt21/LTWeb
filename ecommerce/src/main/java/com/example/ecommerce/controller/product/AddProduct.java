@@ -57,7 +57,7 @@ public class AddProduct extends HttpServlet {
                 ImgService.getInstance().addImg(imgUrl, i);
             }
             req.setAttribute("success","Thêm sản phẩm thành công");
-            req.getRequestDispatcher("/adminpage/product-add.jsp").forward(req,resp);
+            resp.sendRedirect("/ecommerce/adminpage/product-list");
         } else {
             req.setAttribute("error","Thêm sản phẩm thất bại");
             req.getRequestDispatcher("/adminpage/product-add.jsp").forward(req,resp);

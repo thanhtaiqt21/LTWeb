@@ -380,7 +380,7 @@
               <div class="product-status-wrap">
                 <h4>Danh sách sản phẩm</h4>
                 <div class="add-product">
-                  <a href="product-add.jsp">Thêm sản phẩm</a>
+                  <a href="/ecommerce/adminpage/product-add">Thêm sản phẩm</a>
                 </div>
                 <table style="table-layout: fixed">
                   <tr>
@@ -400,7 +400,7 @@
                         <img src="${product.imgUrl.get(0)}" alt="" />
                       </td>
                       <td>${product.title}</td>
-                      <td style="overflow: hidden;text-overflow: ellipsis">${product.description}</td>
+                      <td style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">${product.description}</td>
                         <c:if test="${product.active == 1}">
                           <td>Hoạt động</td>
                         </c:if>

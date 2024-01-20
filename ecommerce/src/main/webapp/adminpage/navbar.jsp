@@ -1,11 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 20/01/2024
-  Time: 11:22 SA
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -48,7 +42,7 @@
                                             class="nav-link dropdown-toggle"
                                     >
                                         <i class="fa-solid fa-user"></i>
-                                        <span class="admin-name">Tên người dùng</span>
+                                        <span class="admin-name">${user.fullname}</span>
                                         <i class="fa-solid fa-angle-down"></i>
                                     </a>
                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
