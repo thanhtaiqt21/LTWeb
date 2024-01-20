@@ -19,25 +19,17 @@ public class LoginController extends HttpServlet {
         String password = req.getParameter("password");
         User user = UserService.getInstance().checkLogin(username, password);
 
-        if (user != null && user.getId() > 0) {
+        if (user != null && user.getId() > 0 && user.getActive() > 0) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
-
-            // Kiểm tra vai trò của người dùng
-            String role = user.getRole();
-            if ("ADMIN".equals(role)) {
-                // Nếu là ADMIN, chuyển hướng tới trang quản trị
-                resp.sendRedirect("/ecommerce/adminpage/");
-            } else if ("USER".equals(role)) {
-                // Nếu là USER, chuyển hướng như bình thường
-                resp.sendRedirect("/ecommerce/");
-            } else {
-                // Xử lý cho các trường hợp vai trò khác (nếu có)
-            }
+            resp.sendRedirect("/ecommerce/home");
         } else {
             String error = "Thông tin đăng nhập không chính xác";
             if (user != null && user.getId() == 0) {
                 error = "Tài khoản của bạn đã bị khóa";
+            }
+            if (user != null && user.getActive() == 0) {
+                error = "Vui lòng kích hoạt tài khoản trong email của bạn";
             }
             req.setAttribute("error", error);
             req.getRequestDispatcher("/login.jsp").forward(req, resp);

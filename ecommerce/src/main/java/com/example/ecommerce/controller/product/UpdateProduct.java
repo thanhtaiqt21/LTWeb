@@ -41,6 +41,8 @@ public class UpdateProduct extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         int id = Integer.parseInt(req.getParameter("id"));
         String title = req.getParameter("title");
         String description = req.getParameter("description");
