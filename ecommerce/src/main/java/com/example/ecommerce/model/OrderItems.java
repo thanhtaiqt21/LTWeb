@@ -3,19 +3,20 @@ package com.example.ecommerce.model;
 public class OrderItems {
     private int id;
     private int quantity;
-    private double totalPrice;
+    private int totalPrice;
     private int idProduct;
-
+    private int idOrder;
     private Product product;
 
     public OrderItems() {
     }
 
-    public OrderItems(int id, int quantity, double totalPrice, int idProduct, Product product) {
+    public OrderItems(int id, int quantity, int totalPrice, int idProduct,int idOrder, Product product) {
         this.id = id;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
         this.idProduct = idProduct;
+        this.idOrder = idOrder;
         this.product = product;
     }
 
@@ -35,13 +36,6 @@ public class OrderItems {
         this.quantity = quantity;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
 
     public int getIdProduct() {
         return idProduct;
@@ -57,6 +51,18 @@ public class OrderItems {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public int getIdOrder() {
+        return idOrder;
+    }
+
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
     @Override

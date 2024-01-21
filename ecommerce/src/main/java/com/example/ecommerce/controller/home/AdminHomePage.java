@@ -1,5 +1,6 @@
 package com.example.ecommerce.controller.home;
 
+import com.example.ecommerce.service.OrderService;
 import com.example.ecommerce.service.ProductService;
 import com.example.ecommerce.service.UserService;
 
@@ -16,8 +17,8 @@ public class AdminHomePage extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long totalUser = UserService.getInstance().total();
         long totalProduct = ProductService.getInstance().total();
-        long totalOrder = 10;
-        long totalOrderWaitting = 10;
+        long totalOrder = OrderService.getInstance().totalOrders();
+        long totalOrderWaitting = OrderService.getInstance().totalOrdersWaitting();
         req.setAttribute("totalUser",totalUser);
         req.setAttribute("totalProduct",totalProduct);
         req.setAttribute("totalOrder",totalOrder);

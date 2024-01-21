@@ -5,6 +5,7 @@ import com.example.ecommerce.service.ProductService;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 public class Cart {
     HashMap<Integer, CartItem> data;
@@ -62,5 +63,9 @@ public class Cart {
         } else {
             data.get(id).setQuantity(quantity);
         }
+    }
+
+    public void clear() {
+        data.clear();
     }
 }

@@ -26,8 +26,8 @@ public class OrdersListDao {
                 Orders order = new Orders();
                 // Set properties for order from resultSet
                 order.setId(resultSet.getInt("id"));
-                order.setShippingFee(resultSet.getDouble("shipping_fee"));
-                order.setTotalPrice(resultSet.getDouble("total_price"));
+                order.setShippingFee(resultSet.getInt("shipping_fee"));
+                order.setTotalPrice(resultSet.getInt("total_price"));
                 order.setStatus(resultSet.getInt("status"));
                 order.setDayCreate(resultSet.getTimestamp("day_create"));
                 order.setAddress(resultSet.getString("address"));

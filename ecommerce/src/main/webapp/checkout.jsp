@@ -1,9 +1,14 @@
-<%@ page import="com.example.ecommerce.model.Category" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
 String error = (String) request.getAttribute("error");
 %>
+<%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="com.example.ecommerce.service.CartService" %>
+<%@ page import="com.example.ecommerce.model.*" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -35,14 +40,19 @@ String error = (String) request.getAttribute("error");
     <script src="js/number.js"></script>
     <script src="js/main.js"></script>
     <script src="vendor/svg4everybody-2.1.9/svg4everybody.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+
     <script>
       svg4everybody();
     </script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+      <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+              referrerpolicy="no-referrer"
+      ></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <!-- font - fontawesome -->
     <link rel="stylesheet" href="vendor/fontawesome-5.6.1/css/all.min.css" />
     <!-- font - stroyka -->
@@ -51,6 +61,15 @@ String error = (String) request.getAttribute("error");
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-97489509-6"
     ></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+    <style type="text/css">
+      label.error {
+        display: inline-block;
+        color:red;
+        width: 200px;
+      }
+    </style>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -304,6 +323,55 @@ String error = (String) request.getAttribute("error");
   <!-- mobilemenu / end --><!-- site -->
   <div class="site">
     <!-- desktop site__header -->
+    <%
+      // Lấy giỏ hàng từ session
+      Cart cart = (Cart) session.getAttribute("cart");
+      OrderItems orderItemsList = (OrderItems) session.getAttribute("orderItemsList");
+
+
+      // Hiển thị thông tin sản phẩm
+    %>
+
+      <%
+            Object obj = session.getAttribute("user");
+            User user = null;
+            if (obj != null)
+                user = (User) obj;
+            if (user == null) {
+        %>
+    <center><h1>Bạn chưa đăng nhập vào hệ thống. Vui lòng quay lại trang chủ!</h1></center>
+      <%
+        } else {
+            String successParam = request.getAttribute("success") + "";
+            if (successParam.equals("true")) {
+                // Hiển thị thông báo thành công
+        %>
+    <script>alert('Cập nhật thông tin thành công');</script>
+      <%
+            // Cập nhật thông tin người dùng trên giao diện
+            String fullname = user.getFullname();
+            String email = user.getEmail();
+            String phone = user.getPhone();
+        %>
+    <script>
+      document.querySelector('input[name="fullname"]').value = '<%=fullname%>';
+      document.querySelector('input[name="email"]').value = '<%=email%>';
+      document.querySelector('input[name="phone"]').value = '<%=phone%>';
+    </script>
+      <%
+            }
+        %>
+    <div class="container">
+      <% String baoLoi = request.getAttribute("error") + "";
+        baoLoi = (baoLoi.equals("null")) ? "" : baoLoi;
+
+        String fullname = user.getFullname();
+
+        String email = user.getEmail();
+
+        String phone = user.getPhone();
+      %>
+
     <jsp:include page="header.jsp"/>
     <!-- desktop site__header / end -->
       <!-- site__body -->
@@ -337,255 +405,400 @@ String error = (String) request.getAttribute("error");
             </div>
             <div class="page-header__title"><h1>Thanh toán</h1></div>
           </div>
-        </div>
-        <div class="checkout block">
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-lg-6 col-xl-7">
-                <div class="card mb-lg-0">
-                  <div class="card-body">
-                    <h3 class="card-title">Chi tiết đơn hàng</h3>
+          <div class="red" id="error">
+            <% if (error != null) { %>
+            <div class="alert alert-danger" role="alert">
+              <%= error %>
+            </div>
+            <% } %>
+          </div>
+        <form action="<%=request.getContextPath()%>/addcheckout" method="POST" class="billing-form" id="formCheckout">
+          <div class="checkout block">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-lg-6 col-xl-7">
+                  <div class="card mb-lg-0">
+                    <div class="card-body">
+                      <h3 class="card-title">Chi tiết đơn hàng</h3>
 
-                    <div class="form-group">
-                      <label>Họ và Tên</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Nhập họ tên"
-                      />
-                    </div>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label>Email</label>
+                      <div class="form-group">
+                        <label>Họ và Tên</label>
                         <input
-                          type="email"
-                          class="form-control"
-                          placeholder="Nhập email"
+                                type="text"
+                                class="form-control"
+                                placeholder="Nhập họ tên"
+                                name="fullname"
+                                required
+                                value="<%= user.getFullname() %>"
                         />
                       </div>
-                      <div class="form-group col-md-6">
-                        <label>Số điện thoại</label>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label>Email</label>
+                          <input
+                                  type="email"
+                                  class="form-control"
+                                  placeholder="Nhập email"
+                                  name="email"
+                                  required
+                                  value="<%= user.getEmail() %>"/>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>Số điện thoại</label>
+                          <input  type="text"
+                                  class="form-control"
+                                  placeholder="Nhập số điện thoại"
+                                  name="phone"
+                                  required
+                                  value="<%= user.getPhone() %>"/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Tỉnh/Thành phố</label>
+                        <select
+                                id="city"
+                                class="form-control"
+                                aria-label="Default select example"
+                                name="city"
+                                required
+
+                        >
+                          <option selected>--Tỉnh/Thành phố--</option>
+                        </select>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label>Quận/Huyện</label>
+                          <select
+                                  id="district"
+                                  class="form-control"
+                                  aria-label="Default select example"
+                                  name="district"
+                                  required
+                          >
+                            <option selected>--Quận/Huyện--</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>Phường/Xã</label>
+                          <select
+                                  id="ward"
+                                  class="form-control"
+                                  aria-label="Default select example"
+                                  name="ward"
+                                  required
+                          >
+                            <option selected>--Phường/Xã--</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Địa chỉ cụ thể</label>
                         <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Nhập số điện thoại"
+                                type="text"
+                                class="form-control"
+                                placeholder="Số nhà,đường..."
+                                name="address"
+                                required
                         />
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label>Tỉnh/Thành phố</label>
-                      <select
-                        id="city"
-                        class="form-control"
-                        aria-label="Default select example"
-                      >
-                        <option selected>--Tỉnh/Thành phố--</option>
-                      </select>
-                    </div>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label>Quận/Huyện</label>
-                        <select
-                          id="district"
-                          class="form-control"
-                          aria-label="Default select example"
-                        >
-                          <option selected>--Quận/Huyện--</option>
-                        </select>
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label>Phường/Xã</label>
-                        <select
-                          id="ward"
-                          class="form-control"
-                          aria-label="Default select example"
-                        >
-                          <option selected>--Phường/Xã--</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Địa chỉ cụ thể</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Số nhà,đường..."
-                      />
-                    </div>
-                  </div>
-                  <div class="card-divider"></div>
-                  <div class="card-body">
-                    <h3 class="card-title">Ghi chú</h3>
-                    <div class="form-group">
-                      <label for="checkout-comment"
+                    <div class="card-divider"></div>
+                    <div class="card-body">
+                      <h3 class="card-title">Ghi chú</h3>
+                      <div class="form-group">
+                        <label for="checkout-comment"
                         >Ghi chú đơn hàng
-                        <span class="text-muted">(Nếu có)</span></label
-                      >
-                      <textarea
-                        id="checkout-comment"
-                        class="form-control"
-                        rows="4"
-                      ></textarea>
+                          <span class="text-muted">(Nếu có)</span></label
+                        >
+                        <textarea
+                                id="checkout-comment"
+                                class="form-control"
+                                rows="4"
+                                name="note"
+                        ></textarea>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-12 col-lg-6 col-xl-5 mt-4 mt-lg-0">
-                <div class="card mb-0">
-                  <div class="card-body">
-                    <h3 class="card-title">Đơn hàng của bạn</h3>
-                    <table class="checkout__totals">
-                      <thead class="checkout__totals-header">
+                <div class="col-12 col-lg-6 col-xl-5 mt-4 mt-lg-0">
+                  <div class="card mb-0">
+                    <div class="card-body">
+                      <h3 class="card-title">Đơn hàng của bạn</h3>
+                      <table class="checkout__totals">
+                        <thead class="checkout__totals-header">
                         <tr>
                           <th>Sản phẩm</th>
+                          <th>Số lượng</th>
                           <th>Tổng</th>
                         </tr>
-                      </thead>
-                      <tbody class="checkout__totals-products">
+                        </thead>
+                        <tbody class="checkout__totals-products">
+                        <c:forEach items="${cart.getItems()}" var="item">
                         <tr>
                           <td>
-                            Electric Planer Brandix KL370090G 300 Watts × 2
+                            ${item.product.title}
                           </td>
-                          <td>$1,398.00</td>
-                        </tr>
-                        <tr>
+                          <td>${item.quantity}</td>
                           <td>
-                            Undefined Tool IRadix DPS3000SY 2700 watts × 1
+                            <fmt:setLocale value="vi_VN"/>
+                            <fmt:formatNumber value="${item.price()}" type="number" currencySymbol="$" />
                           </td>
-                          <td>$849.00</td>
                         </tr>
-                        <tr>
-                          <td>Brandix Router Power Tool 2017ERXPK × 3</td>
-                          <td>$3,630.00</td>
-                        </tr>
-                      </tbody>
-                      <tbody class="checkout__totals-subtotals">
+                        </c:forEach>
+                        </tbody>
+                        <tbody class="checkout__totals-subtotals">
                         <tr>
                           <th>Tạm tính</th>
-                          <td>$5,877.00</td>
+                          <td></td>
+                          <td>
+                            <fmt:setLocale value="vi_VN"/>
+                            <fmt:formatNumber value="<%=cart.total()%>" type="currency"/>
+                          </td>
                         </tr>
-
                         <tr>
                           <th>Phí vận chuyển</th>
-                          <td>$25.00</td>
+                          <td></td>
+                          <td>
+                            <fmt:setLocale value="vi_VN"/>
+                            <fmt:formatNumber value="<%=cart.total()*0.02%>" type="currency"/>
+                          </td>
                         </tr>
-                      </tbody>
-                      <tfoot class="checkout__totals-footer">
+                        </tbody>
+                        <tfoot class="checkout__totals-footer">
                         <tr>
                           <th>Tổng</th>
-                          <td>$5,882.00</td>
+                          <td></td>
+                          <td>
+                            <fmt:setLocale value="vi_VN"/>
+                            <fmt:formatNumber value="${cart.total() + cart.total()*0.02}" type="currency"/>
+                          </td>
                         </tr>
-                      </tfoot>
-                    </table>
-                    <div class="checkout__agree form-group">
-                      <div class="form-check">
-                        <span class="form-check-input input-check"
-                          ><span class="input-check__body"
-                            ><input
-                              class="input-check__input"
-                              type="checkbox"
-                              id="checkout-terms"
-                            />
-                            <span class="input-check__box"></span>
-                            <svg
-                              class="input-check__icon"
-                              width="9px"
-                              height="7px"
-                            >
-                              <use
-                                xlink:href="images/sprite.svg#check-9x7"
-                              ></use>
-                            </svg> </span></span
-                        ><label class="form-check-label" for="checkout-terms"
-                          >Tôi đã đọc kĩ và đồng ý
+                        </tfoot>
+                      </table>
+                      <div class="checkout__agree form-group">
+                        <div class="form-check">
+      <span class="form-check-input input-check">
+        <span class="input-check__body">
+          <input
+              class="input-check__input"
+              type="checkbox"
+              id="checkout-terms"/>
+          <span class="input-check__box"></span>
+          <svg class="input-check__icon"
+                  width="9px"
+                  height="7px">
+            <use xlink:href="images/sprite.svg#check-9x7"></use>
+          </svg> </span></span>
+                          <label class="form-check-label" for="checkout-terms">
+                            Tôi đã đọc kĩ và đồng ý
                           <a target="_blank" href="terms-and-conditions.html"
-                            >với chính sách và điều kiện của website</a
+                          >với chính sách và điều kiện của website</a
                           >*</label
                         >
+                        </div>
+                      </div>
+                      <div>
+                        <button type="submit" class="btn btn-primary btn-xl btn-block" id="orderButton">
+                          Đặt hàng
+                        </button>
                       </div>
                     </div>
-                    <button
-                      type="submit"
-                      class="btn btn-primary btn-xl btn-block"
-                    >
-                      Đặt hàng
-                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
+      </div>
+  </div>
+      <%}%>
       <!-- site__body / end --><!-- site__footer -->
       <jsp:include page="footer.jsp"/>
+
+<<<<<<< HEAD
+  </body>
       <!-- site__footer / end -->
-    </div>
     <!-- site / end -->
+  //kiểm tra thông báo lỗi
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#formCheckout").validate({
+        rules: {
+          fullname: "required",
+          email: {
+            required: true,
+            email: true
+          },
+          phone: {
+            required: true,
+            number: true
+          },
+          city: {
+            required: true
+          },
+          district: {
+            required: true
+          },
+          ward: {
+            required: true
+          },
+          address: {
+            required: true
+          },
+          "checkout-terms": {
+            required: true
+          }
+        },
+        messages: {
+          fullname: "Vui lòng nhập họ tên",
+          email: {
+            required: "Vui lòng nhập email",
+            email: "Vui lòng nhập đúng định dạng email"
+          },
+          phone: {
+            required: "Vui lòng nhập số điện thoại",
+            number: "Vui lòng nhập đúng định dạng"
+          },
+          city: {
+            required: "Vui lòng chọn tỉnh/thành phố"
+          },
+          district: {
+            required: "Vui lòng chọn quận/huyện"
+          },
+          ward: {
+            required: "Vui lòng chọn phường/xã"
+          },
+          address: {
+            required: "Vui lòng nhập địa chỉ cụ thể"
+          },
+          "checkout-terms": {
+            required: "Bạn phải đồng ý với chính sách và điều kiện của website"
+          }
+        },
+        errorPlacement: function (error, element) {
+          if (element.attr("type") === "checkbox") {
+            error.insertAfter(element.parent());
+          } else {
+            error.insertAfter(element);
+          }
+        },
+        submitHandler: function (form) {
+          form.submit();
+        }
+      });
+    });
+  </script>
+=======
+
+>>>>>>> 958ef5f47751d5b15491cf6c3029680afbccfab7
+
+
+<%--  // Thông báo khi đặt hàng--%>
+<%--  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <script>--%>
+<%--    // Đặt sự kiện click cho nút "Đặt hàng" d--%>
+<%--    document.getElementById("orderButton").addEventListener("click", function(event) {--%>
+<%--      event.preventDefault(); // Hiển thị hộp thoại xác nhận--%>
+<%--    Swal.fire({--%>
+<%--      title: 'Xác nhận',--%>
+<%--      text: 'Bạn có muốn đặt hàng?',--%>
+<%--      icon: 'question', showCancelButton: true,--%>
+<%--      confirmButtonText: 'Có',--%>
+<%--      cancelButtonText: 'Không',--%>
+<%--      confirmButtonClass: 'btn btn-blue',--%>
+<%--      cancelButtonClass: 'btn',--%>
+<%--      buttonsStyling: false,--%>
+<%--      reverseButtons: true--%>
+<%--    }).then((result) => { if (result.isConfirmed) {--%>
+<%--      // Thực hiện hành động khi người dùng chọn Có--%>
+<%--    document.getElementById("formCheckout").submit(); // Gửi form--%>
+<%--    } }); });--%>
+<%--  </script>--%>
+
+  // Yêu cầu checkbox mới được đặt hàng
+<%--  <script>--%>
+<%--    // Lấy tham chiếu đến checkbox và nút "Đặt hàng"--%>
+<%--    var checkbox = document.getElementById("checkout-terms");--%>
+<%--    var orderButton = document.getElementById("orderButton");--%>
+
+<%--    // Đăng ký sự kiện 'change' cho checkbox--%>
+<%--    checkbox.addEventListener("change", function() {--%>
+<%--      // Kiểm tra trạng thái của checkbox--%>
+<%--      if (checkbox.checked) {--%>
+<%--        // Nếu checkbox được đánh dấu, kích hoạt nút "Đặt hàng"--%>
+<%--        orderButton.removeAttribute("disabled");--%>
+<%--      } else {--%>
+<%--        // Nếu checkbox không được đánh dấu, ngắt kích hoạt nút "Đặt hàng"--%>
+<%--        orderButton.setAttribute("disabled", "disabled");--%>
+<%--      }--%>
+<%--    });--%>
+<%--  </script>--%>
 
 
 
   </body>
   <script>
-    const host = "https://provinces.open-api.vn/api/";
-    var callAPI = (api) => {
-      return axios.get(api).then((response) => {
-        renderData(response.data, "city");
-      });
-    };
-    callAPI("https://provinces.open-api.vn/api/?depth=1");
-    var callApiDistrict = (api) => {
-      return axios.get(api).then((response) => {
-        renderData(response.data.districts, "district");
-      });
-    };
-    var callApiWard = (api) => {
-      return axios.get(api).then((response) => {
-        renderData(response.data.wards, "ward");
-      });
-    };
+      const host = "https://provinces.open-api.vn/api/";
+      var callAPI = (api) => {
+          return axios.get(api).then((response) => {
+              renderData(response.data, "city");
+          });
+      };
+      callAPI("https://provinces.open-api.vn/api/?depth=1");
+      var callApiDistrict = (api) => {
+          return axios.get(api).then((response) => {
+              renderData(response.data.districts, "district");
+          });
+      };
+      var callApiWard = (api) => {
+          return axios.get(api).then((response) => {
+              renderData(response.data.wards, "ward");
+          });
+      };
 
-    var renderData = (array, select) => {
-      let row = ' <option disable value="">Chọn</option>';
-      array.forEach((element) => {
-        row += `<option data-id="${element.code}" value="${element.name}">${element.name}</option>`;
+      var renderData = (array, select) => {
+          let row = ' <option disable value="">Chọn</option>';
+          array?.forEach((element) => {
+              console.log(element);
+              <%--row += `<option data-id="${}" value="${element.name}">${element.name}</option>`;--%>
+              row += "<option data-id=" + `"` + element.code + `"` + " value=" + `"` + element.name + `">` + element.name + "</option>";
+          });
+          document.querySelector("#" + select).innerHTML = row;
+      };
+
+      $("#city").change(() => {
+          callApiDistrict(
+              host + "p/" + $("#city").find(":selected").data("id") + "?depth=2"
+          );
+          printResult();
       });
-      document.querySelector("#" + select).innerHTML = row;
-    };
+      $("#district").change(() => {
+          callApiWard(
+              host + "d/" + $("#district").find(":selected").data("id") + "?depth=2"
+          );
+          printResult();
+      });
+      $("#ward").change(() => {
+          printResult();
+      });
 
-    $("#city").change(() => {
-      callApiDistrict(
-        host + "p/" + $("#city").find(":selected").data("id") + "?depth=2"
-      );
-      printResult();
-    });
-    $("#district").change(() => {
-      callApiWard(
-        host + "d/" + $("#district").find(":selected").data("id") + "?depth=2"
-      );
-      printResult();
-    });
-    $("#ward").change(() => {
-      printResult();
-    });
-
-    var printResult = () => {
-      if (
-        $("#district").find(":selected").data("id") != "" &&
-        $("#city").find(":selected").data("id") != "" &&
-        $("#ward").find(":selected").data("id") != ""
-      ) {
-        let result =
-          $("#city option:selected").text() +
-          " | " +
-          $("#district option:selected").text() +
-          " | " +
-          $("#ward option:selected").text();
-        $("#result").text(result);
-      }
-    };
+      var printResult = () => {
+          if (
+              $("#district").find(":selected").data("id") != "" &&
+              $("#city").find(":selected").data("id") != "" &&
+              $("#ward").find(":selected").data("id") != ""
+          ) {
+              let result =
+                  $("#city option:selected").text() +
+                  " | " +
+                  $("#district option:selected").text() +
+                  " | " +
+                  $("#ward option:selected").text();
+              $("#result").text(result);
+          }
+      };
   </script>
-
-
-
 </html>

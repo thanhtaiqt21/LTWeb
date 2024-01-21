@@ -2,6 +2,9 @@ package com.example.ecommerce.dao;
 
 import com.example.ecommerce.db.DBConnect;
 import com.example.ecommerce.model.Blog;
+import com.example.ecommerce.model.Img;
+import com.example.ecommerce.model.Product;
+import com.example.ecommerce.service.ImgService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -150,5 +153,81 @@ public class BlogDao {
             throw new RuntimeException(ex);
         }
     }
+
+    public List<Blog> getBlogPagination(int start, int total) {
+        List<Blog> blogs = new ArrayList<>();
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM blog LIMIT ?, ? ");
+            preparedStatement.setInt(1, start);
+            preparedStatement.setInt(2, total);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Blog blog = new Blog();
+                blog.setId(rs.getInt("id"));
+                blog.setTitle(rs.getString("title"));
+                blog.setContent(rs.getString("content"));
+                blog.setimgUrl(rs.getString("img_url"));
+                blog.setTimestamp(rs.getTimestamp("date_create"));
+
+                blogs.add(blog);
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return blogs;
+    }
+
+    public long totalBlog() {
+        long count = 0;
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS total FROM blog");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                count = rs.getLong("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return count;
+    }
+    public List<Blog> getRelatedBlog() {
+        List<Blog> blogList = new ArrayList<>();
+        Connection connection = DBConnect.getInstance().getConnection();
+        try {
+            String query = "SELECT * FROM blog ORDER BY RAND() LIMIT 2";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String title = resultSet.getString("title");
+                String imgUrl = resultSet.getString("img_url");
+                String content = resultSet.getString("content");
+                Timestamp timestamp = resultSet.getTimestamp("date_create");
+
+
+                Blog blog = new Blog(id, title, imgUrl, content, timestamp);
+                blogList.add(blog);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return blogList;
+    }
+
+
+    public static void main(String[] args) {
+        BlogDao dao = new BlogDao();
+        List<Blog> list = BlogDao.getInstance().getBlogPagination(1,3);
+        for (Blog b : list){
+            System.out.println(b);
+        }
+    }
+
 
 }

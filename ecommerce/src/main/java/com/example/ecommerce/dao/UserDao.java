@@ -10,11 +10,13 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class UserDao {
     private static UserDao instance;
 
-    private UserDao() {}
+    private UserDao() {
+    }
 
     public static UserDao getInstance() {
         if (instance == null) {
@@ -37,16 +39,16 @@ public class UserDao {
                 if (!hashPassword(password).equals(rs.getString("password"))) {
                     return null; // Mật khẩu không đúng
                 }
-                    User user = new User();
-                    user.setId(rs.getInt("id"));
-                    user.setUsername(rs.getString("username"));
-                    user.setFullname(rs.getString("fullname"));
-                    user.setEmail(rs.getString("email"));
-                    user.setPhone(rs.getString("phone"));
-                    user.setRole(rs.getString("role"));
-                    user.setActive(rs.getInt("active"));
-                    // Thiết lập các trường khác của User nếu cần
-                    return user; // Trả về đối tượng User nếu đăng nhập thành công
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setUsername(rs.getString("username"));
+                user.setFullname(rs.getString("fullname"));
+                user.setEmail(rs.getString("email"));
+                user.setPhone(rs.getString("phone"));
+                user.setRole(rs.getString("role"));
+                user.setActive(rs.getInt("active"));
+                // Thiết lập các trường khác của User nếu cần
+                return user; // Trả về đối tượng User nếu đăng nhập thành công
 
             }
             return null; // Tài khoản không tồn tại hoặc không hoạt động
@@ -55,33 +57,35 @@ public class UserDao {
         }
     }
 
-    public boolean register(String username, String password, String fullname, String email, String phone, String hashcode){
+    public boolean register(String username, String password, String fullname, String email, String phone, String hashcode) {
         Connection connection = DBConnect.getInstance().getConnection();
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE username=?");
-            preparedStatement.setString(1,username);
+            preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 String usernameCheck = rs.getString("username");
-                if (username.equals(usernameCheck)){
+                if (username.equals(usernameCheck)) {
                     return false;
                 }
             } else {
                 preparedStatement = connection.prepareStatement("INSERT INTO user(username, password, fullname, email, phone, hashcode, role, active) VALUES(?,?,?,?,?,?,?,?)");
-                preparedStatement.setString(1,username);
-                preparedStatement.setString(2,hashPassword(password));
-                preparedStatement.setString(3,fullname);
-                preparedStatement.setString(4,email);
-                preparedStatement.setString(5,phone);
-                preparedStatement.setString(6,hashcode);
-                preparedStatement.setString(7,"USER");
-                preparedStatement.setString(8,"0");
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, hashPassword(password));
+                preparedStatement.setString(3, fullname);
+                preparedStatement.setString(4, email);
+                preparedStatement.setString(5, phone);
+                preparedStatement.setString(6, hashcode);
+                preparedStatement.setString(7, "USER");
+                preparedStatement.setString(8, "0");
                 int i = preparedStatement.executeUpdate();
 
                 if (i > 0) {
-                    SendMail se = new SendMail(email, hashcode);
-                    se.sendMail();
+                    String content ="Click here :: " + "http://localhost:8080/ecommerce/AccountActive?key1=" + email + "&key2=" + hashcode;
+
+                    SendMail se = new SendMail();
+                    se.sendMail(email, content);
                     return true;
                 }
             }
@@ -96,13 +100,13 @@ public class UserDao {
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE email=? AND hashcode=? and active='0'");
-            preparedStatement.setString(1,email);
-            preparedStatement.setString(2,hashcode);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, hashcode);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 preparedStatement = connection.prepareStatement("UPDATE user set active = '1' WHERE email=? AND hashcode=?");
-                preparedStatement.setString(1,email);
-                preparedStatement.setString(2,hashcode);
+                preparedStatement.setString(1, email);
+                preparedStatement.setString(2, hashcode);
                 int i = preparedStatement.executeUpdate();
                 if (i == 1)
                     return true;
@@ -148,7 +152,6 @@ public class UserDao {
     public void changePassword(int userId, String newPassword) {
         Connection connection = DBConnect.getInstance().getConnection();
         PreparedStatement preparedStatement = null;
-
         try {
             preparedStatement = connection.prepareStatement("UPDATE user SET password = ? WHERE id = ?");
             preparedStatement.setString(1, hashPassword(newPassword)); // Mã hóa mật khẩu mới trước khi cập nhật
@@ -165,7 +168,6 @@ public class UserDao {
             }
         }
     }
-
 
 
     public List<User> getAllUsers() {
@@ -247,13 +249,14 @@ public class UserDao {
         try {
             sha256 = MessageDigest.getInstance("SHA-256");
             byte[] hash = sha256.digest(password.getBytes());
-            BigInteger number = new BigInteger(1,hash);
+            BigInteger number = new BigInteger(1, hash);
             return number.toString(16);
         } catch (NoSuchAlgorithmException e) {
             return null;
         }
     }
-    public boolean updateInfor(String fullname, String email, String phone, int id) {
+
+    public boolean updateInfor(String fullname, String email, String phone, int id, int hashcode) {
         Connection connection = DBConnect.getInstance().getConnection();
         try {
             String query = "UPDATE user SET fullname=?, email=?, phone=? WHERE id=?";
@@ -263,13 +266,16 @@ public class UserDao {
             p.setString(3, phone);
             p.setInt(4, id);
             int i = p.executeUpdate();
-            if(i > 0) return true;
+            if (i > 0) return true;
+
+            String content ="Nhấn vào đường dẫn này để cập nhật thông tin :: " + "http://localhost:8080/ecommerce/AccountActive?key1=" + email + "&key2=" + hashcode;
+            SendMail se = new SendMail();
+            se.sendMail(email, content);
         } catch (SQLException e) {
             throw new RuntimeException();
         }
         return false;
     }
-
 
 
     public User getUserById(int userId) {
@@ -381,5 +387,50 @@ public class UserDao {
         }
         return count;
     }
+
+    public String generateNewPassword() {
+        // Generate a new random password
+        String allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        int passwordLength = 8;
+        Random random = new Random();
+        StringBuilder newPassword = new StringBuilder();
+
+        for (int i = 0; i < passwordLength; i++) {
+            int randomIndex = random.nextInt(allowedChars.length());
+            char randomChar = allowedChars.charAt(randomIndex);
+            newPassword.append(randomChar);
+        }
+
+        return newPassword.toString();
+    }
+
+    public boolean resetPassword(String email, String newPassword) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE user SET password = ? WHERE email = ?");
+            preparedStatement.setString(1, newPassword);
+            preparedStatement.setString(2, email);
+            int rowsUpdated = preparedStatement.executeUpdate();
+            System.out.println(rowsUpdated);
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean sendPasswordResetEmail(String email) {
+        String newPassword = generateNewPassword();
+        // Thay đổi nội dung email để sử dụng mật khẩu chưa mã hóa
+        String content = "Mật khẩu mới của bạn là: " + newPassword + "\n"
+                + "Vui lòng đăng nhập và thay đổi mật khẩu để giữ tính bảo mật";
+
+        // Gửi email
+        SendMail se = new SendMail();
+        se.sendMail(email, content);
+
+        return resetPassword(email, hashPassword(newPassword));
+    }
+
 
 }

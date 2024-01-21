@@ -374,7 +374,7 @@
                           name="password"
                         />
                         <small class="form-text text-muted"
-                          ><a href="#">Quên Mật Khẩu</a></small
+                          ><a href="forgotPass.jsp">Quên Mật Khẩu</a></small
                         >
                       </div>
 

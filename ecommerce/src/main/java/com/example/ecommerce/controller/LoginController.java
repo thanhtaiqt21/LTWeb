@@ -22,6 +22,7 @@ public class LoginController extends HttpServlet {
         if (user != null && user.getId() > 0 && user.getActive() > 0) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
+
             resp.sendRedirect("/ecommerce/home");
         } else {
             String error = "Thông tin đăng nhập không chính xác";

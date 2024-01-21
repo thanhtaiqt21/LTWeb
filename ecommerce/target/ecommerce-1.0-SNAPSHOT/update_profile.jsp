@@ -343,7 +343,7 @@
                 user = (User) obj;
             if(user==null){
         %>
-        <h1>Bạn chưa đăng nhập vào hệ thống. Vui lòng quay lại trang chủ!</h1>
+        <center><h1>Bạn chưa đăng nhập vào hệ thống. Vui lòng quay lại trang chủ!</h1></center>
         <%
         }else {
 

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.example.ecommerce.model.Cart" %>
+<%@ page import="com.example.ecommerce.model.User" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -367,8 +368,6 @@
                       <td class="cart-table__column cart-table__column--product">
                         <a href="#" class="cart-table__product-name">${cartItem.product.title}</a>
                         <ul class="cart-table__options">
-<%--                      <li>Color: Yellow</li>--%>
-<%--                      <li>Material: Aluminium</li>--%>
                         </ul>
                       </td>
                       <td class="cart-table__column cart-table__column--price" data-title="Price">
@@ -425,6 +424,12 @@
                 >
               </div>
             </div>
+            <%
+              Object obj = session.getAttribute("user");
+              User user = null;
+              if (obj != null)
+                user = (User) obj;
+            %>
             <div class="row justify-content-end pt-5">
               <div class="col-12 col-md-7 col-lg-6 col-xl-5">
                 <div class="card">
@@ -432,38 +437,39 @@
                     <h3 class="card-title">Tổng giỏ hàng</h3>
                     <table class="cart__totals">
                       <thead class="cart__totals-header">
-                        <tr>
-                          <th>Tạm tính</th>
-                          <td>
-                            <fmt:setLocale value="vi_VN"/>
-                            <fmt:formatNumber value="${cart.total()}" type="currency"/>
-                          </td>
-                        </tr>
+                      <tr>
+                        <th>Tạm tính</th>
+                        <td>
+                          <fmt:setLocale value="vi_VN"/>
+                          <fmt:formatNumber value="${cart.total()}" type="currency"/>
+                        </td>
+                      </tr>
                       </thead>
                       <tbody class="cart__totals-body">
-                        <tr>
-                          <th>Phí vận chuyển</th>
-                          <td>
-                            <fmt:setLocale value="vi_VN"/>
-                            <fmt:formatNumber value="${cart.total()*0.02}" type="currency"/>
-                          </td>
-                        </tr>
+                      <tr>
+                        <th>Phí vận chuyển</th>
+                        <td>
+                          <fmt:setLocale value="vi_VN"/>
+                          <fmt:formatNumber value="${cart.total()*0.02}" type="currency"/>
+                        </td>
+                      </tr>
                       </tbody>
                       <tfoot class="cart__totals-footer">
-                        <tr>
-                          <th>Tổng</th>
-                          <td>
-                            <fmt:setLocale value="vi_VN"/>
-                            <fmt:formatNumber value="${cart.total() - cart.total()*0.02}" type="currency"/>
-                          </td>
-                        </tr>
+                      <tr>
+                        <th>Tổng</th>
+                        <td>
+                          <fmt:setLocale value="vi_VN"/>
+                          <fmt:formatNumber value="${cart.total() + cart.total()*0.02}" type="currency"/>
+                        </td>
+                      </tr>
                       </tfoot>
                     </table>
-                    <a
-                      class="btn btn-primary btn-xl btn-block cart__checkout-button"
-                      href="checkout.jsp"
-                      >Tiến hành thanh toán</a
-                    >
+                    <% if (user != null) { %>
+                    <a class="btn btn-primary btn-xl btn-block cart__checkout-button" href="checkout.jsp">Tiến hành thanh toán</a>
+                    <% } else { %>
+                    <p class="text-danger">Vui lòng đăng nhập để tiến hành thanh toán.</p>
+                    <a class="btn btn-primary btn-xl btn-block cart__checkout-button disabled" href="#">Tiến hành thanh toán</a>
+                    <% } %>
                   </div>
                 </div>
               </div>

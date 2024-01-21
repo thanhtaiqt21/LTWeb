@@ -9,12 +9,12 @@ public class SendMail {
     private String userEmail;
     private String hash;
 
-    public SendMail(String userEmail, String hash) {
-        this.userEmail = userEmail;
-        this.hash = hash;
-    }
+//    public SendMail(String userEmail, String hash) {
+//        this.userEmail = userEmail;
+//        this.hash = hash;
+//    }
 
-    public void sendMail() {
+    public void sendMail(String userEmail, String content) {
         String email = "activeemail210701@gmail.com";
         String password = "irmo mhia olit cuqc";
 
@@ -34,13 +34,13 @@ public class SendMail {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(email));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
-            message.setText("Verification link ...");
-            message.setText("Click here :: " + "http://localhost:8080/ecommerce/AccountActive?key1=" + userEmail + "&key2=" + hash);
+            message.setText(content);
             Transport.send(message);
         } catch (Exception e) {
             System.out.println("Sendmail error");
         }
     }
+    //            message.setText("Click here :: " + "http://localhost:8080/ecommerce/AccountActive?key1=" + userEmail + "&key2=" + hash);
 
 //    // Thay đổi nội dung email để bao gồm tất cả dữ liệu từ form contact-us
 //    public void sendContactUsMail(String contactEmail, String name, String subject, String message, String userEmail) {
