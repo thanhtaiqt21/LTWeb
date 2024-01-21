@@ -84,7 +84,13 @@
       crossorigin="anonymous"
     ></script>
 
-
+    <style>
+      .readonly-input {
+        background-color: #262626; /* Màu nền của ô readonly */
+        color: #0f0f0f;
+        cursor: not-allowed; /* Không hiển thị con trỏ khi di chuột vào ô readonly */
+      }
+    </style>
     <style>
        Thêm CSS cho phần phân trang
       .pagination {
@@ -417,24 +423,24 @@
                   </h4>
                   <div class="form-row">
                     <div class="form-group col-md-6" >
-                      <label style="color: white" for="form-name">Tên của bạn</label>
-                      <input type="text" id="form-name" name="name" class="form-control" placeholder="Họ và tên"
-                             value="<%= feedback.getName()%>" />
+                      <label style="color: white" for="form-name">Tên người gửi</label>
+                      <input type="text" id="form-name" name="name" class="form-control readonly-input" placeholder="Họ và tên"
+                             value="<%= feedback.getName()%>" readonly/>
                     </div>
                     <div class="form-group col-md-6">
                       <label style="color: white" for="form-email">Email</label>
-                      <input type="email" id="form-email" name="email" class="form-control" placeholder="Địa chỉ Email"
-                             value="<%= feedback.getEmail()%>" />
+                      <input type="email" id="form-email" name="email" class="form-control readonly-input" placeholder="Địa chỉ Email"
+                             value="<%= feedback.getEmail()%>" readonly/>
                     </div>
                   </div>
                   <div class="form-group">
                     <label style="color: white;" for="form-subject">Chủ đề</label>
-                    <input type="text" id="form-subject" name="topic" class="form-control" placeholder="Subject"
-                           value="<%= feedback.getTopic()%>" />
+                    <input type="text" id="form-subject" name="topic" class="form-control readonly-input" placeholder="Subject"
+                           value="<%= feedback.getTopic()%>" readonly/>
                   </div>
                   <div class="form-group">
                     <label style="color: white" for="form-message">Lời nhắn</label>
-                    <textarea id="form-message" name="message" class="form-control" rows="4"><%= feedback.getMessage()%></textarea>
+                    <textarea id="form-message" name="message" class="form-control readonly-input" rows="4" readonly><%= feedback.getMessage()%></textarea>
                   </div>
                   <!-- Move the button inside the form -->
                   <div class="form-group custom-pro-edt-ds" style="display: flex; justify-content: center; align-items: center;">
@@ -530,7 +536,7 @@
         // Use JavaScript to navigate back in history
         window.history.back();
       }
-    </script>"
+    </script>
 
   </body>
 </html>

@@ -544,12 +544,14 @@
             tableBody.empty();
 
             // Hiển thị 10 tài khoản trên mỗi trang
-            var itemsPerPage = 5;
+            var itemsPerPage = 10;
             var startIndex = (page - 1) * itemsPerPage;
             var endIndex = startIndex + itemsPerPage;
             var blogsToShow = data.slice(startIndex, endIndex);
 
             $.each(blogsToShow, function (index, blog) {
+
+              var formattedDate = formatDate(blog.timestamp);
 
               var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed editBlog" data-id="' + blog.id + '">'
                       + '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'
@@ -564,7 +566,7 @@
 
               var row = '<tr>' +
                       '<td>' + blog.title + '</td>' +
-                      '<td>' + blog.timestamp + '</td>' +
+                      '<td>' + formattedDate + '</td>' +
                       '<td>' + editButton + trashButton + '</td>' +
                       '</tr>';
               tableBody.append(row);
@@ -597,6 +599,18 @@
             console.error('Error fetching data:', status, error);
           }
         });
+      }
+
+      function formatDate(dateString) {
+        var date = new Date(dateString);
+        var year = date.getFullYear();
+        var month = ('0' + (date.getMonth() + 1)).slice(-2); // Thêm 0 phía trước và lấy 2 ký tự cuối
+        var day = ('0' + date.getDate()).slice(-2);
+        var hours = ('0' + date.getHours()).slice(-2);
+        var minutes = ('0' + date.getMinutes()).slice(-2);
+        var seconds = ('0' + date.getSeconds()).slice(-2);
+
+        return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
       }
 
       function deleteBlog(blogId) {
