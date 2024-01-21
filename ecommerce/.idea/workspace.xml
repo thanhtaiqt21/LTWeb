@@ -10,15 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2d8a4a1-e238-423d-a136-2260cbc47756" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/Orders/OrdersListController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/OrdersListDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/OrdersListService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/product/AddProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/controller/product/AddProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/navbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/product-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/product-list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ecommerce/model/Orders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/order-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/order-details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminpage/order-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminpage/order-list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/orders-history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/orders-history.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecommerce-1.0-SNAPSHOT.war" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -214,6 +215,7 @@
       <workItem from="1705130689286" duration="152000" />
       <workItem from="1705747102778" duration="1010000" />
       <workItem from="1705763564137" duration="4361000" />
+      <workItem from="1705838645447" duration="12813000" />
     </task>
     <servers />
   </component>

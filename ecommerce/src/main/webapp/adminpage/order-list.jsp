@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -71,6 +74,8 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
@@ -369,10 +374,12 @@
       <div class="product-status mg-b-30">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12">
               <div class="product-status-wrap">
                 <h4>Danh sách đơn hàng</h4>
-                <table>
+                <table id="ordersTable" class="table">
+                  <!-- Tiêu đề bảng -->
+                  <thead>
                   <tr>
                     <th>Mã đơn hàng</th>
                     <th>Trạng thái</th>
@@ -381,69 +388,17 @@
                     <th>Số điện thoại</th>
                     <th>Tên khách hàng</th>
                     <th>Ngày tạo</th>
-                    <th>Setting</th>
+                    <th>Hành động</th>
                   </tr>
-                  <tr>
-                    <td>#12345</td>
-                    <td>
-                      <button class="pd-setting">Active</button>
-                    </td>
-                    <td>$750</td>
-                    <td>Linh Trung Thủ Đức</td>
-                    <td>01234567</td>
-                    <td>Người dùng1</td>
-                    <td>10/10/2023</td>
-                    <td>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <a href="product-edit.html">
-                          <i class="fa-solid fa-check" style="color: green;"></i>
-                        </a>
-                      </button>
-                      <button
-                        data-toggle="tooltip"
-                        title="Edit"
-                        class="pd-setting-ed"
-                      >
-                        <a href="product-edit.html">
-                          <i class="fa-solid fa-xmark" style="color: red;"></i>
-                        </a>
-                      </button>
-                      
-                      <button
-                        data-toggle="tooltip"
-                        title="View"
-                        class="pd-setting-ed"
-                      >
-                        <a href="order-details.html"><i class="fa-solid fa-eye"></i>
-                        </a>                 
-                      </button>
-                    </td>
-                  </tr>
-                
+                  </thead>
+                  <!-- Nội dung bảng sẽ được thêm bằng JavaScript -->
+                  <tbody></tbody>
                 </table>
-                <div class="custom-pagination">
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#">Trước</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">Tiếp theo</a>
-                    </li>
-                  </ul>
-                </div>
+
+                <nav>
+                  <ul id="pagination" class="pagination"></ul>
+                </nav>
+
               </div>
             </div>
           </div>
@@ -519,5 +474,137 @@
     <!-- main JS
 		============================================ -->
     <script src="../js/main1.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        var currentPage = 1;
+        var itemsPerPage = 5;
+
+        function loadOrders() {
+          $.ajax({
+            url: '/ecommerce/adminpage/order-list',
+            type: 'GET',
+            dataType: 'json',
+            success: function(orders) {
+              updateOrdersTable(orders, currentPage);
+            },
+            error: function(error) {
+              console.error('Error fetching orders:', error);
+            }
+          });
+        }
+
+        function updateOrdersTable(orders, page) {
+          var startIndex = (page - 1) * itemsPerPage;
+          var endIndex = startIndex + itemsPerPage;
+          var ordersToShow = orders.slice(startIndex, endIndex);
+
+          var tableBody = $('#ordersTable tbody');
+          tableBody.empty();
+
+          ordersToShow.forEach(function(order) {
+            var statusButton = getStatusButton(order.status);
+
+            function getStatusButton(status) {
+              switch(status) {
+                case 0:
+                  return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '" style="background-color: red;">Chưa xác nhận</button>';
+                case 1:
+                  return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '" style="background-color: green;">Đã xác nhận</button>';
+                case 2:
+                  return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '" style="background-color: blue;">Hủy</button>'; // Trạng thái "Hủy"
+                default:
+                  return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '">Không xác định</button>';
+              }
+            }
+
+            var editButton = '<button class="pd-setting-ed edit-status" data-order-id="' + order.id + '" data-current-status="' + order.status + '" title="Edit"><i class="fa-solid fa-check" style="color: green;"></i></button>';
+            var deleteButton = '<button data-toggle="tooltip" title="Delete" class="pd-setting-ed delete-status" data-order-id="' + order.id + '" data-current-status="' + order.status + '"><i class="fa-solid fa-xmark" style="color: red;"></i></button>';
+            var viewButton = '<button data-toggle="tooltip" title="View" class="pd-setting-ed"><a href="order-details.jsp?orderId=' + order.id + '"><i class="fa-solid fa-eye"></i></a></button>';
+
+            var row = '<tr>' +
+                    '<td>#' + order.id + '</td>' +
+                    '<td>' + statusButton + '</td>' +
+                    '<td>' + formatPrice(order.totalPrice) + '</td>' +
+                    '<td>' + order.address + '</td>' +
+                    '<td>' + order.phone + '</td>' +
+                    '<td>' + order.user.fullname + '</td>' +
+                    '<td>' + formatDate(order.dayCreate) + '</td>' +
+                    '<td>' + editButton + deleteButton + viewButton + '</td>' +
+                    '</tr>';
+            tableBody.append(row);
+          });
+
+          updatePagination(orders.length, itemsPerPage, page);
+        }
+
+        $(document).on('click', '.edit-status', function() {
+          var orderId = $(this).data('order-id');
+          var currentStatus = $(this).data('current-status');
+          var newStatus = currentStatus === 0 ? 1 : 0;
+          updateOrderStatus(orderId, newStatus);
+        });
+
+        $(document).on('click', '.delete-status', function() {
+          var orderId = $(this).data('order-id');
+          updateOrderStatus(orderId, 2); // Cập nhật trạng thái thành "2" khi nhấn vào nút hủy
+        });
+
+        function updateOrderStatus(orderId, newStatus) {
+          $.ajax({
+            url: '/ecommerce/adminpage/update-order-status',
+            type: 'POST',
+            data: {orderId: orderId, status: newStatus},
+            success: function(response) {
+              if (response.success) {
+                loadOrders(); // Reload orders to reflect changes
+              } else {
+                alert('Có lỗi xảy ra khi cập nhật trạng thái đơn hàng.');
+              }
+            },
+            error: function(error) {
+              console.error('Error updating order status:', error);
+            }
+          });
+        }
+
+
+        function updatePagination(totalItems, itemsPerPage, currentPage) {
+          var totalPages = Math.ceil(totalItems / itemsPerPage);
+          var pagination = $('#pagination');
+          pagination.empty();
+
+          if (currentPage > 1) {
+            pagination.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage - 1) + '">Trước</a></li>');
+          }
+
+          for (var i = 1; i <= totalPages; i++) {
+            pagination.append('<li class="page-item ' + (i === currentPage ? 'active' : '') + '"><a class="page-link" href="#" data-page="' + i + '">' + i + '</a></li>');
+          }
+
+          if (currentPage < totalPages) {
+            pagination.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage + 1) + '">Tiếp theo</a></li>');
+          }
+        }
+
+        $(document).on('click', '#pagination .page-link', function(e) {
+          e.preventDefault();
+          currentPage = $(this).data('page');
+          loadOrders();
+        });
+
+        function formatPrice(price) {
+          return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        }
+
+        function formatDate(timestamp) {
+          var date = new Date(timestamp);
+          return date.toLocaleDateString();
+        }
+
+        loadOrders();
+      });
+    </script>
+
   </body>
 </html>
