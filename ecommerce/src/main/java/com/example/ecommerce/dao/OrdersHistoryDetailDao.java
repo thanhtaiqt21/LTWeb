@@ -39,7 +39,7 @@ public class OrdersHistoryDetailDao {
                 }
             }
 
-            String sqlItems = "SELECT oi.*, p.title, p.description, p.price, MAX(i.imgUrl) as imgUrl " +
+            String sqlItems = "SELECT oi.*, p.title, p.description, p.price, MAX(i.img_url) as img_url " +
                     "FROM order_items oi " +
                     "JOIN product p ON oi.id_product = p.id " +
                     "LEFT JOIN img i ON p.id = i.id_product " +
@@ -59,7 +59,7 @@ public class OrdersHistoryDetailDao {
                     product.setTitle(resultSetItems.getString("title"));
                     product.setDescription(resultSetItems.getString("description"));
                     product.setPrice(resultSetItems.getInt("price"));
-                    product.setImgUrl(Collections.singletonList(resultSetItems.getString("imgUrl"))); // Sử dụng hình ảnh duy nhất
+                    product.setImgUrl(Collections.singletonList(resultSetItems.getString("img_url"))); // Sử dụng hình ảnh duy nhất
 
                     orderItem.setProduct(product);
 

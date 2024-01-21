@@ -39,7 +39,7 @@ public class ChangInfor extends HttpServlet {
         }
 
         // Sau khi cập nhật thông tin thành công
-        User updatedUser = UserDao.getInstance().getUserById(user.getId());
+        User updatedUser = UserService.getInstance().getUserById(user.getId());
         session.setAttribute("user", updatedUser);
     }
 }

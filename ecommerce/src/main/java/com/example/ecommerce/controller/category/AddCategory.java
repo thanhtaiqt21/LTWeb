@@ -18,6 +18,8 @@ public class AddCategory extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String name = req.getParameter("name");
         boolean addCategory = CategoryService.getInstance().addCategory(name);
         if (addCategory) {

@@ -19,6 +19,9 @@ import java.io.IOException;
 @WebServlet("/addcheckout")
 public class AddCheckoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         HttpSession session = request.getSession();
 
         Cart cart = (Cart) request.getSession().getAttribute("cart");
@@ -66,6 +69,6 @@ public class AddCheckoutServlet extends HttpServlet {
 
         // Chuyển hướng yêu cầu đến trang xác nhận đặt hàng
         response.sendRedirect("confirmation.jsp");
-        session.invalidate();
+        session.removeAttribute("cart");
     }
 }

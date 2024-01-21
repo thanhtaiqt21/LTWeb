@@ -1,5 +1,6 @@
 package com.example.ecommerce.service;
 
+import com.example.ecommerce.dao.ProductDao;
 import com.example.ecommerce.dao.UserDao;
 import com.example.ecommerce.model.User;
 
@@ -46,7 +47,7 @@ public class UserService {
     }
 
     public boolean updateInfor(String fullname, String email, String phone, int id, int hashcode) {
-        return UserDao.getInstance().updateInfor(fullname, email, phone, id);
+        return UserDao.getInstance().updateInfor(fullname, email, phone, id, hashcode);
     }
     public User getUserById(int userId) {
         return UserDao.getInstance().getUserById(userId);
@@ -55,6 +56,13 @@ public class UserService {
     public boolean updateUserStatusAndRole(int userId, int status, String role) {
         return UserDao.getInstance().updateUserStatusAndRole(userId, status, role);
     }
+
+    public long total() {
+        return UserDao.getInstance().totalUser();
+    }
+    public boolean sendPasswordResetEmail(String email) {
+        return UserDao.getInstance().sendPasswordResetEmail(email);
+    }
     public String generateNewPassword() {
         return UserDao.getInstance().generateNewPassword();
     }
@@ -62,10 +70,4 @@ public class UserService {
         return UserDao.getInstance().resetPassword(email, newPassword);
     }
 
-    public boolean sendPasswordResetEmail(String email) {
-        return UserDao.getInstance().sendPasswordResetEmail(email);
-    }
-//    public User getUserByEmail(String email) {
-//        return UserDao.getInstance().getUserByEmail(email);
-//    }
 }

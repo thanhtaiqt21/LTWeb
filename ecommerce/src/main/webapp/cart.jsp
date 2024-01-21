@@ -28,8 +28,6 @@
     <link rel="stylesheet" href="css/style.css" />
     <!-- js -->
     <script src="vendor/jquery-3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script src="vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/owl-carousel-2.3.4/owl.carousel.min.js"></script>
     <script src="vendor/nouislider-12.1.0/nouislider.min.js"></script>
@@ -51,6 +49,8 @@
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-97489509-6"
     ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -405,7 +405,7 @@
                       </td>
                       <td class="cart-table__column cart-table__column--remove">
                         <button type="button" class="btn btn-light btn-sm btn-svg-icon">
-                          <a href="/ecommerce/cart-remove?id=${cartItem.id}" class="remove">
+                          <a href="/ecommerce/cart-remove?id=${cartItem.id}" class="remove-cart-item">
                             <svg width="12px" height="12px">
                               <use xlink:href="images/sprite.svg#cross-12"></use>
                             </svg>
@@ -482,35 +482,9 @@
       <!-- site__footer / end -->
     </div>
     <!-- site / end -->
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      // Gửi yêu cầu đến servlet khi trang được tải
-      $.ajax({
-        type: 'GET',
-        url: '/ecommerce/contact-us',
-        dataType: 'json',
-        success: function (data) {
-          // Hiển thị thông tin liên hệ trên trang
-          var contactInfoList = $('#contactInfoList');
-          // Xóa mọi nội dung cũ trong ul
-          contactInfoList.empty();
-          // Thêm các mục thông tin liên hệ mới
-          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-globe-americas"></i>' + data.address + '</li>');
-          contactInfoList.append('<li><i class="footer-contacts__icon far fa-envelope"></i>' + data.email + '</li>');
-          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-mobile-alt"></i>' + data.phone + '</li>');
-          contactInfoList.append('<li>Thứ 2-6<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeMF + '</li>');
-          contactInfoList.append('<li>Thứ 7<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSA + '</li>');
-          contactInfoList.append('<li>Thứ chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
-        },
-        error: function (xhr, status, error) {
-          console.error('Error fetching contact info:', status, error);
-        }
-      });
-    });
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
   <script>
-    $('a.remove').confirm({
+    $('a.remove-cart-item').confirm({
       title: 'Xóa?',
       content: 'Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?',
       buttons:{

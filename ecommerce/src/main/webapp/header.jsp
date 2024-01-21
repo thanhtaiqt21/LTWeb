@@ -6,7 +6,6 @@
     User user = null;
     if (request.getSession().getAttribute("user") != null) {
         user = (User) request.getSession().getAttribute("user");
-        System.out.println(user.getFullname());
     }
 %>
 <header class="site__header d-lg-block d-none">
@@ -56,40 +55,15 @@
                             <%}%>
                         </div>
                     </div>
-
-                    <div class="topbar__item">
-                        <div class="topbar-dropdown">
-                            <button class="topbar-dropdown__btn" type="button">
-                                Ngôn Ngữ: <span class="topbar__item-value">EN</span>
-                                <svg width="7px" height="5px">
-                                    <use
-                                            xlink:href="images/sprite.svg#arrow-rounded-down-7x5"
-                                    ></use>
-                                </svg>
-                            </button>
-                            <div class="topbar-dropdown__body">
-                                <!-- .menu -->
-                                <ul class="menu menu--layout--topbar menu--with-icons">
-                                    <li>
-                                        <a href="#"
-                                        ><div class="menu__icon">
-                                            <img
-                                                    srcset="
-                                  images/languages/language-1.png,
-                                  images/languages/language-1@2x.png 2x
-                                "
-                                                    src="images/languages/language-1.png"
-                                                    alt=""
-                                            />
-                                        </div>
-                                            English</a
-                                        >
-                                    </li>
-                                </ul>
-                                <!-- .menu / end -->
+                    <%if (user!= null && user.getRole().equals("ADMIN")) {%>
+                        <div class="topbar__item">
+                            <div class="topbar-dropdown">
+                                <button class="topbar-dropdown__btn" type="button">
+                                   <a href="/ecommerce/adminpage/home">Đến trang admin</a>
+                                </button>
                             </div>
                         </div>
-                    </div>
+                    <%}%>
                 </div>
             </div>
         </div>
@@ -133,14 +107,14 @@
                                 <li class="nav-links__item nav-links__item--with-submenu">
                                     <a href="/ecommerce/home"><span>Trang chủ </span></a>
                                     <div class="nav-links__menu">
-                                        <!-- .menu -->
-
-                                        <!-- .menu / end -->
                                     </div>
                                 </li>
                                 <li class="nav-links__item nav-links__item--with-submenu">
-                                    <a><span>Danh mục sản phẩm
-                            <svg class="nav-links__arrow"
+                                    <a href="#"
+                                    ><span
+                                    >Danh mục sản phẩm
+                            <svg
+                                    class="nav-links__arrow"
                                     width="9px"
                                     height="6px">
                               <use
@@ -170,51 +144,6 @@
                         </div>
                         <!-- .nav-links / end -->
                         <div class="nav-panel__indicators">
-                            <div class="indicator indicator--trigger--click">
-                                <button type="button" class="indicator__button">
-                        <span class="indicator__area"
-                        ><svg
-                                class="indicator__icon"
-                                width="20px"
-                                height="20px"
-                        >
-                            <use xlink:href="images/sprite.svg#search-20"></use>
-                          </svg>
-                          <svg
-                                  class="indicator__icon indicator__icon--open"
-                                  width="20px"
-                                  height="20px"
-                          >
-                            <use
-                                    xlink:href="images/sprite.svg#cross-20"
-                            ></use></svg
-                          ></span>
-                                </button>
-                                <div class="indicator__dropdown">
-                                    <div class="drop-search">
-                                        <form action="#" class="drop-search__form">
-                                            <input
-                                                    class="drop-search__input"
-                                                    name="search"
-                                                    placeholder="Tìm kiếm hơn 10,000 sản phẩm"
-                                                    aria-label="Site search"
-                                                    type="text"
-                                                    autocomplete="off"
-                                            />
-                                            <button
-                                                    class="drop-search__button drop-search__button--submit"
-                                                    type="submit"
-                                            >
-                                                <svg width="20px" height="20px">
-                                                    <use
-                                                            xlink:href="images/sprite.svg#search-20"
-                                                    ></use>
-                                                </svg>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="indicator">
                                 <a href="wishlist.jsp" class="indicator__button"
                                 ><span class="indicator__area"
@@ -286,14 +215,7 @@
                                                     </table>
                                                 </div>
                                                     <div class="dropcart__buttons">
-                                                        <% if (user != null) { %>
-                                                        <a class="btn btn-secondary" href="cart.jsp">Giỏ hàng</a>
-                                                        <a class="btn btn-primary" href="checkout.jsp">Thanh toán</a>
-                                                        <% } else { %>
-                                                        <a class="btn btn-secondary" href="cart.jsp" style="height: 60px">Giỏ hàng</a>
-                                                        <a class="btn btn-primary disabled" href="#" style="height: 60px">Thanh toán</a>
-                                                        <p class="text-danger" style="margin-left: 5px; margin-top: 3px">Yêu cầu đăng nhập.</p>
-                                                        <% } %>
+                                                        <a class="btn btn-primary" href="cart.jsp">Đến giỏ hàng</a>
                                                     </div>
                                             </div>
                                             <!-- .dropcart / end -->

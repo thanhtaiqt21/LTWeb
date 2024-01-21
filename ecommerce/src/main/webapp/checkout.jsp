@@ -617,6 +617,7 @@ String error = (String) request.getAttribute("error");
       <!-- site__body / end --><!-- site__footer -->
       <jsp:include page="footer.jsp"/>
 
+<<<<<<< HEAD
   </body>
       <!-- site__footer / end -->
     <!-- site / end -->
@@ -691,6 +692,9 @@ String error = (String) request.getAttribute("error");
       });
     });
   </script>
+=======
+
+>>>>>>> 958ef5f47751d5b15491cf6c3029680afbccfab7
 
 
 <%--  // Thông báo khi đặt hàng--%>

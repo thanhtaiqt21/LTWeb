@@ -21,9 +21,10 @@ public class ForgotPasswordController extends HttpServlet {
         String email = req.getParameter("email");
 
         String newPassword = UserService.getInstance().generateNewPassword();
+        System.out.println("mk"+ newPassword);
 
         boolean resetPasswordSuccess = UserService.getInstance().resetPassword(email, newPassword);
-
+        System.out.println(resetPasswordSuccess);
         if (resetPasswordSuccess) {
             UserService.getInstance().sendPasswordResetEmail(email);
             System.out.println("Email sent to: " + email);

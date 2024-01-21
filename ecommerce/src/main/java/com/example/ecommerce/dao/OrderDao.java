@@ -51,4 +51,35 @@ public class OrderDao {
         return 0;
     }
 
+    public long totalOrders() {
+        long count = 0;
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS total FROM orders");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                count = rs.getLong("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return count;
+    }
+
+    public long totalOrderWaitting() {
+        long count = 0;
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS total FROM orders WHERE status=0");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                count = rs.getLong("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return count;
+    }
 }

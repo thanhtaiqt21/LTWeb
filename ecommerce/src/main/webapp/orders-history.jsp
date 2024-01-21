@@ -341,9 +341,10 @@
                 <th class="wishlist__column wishlist__column--remove"></th>
               </tr>
               </thead>
-              <tbody class="wishlist__body">
-              <!-- Nội dung ở đây sẽ được cập nhật bằng JavaScript -->
-              </tbody>
+<%--              <tbody class="wishlist__body">--%>
+<%--              </tbody>--%>
+              <tbody class="wishlist__body"></tbody>
+
 
             </table>
             <div id="pagination" class="pagination"></div>
@@ -354,17 +355,17 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="deleteOrderModalLabel">Xác nhận xóa đơn hàng</h5>
+            <h5 class="modal-title" id="deleteOrderModalLabel">Xác nhận xóa tài khoản</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            Bạn có chắc muốn xóa đơn hàng này khỏi lịch sử không?
+            Bạn có chắc chắn muốn xóa tài khoản không?
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Đồng ý</button>
+            <button type="button" class="btn btn-danger" style="background-color: blue" id="confirmDeleteBtn">Đồng ý</button>
           </div>
         </div>
       </div>
@@ -412,7 +413,7 @@
         row.append('<td class="wishlist__column wishlist__column--stock"><div class="badge ' + statusClass + '">' + statusLabel + '</div></td>');
         row.append('<td class="wishlist__column wishlist__column--price">' + formattedPrice + '</td>');
         row.append('<td class="wishlist__column wishlist__column--tocart">' + detailButton + '</td>');
-        row.append('<td class="wishlist__column wishlist__column--remove"><button type="button" class="btn btn-light btn-sm btn-svg-icon" onclick="confirmDeleteOrder(' + order.id + ')"><svg width="12px" height="12px"><use xlink:href="images/sprite.svg#cross-12"></use></svg></button></td>');
+        row.append('<td class="wishlist__column wishlist__column--remove"><button class="btn btn-light btn-sm btn-svg-icon" onclick="confirmDeleteOrder(' + order.id + ')"><svg width="12px" height="12px"><use xlink:href="images/sprite.svg#cross-12"></use></svg></button></td>');
 
         tableBody.append(row);
       });
@@ -451,32 +452,7 @@
       loadOrdersHistory();
     });
 
-    function confirmDeleteOrder(orderId) {
-      $('#deleteOrderModal').modal('show');
 
-      $('#confirmDeleteBtn').off('click').on('click', function () {
-        deleteOrder(orderId);
-        $('#deleteOrderModal').modal('hide');
-      });
-    }
-
-    function deleteOrder(orderId) {
-      $.ajax({
-        type: 'GET',
-        url: '/ecommerce/delete-order?orderId=' + orderId,
-        success: function (response) {
-          if (response.success) {
-            alert('Đơn hàng đã được xóa thành công.');
-            loadOrdersHistory(); // Làm mới danh sách đơn hàng
-          } else {
-            alert('Có lỗi xảy ra khi xóa đơn hàng.');
-          }
-        },
-        error: function (error) {
-          console.error('Error deleting order:', error);
-        }
-      });
-    }
 
     function viewOrderDetail(orderId) {
       window.location.href = 'orders-history-detail.jsp?orderId=' + orderId;
@@ -484,33 +460,40 @@
 
   </script>
 
+<script>
+  function confirmDeleteOrder(orderId) {
+    $('#deleteOrderModal').modal('show');
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      // Gửi yêu cầu đến servlet khi trang được tải
-      $.ajax({
-        type: 'GET',
-        url: '/ecommerce/contact-us',
-        dataType: 'json',
-        success: function (data) {
-          // Hiển thị thông tin liên hệ trên trang
-          var contactInfoList = $('#contactInfoList');
-          // Xóa mọi nội dung cũ trong ul
-          contactInfoList.empty();
-          // Thêm các mục thông tin liên hệ mới
-          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-globe-americas"></i>' + data.address + '</li>');
-          contactInfoList.append('<li><i class="footer-contacts__icon far fa-envelope"></i>' + data.email + '</li>');
-          contactInfoList.append('<li><i class="footer-contacts__icon fas fa-mobile-alt"></i>' + data.phone + '</li>');
-          contactInfoList.append('<li>Thứ 2-6<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeMF + '</li>');
-          contactInfoList.append('<li>Thứ 7<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSA + '</li>');
-          contactInfoList.append('<li>Thứ chủ nhật<i class="footer-contacts__icon far fa-clock"></i>' + data.workingTimeSU + '</li>');
-        },
-        error: function (xhr, status, error) {
-          console.error('Error fetching contact info:', status, error);
-        }
-      });
+    $('#confirmDeleteBtn').off('click').on('click', function () {
+      deleteOrder(orderId);
+      $('#deleteOrderModal').modal('hide');
     });
-  </script>
+    // Đặt sự kiện khi đóng modal
+    $('#deleteOrderModal').on('hidden.bs.modal', function () {
+      // Đảm bảo loại bỏ sự kiện click để tránh thực hiện đa lần
+      $('#confirmDeleteBtn').off('click');
+    });
+  }
+
+  function deleteOrder(orderId) {
+    $.ajax({
+      type: 'GET',
+      url: '/ecommerce/delete-order?orderId=' + orderId,
+      success: function (response) {
+        if (response.success) {
+          alert('Đơn hàng đã được xóa thành công.');
+          loadOrdersHistory(); // Làm mới danh sách đơn hàng
+        } else {
+          alert('Có lỗi xảy ra khi xóa đơn hàng.');
+        }
+      },
+      error: function (error) {
+        console.error('Error deleting order:', error);
+      }
+    });
+  }
+</script>
+
 
   </body>
 </html>

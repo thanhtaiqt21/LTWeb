@@ -19,4 +19,12 @@ public class OrderService {
     public int addOrder(Orders order) {
         return OrderDao.getInstance().addOrder(order);
     }
+
+    public long totalOrders() {
+        return OrderDao.getInstance().totalOrders();
+    }
+
+    public long totalOrdersWaitting() {
+        return OrderDao.getInstance().totalOrderWaitting();
+    }
 }
