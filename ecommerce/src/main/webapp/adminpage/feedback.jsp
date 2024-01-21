@@ -404,7 +404,6 @@
                 <table>
                   <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Tiêu đề</th>
                     <th>Người gửi</th>
                     <th>Ngày tạo</th>
