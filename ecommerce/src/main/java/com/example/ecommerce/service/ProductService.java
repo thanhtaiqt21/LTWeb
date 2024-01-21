@@ -26,9 +26,15 @@ public class ProductService {
     public List<Product> getProducts(int start, int total) {
         return ProductDao.getInstance().getProducts(start, total);
     }
+    public List<Product> getProductsPagination(int id_category, int start, int total) {
+        return ProductDao.getInstance().getProductsPagination(id_category, start, total);
+    }
 
     public long total() {
         return ProductDao.getInstance().totalProduct();
+    }
+    public long totalProductPagination() {
+        return ProductDao.getInstance().totalProductPagination();
     }
 
     public List<Product> getAllProduct() {
@@ -42,6 +48,10 @@ public class ProductService {
     public Product getProductByID(int id) {
         return ProductDao.getInstance().getProductByID(id);
     }
+    public List<Product> getTop4ProductByCID(int id){
+        return ProductDao.getInstance().getTop4ProductByCID(id);
+    }
+
 
     public List<Product> getRelatedProducts(int categoryId) {
         return ProductDao.getInstance().getRelatedProducts(categoryId);

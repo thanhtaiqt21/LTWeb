@@ -40,4 +40,18 @@ public class BlogService {
     public boolean updateBlog(int id, String title, String content, String imgUrl) {
         return BlogDao.getInstance().updateBlog(id, title, content, imgUrl);
     }
+    public long totalBlog() {
+        return BlogDao.getInstance().totalBlog();
+    }
+    public List<Blog> getBlogPagination(int start, int total) {
+        return BlogDao.getInstance().getBlogPagination(start, total);
+    }
+
+    public Blog getBlogByID(int id) {
+        return BlogDao.getInstance().getBlogById(id);
+    }
+
+    public List<Blog> getRelatedBlog() {
+        return BlogDao.getInstance().getRelatedBlog();
+    }
 }

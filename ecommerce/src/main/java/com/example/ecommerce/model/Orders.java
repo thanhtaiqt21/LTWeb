@@ -5,21 +5,22 @@ import java.util.List;
 
 public class Orders {
     private int id;
-    private double shippingFee;
-    private double totalPrice;
+    private int shippingFee;
+    private int totalPrice;
     private int status;
     private Timestamp dayCreate;
     private String address;
     private String phone;
     private String email;
     private int idUser;
+    private String fullname;
     private String note;
     private List<OrderItems> orderItemsList;
 
     public Orders() {
     }
 
-    public Orders(int id, double shippingFee, double totalPrice, int status, Timestamp dayCreate, String address, String phone, String email, int idUser, String note, List<OrderItems> orderItemsList) {
+    public Orders(int id, int shippingFee, int totalPrice, int status, Timestamp dayCreate, String address, String phone, String email, int idUser, String fullname, String note, List<OrderItems> orderItemsList) {
         this.id = id;
         this.shippingFee = shippingFee;
         this.totalPrice = totalPrice;
@@ -29,6 +30,7 @@ public class Orders {
         this.phone = phone;
         this.email = email;
         this.idUser = idUser;
+        this.fullname = fullname;
         this.note = note;
         this.orderItemsList = orderItemsList;
     }
@@ -41,19 +43,19 @@ public class Orders {
         this.id = id;
     }
 
-    public double getShippingFee() {
+    public int getShippingFee() {
         return shippingFee;
     }
 
-    public void setShippingFee(double shippingFee) {
+    public void setShippingFee(int shippingFee) {
         this.shippingFee = shippingFee;
     }
 
-    public double getTotalPrice() {
+    public int getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -103,6 +105,14 @@ public class Orders {
 
     public void setIdUser(int idUser) {
         this.idUser = idUser;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getNote() {

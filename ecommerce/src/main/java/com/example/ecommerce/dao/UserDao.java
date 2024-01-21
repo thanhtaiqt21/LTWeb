@@ -153,7 +153,7 @@ public class UserDao {
     }
 
 
-            public void changePassword ( int userId, String newPassword){
+    public void changePassword ( int userId, String newPassword){
                 Connection connection = DBConnect.getInstance().getConnection();
                 PreparedStatement preparedStatement = null;
 
@@ -410,7 +410,7 @@ public class UserDao {
                 PreparedStatement preparedStatement;
                 try {
                     preparedStatement = connection.prepareStatement("UPDATE user SET password = ? WHERE email = ?");
-                    preparedStatement.setString(1, hashPassword(newPassword));
+                    preparedStatement.setString(1, newPassword);
                     preparedStatement.setString(2, email);
                     int rowsUpdated = preparedStatement.executeUpdate();
 
@@ -420,11 +420,21 @@ public class UserDao {
                 }
             }
 
-            public boolean sendPasswordResetEmail (String email){
-                String content = "Your new password is: " + UserDao.getInstance().generateNewPassword();
+    public boolean sendPasswordResetEmail(String email) {
+        String newPassword = generateNewPassword();
 
-                SendMail se = new SendMail();
-                se.sendMail(email, content);
-                return true;
- }
+
+        // Thay đổi nội dung email để sử dụng mật khẩu chưa mã hóa
+        String content = "Mật khẩu mới của bạn là: " + newPassword + "\n"
+                + "Vui lòng đăng nhập và thay đổi mật khẩu để giữ tính bảo mật";
+
+        // Gửi email
+        SendMail se = new SendMail();
+        se.sendMail(email, content);
+
+        return resetPassword(email, hashPassword(newPassword));
+    }
+
+
+
 }

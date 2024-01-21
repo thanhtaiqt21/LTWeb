@@ -343,7 +343,7 @@
                 user = (User) obj;
             if (user == null) {
         %>
-        <h1>Bạn chưa đăng nhập vào hệ thống. Vui lòng quay lại trang chủ!</h1>
+        <center><h1>Bạn chưa đăng nhập vào hệ thống. Vui lòng quay lại trang chủ!</h1></center>
         <%
         } else {
             String successParam = request.getAttribute("success") + "";
@@ -393,24 +393,18 @@
                                     <form id="form_update" action="updateInfor" method="post">
                                         <div class="form-group">
                                             <label>Họ và Tên</label>
-                                            <input type="text" class="form-control" placeholder="Nhập Họ và Tên"
-                                                   name="fullname" value="<%=fullname%>"/>
+                                            <input type="text" class="form-control" placeholder="Nhập Họ và Tên" name="fullname" value="<%= user.getFullname() %>"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="email" class="form-control" placeholder="Nhập Email"
-                                                   name="email" value="<%=email%>"/>
+                                            <input type="email" class="form-control" placeholder="Nhập Email" name="email" value="<%= user.getEmail() %>"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Số Điện Thoại</label>
-                                            <input type="text" class="form-control"
-                                                   placeholder="Nhập Số Điện Thoại" name="phone" value="<%=phone%>"/>
+                                            <input type="text" class="form-control" placeholder="Nhập Số Điện Thoại" name="phone" value="<%= user.getPhone() %>"/>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mt-4" name="submit"
-                                                id="submit">Cập Nhật
-                                        </button>
-                                    </form>
-                                </div>
+                                        <button type="submit" class="btn btn-primary mt-4" name="submit" id="submit">Cập Nhật</button>
+                                    </form>                                </div>
                             </div>
                         </div>
                     </div>

@@ -27,8 +27,8 @@ public class OrdersHistoryDetailDao {
                 ResultSet resultSetOrder = preparedStatementOrder.executeQuery();
                 if (resultSetOrder.next()) {
                     orderDetail.setId(resultSetOrder.getInt("id"));
-                    orderDetail.setShippingFee(resultSetOrder.getDouble("shipping_fee"));
-                    orderDetail.setTotalPrice(resultSetOrder.getDouble("total_price"));
+                    orderDetail.setShippingFee(resultSetOrder.getInt("shipping_fee"));
+                    orderDetail.setTotalPrice(resultSetOrder.getInt("total_price"));
                     orderDetail.setStatus(resultSetOrder.getInt("status"));
                     orderDetail.setDayCreate(resultSetOrder.getTimestamp("day_create"));
                     orderDetail.setAddress(resultSetOrder.getString("address"));
@@ -52,7 +52,7 @@ public class OrdersHistoryDetailDao {
                     OrderItems orderItem = new OrderItems();
                     orderItem.setId(resultSetItems.getInt("id"));
                     orderItem.setQuantity(resultSetItems.getInt("quantity"));
-                    orderItem.setTotalPrice(resultSetItems.getDouble("total_price"));
+                    orderItem.setTotalPrice(resultSetItems.getInt("total_price"));
                     orderItem.setIdProduct(resultSetItems.getInt("id_product"));
 
                     Product product = new Product();

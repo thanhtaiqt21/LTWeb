@@ -24,8 +24,8 @@ public class OrdersHistoryDao {
             while (resultSet.next()) {
                 Orders order = new Orders();
                 order.setId(resultSet.getInt("id"));
-                order.setShippingFee(resultSet.getDouble("shipping_fee"));
-                order.setTotalPrice(resultSet.getDouble("total_price"));
+                order.setShippingFee(resultSet.getInt("shipping_fee"));
+                order.setTotalPrice(resultSet.getInt("total_price"));
                 order.setStatus(resultSet.getInt("status"));
                 order.setDayCreate(resultSet.getTimestamp("day_create"));
                 order.setAddress(resultSet.getString("address"));

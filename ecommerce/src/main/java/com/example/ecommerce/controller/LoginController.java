@@ -30,7 +30,7 @@ public class LoginController extends HttpServlet {
                 resp.sendRedirect("/ecommerce/adminpage/");
             } else if ("USER".equals(role)) {
                 // Nếu là USER, chuyển hướng như bình thường
-                resp.sendRedirect("/ecommerce/");
+                resp.sendRedirect("/ecommerce/home");
             } else {
                 // Xử lý cho các trường hợp vai trò khác (nếu có)
             }

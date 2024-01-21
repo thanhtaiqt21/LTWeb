@@ -90,6 +90,42 @@ public class ProductDao {
         return products;
     }
 
+    public List<Product> getProductsPagination(int id_category, int start, int total) {
+        List<Product> products = new ArrayList<>();
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM product WHERE id_category = ? AND active = 1 LIMIT ?, ?");
+            preparedStatement.setInt(1, id_category); // Thay id_category vào tham số đầu tiên
+            preparedStatement.setInt(2, start); // Thay start vào tham số thứ hai
+            preparedStatement.setInt(3, total); // Thay total vào tham số thứ ba
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                List<String> imgUrls = new ArrayList<>();
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setTitle(rs.getString("title"));
+                product.setDescription(rs.getString("description"));
+                product.setPrice(rs.getInt("price"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setSold(rs.getInt("sold"));
+                product.setActive(rs.getInt("active"));
+                product.setDateCreate(rs.getTimestamp("date_create"));
+                product.setCategoryId(rs.getInt("id_category"));
+                List<Img> imgs = ImgService.getInstance().getImgUrlByProductId(rs.getInt("id"));
+                for (Img img : imgs) {
+                    imgUrls.add(img.getImgUrl());
+                }
+                product.setImgUrl(imgUrls);
+                products.add(product);
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return products;
+    }
+
     public long totalProduct() {
         long count = 0;
         Connection connection = DBConnect.getInstance().getConnection();
@@ -106,9 +142,67 @@ public class ProductDao {
         return count;
     }
 
+    public long totalProductPagination() {
+        long count = 0;
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS total FROM product WHERE id_category = 19 AND active = 1");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                count = rs.getLong("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return count;
+    }
+
+
+
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM `products`";
+        try {
+            Connection connection = DBConnect.getInstance().getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setTitle(rs.getString("title"));
+                product.setDescription(rs.getString("description"));
+                product.setPrice(rs.getInt("price"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setSold(rs.getInt("sold"));
+                product.setActive(rs.getInt("active"));
+                product.setDateCreate(rs.getTimestamp("dateCreate"));
+                product.setCategoryId(rs.getInt("categoryId"));
+
+                List<String> imgUrlList = new ArrayList<>();
+                int productId = rs.getInt("id");
+                String imgQuery = "SELECT imgUrl FROM `images` WHERE productId = ?";
+                PreparedStatement imgPs = connection.prepareStatement(imgQuery);
+                imgPs.setInt(1, productId);
+                ResultSet imgRs = imgPs.executeQuery();
+                while (imgRs.next()) {
+                    String imgUrl = imgRs.getString("imgUrl");
+                    imgUrlList.add(imgUrl);
+                }
+                product.setImgUrl(imgUrlList);
+
+                list.add(product);
+            }
+        } catch (Exception e) {
+            // Xử lý exception
+        }
+        return list;
+    }
+
+    public List<Product> getTop4() {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM `product` LIMIT 4";
         try {
             Connection connection = DBConnect.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(query);
@@ -170,11 +264,8 @@ public class ProductDao {
 
     public static void main(String[] args) {
         ProductDao dao = new ProductDao();
-        List<Product> list = dao.getAllProduct();
-
-        CategoryDao cDao = new CategoryDao();
-        List<Category> listC = cDao.getAllCategory();
-        for (Category o : listC){
+        List<Product> list = dao.getProductsPagination(19, 2, 4);
+        for (Product o : list){
             System.out.println(o);
         }
     }
@@ -184,6 +275,50 @@ public class ProductDao {
 //        PreparedStatement preparedStatement;
         List<Product> list = new ArrayList<>();
         String query = "SELECT * FROM `product` WHERE id_category = ? AND active = 1";
+        try {
+            Connection connection = DBConnect.getInstance().getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setTitle(rs.getString("title"));
+                product.setDescription(rs.getString("description"));
+                product.setPrice(rs.getInt("price"));
+                product.setDiscount(rs.getDouble("discount"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setSold(rs.getInt("sold"));
+                product.setActive(rs.getInt("active"));
+                product.setDateCreate(rs.getTimestamp("date_create"));
+                product.setCategoryId(rs.getInt("id_category"));
+
+                List<String> imgUrlList = new ArrayList<>();
+                int productId = rs.getInt("id");
+                String imgQuery = "SELECT img_url FROM img WHERE id_product = ?";
+                PreparedStatement imgPs = connection.prepareStatement(imgQuery);
+                imgPs.setInt(1, productId);
+                ResultSet imgRs = imgPs.executeQuery();
+                while (imgRs.next()) {
+                    String imgUrl = imgRs.getString("img_url");
+                    imgUrlList.add(imgUrl);
+                }
+                product.setImgUrl(imgUrlList);
+
+                list.add(product);
+
+            }
+        }catch (Exception e){
+
+        }
+
+        return list;
+    }
+    public List<Product> getTop4ProductByCID(int id){
+//        Connection connection = DBConnect.getInstance().getConnection();
+//        PreparedStatement preparedStatement;
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM `product` WHERE id_category = ? AND active = 1 LIMIT 4";
         try {
             Connection connection = DBConnect.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(query);
@@ -407,7 +542,7 @@ public class ProductDao {
     }
     public List<Product> searchByName(String txtSearch) {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT * FROM `products` WHERE title like ?";
+        String query = "SELECT * FROM `product` WHERE title like ?";
         try {
             Connection connection = DBConnect.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(query);
@@ -503,3 +638,4 @@ public class ProductDao {
         return product;
     }
 }
+

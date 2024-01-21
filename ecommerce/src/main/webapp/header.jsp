@@ -139,14 +139,10 @@
                                     </div>
                                 </li>
                                 <li class="nav-links__item nav-links__item--with-submenu">
-                                    <a href="list-product.jsp"
-                                    ><span
-                                    >Danh mục sản phẩm
-                            <svg
-                                    class="nav-links__arrow"
+                                    <a><span>Danh mục sản phẩm
+                            <svg class="nav-links__arrow"
                                     width="9px"
-                                    height="6px"
-                            >
+                                    height="6px">
                               <use
                                       xlink:href="images/sprite.svg#arrow-rounded-down-9x6"
                               ></use></svg></span
@@ -156,7 +152,7 @@
                                         <ul class="menu menu--layout--classic">
                                             <c:forEach items="${categories}" var="category">
                                                 <li>
-                                                    <a href="products?cId=${category.id}">${category.name}</a>
+                                                    <a href="pagination?cId=${category.id}">${category.name}</a>
                                                 </li>
                                             </c:forEach>
                                         </ul>
@@ -164,7 +160,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-links__item nav-links__item--with-submenu">
-                                    <a href="blog-classic.jsp"><span>Blog </span></a>
+                                    <a href="/ecommerce/blogPage"><span>Blog </span></a>
                                 </li>
 
                                 <li class="nav-links__item">
@@ -289,14 +285,16 @@
                                                         </tr>
                                                     </table>
                                                 </div>
-                                                <div class="dropcart__buttons">
-                                                    <a class="btn btn-secondary" href="cart.jsp"
-                                                    >Giỏ hàng</a
-                                                    >
-                                                    <a class="btn btn-primary" href="checkout.jsp"
-                                                    >Thanh toán</a
-                                                    >
-                                                </div>
+                                                    <div class="dropcart__buttons">
+                                                        <% if (user != null) { %>
+                                                        <a class="btn btn-secondary" href="cart.jsp">Giỏ hàng</a>
+                                                        <a class="btn btn-primary" href="checkout.jsp">Thanh toán</a>
+                                                        <% } else { %>
+                                                        <a class="btn btn-secondary" href="cart.jsp" style="height: 60px">Giỏ hàng</a>
+                                                        <a class="btn btn-primary disabled" href="#" style="height: 60px">Thanh toán</a>
+                                                        <p class="text-danger" style="margin-left: 5px; margin-top: 3px">Yêu cầu đăng nhập.</p>
+                                                        <% } %>
+                                                    </div>
                                             </div>
                                             <!-- .dropcart / end -->
                                         </div>

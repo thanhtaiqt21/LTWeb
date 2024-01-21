@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.example.ecommerce.model.Category" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -330,7 +331,7 @@
                 </ol>
               </nav>
             </div>
-            <div class="page-header__title"><h1>Latest News</h1></div>
+            <div class="page-header__title"><h1>Tin mới nhất</h1></div>
           </div>
         </div>
         <div class="container">
@@ -342,232 +343,66 @@
                     class="posts-view__list posts-list posts-list--layout--classic"
                   >
                     <div class="posts-list__body">
+                      <c:forEach var="b" items="${listB}">
                       <div class="posts-list__item">
                         <div class="post-card post-card--layout--grid post-card--size--lg">
                           <div class="post-card__image">
-                            <a href="#"><img src="https://hungtuy.com.vn/data/media/1498/images/rsz_amb_rioja_silver_31x56.jpg" alt="Gạch đá tự nhiên" /></a>
+                            <a href=""><img src="${b.imgUrl}" alt="Gạch đá tự nhiên" /></a>
                           </div>
                           <div class="post-card__info">
                             <div class="post-card__category">
-                              <a href="#">Vật Liệu Xây Dựng</a>
+                              <a href="">Vật Liệu Xây Dựng</a>
                             </div>
                             <div class="post-card__name">
-                              <a href="#">Sử Dụng Gạch Đá Tự Nhiên Trong Trang Trí Nhà Cửa</a>
+                              <a href="">${b.title}</a>
                             </div>
-                            <div class="post-card__date">Ngày 10 Tháng 5, 2023</div>
+                            <div class="post-card__date">${b.timestamp}</div>
                             <div class="post-card__content">
-                              Bài viết này nói về việc sử dụng gạch đá tự nhiên để tạo sự sang trọng và tự nhiên cho ngôi nhà của bạn.
+                              ${b.content}
                             </div>
                             <div class="post-card__read-more">
-                              <a href="post-without-sidebar.jsp" class="btn btn-secondary btn-sm">Đọc thêm</a>
+                              <a href="blogDetail?bid=${b.id}" class="btn btn-secondary btn-sm" >Đọc thêm</a>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="posts-list__item">
-                        <div class="post-card post-card--layout--grid post-card--size--lg">
-                          <div class="post-card__image">
-                            <a href="#"><img src="https://thegioithepvn.com/wp-content/uploads/2021/07/nha-tien-che-the-gioi-thepvn.com_-1024x683.jpg" alt="Khung sắt trong xây dựng" /></a>
-                          </div>
-                          <div class="post-card__info">
-                            <div class="post-card__category">
-                              <a href="#">Vật Liệu Xây Dựng</a>
-                            </div>
-                            <div class="post-card__name">
-                              <a href="#">Những Ưu Điểm của Sử Dụng Khung Sắt Trong Xây Dựng</a>
-                            </div>
-                            <div class="post-card__date">Ngày 20 Tháng 9, 2023</div>
-                            <div class="post-card__content">
-                              Bài viết này phân tích các ưu điểm của việc sử dụng khung sắt trong xây dựng, từ tính năng chống sét đến tính độ bền và đa dạng trong thiết kế.
-                            </div>
-                            <div class="post-card__read-more">
-                              <a href="post-without-sidebar.jsp" class="btn btn-secondary btn-sm">Đọc thêm</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="posts-list__item">
-                        <div class="post-card post-card--layout--grid post-card--size--lg">
-                          <div class="post-card__image">
-                            <a href="#"><img src="https://koreawindow.com.vn/uploads/images/bai-viet/news/maucuadep1.jpg" alt="Cửa nhựa lõi thép" /></a>
-                          </div>
-                          <div class="post-card__info">
-                            <div class="post-card__category">
-                              <a href="#">Vật Liệu Xây Dựng</a>
-                            </div>
-                            <div class="post-card__name">
-                              <a href="#">Cách Lựa Chọn Cửa Nhựa Lõi Thép Cho Nhà Cửa Của Bạn</a>
-                            </div>
-                            <div class="post-card__date">Ngày 5 Tháng 7, 2023</div>
-                            <div class="post-card__content">
-                              Bài viết này hướng dẫn cách chọn cửa nhựa lõi thép phù hợp với thiết kế và an toàn cho ngôi nhà của bạn.
-                            </div>
-                            <div class="post-card__read-more">
-                              <a href="#" class="btn btn-secondary btn-sm">Đọc thêm</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="posts-list__item">
-                        <div class="post-card post-card--layout--grid post-card--size--lg">
-                          <div class="post-card__image">
-                            <a href="#"><img src="https://bachkhoaec.com/upload/images/Gia%20cuong%20cot%20dam%20san.jpg" alt="Sợi carbon" /></a>
-                          </div>
-                          <div class="post-card__info">
-                            <div class="post-card__category">
-                              <a href="post-without-sidebar.jsp">Vật Liệu Xây Dựng</a>
-                            </div>
-                            <div class="post-card__name">
-                              <a href="#">Vật Liệu Xây Dựng Hiện Đại: Sợi Carbon</a>
-                            </div>
-                            <div class="post-card__date">Ngày 12 Tháng 3, 2023</div>
-                            <div class="post-card__content">
-                              Bài viết này giới thiệu vật liệu xây dựng hiện đại - sợi carbon, và cách nó được ứng dụng trong các công trình xây dựng.
-                            </div>
-                            <div class="post-card__read-more">
-                              <a href="#" class="btn btn-secondary btn-sm">Đọc thêm</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="posts-list__item">
-                        <div class="post-card post-card--layout--grid post-card--size--lg">
-                          <div class="post-card__image">
-                            <a href="#"><img src="https://ttpcert.com.vn/wp-content/uploads/2021/03/mau-nha-kinh-theo-phong-cach-chau-au-1-min.png" alt="Sản phẩm mới" /></a>
-                          </div>
-                          <div class="post-card__info">
-                            <div class="post-card__category">
-                              <a href="#">Tin Mới Nhất</a>
-                            </div>
-                            <div class="post-card__name">
-                              <a href="#">Sản Phẩm Vật Liệu Xây Dựng Được Cải Tiến Mới Nhất</a>
-                            </div>
-                            <div class="post-card__date">Ngày 2 Tháng 11, 2023</div>
-                            <div class="post-card__content">
-                              Chúng tôi giới thiệu các sản phẩm vật liệu xây dựng mới nhất với công nghệ cải tiến, giúp nâng cao hiệu suất và tiết kiệm năng lượng trong xây dựng.
-                            </div>
-                            <div class="post-card__read-more">
-                              <a href="#" class="btn btn-secondary btn-sm">Đọc thêm</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="posts-list__item">
-                        <div class="post-card post-card--layout--grid post-card--size--lg">
-                          <div class="post-card__image">
-                            <a href="#"><img src="https://congtrinhxanhvn.com/wp-content/uploads/2021/06/cac-yeu-to-tao-nen-noi-that-xanh.jpeg" alt="Thiết kế nội thất xanh" /></a>
-                          </div>
-                          <div class="post-card__info">
-                            <div class="post-card__category">
-                              <a href="#">Tin Mới Nhất</a>
-                            </div>
-                            <div class="post-card__name">
-                              <a href="#">Xu Hướng Thiết Kế Nội Thất Xanh Mới Nhất</a>
-                            </div>
-                            <div class="post-card__date">Ngày 12 Tháng 10, 2023</div>
-                            <div class="post-card__content">
-                              Bài viết này giới thiệu xu hướng thiết kế nội thất xanh mới nhất, sử dụng vật liệu xây dựng thân thiện với môi trường và năng lượng.
-                            </div>
-                            <div class="post-card__read-more">
-                              <a href="#" class="btn btn-secondary btn-sm">Đọc thêm</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="posts-list__item">
-                        <div class="post-card post-card--layout--grid post-card--size--lg">
-                          <div class="post-card__image">
-                            <a href="#"><img src="https://khatra.com.vn/wp-content/uploads/2022/05/ke-gach-800x800-1.jpg" alt="Khuyến mãi gạch lát sàn" /></a>
-                          </div>
-                          <div class="post-card__info">
-                            <div class="post-card__category">
-                              <a href="#">Chương Trình Khuyến Mãi</a>
-                            </div>
-                            <div class="post-card__name">
-                              <a href="#">Ưu Đãi Đặc Biệt Cho Các Loại Gạch Lát Sàn</a>
-                            </div>
-                            <div class="post-card__date">Ngày 20 Tháng 9, 2023</div>
-                            <div class="post-card__content">
-                              Tham gia chương trình khuyến mãi đặc biệt để nhận giảm giá hấp dẫn cho các loại gạch lát sàn chất lượng cao. Đừng bỏ lỡ cơ hội này!
-                            </div>
-                            <div class="post-card__read-more">
-                              <a href="#" class="btn btn-secondary btn-sm">Xem Thêm</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="posts-list__item">
-                        <div class="post-card post-card--layout--grid post-card--size--lg">
-                          <div class="post-card__image">
-                            <a href="#"><img src="https://hiepthanhvn.com.vn/wp-content/uploads/2021/04/tui-khi-cach-nhiet-dem-lai-hieu-qua-chong-nong-tot-1.jpg" alt="Khuyến mãi cách nhiệt" /></a>
-                          </div>
-                          <div class="post-card__info">
-                            <div class="post-card__category">
-                              <a href="#">Chương Trình Khuyến Mãi</a>
-                            </div>
-                            <div class="post-card__name">
-                              <a href="#">Mùa Hè Sôi Động: Giảm Giá Lớn Cho Các Sản Phẩm Cách Nhiệt</a>
-                            </div>
-                            <div class="post-card__date">Ngày 5 Tháng 7, 2023</div>
-                            <div class="post-card__content">
-                              Chào đón mùa hè sôi động với ưu đãi giảm giá lớn cho các sản phẩm cách nhiệt. Giúp ngôi nhà của bạn mát mẻ và tiết kiệm năng lượng!
-                            </div>
-                            <div class="post-card__read-more">
-                              <a href="#" class="btn btn-secondary btn-sm">Xem Chi Tiết</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
+                      </c:forEach>
                     </div>
                   </div>
-                  <div class="posts-view__pagination">
-                    <ul class="pagination justify-content-center">
-                      <li class="page-item disabled">
-                        <a
-                          class="page-link page-link--with-arrow"
-                          href="#"
-                          aria-label="Previous"
-                          ><svg
-                            class="page-link__arrow page-link__arrow--left"
-                            aria-hidden="true"
-                            width="8px"
-                            height="13px"
-                          >
-                            <use
-                              xlink:href="images/sprite.svg#arrow-rounded-left-8x13"
-                            ></use></svg
-                        ></a>
-                      </li>
+                  <ul class="pagination justify-content-center">
+                    <c:if test="${currentPage != 1}">
                       <li class="page-item">
-                        <a class="page-link" href="#">1</a>
+                        <a class="page-link page-link--with-arrow" href="/ecommerce/blogPage?page=${currentPage - 1}" aria-label="Previous">
+                          <svg class="page-link__arrow page-link__arrow--left" aria-hidden="true" width="8px" height="13px">
+                            <use xlink:href="images/sprite.svg#arrow-rounded-left-8x13"></use>
+                          </svg>
+                        </a>
                       </li>
-                      <li class="page-item active">
-                        <a class="page-link" href="#"
-                          >2 <span class="sr-only">(current)</span></a
-                        >
-                      </li>
+                    </c:if>
+                    <c:forEach begin="1" end="${numOfPage}" var="i">
+                      <c:choose>
+                        <c:when test="${currentPage eq i}">
+                          <li class="page-item active">
+                            <a class="page-link" href="/ecommerce/blogPage?page=${i}"><c:out value="${i}"/></a>
+                          </li>
+                        </c:when>
+                        <c:otherwise>
+                          <li class="page-item">
+                            <a class="page-link" href="/ecommerce/blogPage?page=${i}"><c:out value="${i}"/></a>
+                          </li>
+                        </c:otherwise>
+                      </c:choose>
+                    </c:forEach>
+                    <c:if test="${currentPage lt numOfPage}">
                       <li class="page-item">
-                        <a class="page-link" href="#">3</a>
+                        <a class="page-link page-link--with-arrow" href="/ecommerce/blogPage?page=${currentPage + 1}" aria-label="Next">
+                          <svg class="page-link__arrow page-link__arrow--right" aria-hidden="true" width="8px" height="13px">
+                            <use xlink:href="images/sprite.svg#arrow-rounded-right-8x13"></use>
+                          </svg>
+                        </a>
                       </li>
-                      <li class="page-item">
-                        <a
-                          class="page-link page-link--with-arrow"
-                          href="#"
-                          aria-label="Next"
-                          ><svg
-                            class="page-link__arrow page-link__arrow--right"
-                            aria-hidden="true"
-                            width="8px"
-                            height="13px"
-                          >
-                            <use
-                              xlink:href="images/sprite.svg#arrow-rounded-right-8x13"
-                            ></use></svg
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
+                    </c:if>
+                  </ul>
                 </div>
               </div>
             </div>

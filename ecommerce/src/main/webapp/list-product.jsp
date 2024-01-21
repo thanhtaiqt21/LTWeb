@@ -4,6 +4,7 @@
   String error = (String) request.getAttribute("error");
 %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -447,10 +448,26 @@
                               </div>
                             </div>
                             <div class="product-card__actions">
-                              <div class="product-card__prices">
-                                <fmt:setLocale value="vi_VN"/>
-                                <fmt:formatNumber value="${o.price}" type="currency"/>
-                              </div>
+                              <c:choose>
+                                <c:when test="${o.discount > 0}">
+                                  <div class="product-card__prices">
+                            <span class="product-card__new-price">
+                              <fmt:setLocale value="vi_VN"/>
+                              <fmt:formatNumber value="${o.price * o.discount}" type="currency"/>
+                            </span>
+                                    <span class="product-card__old-price">
+                              <fmt:setLocale value="vi_VN"/>
+                              <fmt:formatNumber value="${o.price}" type="currency"/>
+                            </span>
+                                  </div>
+                                </c:when>
+                                <c:otherwise>
+                                  <div class="product-card__prices">
+                                    <fmt:setLocale value="vi_VN"/>
+                                    <fmt:formatNumber value="${o.price}" type="currency"/>
+                                  </div>
+                                </c:otherwise>
+                              </c:choose>
                               <div class="product-card__buttons">
                                 <form action="addToCart" method="post">
                                   <input type="hidden" name="productId" value="${o.id}"/>
@@ -470,55 +487,43 @@
                           </div>
                         </div>
                       </c:forEach>
+                  </div>
+                    <div class="products-view__pagination">
+                      <ul class="pagination justify-content-center">
+                        <c:if test="${currentPage != 1}">
+                        <li class="page-item">
+                            <a class="page-link page-link--with-arrow" href="/ecommerce/pagination?page=${currentPage - 1}&cId=${cId}" aria-label="Previous">
+                            <svg class="page-link__arrow page-link__arrow--left" aria-hidden="true" width="8px" height="13px">
+                              <use xlink:href="images/sprite.svg#arrow-rounded-left-8x13"></use>
+                            </svg>
+                          </a>
+                        </li>
+                        </c:if>
+                        <c:forEach begin="1" end="${numOfPage}" var="i">
+                          <c:choose>
+                            <c:when test="${currentPage eq i}">
+                              <li class="page-item active">
+                                <a class="page-link" href="/ecommerce/pagination?page=${i}&cId=${cId}"><c:out value="${i}"/></a>
+                              </li>
+                            </c:when>
+                            <c:otherwise>
+                              <li class="page-item">
+                                <a class="page-link" href="/ecommerce/pagination?page=${i}&cId=${cId}"><c:out value="${i}"/></a>
+                              </li>
+                            </c:otherwise>
+                          </c:choose>
+                        </c:forEach>
+                        <c:if test="${currentPage lt numOfPage}">
+                        <li class="page-item">
+                          <a class="page-link page-link--with-arrow" href="/ecommerce/pagination?page=${currentPage + 1}&cId=${cId}" aria-label="Next">
+                            <svg class="page-link__arrow page-link__arrow--right" aria-hidden="true" width="8px" height="13px">
+                              <use xlink:href="images/sprite.svg#arrow-rounded-right-8x13"></use>
+                            </svg>
+                          </a>
+                        </li>
+                        </c:if>
+                      </ul>
                     </div>
-                  </div>
-                  <div class="products-view__pagination">
-                    <ul class="pagination justify-content-center">
-                      <li class="page-item disabled">
-                        <a
-                          class="page-link page-link--with-arrow"
-                          href="#"
-                          aria-label="Previous"
-                          ><svg
-                            class="page-link__arrow page-link__arrow--left"
-                            aria-hidden="true"
-                            width="8px"
-                            height="13px"
-                          >
-                            <use
-                              xlink:href="images/sprite.svg#arrow-rounded-left-8x13"
-                            ></use></svg
-                        ></a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                      </li>
-                      <li class="page-item active">
-                        <a class="page-link" href="#"
-                          >2 <span class="sr-only">(current)</span></a
-                        >
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                      </li>
-                      <li class="page-item">
-                        <a
-                          class="page-link page-link--with-arrow"
-                          href="#"
-                          aria-label="Next"
-                          ><svg
-                            class="page-link__arrow page-link__arrow--right"
-                            aria-hidden="true"
-                            width="8px"
-                            height="13px"
-                          >
-                            <use
-                              xlink:href="images/sprite.svg#arrow-rounded-right-8x13"
-                            ></use></svg
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             </div>

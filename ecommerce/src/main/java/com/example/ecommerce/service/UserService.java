@@ -65,5 +65,7 @@ public class UserService {
     public boolean sendPasswordResetEmail(String email) {
         return UserDao.getInstance().sendPasswordResetEmail(email);
     }
-
+//    public User getUserByEmail(String email) {
+//        return UserDao.getInstance().getUserByEmail(email);
+//    }
 }
