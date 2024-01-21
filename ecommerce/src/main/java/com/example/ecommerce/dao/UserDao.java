@@ -184,8 +184,9 @@ public class UserDao {
                 String phone = resultSet.getString("phone");
                 String role = resultSet.getString("role");
                 int active = resultSet.getInt("active");
+                int status = resultSet.getInt("status");
 
-                User user = new User(id, username, email, phone, role, active);
+                User user = new User(id, username, email, phone, role, active, status);
                 userList.add(user);
             }
         } catch (SQLException e) {

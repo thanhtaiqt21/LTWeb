@@ -405,13 +405,12 @@
                 <table>
                   <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Tài khoản</th>
+                    <th>Xác thực email</th>
                     <th>Trạng thái</th>
                     <th>Email</th>
-                    <th>Số điện thoại</th>
-                    <th>Role</th>
-                    <th>Setting</th>
+                    <th>Vai trò</th>
+                    <th>Tùy chọn</th>
                   </tr>
                   </thead>
                   <tbody id="userTableBody"></tbody>
@@ -545,14 +544,17 @@
             tableBody.empty();
 
             // Hiển thị 10 tài khoản trên mỗi trang
-            var itemsPerPage = 5;
+            var itemsPerPage = 10;
             var startIndex = (page - 1) * itemsPerPage;
             var endIndex = startIndex + itemsPerPage;
             var usersToShow = data.slice(startIndex, endIndex);
 
             $.each(usersToShow, function (index, user) {
-              var statusButton = user.active === 1 ? '<button class="pd-setting">Active</button>' :
-                      '<button class="pd-setting" style="background-color: red;">Not Active</button>';
+              var activeButton = user.active === 1 ? '<button class="pd-setting">Đã Xác Thực</button>' :
+                      '<button class="pd-setting" style="background-color: red;">Chưa Xác Thực</button>';
+
+              var statusButton = user.status === 0 ? '<button class="pd-setting">Hoạt Động</button>' :
+                      '<button class="pd-setting" style="background-color: red;">Ngưng Hoạt Động</button>';
 
               var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed editUser" data-id="' + user.id + '">'
                       + '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'
@@ -566,11 +568,10 @@
 
 
               var row = '<tr>' +
-                      '<td>' + user.id + '</td>' +
                       '<td>' + user.username + '</td>' +
+                      '<td>' + activeButton + '</td>' +
                       '<td>' + statusButton + '</td>' +
                       '<td>' + user.email + '</td>' +
-                      '<td>' + user.phone + '</td>' +
                       '<td>' + user.role + '</td>' +
                       '<td>' + editButton + trashButton + '</td>' +
                       '</tr>';

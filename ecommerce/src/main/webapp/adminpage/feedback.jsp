@@ -550,6 +550,7 @@
             var feedbackToShow = data.slice(startIndex, endIndex);
 
             $.each(feedbackToShow, function (index, feedback) {
+              var formattedDate = formatDate(feedback.dateCreated);
 
               var editButton = '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed editUser" data-id="' + feedback.id + '">'
                       + 'Xem'
@@ -563,10 +564,9 @@
 
 
               var row = '<tr>' +
-                      '<td>' + feedback.id + '</td>' +
                       '<td>' + feedback.topic + '</td>' +
                       '<td>' + feedback.name + '</td>' +
-                      '<td>' + feedback.dateCreated + '</td>' +
+                      '<td>' + formattedDate + '</td>' +
                       '<td>' + editButton + trashButton + '</td>' +
                       '</tr>';
               tableBody.append(row);
@@ -601,6 +601,17 @@
         });
       }
 
+      function formatDate(dateString) {
+        var date = new Date(dateString);
+        var year = date.getFullYear();
+        var month = ('0' + (date.getMonth() + 1)).slice(-2); // Thêm 0 phía trước và lấy 2 ký tự cuối
+        var day = ('0' + date.getDate()).slice(-2);
+        var hours = ('0' + date.getHours()).slice(-2);
+        var minutes = ('0' + date.getMinutes()).slice(-2);
+        var seconds = ('0' + date.getSeconds()).slice(-2);
+
+        return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+      }
 
       function deleteFeedback(feedbackId) {
         $.ajax({
