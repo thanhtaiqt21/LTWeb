@@ -16,6 +16,8 @@ public class Orders {
     private String note;
     private List<OrderItems> orderItemsList;
 
+    private User user;
+
     public Orders() {
     }
 
@@ -137,4 +139,13 @@ public class Orders {
                 ", orderItemsList=" + orderItemsList +
                 '}';
     }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    // Getter cho trường User
+    public User getUser() {
+        return user;
+    }
+
 }
