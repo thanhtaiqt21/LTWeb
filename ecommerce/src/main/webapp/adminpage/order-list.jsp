@@ -80,6 +80,23 @@
       src="https://kit.fontawesome.com/2fdd50f686.js"
       crossorigin="anonymous"
     ></script>
+    <style>
+      .page-item a.page-link {
+        background-color: #1d2734; /* Màu nền đen */
+        color: white; /* Màu chữ trắng */
+        border: none;
+
+      }
+      .page-item.active a.page-link {
+        background-color: #1d2734; /* Màu nền đen */
+        color: blue; /* Màu chữ xanh (blue) cho trang đang ở */
+        border: none;
+      }
+
+      .page-item.active a.page-link:hover {
+        color: blue; /* Màu chữ đen khi di chuột qua */
+      }
+    </style>
   </head>
 
   <body>
@@ -377,7 +394,7 @@
             <div class="col-lg-12">
               <div class="product-status-wrap">
                 <h4>Danh sách đơn hàng</h4>
-                <table id="ordersTable" class="table">
+                <table id="ordersTable" class="table" style="table-layout: fixed">
                   <!-- Tiêu đề bảng -->
                   <thead>
                   <tr>
@@ -508,29 +525,33 @@
             function getStatusButton(status) {
               switch(status) {
                 case 0:
-                  return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '" style="background-color: red;">Chưa xác nhận</button>';
+                  return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '" style="background-color: #b2b24f;width: 130px">Chưa xác nhận</button>';
                 case 1:
-                  return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '" style="background-color: green;">Đã xác nhận</button>';
+                  return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '" style=";width: 130px">Đã xác nhận</button>';
                 case 2:
-                  return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '" style="background-color: blue;">Hủy</button>'; // Trạng thái "Hủy"
+                  return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '" style="background-color: #d26969;width: 130px">Hủy</button>'; // Trạng thái "Hủy"
                 default:
                   return '<button class="pd-setting status-toggle" data-order-id="' + order.id + '">Không xác định</button>';
               }
             }
 
-            var editButton = '<button class="pd-setting-ed edit-status" data-order-id="' + order.id + '" data-current-status="' + order.status + '" title="Edit"><i class="fa-solid fa-check" style="color: green;"></i></button>';
-            var deleteButton = '<button data-toggle="tooltip" title="Delete" class="pd-setting-ed delete-status" data-order-id="' + order.id + '" data-current-status="' + order.status + '"><i class="fa-solid fa-xmark" style="color: red;"></i></button>';
+            var editButton = '';
+            var deleteButton = '';
+            if (order.status === 0) {
+              editButton = '<button class="pd-setting-ed edit-status" data-order-id="' + order.id + '" data-current-status="' + order.status + '" title="Edit"><i class="fa-solid fa-check" style="color: #4be8b8;"></i></button>';
+              deleteButton = '<button data-toggle="tooltip" title="Delete" class="pd-setting-ed delete-status" data-order-id="' + order.id + '" data-current-status="' + order.status + '"><i class="fa-solid fa-xmark" style="color: red;"></i></button>';
+            }
             var viewButton = '<button data-toggle="tooltip" title="View" class="pd-setting-ed"><a href="order-details.jsp?orderId=' + order.id + '"><i class="fa-solid fa-eye"></i></a></button>';
 
             var row = '<tr>' +
                     '<td>#' + order.id + '</td>' +
                     '<td>' + statusButton + '</td>' +
                     '<td>' + formatPrice(order.totalPrice) + '</td>' +
-                    '<td>' + order.address + '</td>' +
+                    '<td style="overflow: hidden;text-overflow: ellipsis;text-wrap: nowrap">' + order.address + '</td>' +
                     '<td>' + order.phone + '</td>' +
                     '<td>' + order.user.fullname + '</td>' +
                     '<td>' + formatDate(order.dayCreate) + '</td>' +
-                    '<td>' + editButton + deleteButton + viewButton + '</td>' +
+                    '<td style="display: flex">' + editButton + deleteButton + viewButton + '</td>' +
                     '</tr>';
             tableBody.append(row);
           });
@@ -541,13 +562,25 @@
         $(document).on('click', '.edit-status', function() {
           var orderId = $(this).data('order-id');
           var currentStatus = $(this).data('current-status');
-          var newStatus = currentStatus === 0 ? 1 : 0;
-          updateOrderStatus(orderId, newStatus);
+
+          // Thêm xác nhận trước khi thay đổi trạng thái
+          var confirmChange = confirm("Bạn có muốn xác nhận đơn hàng không?");
+          if (confirmChange) {
+            var newStatus = currentStatus === 0 ? 1 : 0;
+            updateOrderStatus(orderId, newStatus);
+          }
+          // Nếu chọn 'Hủy', không thực hiện gì cả
         });
 
         $(document).on('click', '.delete-status', function() {
           var orderId = $(this).data('order-id');
-          updateOrderStatus(orderId, 2); // Cập nhật trạng thái thành "2" khi nhấn vào nút hủy
+
+          // Thêm xác nhận trước khi xóa
+          var confirmDelete = confirm("Bạn có chắc chắn muốn hủy đơn hàng này không?");
+          if (confirmDelete) {
+            updateOrderStatus(orderId, 2); // Cập nhật trạng thái thành "Hủy" nếu đồng ý
+          }
+          // Nếu chọn 'Hủy' trên thông báo, không thực hiện gì
         });
 
         function updateOrderStatus(orderId, newStatus) {

@@ -31,15 +31,17 @@ public class ChangInfor extends HttpServlet {
         boolean success = UserService.getInstance().updateInfor(fullname, email, phone, user.getId(), hashcode);
 
         if (success) {
+            // Sau khi cập nhật thông tin thành công
+            User updatedUser = UserService.getInstance().getUserById(user.getId());
+            session.setAttribute("user", updatedUser);
+
             request.setAttribute("success", "true");
-            request.getRequestDispatcher("/verify-email.jsp").forward(request, response);
+            request.getRequestDispatcher("/update_profile.jsp").forward(request, response);
         } else {
             request.setAttribute("error", "Cập nhật thông tin thất bại");
             request.getRequestDispatcher("/update_profile.jsp").forward(request, response);
         }
 
-        // Sau khi cập nhật thông tin thành công
-        User updatedUser = UserService.getInstance().getUserById(user.getId());
-        session.setAttribute("user", updatedUser);
+
     }
 }

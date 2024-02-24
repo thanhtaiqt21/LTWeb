@@ -9,14 +9,14 @@
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
-            <a href="index.html"
+            <a href="/ecommerce/adminpage/home"
             ><img class="main-logo" src="../images/logo/logo.png" alt=""
             /></a>
             <strong><img src="../images/logo/logosn.png" alt="" /></strong>
         </div>
         <div class="nalika-profile">
             <div class="profile-dtl">
-                <a href="#"><img src="../images/notification/4.jpg" alt="" /></a>
+                <a href="/ecommerce/adminpage/home"><img src="../images/notification/4.jpg" alt="" /></a>
                 <h2>Lakian <span class="min-dtn">Das</span></h2>
             </div>
             <div class="profile-social-dtl">
@@ -37,10 +37,10 @@
             <nav class="sidebar-nav left-sidebar-menu-pro">
                 <ul class="metismenu" id="menu1">
                     <li class="active">
-                        <a class="has-arrow" href="index.html">
-                            <i class="fa-solid fa-house"></i>
-                            <span class="mini-click-non">Ecommerce</span>
-                        </a>
+<%--                        <a class="has-arrow" href="index.html">--%>
+<%--                            <i class="fa-solid fa-house"></i>--%>
+<%--                            <span class="mini-click-non">Ecommerce</span>--%>
+<%--                        </a>--%>
                         <ul class="submenu-angle" aria-expanded="true">
                             <li>
                                 <a title="Product List" href="/ecommerce/adminpage/product-list"
@@ -48,7 +48,7 @@
                                 >
                             </li>
                             <li>
-                                <a title="Product List" href="order-list.html"
+                                <a title="Product List" href="order-list.jsp"
                                 ><span class="mini-sub-pro">Đơn hàng</span></a
                                 >
                             </li>

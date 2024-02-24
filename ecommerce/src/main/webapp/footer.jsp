@@ -24,20 +24,9 @@
                                 <li class="footer-links__item">
                                     <a href="contact-us.jsp" class="footer-links__link">Giới thiệu</a>
                                 </li>
-                                <li class="footer-links__item">
-                                    <a href="orders-history.jsp" class="footer-links__link"
-                                    >Thông tin vận chuyển</a
-                                    >
-                                </li>
-                                <li class="footer-links__item">
-                                    <a href="contact-us.jsp" class="footer-links__link">Chính sách</a>
-                                </li>
 
                                 <li class="footer-links__item">
                                     <a href="contact-us.jsp" class="footer-links__link">Liên hệ</a>
-                                </li>
-                                <li class="footer-links__item">
-                                    <a href=orders-history.jsp class="footer-links__link">Hoàn đơn</a>
                                 </li>
                                 <li class="footer-links__item">
                                     <a href="contact-us.jsp" class="footer-links__link">Vị trị</a>
@@ -50,7 +39,7 @@
                             <h5 class="footer-links__title">Tài khoản</h5>
                             <ul class="footer-links__list">
                                 <li class="footer-links__item">
-                                    <a href="orders-history.jsp" class="footer-links__link"
+                                    <a href="orders-history1.jsp" class="footer-links__link"
                                     >Lịch sử đặt hàng</a
                                     >
                                 </li>
@@ -60,7 +49,7 @@
                                     >
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="blog-classic.jsp" class="footer-links__link">Bản tin</a>
+                                    <a href="/ecommerce/blog" class="footer-links__link">Bản tin</a>
                                 </li>
                             </ul>
                         </div>
@@ -156,11 +145,9 @@
         </div>
     </div>
 </footer>
-<<<<<<< HEAD
-<script src="vendor/jquery-3.3.1/jquery.min.js"></script>
-=======
 
->>>>>>> 6892dba5a26e94e47d65558992fc5cdd865d4e36
+<script src="vendor/jquery-3.3.1/jquery.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         // Gửi yêu cầu đến servlet khi trang được tải

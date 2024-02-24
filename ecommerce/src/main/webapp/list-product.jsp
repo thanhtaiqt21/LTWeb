@@ -453,7 +453,7 @@
                                   <div class="product-card__prices">
                             <span class="product-card__new-price">
                               <fmt:setLocale value="vi_VN"/>
-                              <fmt:formatNumber value="${o.price * o.discount}" type="currency"/>
+                              <fmt:formatNumber value="${o.price - o.price * o.discount}" type="currency"/>
                             </span>
                                     <span class="product-card__old-price">
                               <fmt:setLocale value="vi_VN"/>

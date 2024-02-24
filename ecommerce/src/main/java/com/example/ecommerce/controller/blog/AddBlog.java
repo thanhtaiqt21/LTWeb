@@ -22,13 +22,15 @@ import java.util.List;
 public class AddBlog extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String title = req.getParameter("title");
         String content = req.getParameter("content");
         List<String> filePaths = new UploadImg().upload(req);
         String imgUrl = CloudinaryService.getInstance().uploadFile(filePaths.get(0));
         boolean isSuccess = BlogService.getInstance().addBlog(title, content, imgUrl);
         if (isSuccess) {
-            resp.sendRedirect("/blog-list");
+            resp.sendRedirect("/ecommerce/adminpage/blog-list.jsp");
         }else {
             req.setAttribute("error","Thêm blog thất bại");
             req.getRequestDispatcher("/adminpage/blog-add.jsp").forward(req,resp);

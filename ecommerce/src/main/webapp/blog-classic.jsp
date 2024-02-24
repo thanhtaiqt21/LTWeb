@@ -357,7 +357,7 @@
                               <a href="">${b.title}</a>
                             </div>
                             <div class="post-card__date">${b.timestamp}</div>
-                            <div class="post-card__content">
+                            <div style="overflow: hidden; height: 50px" class="post-card__content">
                               ${b.content}
                             </div>
                             <div class="post-card__read-more">
