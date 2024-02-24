@@ -33,8 +33,8 @@ public class ProductService {
     public long total() {
         return ProductDao.getInstance().totalProduct();
     }
-    public long totalProductPagination() {
-        return ProductDao.getInstance().totalProductPagination();
+    public long totalProductPagination(int cId) {
+        return ProductDao.getInstance().totalProductPagination(cId);
     }
 
     public List<Product> getAllProduct() {
@@ -82,6 +82,9 @@ public class ProductService {
     }
     public List<Product> searchByName(String txtSearch) {
         return ProductDao.getInstance().searchByName(txtSearch);
+    }
+    public boolean updateQuantitySold(int id, int quantity, int sold) {
+        return ProductDao.getInstance().updateQuantitySold(id, quantity, sold);
     }
 }
 

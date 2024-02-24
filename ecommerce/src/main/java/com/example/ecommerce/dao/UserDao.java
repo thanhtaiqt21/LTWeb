@@ -266,11 +266,8 @@ public class UserDao {
             p.setString(3, phone);
             p.setInt(4, id);
             int i = p.executeUpdate();
-            if (i > 0) return true;
 
-            String content ="Nhấn vào đường dẫn này để cập nhật thông tin :: " + "http://localhost:8080/ecommerce/AccountActive?key1=" + email + "&key2=" + hashcode;
-            SendMail se = new SendMail();
-            se.sendMail(email, content);
+            if (i > 0) return true;
         } catch (SQLException e) {
             throw new RuntimeException();
         }

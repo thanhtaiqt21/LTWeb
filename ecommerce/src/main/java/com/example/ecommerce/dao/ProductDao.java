@@ -60,7 +60,7 @@ public class ProductDao {
         Connection connection = DBConnect.getInstance().getConnection();
         PreparedStatement preparedStatement;
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM product LIMIT ?, ? ");
+            preparedStatement = connection.prepareStatement("SELECT * FROM product ORDER BY date_create LIMIT ?, ? ");
             preparedStatement.setInt(1, start);
             preparedStatement.setInt(2, total);
             ResultSet rs = preparedStatement.executeQuery();
@@ -142,12 +142,13 @@ public class ProductDao {
         return count;
     }
 
-    public long totalProductPagination() {
+    public long totalProductPagination(int cId) {
         long count = 0;
         Connection connection = DBConnect.getInstance().getConnection();
         PreparedStatement preparedStatement;
         try {
-            preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS total FROM product WHERE id_category = 19 AND active = 1");
+            preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS total FROM product WHERE id_category = ? AND active = 1");
+            preparedStatement.setInt(1, cId);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 count = rs.getLong("total");
@@ -513,7 +514,7 @@ public class ProductDao {
         Connection connection = DBConnect.getInstance().getConnection();
         PreparedStatement preparedStatement;
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM product ORDER BY date_create LIMIT 10");
+            preparedStatement = connection.prepareStatement("SELECT * FROM product WHERE active=1 ORDER BY date_create LIMIT 10");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 List<String> imgUrls = new ArrayList<>();
@@ -579,7 +580,7 @@ public class ProductDao {
         Connection connection = DBConnect.getInstance().getConnection();
         PreparedStatement preparedStatement;
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM product ORDER BY sold LIMIT 6");
+            preparedStatement = connection.prepareStatement("SELECT * FROM product WHERE active=1 ORDER BY sold LIMIT 6");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 List<String> imgUrls = new ArrayList<>();
@@ -612,7 +613,7 @@ public class ProductDao {
         PreparedStatement preparedStatement;
         Product product = new Product();
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM product ORDER BY sold LIMIT 1");
+            preparedStatement = connection.prepareStatement("SELECT * FROM product WHERE active=1 ORDER BY sold LIMIT 1");
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 List<String> imgUrls = new ArrayList<>();
@@ -636,6 +637,22 @@ public class ProductDao {
             throw new RuntimeException();
         }
         return product;
+    }
+
+    public boolean updateQuantitySold(int id, int quantity, int sold) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE product SET quantity=?, sold=? WHERE id=?");
+            preparedStatement.setInt(1,quantity);
+            preparedStatement.setInt(2,sold);
+            preparedStatement.setInt(3, id);
+            int i = preparedStatement.executeUpdate();
+            if (i > 0) return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 }
 

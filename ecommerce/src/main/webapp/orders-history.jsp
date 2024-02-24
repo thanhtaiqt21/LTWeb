@@ -57,6 +57,17 @@
       gtag("js", new Date());
       gtag("config", "UA-97489509-6");
     </script>
+    <style>
+      .model{
+        width: 100px;
+        height: 30px;
+        text-align: center;
+        line-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
   <!-- quickview-modal -->
@@ -338,7 +349,6 @@
                 <th class="wishlist__column wishlist__column--stock">Tình trạng</th>
                 <th class="wishlist__column wishlist__column--price">Giá</th>
                 <th class="wishlist__column wishlist__column--tocart"></th>
-                <th class="wishlist__column wishlist__column--remove"></th>
               </tr>
               </thead>
 <%--              <tbody class="wishlist__body">--%>
@@ -402,18 +412,30 @@
       tableBody.empty();
 
       ordersToShow.forEach(function(order) {
-        var statusLabel = order.status === 1 ? 'Đã xác nhận' : 'Chưa xác nhận';
-        var statusClass = order.status === 1 ? 'badge-success' : 'badge-warning';
+        // var statusLabel = order.status === 1 ? 'Đã xác nhận' : 'Chưa xác nhận';
+        // var statusClass = order.status === 1 ? 'badge-success' : 'badge-warning';
+        var statusButton = getStatusButton(order.status);
+        function getStatusButton(status) {
+          switch(status) {
+            case 0:
+              return '<button class="pd-setting status-toggle model" data-order-id="' + order.id + '">Chờ xác nhận</button>';
+            case 1:
+              return '<button class="pd-setting status-toggle model" data-order-id="' + order.id + '" >Đã xác nhận</button>';
+            case 2:
+              return '<button class="pd-setting status-toggle model" data-order-id="' + order.id + '" >Hủy</button>'; // Trạng thái "Hủy"
+            default:
+              return '<button class="pd-setting status-toggle model" data-order-id="' + order.id + '">Không xác định</button>';
+          }
+        }
         var formattedPrice = order.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
         var detailButton = '<button type="button" class="btn btn-primary btn-sm" onclick="viewOrderDetail(' + order.id + ')">Xem chi tiết</button>';
 
         var row = $('<tr class="wishlist__row"></tr>');
         row.append('<td class="wishlist__column wishlist__column--image"><p>#' + order.id + '</p></td>');
         row.append('<td class="wishlist__column wishlist__column--product"><p>' + new Date(order.dayCreate).toLocaleDateString() + '</p></td>');
-        row.append('<td class="wishlist__column wishlist__column--stock"><div class="badge ' + statusClass + '">' + statusLabel + '</div></td>');
+        row.append('<td class="wishlist__column wishlist__column--stock"><div class="badge ' +  statusButton + '</div></td>');
         row.append('<td class="wishlist__column wishlist__column--price">' + formattedPrice + '</td>');
         row.append('<td class="wishlist__column wishlist__column--tocart">' + detailButton + '</td>');
-        row.append('<td class="wishlist__column wishlist__column--remove"><button class="btn btn-light btn-sm btn-svg-icon" onclick="confirmDeleteOrder(' + order.id + ')"><svg width="12px" height="12px"><use xlink:href="images/sprite.svg#cross-12"></use></svg></button></td>');
 
         tableBody.append(row);
       });
@@ -460,39 +482,39 @@
 
   </script>
 
-<script>
-  function confirmDeleteOrder(orderId) {
-    $('#deleteOrderModal').modal('show');
+<%--<script>--%>
+<%--  function confirmDeleteOrder(orderId) {--%>
+<%--    $('#deleteOrderModal').modal('show');--%>
 
-    $('#confirmDeleteBtn').off('click').on('click', function () {
-      deleteOrder(orderId);
-      $('#deleteOrderModal').modal('hide');
-    });
-    // Đặt sự kiện khi đóng modal
-    $('#deleteOrderModal').on('hidden.bs.modal', function () {
-      // Đảm bảo loại bỏ sự kiện click để tránh thực hiện đa lần
-      $('#confirmDeleteBtn').off('click');
-    });
-  }
+<%--    $('#confirmDeleteBtn').off('click').on('click', function () {--%>
+<%--      deleteOrder(orderId);--%>
+<%--      $('#deleteOrderModal').modal('hide');--%>
+<%--    });--%>
+<%--    // Đặt sự kiện khi đóng modal--%>
+<%--    $('#deleteOrderModal').on('hidden.bs.modal', function () {--%>
+<%--      // Đảm bảo loại bỏ sự kiện click để tránh thực hiện đa lần--%>
+<%--      $('#confirmDeleteBtn').off('click');--%>
+<%--    });--%>
+<%--  }--%>
 
-  function deleteOrder(orderId) {
-    $.ajax({
-      type: 'GET',
-      url: '/ecommerce/delete-order?orderId=' + orderId,
-      success: function (response) {
-        if (response.success) {
-          alert('Đơn hàng đã được xóa thành công.');
-          loadOrdersHistory(); // Làm mới danh sách đơn hàng
-        } else {
-          alert('Có lỗi xảy ra khi xóa đơn hàng.');
-        }
-      },
-      error: function (error) {
-        console.error('Error deleting order:', error);
-      }
-    });
-  }
-</script>
+<%--  function deleteOrder(orderId) {--%>
+<%--    $.ajax({--%>
+<%--      type: 'GET',--%>
+<%--      url: '/ecommerce/delete-order?orderId=' + orderId,--%>
+<%--      success: function (response) {--%>
+<%--        if (response.success) {--%>
+<%--          alert('Đơn hàng đã được xóa thành công.');--%>
+<%--          loadOrdersHistory(); // Làm mới danh sách đơn hàng--%>
+<%--        } else {--%>
+<%--          alert('Có lỗi xảy ra khi xóa đơn hàng.');--%>
+<%--        }--%>
+<%--      },--%>
+<%--      error: function (error) {--%>
+<%--        console.error('Error deleting order:', error);--%>
+<%--      }--%>
+<%--    });--%>
+<%--  }--%>
+<%--</script>--%>
 
 
   </body>

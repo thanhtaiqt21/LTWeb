@@ -55,9 +55,6 @@
         gtag("js", new Date());
         gtag("config", "UA-97489509-6");
     </script>
-
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
     <style type="text/css">
         label.error {
             display: inline-block;
@@ -409,7 +406,7 @@
                                                 name="phone"
                                                 value="<%=phone%>"/>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-4" name="submit" id="submit">
+                                    <button type="submit" class="btn btn-primary mt-4" name="submit" id="submit" >
                                         Cập Nhật
                                     </button>
                                 </form>
@@ -428,6 +425,8 @@
     <jsp:include page="footer.jsp"/>
     <!-- site__footer / end -->
 </div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#form_update").validate({

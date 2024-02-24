@@ -454,7 +454,7 @@
                         </div>
                       </div>
                       <div class="product-card__image">
-                        <a href="product.jsp"
+                        <a href="detail?pid=${product.id}&cid=${product.categoryId}"
                           ><img
                             src="${product.imgUrl.get(0)}"
                             alt=""
@@ -462,7 +462,7 @@
                       </div>
                       <div class="product-card__info">
                         <div class="product-card__name">
-                          <a href="product.jsp"
+                          <a href="detail?pid=${product.id}&cid=${pproduct.categoryId}"
                             >${product.title}</a
                           >
                         </div>
@@ -610,7 +610,7 @@
                             <div class="product-card__prices">
                             <span class="product-card__new-price">
                               <fmt:setLocale value="vi_VN"/>
-                              <fmt:formatNumber value="${product.price * product.discount}" type="currency"/>
+                              <fmt:formatNumber value="${product.price - product.price * product.discount}" type="currency"/>
                             </span>
                               <span class="product-card__old-price">
                               <fmt:setLocale value="vi_VN"/>
@@ -699,7 +699,7 @@
                       </div>
                     </div>
                     <div class="product-card__image">
-                      <a href="product.jsp"
+                      <a href="detail?pid=${product.id}&cid=${product.categoryId}"
                         ><img
                           src="${product.imgUrl.get(0)}"
                           alt=""
@@ -707,7 +707,7 @@
                     </div>
                     <div class="product-card__info">
                       <div class="product-card__name">
-                        <a href="product.jsp"
+                        <a href="detail?pid=${product.id}&cid=${product.categoryId}"
                           >${product.title}</a
                         >
                       </div>
@@ -857,7 +857,7 @@
                           <div class="product-card__prices">
                             <span class="product-card__new-price">
                               <fmt:setLocale value="vi_VN"/>
-                              <fmt:formatNumber value="${product.price * product.discount}" type="currency"/>
+                              <fmt:formatNumber value="${product.price - product.price * product.discount}" type="currency"/>
                             </span>
                             <span class="product-card__old-price">
                               <fmt:setLocale value="vi_VN"/>
@@ -908,7 +908,7 @@
                       </div>
                     </div>
                     <div class="product-card__image">
-                      <a href="product.jsp"
+                      <a href="detail?pid=${product.id}&cid=${product.categoryId}"
                         ><img
                           src="${bestSellingProduct.imgUrl.get(0)}"
                           alt=""
@@ -916,7 +916,7 @@
                     </div>
                     <div class="product-card__info">
                       <div class="product-card__name">
-                        <a href="product.jsp"
+                        <a href="detail?pid=${product.id}&cid=${product.categoryId}"
                           >${bestSellingProduct.title}
                         </a>
                       </div>
@@ -1062,7 +1062,7 @@
                           <div class="product-card__prices">
                             <span class="product-card__new-price">
                               <fmt:setLocale value="vi_VN"/>
-                              <fmt:formatNumber value="${bestSellingProduct.price * bestSellingProduct.discount}" type="currency"/>
+                              <fmt:formatNumber value="${bestSellingProduct.price - bestSellingProduct.price * bestSellingProduct.discount}" type="currency"/>
                             </span>
                             <span class="product-card__old-price">
                               <fmt:setLocale value="vi_VN"/>
@@ -1178,10 +1178,5 @@
       <!-- site__footer / end -->
     </div>
     <!-- site / end -->
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 6892dba5a26e94e47d65558992fc5cdd865d4e36
   </body>
 </html>

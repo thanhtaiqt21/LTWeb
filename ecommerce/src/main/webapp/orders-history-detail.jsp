@@ -321,7 +321,7 @@
                     </svg>
                   </li>
                   <li class="breadcrumb-item">
-                    <a href="orders-history.jsp">Lịch sử đơn hàng</a>
+                    <a href="orders-history1.jsp">Lịch sử đơn hàng</a>
                     <svg class="breadcrumb-arrow" width="6px" height="9px">
                       <use
                         xlink:href="images/sprite.svg#arrow-rounded-right-6x9"
@@ -413,10 +413,10 @@
                 '</tr>';
       }).join('');
       var subtotal = orderDetail.totalPrice - orderDetail.shippingFee;
-      var subtotalsHtml = '<tr><th>Tạm tính</th><td></td><td>'+ formatPrice(subtotal)  + '</td></tr>' +
-              '<tr><th>Phí vận chuyển</th><td></td><td>' + formatPrice(orderDetail.shippingFee) + '</td></tr>';
+      var subtotalsHtml = '<tr><th>Tạm tính</th><td></td><td></td><td>'+ formatPrice(subtotal)  + '</td></tr>' +
+              '<tr><th>Phí vận chuyển</th><td></td><td></td><td>' + formatPrice(orderDetail.shippingFee) + '</td></tr>';
 
-      var totalHtml = '<tr><th>Tổng</th><td></td><td>' + formatPrice(orderDetail.totalPrice) + '</td></tr>';
+      var totalHtml = '<tr><th>Tổng</th><td></td><td></td><td>' + formatPrice(orderDetail.totalPrice) + '</td></tr>';
 
       $('.checkout__totals-products').html(productsHtml);
       $('.checkout__totals-subtotals').html(subtotalsHtml);

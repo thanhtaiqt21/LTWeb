@@ -1,10 +1,15 @@
 package com.example.ecommerce.dao;
 
 import com.example.ecommerce.db.DBConnect;
+import com.example.ecommerce.model.OrderItems;
+import com.example.ecommerce.service.ProductService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderItemsDao {
 
@@ -32,5 +37,27 @@ public class OrderItemsDao {
             throw new RuntimeException(e);
         }
         return false;
+    }
+
+    public List<OrderItems> getProductIds(int idOrder) {
+        Connection connection = DBConnect.getInstance().getConnection();
+        PreparedStatement preparedStatement;
+        List<OrderItems> list = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM order_items WHERE id_orders=?");
+            preparedStatement.setInt(1,idOrder);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                list.add(new OrderItems(rs.getInt("id"),
+                        rs.getInt("quantity"),
+                        rs.getInt("total_price"),
+                        rs.getInt("id_product"),
+                        idOrder,
+                        ProductService.getInstance().getProductById(rs.getInt("id_product"))));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
     }
 }

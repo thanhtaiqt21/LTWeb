@@ -17,8 +17,8 @@ public class ProductPagination extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("cId"));
         int page = 1;
-        int recordPerPage = 4;
-        long totalProduct = ProductService.getInstance().totalProductPagination();
+        int recordPerPage = 8;
+        long totalProduct = ProductService.getInstance().totalProductPagination(id);
         if (req.getParameter("page") != null) {
             page = Integer.parseInt(req.getParameter("page"));
         }

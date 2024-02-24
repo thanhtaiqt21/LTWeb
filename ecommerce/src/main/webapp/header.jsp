@@ -32,7 +32,7 @@
                                     <ul class="menu menu--layout--topbar">
                                         <li><a href="changePass.jsp">Thay đổi mật khẩu</a></li>
                                         <li><a href="update_profile.jsp">Thay đổi thông tin cá nhân</a></li>
-                                        <li><a href="orders-history.jsp">Lịch sử đơn hàng</a></li>
+                                        <li><a href="orders-history1.jsp">Lịch sử đơn hàng</a></li>
                                         <li><a href="/ecommerce/logout">Đăng xuất</a></li>
                                     </ul>
                                     <!-- .menu / end -->
@@ -134,7 +134,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-links__item nav-links__item--with-submenu">
-                                    <a href="/ecommerce/blogPage"><span>Blog </span></a>
+                                    <a href="/ecommerce/blog"><span>Blog </span></a>
                                 </li>
 
                                 <li class="nav-links__item">
